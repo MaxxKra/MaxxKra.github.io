@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Adventkranz mit ESPHome smart machen"
+title: "Adventskranz mit ESPHome smart machen"
 date: 2024-11-23 08:03:24
 categories: Dashboard
 tags: [Adventskranz, ESPHome, D1 Mini, Home Assistant, Automatisierung, DIY Smart Home, Weihnachtsdeko, Mikrocontroller, Smarte Beleuchtung, Advent]
-description: "Hier zeige ich, wie ich mit ESPHome und einem D1 Mini Microcontroller meinen Adventkranz smart gemacht habe"
-image: /img/blog/smarter_Adventkranz/blog-post-smarter-adbentkranz.png
+description: "Hier zeige ich, wie ich mit ESPHome und einem D1 Mini Microcontroller meinen Adventskranz smart gemacht habe"
+image: /img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png
 published: true
 ---
 
@@ -19,20 +19,20 @@ published: true
 
 
 <div style="text-align: center;">
-    <img src="/img/blog/smarter_Adventkranz/blog-post-smarter-adbentkranz.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
+    <img src="/img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
 </div>
 
 
-<h2>Einen smarten Adventkranz bauen</h2>
+<h2>Einen smarten Adventskranz bauen</h2>
 
 <p>
     Da meine Frau und ich das Glück haben, bei zwei unglaublich süßen Katern wohnen zu dürfen, ist es leider nicht möglich, echte, brennende Kerzen in der Wohnung zu nutzen. 
-    Da wir dennoch gerne zur Weihnachtszeit einen Adventkranz aufstellen und dieser natürlich leuchtende Kerzen haben soll, kam mir die Idee, einfach einen smarten Adventkranz zu bauen und diesen voll automatisiert zu gestalten.
+    Da wir dennoch gerne zur Weihnachtszeit einen Adventskranz aufstellen und dieser natürlich leuchtende Kerzen haben soll, kam mir die Idee, einfach einen smarten Adventskranz zu bauen und diesen voll automatisiert zu gestalten.
 </p>
 
 <h3>Schritt 1. Verwendete Komponenten</h3>
 
-<p>Was habe ich zum Bau des smarten Adventkranzes benötigt:</p>
+<p>Was habe ich zum Bau des smarten Adventskranzes benötigt:</p>
 
 <ol>
     <li>Einen künstlichen, optisch ansprechenden Kranz</li>
@@ -59,7 +59,7 @@ published: true
 </p>
 
 <div class="columns is-centered">
-{% assign gallery_images = site.data.gallery_adventkranz_kerze %}
+{% assign gallery_images = site.data.gallery_adventskranz_kerze %}
     <div class="columns is-multiline">
         {% for gallery in gallery_images %}
             <div class="column is-12">
@@ -175,8 +175,8 @@ published: true
     <button class="copy-button">Copy</button>
     <pre class="line-numbers"><code class="language-yaml">
 esphome:
-  name: adventkranz
-  friendly_name: Adventkranz
+  name: adventskranz
+  friendly_name: Adventskranz
 
 esp32:
   board: wemos_d1_mini32
@@ -210,7 +210,7 @@ wifi:
 
 # Enable fallback hotspot (captive portal) in case wifi connection fails
 ap:
-  ssid: "Adventkranz Fallback Hotspot"
+  ssid: "Adventskranz Fallback Hotspot"
   password: "DEIN PASSWORT"
 
 captive_portal:
@@ -269,7 +269,7 @@ output:
 <h3>Schritt 5. Kalender einrichten</h3>
 
 <p>
-    Da ich den Adventkranz vollautomatisch betreiben möchte, habe ich mir einen Kalender mit den Advent-Tagen erstellt. Bei uns bleibt der Weihnachtsbaum und auch der Adventkranz bis zum 6.Jänner stehen.<br>
+    Da ich den Adventskranz vollautomatisch betreiben möchte, habe ich mir einen Kalender mit den Advent-Tagen erstellt. Bei uns bleibt der Weihnachtsbaum und auch der Adventskranz bis zum 6.Jänner stehen.<br>
     Aus diesem Grund hat dieser Kalender folgende Einträge:
 </p>
 
@@ -420,14 +420,14 @@ FEHLER
 <h3>Schritt 7. Automatisierung</h3>
 
 <p>
-    Die Automatisierung war der letzte Schritt. Ich wollte einen Schalter, welcher den Adventkranz ein und aus schaltet. Welche und wieviele der Kerzen dabei eingeschaltet werden, übernimmt die Automatisierung.
+    Die Automatisierung war der letzte Schritt. Ich wollte einen Schalter, welcher den Adventskranz ein und aus schaltet. Welche und wieviele der Kerzen dabei eingeschaltet werden, übernimmt die Automatisierung.
 </p>
 
 <p>
 Zuerst der Schalter. Dieser ist ein Input-Boolean und ich habe diesen bei den Helfern angelegt. 
 </p>
 <ul>
-    <li><strong>Name</strong>: Adventkranz</li>
+    <li><strong>Name</strong>: Adventskranz</li>
     <li><strong>Icon</strong>: mdi:candle</li>
 </ul>
 
@@ -463,7 +463,7 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 </div>
 
 <p>
-    Der fertig installierte Helfer <strong>input_boolean.adventkranz</strong> inkl. Labels zur einfacheren Sortierung ist hier anzusehen:
+    Der fertig installierte Helfer <strong>input_boolean.adventskranz</strong> inkl. Labels zur einfacheren Sortierung ist hier anzusehen:
 </p>
 
 <div class="columns is-centered">
@@ -479,11 +479,11 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
   <h2 style="text-align: center; color: #444;">Was macht nun diese Automatisierung?</h2>
   <p style="line-height: 1.6; color: #555;">
-    Diese Automatisierung steuert den Adventkranz entsprechend des aktuellen Adventsstatus. 
+    Diese Automatisierung steuert den Adventskranz entsprechend des aktuellen Adventsstatus. 
   </p>
   <ul style="line-height: 1.6; color: #555;">
     <li>
-      <strong>Wenn der Schalter "Adventkranz" eingeschaltet wird:</strong>
+      <strong>Wenn der Schalter "Adventskranz" eingeschaltet wird:</strong>
       <ul style="margin-top: 5px; list-style-type: disc; padding-left: 20px;">
         <li>Es wird geprüft, welche Adventwoche gerade ist.</li>
         <li>Je nach Woche werden 1 bis 4 Kerzen eingeschaltet.</li>
@@ -491,7 +491,7 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
       </ul>
     </li>
     <li style="margin-top: 15px;">
-      <strong>Wenn der Schalter "Adventkranz" ausgeschaltet wird:</strong>
+      <strong>Wenn der Schalter "Adventskranz" ausgeschaltet wird:</strong>
       <ul style="margin-top: 5px; list-style-type: disc; padding-left: 20px;">
         <li>Alle Kerzen und die Lichterkette werden ausgeschaltet.</li>
       </ul>
@@ -508,13 +508,13 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
     <h4>Die Automatisierung im YAML-Code</h4>
     <button class="copy-button">Copy</button>
     <pre class="line-numbers"><code class="language-yaml">
-alias: Adventkranz Automatisierung
-description: Steuert den Adventkranz entsprechend des aktuellen Adventsstatus
+alias: Adventskranz Automatisierung
+description: Steuert den Adventskranz entsprechend des aktuellen Adventsstatus
 triggers:
-  - entity_id: input_boolean.adventkranz
+  - entity_id: input_boolean.adventskranz
     to: "on"
     trigger: state
-  - entity_id: input_boolean.adventkranz
+  - entity_id: input_boolean.adventskranz
     to: "off"
     trigger: state
 conditions: []
@@ -522,7 +522,7 @@ actions:
   - choose:
       - conditions:
           - condition: state
-            entity_id: input_boolean.adventkranz
+            entity_id: input_boolean.adventskranz
             state: "on"
         sequence:
           - choose:
@@ -533,8 +533,8 @@ actions:
                 sequence:
                   - target:
                       entity_id:
-                        - light.adventkranz_kerze1
-                        - light.adventkranz_kette
+                        - light.adventskranz_kerze1
+                        - light.adventskranz_kette
                     action: light.turn_on
                     data: {}
               - conditions:
@@ -544,9 +544,9 @@ actions:
                 sequence:
                   - target:
                       entity_id:
-                        - light.adventkranz_kerze1
-                        - light.adventkranz_kerze2
-                        - light.adventkranz_kette
+                        - light.adventskranz_kerze1
+                        - light.adventskranz_kerze2
+                        - light.adventskranz_kette
                     action: light.turn_on
                     data: {}
               - conditions:
@@ -556,10 +556,10 @@ actions:
                 sequence:
                   - target:
                       entity_id:
-                        - light.adventkranz_kerze1
-                        - light.adventkranz_kerze2
-                        - light.adventkranz_kerze3
-                        - light.adventkranz_kette
+                        - light.adventskranz_kerze1
+                        - light.adventskranz_kerze2
+                        - light.adventskranz_kerze3
+                        - light.adventskranz_kette
                     action: light.turn_on
                     data: {}
               - conditions:
@@ -569,11 +569,11 @@ actions:
                 sequence:
                   - target:
                       entity_id:
-                        - light.adventkranz_kerze1
-                        - light.adventkranz_kerze2
-                        - light.adventkranz_kerze3
-                        - light.adventkranz_kerze4
-                        - light.adventkranz_kette
+                        - light.adventskranz_kerze1
+                        - light.adventskranz_kerze2
+                        - light.adventskranz_kerze3
+                        - light.adventskranz_kerze4
+                        - light.adventskranz_kette
                     action: light.turn_on
                     data: {}
               - conditions:
@@ -583,25 +583,25 @@ actions:
                 sequence:
                   - target:
                       entity_id:
-                        - light.adventkranz_kerze1
-                        - light.adventkranz_kerze2
-                        - light.adventkranz_kerze3
-                        - light.adventkranz_kerze4
-                        - light.adventkranz_kette
+                        - light.adventskranz_kerze1
+                        - light.adventskranz_kerze2
+                        - light.adventskranz_kerze3
+                        - light.adventskranz_kerze4
+                        - light.adventskranz_kette
                     action: light.turn_on
                     data: {}
       - conditions:
           - condition: state
-            entity_id: input_boolean.adventkranz
+            entity_id: input_boolean.adventskranz
             state: "off"
         sequence:
           - target:
               entity_id:
-                - light.adventkranz_kerze1
-                - light.adventkranz_kerze2
-                - light.adventkranz_kerze3
-                - light.adventkranz_kerze4
-                - light.adventkranz_kette
+                - light.adventskranz_kerze1
+                - light.adventskranz_kerze2
+                - light.adventskranz_kerze3
+                - light.adventskranz_kerze4
+                - light.adventskranz_kette
             action: light.turn_off
             data: {}
 mode: single
@@ -610,7 +610,7 @@ mode: single
 </div>
 
 <p>
-    Nach der Installation der Automatisierung ging es an den Zusammenbau des Adventkranzes und an das Testen.
+    Nach der Installation der Automatisierung ging es an den Zusammenbau des Adventskranzes und an das Testen.
     <br>
     In den Etwicklerwerkzeugen ist es sehr einfach, für kurze Zeit die Kalenderdaten nach eigenen Bedürfnissen zu setzen. Ich habe bei Zustand <strong>on</strong> und bei <strong>message: 4.Advent</strong> eingetragen und dann auf <strong>ZUSTAND SETZEN</strong> geklickt. Dann auf meinem neu erstelltem Dashboard die Funktionen gestestet.<br>
     Alles funktionierte zur vollsten Zufriedenheit.
