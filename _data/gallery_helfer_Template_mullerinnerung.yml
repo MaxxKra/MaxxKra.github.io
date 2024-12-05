@@ -1,0 +1,35 @@
+- title: Home Assistant - Template Sensor Helfer anlegen
+  images:
+    - link: /img/HA-Buttons/Ablauf_Helfer_erstellen_k.png
+      large_link: /img/HA-Buttons/Ablauf_Helfer_erstellen.png
+      alt: Ablauf Helfer erstellen
+      description: |-
+        ### 1. Helfer erstellen Ablauf
+
+        Navigiere in den Einstellungen über `Geräte & Dienste` zu `Helfer`. Klicke dort auf `HELFER ERSTELLEN`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Helfer_Liste_Template_k.png
+      large_link: /img/HA-Buttons/Helfer_Liste_Template.png
+      alt: Helfer Liste Template
+      description: |-
+        ### 2. Helfer Liste: Template auswählen
+
+        Wähle in der Liste den Eintrag `Template` aus, um einen neuen Template-Helfer anzulegen.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Template_Helfer_Liste_Sensor_k.png
+      large_link: /img/HA-Buttons/Template_Helfer_Liste_Sensor.png
+      alt: Template Sensor erstellen
+      description: |-
+        ### 3. Template für einen Sensor erstellen
+
+        Wähle die Option `Template für einen Sensor erstellen`, um einen Template-Sensor für deinen Anwendungsfall zu definieren.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Template_Helfer_anlegen_k.png
+      large_link: /img/HA-Buttons/Template_Helfer_anlegen.png
+      alt: Sensor Template einrichten
+      description: |-
+        ### 4. Sensor Template einrichten
+
+        Füge einen individuellen Namen für den Sensor ein. Im Feld `Zustandstemplate` kannst du die Bedingungen mit Jinja2 definieren.
+        Bei Bedarf kannst du eine Maßeinheit, Geräteklasse, Zustandsklasse und ein Gerät wählen. Eine Vorschau des erstellten Sensors wird unten angezeigt.
+      ratio: is-3by2

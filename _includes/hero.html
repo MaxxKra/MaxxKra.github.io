@@ -1,0 +1,28 @@
+<section
+    class="hero {% if page.hero_height %} {{ page.hero_height }} {% else %} is-medium {% endif %} is-bold is-primary" {%
+    if page.hero_image %}
+    style="background: url('{{ page.hero_image }}') no-repeat center center; background-size: cover;" {% endif %}>
+    <div class="hero-body {% if page.hero_darken %} hero-darken {% endif %}"
+        style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-narrow">
+                    <figure class="image is-180x180" style="margin-right: 20px; margin-top: 0; margin-bottom: 0;">
+                        <img src="{{ '/img/logos/SHB-Git-Logo.png' | relative_url }}" alt="Smart Home Bastler Logo">
+                    </figure>
+                </div>
+                <div class="column">
+                    <h1 class="title is-2">{{ page.title }}</h1>
+                    <p class="subtitle is-3">{{ page.subtitle }}</p>
+                    {% if page.hero_link %}
+                    <div class="my-4">
+                        <a href="{{ page.hero_link | relative_url }}" class="button is-info is-large">
+                            {{- page.hero_link_text -}}
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

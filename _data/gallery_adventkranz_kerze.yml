@@ -1,0 +1,19 @@
+- images:
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Kerze_Draht_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Kerze_Draht.png
+      alt: Loch bohren
+      description: |-
+        Ein Loch in die Batteriekammer bohren und die Drähte einführen.
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Batteriekammer_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Batteriekammer.png
+      alt: Draht anlöten
+      description: |-
+        Die Drähte an die Batteriekontakte löten
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Kerze_Klemme_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Kerze_Klemme.png
+      alt: Klemme anschliessen
+      description: |-
+        Eine Klemme für den Anschlusss an den Microkontroller anbringen
+      ratio: is-3by2

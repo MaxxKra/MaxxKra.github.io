@@ -1,0 +1,25 @@
+- images:
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_fertig_2_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_fertig_2.png
+      alt: Adventkranz fertig
+      description: |-
+        Alles angeschlossen und die Kerzen am Kranz angebracht
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Advent_Kalender_Test_1_k.png
+      large_link: /img/blog/smarter_Adventkranz/Advent_Kalender_Test_1.png
+      alt: Kalender testen
+      description: |-
+        In den Entwicklerwerkzeugen den Kalender durch Setzen von Werten testen
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Dashboard_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Dashboard.png
+      alt: Adventkranz Dashboard
+      description: |-
+        Am Dashboard die Funktionen kontrollieren
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_fertig_1_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_fertig_1.png
+      alt: Kerzen anschliessen
+      description: |-
+        Den Kranz dekorieren und die Adventzeit genießen
+      ratio: is-3by2

@@ -1,0 +1,77 @@
+- title: Waste Collection Schedule Integration - Kalender einrichten
+  images:
+    - link: /img/muell/WCS_Integration_1_k.png
+      large_link: /img/muell/WCS_Integration_1.png
+      alt: WCS Integration einrichten
+      description: |-
+        ### 1. Land auswählen
+
+        Suche dein Land im Auswahlmenü und danch klicke auf SPEICHERN
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_2_k.png
+      large_link: /img/muell/WCS_Integration_2.png
+      alt: WCS Integration einrichten
+      description: |-
+        ### 2. Kalenderanbieter auswählen
+
+        Suche nach deinem Abfallentsorger bzw. deiner Stadt, wähle diese aus und klicke auf SPEICHERN
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_3_k.png
+      large_link: /img/muell/WCS_Integration_3.png
+      alt: WCS Integration einrichten
+      description: |-
+        ### 3. Müllkalender Einstellungen
+
+        Standardmäßig wird der Anbieter Name als Kalendername verwendet. 
+        Du kannst diesen auch individuell vergeben. 
+        Dann trage entweder die URL deines Kalenderanbieters oder den Pfad und Dateinamen deiner ICS Datei ein und beende mit SPEICHERN
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_4_k.png
+      large_link: /img/muell/WCS_Integration_4.png
+      alt: WCS Integration einrichten
+      description: |-
+        ### 4. Sensoren oder keine Sensoren?
+
+        Wenn du nur den Kalender ohne Sensoren anlegen möchtest, klicke auf SPEICHERN ohne einen Haken zu setzen.
+        Um Sensoren anzulegen, hake dies an und klicke danch auf SPEICHERN.
+      ratio: is-3by2
+
+- title: Waste Collection Schedule Integration - Sensoren einrichten
+  images:
+    - link: /img/muell/WCS_Integration_5_k.png
+      large_link: /img/muell/WCS_Integration_5.png
+      alt: WCS Sensoren einrichten
+      description: |-
+        ### 5. Sensor "Nächste Abholung" Template
+
+        Kopiere dir den Sensor Namen aus der Tabelle des Code Generators (Der erste Eintrag ist der Sensor "Nächste Abholung") und füge diesen als Name des Sensors ein.
+        Dann kopiere das Werte Template Nächste Abholung und füge es bei Werte Template ein.
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_6_k.png
+      large_link: /img/muell/WCS_Integration_6.png
+      alt: WCS Sensoren einrichten
+      description: |-
+        ### 6. Sensor "Nächste Abholung" Abfallarten
+
+        Ganz unten, wähle alle Abfallarten deines Kalenders aus dem Auswahlmenü aus, welche zu dem Sensor "Nächste Abholung" hinzugefügt werden sollen.
+        Dann setze den Haken bei "Weitere Sensoren hinzufügen" und klicke auf SPEICHERN
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_7_k.png
+      large_link: /img/muell/WCS_Integration_7.png
+      alt: WCS Sensoren einrichten
+      description: |-
+        ### 7. Sensor "Abfallarten" Template
+
+        Auch hier kopiere dir den Sensor Namen aus der Tabelle des Code Generators (Nun der einzelnen Abholart) und füge diesen als Name des Sensors ein.
+        Dann kopiere das Werte Template einzelne Abholungen und füge es bei Werte Template ein.
+      ratio: is-3by2
+    - link: /img/muell/WCS_Integration_8_k.png
+      large_link: /img/muell/WCS_Integration_8.png
+      alt: WCS Sensoren einrichten
+      description: |-
+        ### 8. Sensor "Abfallart" 
+
+        Auch hier, ganz unten, wähle die einzelne Abfallart deines Sensors aus dem Auswahlmenü aus.
+        Um weitere Sensoren anzulegen, setze den Haken bei "Weitere Sensoren hinzufügen", klicke auf SPEICHERN und wiederhole Schritt 7 und 8 bis alle Sensoren angelegt sind.
+        Beim letzten Sensor lasse den Haken bei "Weitere Sensoren hinzufügen" weg um die Einrichtung abzuschliessen.
+      ratio: is-3by2

@@ -1,0 +1,39 @@
+- title: Floorplan Code Genenrator - Beleuchtungsbilder Beispiele
+  images:
+    - link: /img/floorplan/01_background_night_k.png
+      large_link: /img/floorplan/01_background_night.png
+      alt: Ablauf Helfer erstellen
+      description: |-
+        ### 1. Hintergrundbild
+
+        Dies ist ein Beispiel eines Hintergrundbilds. Hier wird die gesamte Wohnung oder das Haus ohne eingeschalteter Beleuchtungen dargestellt.
+      ratio: is-3by2
+    - link: /img/floorplan/02_entity_light_kitchen_k.png
+      large_link: /img/floorplan/02_entity_light_kitchen.png
+      alt: Helfer Liste Template
+      description: |-
+        ### 2. Entität Licht Küche
+
+        Dieses Beispiel zeigt die Entität "light.kuche_deckenlicht" mit dem Bildnamen "kuche_deckenlicht.png". 
+        Dieses Bild könnte für normale Ein/Aus Beleuchutngen sowie Dimmer usw. genutzt werden.
+      ratio: is-3by2
+    - link: /img/floorplan/04_entity_office_table_color_k.png
+      large_link: /img/floorplan/04_entity_office_table_color.png
+      alt: Template Sensor erstellen
+      description: |-
+        ### 3. Entität Büro Schreibtisch - Farbe
+
+        Dies ist ein Beispiel einer RGB Leuchte. Entitäten wie dieses Beispiel "light.buro_schreibtisch" können ihre Farbe wechseln. 
+        Um dies auf dem Floorplan darzustellen, wird das Beleuchtungsbild mit rotem Licht dargestellt, da rot die Grundfarbe des Farbwechslers ist.
+        Dieses Beispielbild trägt den Namen "buro_schreibtisch_farbe.png". Der Zusatz "_farbe" ist wichtig um bei RGBW Beleuchtungen zwischen Farbe oder Weiß unterscheidne zu können.
+      ratio: is-3by2
+    - link: /img/floorplan/03_entity_office_table_white_k.png
+      large_link: /img/floorplan/03_entity_office_table_white.png
+      alt: Sensor Template einrichten
+      description: |-
+        ### 4. Entität Büro Schreibtisch - Weiß
+
+        Hier haben wir die selbe Entität wie zuvor "light.buro_schreibtisch". 
+        Diese Bild wird für RGBW Beleuchtungen, für den Weiß-Anteil verwendet.
+        Daher ist es gleich wie der Farb-Anteil bezeichnet "buro_schreibtisch_weiss.png" und unterscheidet sich nur in dem Zusatz "_weiss"
+      ratio: is-3by2

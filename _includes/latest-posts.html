@@ -1,0 +1,56 @@
+<div class="profile-section">
+    <img src="/img/logos/SHB_Maxx_Profilbild.png" alt="Profilbild von Maxx" class="profile-image">
+    <p class="profile-description">
+        Mein Name ist Maxx und ich bin der Smart Home Bastler!<br><br>
+        Seit 2021 arbeite ich mit HomeAssistant an meinem Smarthome und bin durch die vielen Möglichkeiten, welches
+        dieses System bietet, noch immer nicht am Ende. Gerne teile ich meine Erfahrungen, gemachte Fehler und
+        erschaffene Automatisierungen mit euch.
+    </p>
+</div>
+
+<p class="title is-4">Letzter Beitrag</p>
+
+<div class="columns is-multiline">
+    {% for post in site.posts limit: 3 %}
+    <div class="column is-12">
+        {% include post-card.html %}
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    .profile-section {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .profile-description {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .profile-description {
+        font-size: 16px;
+        /* Größere Schriftgröße */
+        color: #333;
+        font-weight: bold;
+        /* Kräftigere Schrift */
+    }
+
+    .title.is-4 {
+        margin-bottom: 15px;
+        /* Abstand unter der Überschrift "Letzter Beitrag" */
+    }
+
+    .columns.is-multiline {
+        margin-top: 20px;
+        /* Abstand zwischen "Letzter Beitrag" und dem Beitrag selbst */
+    }
+</style>

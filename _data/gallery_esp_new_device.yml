@@ -1,0 +1,53 @@
+- title: Home Assistant - ESP - Neues Gerät anlegen,
+  images:
+    - link: /img/HA-Buttons/ESP_Anfang_Neu_k.png
+      large_link: /img/HA-Buttons/ESP_Anfang_Neu.png
+      alt: ESP Anfang
+      description: |-
+        ### 1. ESP New Device
+
+        Navigiere in Home Assistant zu ESPHome. Klicke dort auf `NEW DEVICE`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/ESP_New_Device_Name_k.png
+      large_link: /img/HA-Buttons/ESP_New_Device_Name.png
+      alt: ESP New Device
+      description: |-
+        ### 2. ESP Namen wählen
+
+        Trage einen individuellen Namen ein.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/ESP_Installation_1_k.png
+      large_link: /img/HA-Buttons/ESP_Installation_1.png
+      alt: ESP Installation
+      description: |-
+        ### 3. Verbindung zum Microcontroller
+
+        Verbinde den Microcontroller mit einem Daten-USB-Kabel mit deinem PC. Danach klicke auf `CONNECT`
+      ratio: is-3by2
+
+- title: Programmierung und Installation
+  images:
+    - link: /img/HA-Buttons/ESP_Verbindung_auswaehlen_k.png
+      large_link: /img/HA-Buttons/ESP_Verbindung_auswaehlen.png
+      alt: ESP Verbindung
+      description: |-
+        ### 4. USB Port auswählen
+
+        Wähle nun den Microcontroller aus der Portliste aus und bestätige mit `Verbinden`
+      ratio: is-3by2
+    - link: /img/HA-Buttons/ESP_Code_Grundeinstellungen_k.png
+      large_link: /img/HA-Buttons/ESP_Code_Grundeinstellungen.png
+      alt: ESP Code
+      description: |-
+        ### 5. Konfiguration
+
+        Trage deine Konfiguration in das Editorfenster ein. Danach klicke auf `INSTALL`
+      ratio: is-3by2
+    - link: /img/HA-Buttons/ESP_Installation_fertig_k.png
+      large_link: /img/HA-Buttons/ESP_Installation_fertig.png
+      alt: ESP Fertig
+      description: |-
+        ### 6. Fertig
+
+        Nach der Installation wird dir dieses Fenster angezeigt und dein ESP ist Einsatzbereit. Nun kannst du die Konfiguration testen.
+      ratio: is-3by2

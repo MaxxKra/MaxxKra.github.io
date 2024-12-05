@@ -1,0 +1,48 @@
+#- name: Docs
+#  link: /docs/
+#- name: Example Pages
+#  link: /#
+#  dropdown:
+#    - name: Landing Page With Callouts
+#      link: /landing/
+#    - name: Promo Page
+#      link: /promo-page/
+#    - name: Sponsors Page
+#      link: /sponsors/
+#    - name: Image Gallery
+#      link: /gallery/
+#    - name: Products
+#      link: /products/
+#    - name: Recipe Page
+#      link: /example-recipe/
+#    - name: Showcase
+#      link: /showcase/
+- name: Beiträge
+  link: /blog/
+  dropdown:
+    - name: Smarter Adventkranz
+      link: /dashboard/2024/11/23/adventkranz-mit-esphome-smart-machen/
+    - name: Eigene Schriftarten
+      link: /dashboard/2023/05/03/eigene-schriftart-in-homeassistant-integrieren/
+- name: Müllerinnerung Tools
+  dropdown:
+    - name: Beschreibung Müllerinnerung Codegenerator
+      link: /mullerinnerungsbeschreibung
+    - name: ICS zusammenführen / bearbeiten
+      link: /icszusammenfuhren
+    - name: Müllerinnerung Sensoren
+      link: /mullerinnerungsensoren
+- name: Floorplan Tools
+  dropdown:
+    - name: Beschreibung Floorplan Codegenerator
+      link: /floorplanbeschreibung
+    - name: Floorplan Beleuchtungs Bilder
+      link: /floorplanbeleuchtungsbilder
+    - name: Floorplan Button Position
+      link: /floorplanbuttonposition
+    - name: Floorplan Icons
+      link: /floorplanicondownload
+- name: Code Design
+  dropdown:
+    - name: ASCII Code
+      link: /asciicodeueberschriften

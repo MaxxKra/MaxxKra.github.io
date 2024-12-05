@@ -1,0 +1,19 @@
+- images:
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_oben_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_oben.png
+      alt: Platinen Oberseite
+      description: |-
+        Microcontroller, 4 Klemmen für die Kerzen und 1 Klemme für die Lichterkette angebracht
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_unten_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_unten.png
+      alt: Platine verdrahten
+      description: |-
+        Die Kontakte nach dem Schema verbinden
+      ratio: is-3by2
+    - link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_Klemmen_k.png
+      large_link: /img/blog/smarter_Adventkranz/Adventkranz_Platine_Klemmen.png
+      alt: Kerzen anschliessen
+      description: |-
+        Die Klemmen der Kerzen einstecken und die Lichterkette anklemmen
+      ratio: is-3by2

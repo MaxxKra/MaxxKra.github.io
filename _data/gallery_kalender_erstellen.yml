@@ -1,0 +1,26 @@
+- title: Home Assistant - Template Sensor Helfer anlegen
+  images:
+    - link: /img/HA-Buttons/Ablauf_Kalender_erstellen_k.png
+      large_link: /img/HA-Buttons/Ablauf_Kalender_erstellen.png
+      alt: Ablauf Kalender erstellen
+      description: |-
+        ### 1. Kalender erstellen Ablauf
+
+        Navigiere in der Seitenleiste zu `Kalender`. Klicke dort auf `+ Kalender erstellen`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Kalender_lokaler_Kalender_k.png
+      large_link: /img/HA-Buttons/Kalender_lokaler_Kalender.png
+      alt: Lokaler Kalender
+      description: |-
+        ### 2. Lokalen Kalender erstellen
+
+        Trage einen Namen für deinen neuen Kalender ein und wähle ICS Kalender aus.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Kalender_lokaler_Kalender_hochladen_k.png
+      large_link: /img/HA-Buttons/Kalender_lokaler_Kalender_hochladen.png
+      alt: ICS Datei hochladen
+      description: |-
+        ### 3. ICS Datei hochladen
+
+        Lade eine ICS Datei hoch und bestätige mit `OK`. Dein Kalender ist somit angelegt.
+      ratio: is-3by2
