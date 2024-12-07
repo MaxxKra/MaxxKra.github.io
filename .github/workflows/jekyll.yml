@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -28,7 +28,12 @@ jobs:
       - name: Install prerequisites for Ruby
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl gpg build-essential
+          sudo apt-get install -y curl gpg gpg2 gawk build-essential
+
+      - name: Import GPG keys for RVM
+        run: |
+          gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+          gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 
       - name: Install RVM and Ruby
         run: |
