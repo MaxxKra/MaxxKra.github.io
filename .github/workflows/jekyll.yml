@@ -1,11 +1,8 @@
 name: Deploy Jekyll site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -22,35 +19,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install prerequisites for Ruby
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y curl gpg gawk build-essential
-
-      - name: Import GPG keys for RVM
-        run: |
-          gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-          gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-
-      - name: Install RVM and Ruby
-        run: |
-          curl -sSL https://get.rvm.io | bash -s stable
-          source ~/.rvm/scripts/rvm
-          rvm install 3.1.4
-          rvm use 3.1.4 --default
-          ruby --version
-
-      - name: Set GEM_HOME
-        run: echo 'export GEM_HOME=$HOME/.gem' >> $GITHUB_ENV
-
-      - name: Update PATH
-        run: echo 'export PATH=$HOME/.gem/bin:$PATH' >> $GITHUB_ENV
-
-      - name: Install Bundler
-        run: gem install bundler
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1" # Verwende die gewünschte Ruby-Version
+          bundler-cache: true # Caches Gems automatisch
 
       - name: Install Gems
         run: bundle install
