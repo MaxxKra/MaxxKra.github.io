@@ -990,11 +990,16 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             waction: "init"
         });
 
+        // Daten für POST-Anfrage vorbereiten
         const data = {
             f_id_kommune: args.kommuneId,
-            f_id_bezirk: args.bezirkId,
             f_id_strasse: args.strasseId
         };
+
+        // Optionalen Bezirk hinzufügen, falls angegeben
+        if (args.bezirkId) {
+            data.f_id_bezirk = args.bezirkId;
+        }
 
         try {
             const response = await fetch(`${url}?${params.toString()}`, {
@@ -1030,17 +1035,18 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         const args = {
             apiKey: document.getElementById("apiKey").value.trim(),
             kommuneId: document.getElementById("kommuneId").value.trim(),
-            bezirkId: document.getElementById("bezirkId").value.trim(),
+            bezirkId: document.getElementById("bezirkId").value.trim(), // Optional
             strasseId: document.getElementById("strasseId").value.trim()
         };
 
-        if (!args.apiKey || !args.kommuneId || !args.bezirkId || !args.strasseId) {
-            alert("Bitte alle Felder ausfüllen.");
+        if (!args.apiKey || !args.kommuneId || !args.strasseId) {
+            alert("Bitte alle erforderlichen Felder ausfüllen (API-Schlüssel, Kommune, Straße).");
             return;
         }
 
         fetchWasteSchedule(args);
     }
+
 
 
     document.addEventListener("DOMContentLoaded", function() {
