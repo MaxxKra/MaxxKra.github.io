@@ -65,6 +65,47 @@ layout: page
     <input type="url" id="calendarUrl" class="custom-input" placeholder="https://example.com/kalender.ics" />
 </div>
 
+<div class="api-container">
+    <h2 class="custom-title">Abfall.IO API-Konfiguration</h2>
+    <p>Gib die notwendigen Parameter ein, um die Abholungsdaten abzurufen:</p>
+
+    <div class="custom-form-group">
+        <label for="apiKey" class="custom-label">API-Key</label>
+        <input type="text" id="apiKey" class="custom-input" placeholder="Dein API-Key">
+    </div>
+
+    <div class="custom-form-group">
+        <label for="kommuneId" class="custom-label">Kommune-ID</label>
+        <input type="number" id="kommuneId" class="custom-input" placeholder="z.B. 1069">
+    </div>
+
+    <div class="custom-form-group">
+        <label for="bezirkId" class="custom-label">Bezirk-ID</label>
+        <input type="number" id="bezirkId" class="custom-input" placeholder="z.B. 979">
+    </div>
+
+    <div class="custom-form-group">
+        <label for="strasseId" class="custom-label">Straßen-ID</label>
+        <input type="number" id="strasseId" class="custom-input" placeholder="z.B. 2890">
+    </div>
+
+    <button class="custom-button" onclick="handleFetchWasteSchedule()">Daten abrufen</button>
+
+    <h3 class="custom-subtitle">Abholungsdaten</h3>
+    <table class="custom-table" id="waste-entry-table">
+        <thead>
+            <tr>
+                <th>Auswählen</th>
+                <th>Beschreibung</th>
+                <th>Benutzerdefinierte Bezeichnung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamisch befüllte Einträge -->
+        </tbody>
+    </table>
+</div>
+
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
 </div>
 
@@ -525,6 +566,15 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    .api-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
     /* Titel und Untertitel */
     .custom-title, .custom-subtitle {
         text-align: center;
@@ -932,6 +982,89 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 -->
 
 <script>
+    async function fetchWasteSchedule(apiKey, kommuneId, bezirkId, strasseId) {
+        const url = "https://api.abfall.io";
+        const params = new URLSearchParams({
+            key: apiKey,
+            modus: "d6c5855a62cf32a4dadbc2831f0f295f",
+            waction: "init"
+        });
+
+        const data = {
+            f_id_kommune: kommuneId,
+            f_id_bezirk: bezirkId,
+            f_id_strasse: strasseId
+        };
+
+        try {
+            const response = await fetch(`${url}?${params.toString()}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "User-Agent": "Mozilla/5.0"
+                },
+                body: new URLSearchParams(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Fehler bei der API-Abfrage: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log("Abholungsdaten:", result);
+            displayWasteEntries(result); // Zeigt die Daten in der Tabelle an
+        } catch (error) {
+            console.error("Fehler:", error);
+            alert("Fehler beim Abrufen der Abfallkalenderdaten. Bitte überprüfe die Eingaben.");
+        }
+    }
+
+    function displayWasteEntries(entries) {
+        const tableBody = document.getElementById("waste-entry-table").querySelector("tbody");
+        tableBody.innerHTML = ""; // Tabelle leeren
+
+        entries.forEach((entry, index) => {
+            const row = document.createElement("tr");
+
+            // Checkbox
+            const checkboxCell = document.createElement("td");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "entry-checkbox";
+            checkboxCell.appendChild(checkbox);
+            row.appendChild(checkboxCell);
+
+            // Abholungsbeschreibung
+            const descriptionCell = document.createElement("td");
+            descriptionCell.textContent = entry.description || `Eintrag ${index + 1}`;
+            row.appendChild(descriptionCell);
+
+            // Benutzerdefinierte Bezeichnung
+            const customNameCell = document.createElement("td");
+            const customInput = document.createElement("input");
+            customInput.type = "text";
+            customInput.placeholder = "Eigene Bezeichnung";
+            customInput.className = "custom-name-input";
+            customNameCell.appendChild(customInput);
+            row.appendChild(customNameCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+    function handleFetchWasteSchedule() {
+        const apiKey = document.getElementById("apiKey").value.trim();
+        const kommuneId = document.getElementById("kommuneId").value.trim();
+        const bezirkId = document.getElementById("bezirkId").value.trim();
+        const strasseId = document.getElementById("strasseId").value.trim();
+
+        if (!apiKey || !kommuneId || !bezirkId || !strasseId) {
+            alert("Bitte alle Felder ausfüllen.");
+            return;
+        }
+
+        fetchWasteSchedule(apiKey, kommuneId, bezirkId, strasseId);
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         try {
             const nextPickupTemplate = `{% raw %}{{ value.types | join(", ") }}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
