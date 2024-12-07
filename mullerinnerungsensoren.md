@@ -65,47 +65,6 @@ layout: page
     <input type="url" id="calendarUrl" class="custom-input" placeholder="https://example.com/kalender.ics" />
 </div>
 
-<div class="api-container">
-    <h2 class="custom-title">Abfall.IO API-Konfiguration</h2>
-    <p>Gib die notwendigen Parameter ein, um die Abholungsdaten abzurufen:</p>
-
-    <div class="custom-form-group">
-        <label for="apiKey" class="custom-label">API-Key</label>
-        <input type="text" id="apiKey" class="custom-input" placeholder="Dein API-Key">
-    </div>
-
-    <div class="custom-form-group">
-        <label for="kommuneId" class="custom-label">Kommune-ID</label>
-        <input type="number" id="kommuneId" class="custom-input" placeholder="z.B. 1069">
-    </div>
-
-    <div class="custom-form-group">
-        <label for="bezirkId" class="custom-label">Bezirk-ID</label>
-        <input type="number" id="bezirkId" class="custom-input" placeholder="z.B. 979">
-    </div>
-
-    <div class="custom-form-group">
-        <label for="strasseId" class="custom-label">Straßen-ID</label>
-        <input type="number" id="strasseId" class="custom-input" placeholder="z.B. 2890">
-    </div>
-
-    <button class="custom-button" onclick="handleFetchWasteSchedule()">Daten abrufen</button>
-
-    <h3 class="custom-subtitle">Abholungsdaten</h3>
-    <table class="custom-table" id="waste-entry-table">
-        <thead>
-            <tr>
-                <th>Auswählen</th>
-                <th>Beschreibung</th>
-                <th>Benutzerdefinierte Bezeichnung</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Dynamisch befüllte Einträge -->
-        </tbody>
-    </table>
-</div>
-
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
 </div>
 
@@ -566,15 +525,6 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .api-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
     /* Titel und Untertitel */
     .custom-title, .custom-subtitle {
         text-align: center;
@@ -982,73 +932,6 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 -->
 
 <script>
-    async function fetchWasteSchedule(args) {
-        const url = "https://api.abfall.io";
-        const params = new URLSearchParams({
-            key: args.apiKey,
-            modus: "d6c5855a62cf32a4dadbc2831f0f295f",
-            waction: "init"
-        });
-
-        // Daten für POST-Anfrage vorbereiten
-        const data = {
-            f_id_kommune: args.kommuneId,
-            f_id_strasse: args.strasseId
-        };
-
-        // Optionalen Bezirk hinzufügen, falls angegeben
-        if (args.bezirkId) {
-            data.f_id_bezirk = args.bezirkId;
-        }
-
-        try {
-            const response = await fetch(`${url}?${params.toString()}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "User-Agent": "Mozilla/5.0"
-                },
-                body: new URLSearchParams(data)
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`HTTP-Fehler ${response.status}: ${response.statusText} - ${errorText}`);
-            }
-
-            const contentType = response.headers.get("content-type");
-            if (!contentType || !contentType.includes("application/json")) {
-                const responseText = await response.text();
-                throw new Error(`Ungültiges Antwortformat: ${responseText}`);
-            }
-
-            const result = await response.json();
-            console.log("Abholungsdaten:", result);
-            displayWasteEntries(result);
-        } catch (error) {
-            console.error("Fehler:", error);
-            alert(`Fehler beim Abrufen der Daten: ${error.message}`);
-        }
-    }
-
-    function handleFetchWasteSchedule() {
-        const args = {
-            apiKey: document.getElementById("apiKey").value.trim(),
-            kommuneId: document.getElementById("kommuneId").value.trim(),
-            bezirkId: document.getElementById("bezirkId").value.trim(), // Optional
-            strasseId: document.getElementById("strasseId").value.trim()
-        };
-
-        if (!args.apiKey || !args.kommuneId || !args.strasseId) {
-            alert("Bitte alle erforderlichen Felder ausfüllen (API-Schlüssel, Kommune, Straße).");
-            return;
-        }
-
-        fetchWasteSchedule(args);
-    }
-
-
-
     document.addEventListener("DOMContentLoaded", function() {
         try {
             const nextPickupTemplate = `{% raw %}{{ value.types | join(", ") }}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
