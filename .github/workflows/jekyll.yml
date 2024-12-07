@@ -19,20 +19,24 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04 # Aktualisiertes Image, wenn nötig
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Ruby manually
+      - name: Install prerequisites for Ruby
         run: |
           sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo apt-add-repository -y ppa:brightbox/ruby-ng
-          sudo apt-get update
-          sudo apt-get install -y ruby3.1 ruby3.1-dev build-essential
-          ruby --version # Überprüft die Ruby-Installation
+          sudo apt-get install -y curl gpg build-essential
+
+      - name: Install RVM and Ruby
+        run: |
+          curl -sSL https://get.rvm.io | bash -s stable
+          source ~/.rvm/scripts/rvm
+          rvm install 3.1.4
+          rvm use 3.1.4 --default
+          ruby --version
 
       - name: Install Bundler
         run: gem install bundler
