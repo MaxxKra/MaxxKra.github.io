@@ -43,6 +43,12 @@ jobs:
           rvm use 3.1.4 --default
           ruby --version
 
+      - name: Set GEM_HOME
+        run: echo 'export GEM_HOME=$HOME/.gem' >> $GITHUB_ENV
+
+      - name: Update PATH
+        run: echo 'export PATH=$HOME/.gem/bin:$PATH' >> $GITHUB_ENV
+
       - name: Install Bundler
         run: gem install bundler
 
