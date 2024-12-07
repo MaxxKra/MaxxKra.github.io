@@ -982,18 +982,18 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 -->
 
 <script>
-    async function fetchWasteSchedule(apiKey, kommuneId, bezirkId, strasseId) {
+    async function fetchWasteSchedule(args) {
         const url = "https://api.abfall.io";
         const params = new URLSearchParams({
-            key: apiKey,
+            key: args.apiKey,
             modus: "d6c5855a62cf32a4dadbc2831f0f295f",
             waction: "init"
         });
 
         const data = {
-            f_id_kommune: kommuneId,
-            f_id_bezirk: bezirkId,
-            f_id_strasse: strasseId
+            f_id_kommune: args.kommuneId,
+            f_id_bezirk: args.bezirkId,
+            f_id_strasse: args.strasseId
         };
 
         try {
@@ -1007,70 +1007,41 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
+                const errorText = await response.text();
+                throw new Error(`HTTP-Fehler ${response.status}: ${response.statusText} - ${errorText}`);
             }
 
             const contentType = response.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
-                const responseText = await response.text(); // Lese die Antwort als Text
+                const responseText = await response.text();
                 throw new Error(`Ungültiges Antwortformat: ${responseText}`);
             }
 
             const result = await response.json();
             console.log("Abholungsdaten:", result);
-            displayWasteEntries(result); // Zeigt die Daten in der Tabelle an
+            displayWasteEntries(result);
         } catch (error) {
             console.error("Fehler:", error);
             alert(`Fehler beim Abrufen der Daten: ${error.message}`);
         }
-
     }
 
-    function displayWasteEntries(entries) {
-        const tableBody = document.getElementById("waste-entry-table").querySelector("tbody");
-        tableBody.innerHTML = ""; // Tabelle leeren
-
-        entries.forEach((entry, index) => {
-            const row = document.createElement("tr");
-
-            // Checkbox
-            const checkboxCell = document.createElement("td");
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.className = "entry-checkbox";
-            checkboxCell.appendChild(checkbox);
-            row.appendChild(checkboxCell);
-
-            // Abholungsbeschreibung
-            const descriptionCell = document.createElement("td");
-            descriptionCell.textContent = entry.description || `Eintrag ${index + 1}`;
-            row.appendChild(descriptionCell);
-
-            // Benutzerdefinierte Bezeichnung
-            const customNameCell = document.createElement("td");
-            const customInput = document.createElement("input");
-            customInput.type = "text";
-            customInput.placeholder = "Eigene Bezeichnung";
-            customInput.className = "custom-name-input";
-            customNameCell.appendChild(customInput);
-            row.appendChild(customNameCell);
-
-            tableBody.appendChild(row);
-        });
-    }
     function handleFetchWasteSchedule() {
-        const apiKey = document.getElementById("apiKey").value.trim();
-        const kommuneId = document.getElementById("kommuneId").value.trim();
-        const bezirkId = document.getElementById("bezirkId").value.trim();
-        const strasseId = document.getElementById("strasseId").value.trim();
+        const args = {
+            apiKey: document.getElementById("apiKey").value.trim(),
+            kommuneId: document.getElementById("kommuneId").value.trim(),
+            bezirkId: document.getElementById("bezirkId").value.trim(),
+            strasseId: document.getElementById("strasseId").value.trim()
+        };
 
-        if (!apiKey || !kommuneId || !bezirkId || !strasseId) {
+        if (!args.apiKey || !args.kommuneId || !args.bezirkId || !args.strasseId) {
             alert("Bitte alle Felder ausfüllen.");
             return;
         }
 
-        fetchWasteSchedule(apiKey, kommuneId, bezirkId, strasseId);
+        fetchWasteSchedule(args);
     }
+
 
     document.addEventListener("DOMContentLoaded", function() {
         try {
