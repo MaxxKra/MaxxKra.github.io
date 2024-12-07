@@ -1007,7 +1007,13 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             });
 
             if (!response.ok) {
-                throw new Error(`Fehler bei der API-Abfrage: ${response.status}`);
+                throw new Error(`HTTP-Fehler: ${response.status} ${response.statusText}`);
+            }
+
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                const responseText = await response.text(); // Lese die Antwort als Text
+                throw new Error(`Ungültiges Antwortformat: ${responseText}`);
             }
 
             const result = await response.json();
@@ -1015,8 +1021,9 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             displayWasteEntries(result); // Zeigt die Daten in der Tabelle an
         } catch (error) {
             console.error("Fehler:", error);
-            alert("Fehler beim Abrufen der Abfallkalenderdaten. Bitte überprüfe die Eingaben.");
+            alert(`Fehler beim Abrufen der Daten: ${error.message}`);
         }
+
     }
 
     function displayWasteEntries(entries) {
