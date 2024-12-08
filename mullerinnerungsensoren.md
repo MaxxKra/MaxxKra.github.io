@@ -972,6 +972,38 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 -->
 
 <script>
+    async function loadWasteCollectionData() {
+        const key = document.getElementById("key").value.trim();
+        const kommune = document.getElementById("kommune").value.trim();
+        const strasse = document.getElementById("strasse").value.trim();
+        const bezirk = document.getElementById("bezirk").value.trim();
+        const hausnummer = document.getElementById("hausnummer").value.trim();
+
+        // Überprüfen, ob Pflichtfelder ausgefüllt sind
+        if (!key || !kommune || !strasse) {
+            alert("Bitte fülle alle Pflichtfelder (Key, Kommune, Straße) aus!");
+            return;
+        }
+
+        try {
+            // `fetchWasteData` sollte in waste-collection.js definiert sein
+            const wasteData = await fetchWasteData({ key, kommune, strasse, bezirk, hausnummer });
+
+            // Prüfung, ob Daten erfolgreich geladen wurden
+            if (wasteData && wasteData.length > 0) {
+                alert("Daten erfolgreich geladen!");
+                console.log("Geladene Daten:", wasteData);
+
+                // Weiter zum nächsten Schritt
+                showStep(2);
+            } else {
+                alert("Keine Daten gefunden. Bitte überprüfe deine Eingaben.");
+            }
+        } catch (error) {
+            console.error("Fehler beim Laden der Daten:", error);
+            alert("Es gab einen Fehler beim Laden der Daten. Bitte überprüfe deine Eingaben.");
+        }
+    }
     document.addEventListener("DOMContentLoaded", function() {
         try {
             const nextPickupTemplate = `{% raw %}{{ value.types | join(", ") }}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
