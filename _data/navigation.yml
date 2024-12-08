@@ -32,8 +32,6 @@
       link: /icszusammenfuhren
     - name: Müllerinnerung Sensoren
       link: /mullerinnerungsensoren
-    - name: Abfall API auslesen
-      link: abfallapiauslesen
 - name: Floorplan Tools
   dropdown:
     - name: Beschreibung Floorplan Codegenerator
