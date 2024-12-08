@@ -105,6 +105,8 @@ layout: page
     <div class="custom-form-group">
         <button class="custom-button" onclick="loadWasteCollectionData();">Daten laden</button>
     </div>
+    <script src="assets/js/waste-collection.js"></script>
+
 </div>
 
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
