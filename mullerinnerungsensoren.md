@@ -65,51 +65,9 @@ layout: page
     <input type="url" id="calendarUrl" class="custom-input" placeholder="https://example.com/kalender.ics" />
 </div>
 
-</div>
-   <p>
-        Um die Daten für die Müllabholung zu laden, gib bitte die folgenden Informationen ein. Diese Angaben sind für die Konfiguration notwendig.<br>
-        <strong>Bitte fülle alle erforderlichen Felder aus und klicke anschließend auf <em>Daten laden</em>.</strong>
-    </p>
-
-    <!-- Key Input -->
-    <div class="custom-form-group">
-        <label for="key" class="custom-label">Key (Pflichtfeld):</label>
-        <input type="text" id="key" class="custom-input" placeholder="API-Key oder Zugangsschlüssel" required />
-    </div>
-
-    <!-- Kommune Input -->
-    <div class="custom-form-group">
-        <label for="kommune" class="custom-label">Kommune (Pflichtfeld):</label>
-        <input type="text" id="kommune" class="custom-input" placeholder="Name der Kommune" required />
-    </div>
-
-    <!-- Straße Input -->
-    <div class="custom-form-group">
-        <label for="strasse" class="custom-label">Straße (Pflichtfeld):</label>
-        <input type="text" id="strasse" class="custom-input" placeholder="Name der Straße" required />
-    </div>
-
-    <!-- Bezirk (optional) -->
-    <div class="custom-form-group">
-        <label for="bezirk" class="custom-label">Bezirk (optional):</label>
-        <input type="text" id="bezirk" class="custom-input" placeholder="Bezirk (falls zutreffend)" />
-    </div>
-
-    <!-- Hausnummer (optional) -->
-    <div class="custom-form-group">
-        <label for="hausnummer" class="custom-label">Hausnummer (optional):</label>
-        <input type="text" id="hausnummer" class="custom-input" placeholder="Hausnummer (falls zutreffend)" />
-    </div>
-
-    <!-- Button to Trigger Data Loading -->
-    <div class="custom-form-group">
-        <button class="custom-button" onclick="loadWasteCollectionData();">Daten laden</button>
-    </div>
-    <script src="assets/js/waste-collection.js"></script>
-
-</div>
-
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
+</div>
+
 <!--
  █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████     ██████  
 ██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██             ██ 
@@ -974,38 +932,6 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 -->
 
 <script>
-    async function loadWasteCollectionData() {
-        const key = document.getElementById("key").value.trim();
-        const kommune = document.getElementById("kommune").value.trim();
-        const strasse = document.getElementById("strasse").value.trim();
-        const bezirk = document.getElementById("bezirk").value.trim();
-        const hausnummer = document.getElementById("hausnummer").value.trim();
-
-        // Überprüfen, ob Pflichtfelder ausgefüllt sind
-        if (!key || !kommune || !strasse) {
-            alert("Bitte fülle alle Pflichtfelder (Key, Kommune, Straße) aus!");
-            return;
-        }
-
-        try {
-            // `fetchWasteData` sollte in waste-collection.js definiert sein
-            const wasteData = await fetchWasteData({ key, kommune, strasse, bezirk, hausnummer });
-
-            // Prüfung, ob Daten erfolgreich geladen wurden
-            if (wasteData && wasteData.length > 0) {
-                alert("Daten erfolgreich geladen!");
-                console.log("Geladene Daten:", wasteData);
-
-                // Weiter zum nächsten Schritt
-                showStep(2);
-            } else {
-                alert("Keine Daten gefunden. Bitte überprüfe deine Eingaben.");
-            }
-        } catch (error) {
-            console.error("Fehler beim Laden der Daten:", error);
-            alert("Es gab einen Fehler beim Laden der Daten. Bitte überprüfe deine Eingaben.");
-        }
-    }
     document.addEventListener("DOMContentLoaded", function() {
         try {
             const nextPickupTemplate = `{% raw %}{{ value.types | join(", ") }}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
