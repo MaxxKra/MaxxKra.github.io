@@ -65,9 +65,49 @@ layout: page
     <input type="url" id="calendarUrl" class="custom-input" placeholder="https://example.com/kalender.ics" />
 </div>
 
-<button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
+</div>
+   <p>
+        Um die Daten für die Müllabholung zu laden, gib bitte die folgenden Informationen ein. Diese Angaben sind für die Konfiguration notwendig.<br>
+        <strong>Bitte fülle alle erforderlichen Felder aus und klicke anschließend auf <em>Daten laden</em>.</strong>
+    </p>
+
+    <!-- Key Input -->
+    <div class="custom-form-group">
+        <label for="key" class="custom-label">Key (Pflichtfeld):</label>
+        <input type="text" id="key" class="custom-input" placeholder="API-Key oder Zugangsschlüssel" required />
+    </div>
+
+    <!-- Kommune Input -->
+    <div class="custom-form-group">
+        <label for="kommune" class="custom-label">Kommune (Pflichtfeld):</label>
+        <input type="text" id="kommune" class="custom-input" placeholder="Name der Kommune" required />
+    </div>
+
+    <!-- Straße Input -->
+    <div class="custom-form-group">
+        <label for="strasse" class="custom-label">Straße (Pflichtfeld):</label>
+        <input type="text" id="strasse" class="custom-input" placeholder="Name der Straße" required />
+    </div>
+
+    <!-- Bezirk (optional) -->
+    <div class="custom-form-group">
+        <label for="bezirk" class="custom-label">Bezirk (optional):</label>
+        <input type="text" id="bezirk" class="custom-input" placeholder="Bezirk (falls zutreffend)" />
+    </div>
+
+    <!-- Hausnummer (optional) -->
+    <div class="custom-form-group">
+        <label for="hausnummer" class="custom-label">Hausnummer (optional):</label>
+        <input type="text" id="hausnummer" class="custom-input" placeholder="Hausnummer (falls zutreffend)" />
+    </div>
+
+    <!-- Button to Trigger Data Loading -->
+    <div class="custom-form-group">
+        <button class="custom-button" onclick="loadWasteCollectionData();">Daten laden</button>
+    </div>
 </div>
 
+<button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
 <!--
  █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████     ██████  
 ██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██             ██ 
