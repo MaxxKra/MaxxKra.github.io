@@ -1,0 +1,26 @@
+- title: Home Assistant - Taster Helfer anlegen
+  images:
+    - link: /img/HA-Buttons/Ablauf_Helfer_erstellen_k.png
+      large_link: /img/HA-Buttons/Ablauf_Helfer_erstellen.png
+      alt: Ablauf Helfer erstellen
+      description: |-
+        ### 1. Helfer erstellen Ablauf
+
+        Navigiere in den Einstellungen über `Geräte & Dienste` zu `Helfer`. Klicke dort auf `HELFER ERSTELLEN`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Helfer_Liste_Taste_k.png
+      large_link: /img/HA-Buttons/Helfer_Liste_Taste.png
+      alt: Helfer Liste Taste
+      description: |-
+        ### 2. Helfer Liste: Taste auswählen
+
+        Wähle in der Liste den Eintrag `Taste` aus, um einen neuen Input-Button Taster anzulegen.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Taster_Helfer_erstellen_k.png
+      large_link: /img/HA-Buttons/Taster_Helfer_erstellen.png
+      alt: Taster einrichten
+      description: |-
+        ### 3. Taster einrichten
+
+        Füge einen individuellen Namen für die Taste ein und wähle ein Icon. Danch klicke auf `ERSTELLEN´.
+      ratio: is-3by2

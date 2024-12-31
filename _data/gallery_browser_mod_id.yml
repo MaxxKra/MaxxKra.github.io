@@ -1,0 +1,37 @@
+- title: Browser Mod herunterladen und Browser ID einrichten
+  subtitle: |-
+    Hier erfährst du, wie Browser Mod installiert und eine Browser ID eingerichtet wird. 
+    Wenn mehrere Geräte für die Anzeige von Dashboards verwendet werden, muss die Einrichtung der Browser ID auf jedem Gerät durchgeführt werden.
+  images:
+    - link: /img/HA-Buttons/Browser_Mod_herunterladen_k.png
+      large_link: /img/HA-Buttons/Browser_Mod_herunterladen.png
+      alt: Browser Mod herunterladen
+      description: |-
+        ### 1. Browser Mod installieren
+
+        Suche im HACS nach `browser_mod` und klicke auf `HERUNTERLADEN`
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Browser_Mod_Ablauf_ID_einrichten_k.png
+      large_link: /img/HA-Buttons/Browser_Mod_Ablauf_ID_einrichten.png
+      alt: Browser ID einrichten
+      description: |-
+        ### 2. Browser ID einrichten
+
+        Öffne Browser Mod, ändere die vorgegebene ID auf deine Individuelle und schalte `Register` ein.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Browser_Mod_Verbindung_schliessen_k.png
+      large_link: /img/HA-Buttons/Browser_Mod_Verbindung_schliessen.png
+      alt: Verbindung schließen ausschalten
+      description: |-
+        ### 3. Verbindung schließen ausschalten
+
+        Gehe links unten in dein Profil, suche nach `Verbindung automatisch schließen` und schalte dies aus.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Browser_Mod_ID_fertig_k.png
+      large_link: /img/HA-Buttons/Browser_Mod_ID_fertig.png
+      alt: WCS Integration einrichten
+      description: |-
+        ### 4. Fertig registrierter Browser
+
+        Wenn alles erledigt ist, wird der registrierte Browser hier angezeigt und die ID kann verwendet werden.
+      ratio: is-3by2

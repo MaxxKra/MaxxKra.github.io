@@ -123,6 +123,11 @@ Nach den Änderungen klicke auf<br>
     </tbody>
 </table>
 
+<p>
+Es kommt häufig vor, dass Kalendereinträge nicht nur die einfachen Namen sonder mit zusätzlichem Text versehen sind.<br>
+In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als Alias in der Waste Collection Schedule angelegt werden.
+</p>
+
 <div id="confirm-step-2" style="text-align: center; margin-top: 20px;">
     <button class="custom-button" onclick="handleStepTransition();">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
 </div>
@@ -150,6 +155,9 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                </div>
+                <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
+                    {{ gallery.subtitle | markdownify }}
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -204,11 +212,17 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         <button class="copy-button" onclick="copyCode('next-pickup-template')">Copy</button>
         <pre id="next-pickup-template" class="language-yaml"><code></code></pre>
     </div>
-
     <h4>Werte Template einzelne Abholungen</h4>
     <div class="code-container">
         <button class="copy-button" onclick="copyCode('individual-pickup-template')">Copy</button>
         <pre id="individual-pickup-template" class="language-yaml"><code></code></pre>
+    </div>
+    <h4>Werte Template Datum einzelne Abholungen</h4>
+    <p>Wenn du das Datum der einzelnen Abholung benötigst, kannst du dir diesen Sensor ebenfalls anlegen.<br>
+    Nutze dazu den Sensor Namen mit dem Zusatz <strong>Datum</strong> und dieses Werte Template</p>
+    <div class="code-container">
+        <button class="copy-button" onclick="copyCode('date-pickup-template')">Copy</button>
+        <pre id="date-pickup-template" class="language-yaml"><code></code></pre>
     </div>
 </div>
 <div id="confirm-step-3" style="text-align: center; margin-top: 20px;">
@@ -248,6 +262,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                    {% include youtube.html video="3fhL_K4o3Dg" %}
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -408,11 +423,24 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     </select>
 </div>
 
+<!-- Checkbox für "Datum anzeigen" -->
+<div class="custom-form-group">
+    <label for="dateUseCheckbox" class="custom-label">Datum der Abholung anzeigen?</label>
+    <input type="checkbox" id="dateUseCheckbox">
+    <label for="dateUseCheckbox">Datum anzeigen</label>
+</div>
+
 <p class="description-text">
-    Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.
+    Das Datum der Abholung kann auf der Karte nur ausgewählt werden, wenn der/die Sensor/Sensoren für diese Entität in der Waste Collection Schedule eingerichtet wurde/wurden.<br>
+    Die Entität dieses Sensors soll demnach aus dem Sensor Namen der Abholung und dem Zusatz <strong>Datum</strong> bestehen.<br>
+    <strong>Beispiel: "Restabfall Datum" = "sensor.restabfall_datum"</strong>
 </p>
+
+<br>
+
 <div class="font-selection">
     <label for="fontSelection" class="custom-label">Schriftart auswählen:</label>
+    <p class="description-text">Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.</p>
     <select id="fontSelection" class="custom-input" onchange="toggleCustomFontInput()">
         <option value="Arial Rounded MT" selected>Arial Rounded MT (Standard)</option>
         <option value="Arial">Arial</option>
@@ -475,10 +503,27 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     Wenn alle Einstellungen getroffen wurden, klicke auf <strong>Beispiel anzeigen & Code generieren</strong><br>
     Du kannst nachträglich jederzeit Einstellungen ändern und den Code neu generieren.
 </p>
+
+
 <!-- Button zur Aktualisierung -->
 <div class="button-container">
     <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
 </div>
+
+
+</div>
+
+<!--
+ █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████      ██████  
+██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██        ██       
+███████ ██████  ███████ ██      ███████ ██ ██  ██ ██    ██       ██        ███████  
+██   ██ ██   ██      ██ ██      ██   ██ ██  ██ ██ ██    ██       ██        ██    ██ 
+██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██         ██████  
+                                                                                    
+-->
+
+<div id="step-6" style="display:none;">
+
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
@@ -497,9 +542,328 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     </div>
 </div>
 
+<br>
+<h2 class="custom-title">6. Pop-Up-Karte</h2>
+
+<br>
+
+<p>
+    Zur Anzeige eines Pop-Up auf deinem Home Assistant Dashboard sind mehrere Schritte notwendig:
+</p>
+<ul>
+    <li>Herunterladen und Speichern des Hintergrund-Bilds</li>
+    <li>Anlegen einer Helfer-Taste und eines Helfer-Zeitplans</li>
+    <li>Erstellung des YAML-Codes für die Pop-Up Karte</li>
+    <li>Speichern der Pop-Up Karte auf jedem notwendigen Dashboard</li>
+    <li>Einrichtung der Browser ID via Browser_Mod</li>
+    <li>Einrichtung der Automatisierung für das Pop-Up</li>
+</ul>
+
+<div id="popup-background-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.1 Hintergrund-Bild</h3>
+</div>
+
+<div class="two-column-container">
+    <!-- Linke Spalte -->
+    <div class="left-column">
+        <p>
+            Für das Pop-Up ist ein Hintergrundbild notwendig. Dieses kannst du dir hier mit einem Klick auf das Bild herunterladen und in Home Assistant in deinen <strong>"muell"</strong>-Ordner speichern.
+            Achte darauf, das Bild vor dem ersten Erstellen der Dashboard-Karte abzuspeichern, da ansonsten durch den Home Assistant Cache längere Zeit Fehler angezeigt werden können.
+        </p>
+    </div>
+
+    <!-- Rechte Spalte -->
+    <div class="right-column">
+        <a href="/img/muell/popup_background.png" download>
+            <img src="/img/muell/popup_background.png" alt="Hintergrundbild für Pop-Up" style="max-width: 300px;">
+        </a>
+    </div>
+</div>
 
 
-<h3 class="custom-title">Gutes Gelingen!</h3>
+<div id="popup-helper-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.2 Helfer anlegen</h3>
+</div>
+<p>
+    Für das Öffnen des Pop-Ups ist ein Helfer-Taster erforderlich, und für die Automatisierung wird ein Helfer-Zeitplan benötigt.<br>
+    Diese beiden Helfer tragen die Bezeichnungen <strong>Müllerinnerung Taster</strong> und <strong>Müllerinnerung Zeitplan</strong>. Sie müssen mit genau diesen Namen angelegt werden, um die Funktionalität des Pop-Ups sicherzustellen.
+</p>
+<p>
+ Wie man die notwendigen Helfer anlegt, findest du in den folgenden ⬇️ Dropdowns ⬇️
+</p>
+<div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown3', this)">Helfer-Taster einrichten <span>&#9660;</span></button>
+    <div id="galleryDropdown3" class="dropdown-content" style="display: none;">
+        {% assign gallery_images = site.data.gallery_helfer_taster %}
+        <div class="columns is-multiline">
+            {% for gallery in gallery_images %}
+                <div class="column is-12">
+                    <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                    {% include youtube.html video="7HlL8uKRyC0" %}
+                </div>
+                {% for image in gallery.images %}
+                    <div class="column is-3-desktop is-6-tablet">
+                        <div class="card">
+                            <div class="card-image">
+                                {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    {{ image.description | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown4', this)">Helfer-Zeitplan einrichten <span>&#9660;</span></button>
+    <div id="galleryDropdown4" class="dropdown-content" style="display: none;">
+        {% assign gallery_images = site.data.gallery_helfer_zeitplan %}
+        <div class="columns is-multiline">
+            {% for gallery in gallery_images %}
+                <div class="column is-12">
+                    <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                    {% include youtube.html video="_oR8JQHNYqY" %}
+                </div>
+                {% for image in gallery.images %}
+                    <div class="column is-3-desktop is-6-tablet">
+                        <div class="card">
+                            <div class="card-image">
+                                {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    {{ image.description | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<p>
+    Klicke auf den Namen eines Helfers in der Tabelle, um ihn in die Zwischenablage zu kopieren. Nach dem Kopieren wird ein ✔️ angezeigt.<br>
+    Lege diese Helfer in Home Assistant an und fahre anschließend mit dem nächsten Schritt fort.
+</p>
+
+<table class="custom-table" id="helper-table">
+    <thead>
+        <tr>
+            <th>Helfer Name</th>
+            <th>Name kopiert</th>
+            <th>Helfer Entity-ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="Müllerinnerung Taster">Müllerinnerung Taster</td>
+            <td class="status" id="status-taster">❌</td>
+            <td>input_button.mullerinnerung_taster</td>
+        </tr>
+        <tr>
+            <td class="copyable" data-helper="Müllerinnerung Zeitplan">Müllerinnerung Zeitplan</td>
+            <td class="status" id="status-zeitplan">❌</td>
+            <td>schedule.mullerinnerung_zeitplan</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div id="popup-code-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.3 Pop-Up Code erstellen</h3>
+</div>
+
+<h4>Soll das Pop-Up für die Abholung Morgen erinnern, muss im vorherigen Abschnitt des Codegenerators unter <strong>Anzeige Auswahl</strong> - <strong>Anzeige Morgen</strong> gewählt werden!!</h4>
+<br>
+<p>
+    Mit einem Klick auf <strong>Pop-Up erstellen</strong> wird der Code für das Pop-Up nach deinen zuvor gewählten Einstellungen und Angaben erstellt. 
+</p>
+
+<div class="button-container">
+    <button id="popup-code" class="custom-button">Pop-Up erstellen</button>
+</div>
+
+<p>
+    Den generierten Code kannst du mit <strong>Copy</strong> in die Zwischenablage kopieren.
+</p>
+
+<div id="popup-options" class="dashboard-options">
+    <!-- YAML-Ausgabefenster -->
+    <div id="popup-output-container" class="yaml-output-container">
+        <h4 class="custom-title">Generierter Pop-Up-Code</h4>
+        <div class="yaml-code-container">
+            <button class="copy-button" onclick="copyPopupCode()">Copy</button>
+            <pre id="popup-code-output" class="language-yaml"><code></code></pre>
+        </div>
+    </div>
+    <!-- Beispielbild -->
+    <div id="example-popup-container" class="example-card-container" style="display: none;">
+        <h4 class="custom-title">Pop-Up Beispiel</h4>
+        <div class="example-image-wrapper">
+            <img id="example-popup" src="/img/muell/popupCard_example.png" alt="Pop-Up Beispiel">
+        </div>
+    </div>
+</div>
+
+<div id="popup-code-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.4 Pop-Up auf Dashboard speichern</h3>
+</div>
+
+<p>
+    Der kopierte Pop-Up Code wird nun auf jedes Dashboard gespeichert auf welchem es agezeigt werden soll.<br>
+    Dazu füge entweder eine neue Karte, einen neuen Abschnitt oder eine neue Zeile in einen Stapel hinzu und suche dann nach <strong>Manuell</strong>. <br>
+    Füge hier den kopierten Code ein und bestätige mit <strong>Speichern</strong> bzw. <strong>Fertig</strong>.
+</p>
+<br>
+<p>
+    Bedenke, dass das Pop-Up nur angezeigt wird wenn der More-Info Dialog des Müllerinnerung Taster aufgerufen wird.<br>
+    Um das zu erreichen, ist eine Browser ID sowie eine Automatisierung notwendig. 
+</p>
+
+<div id="popup-code-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.5 Browser ID einrichten</h3>
+</div>
+
+<p>
+    Mit Browser Mod und dessen Browser ID ist es möglich, Aktionen auf Dashboards von registrierten Browsern auszuführen.<br>
+    In diesem Fall geht es um das Öffnen eines Pop-Ups.<br>
+
+    Nicht vergessen, jeden Browser zu registrieren auf welchem das Pop-Up angezeigt werden soll.
+</p>
+<br>
+<p>
+    Wie man Browser Mod und die Browser ID einrichtet, erfährst du im ⬇️ Dropdown ⬇️
+</p>
+<div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown5', this)">Browser Mod und Browser ID einrichten <span>&#9660;</span></button>
+    <div id="galleryDropdown5" class="dropdown-content" style="display: none;">
+        {% assign gallery_images = site.data.gallery_browser_mod_id %}
+        <div class="columns is-multiline">
+            {% for gallery in gallery_images %}
+                <div class="column is-12">
+                    <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                </div>
+                <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
+                    {{ gallery.subtitle | markdownify }}
+                    {% include youtube.html video="_GxgMv0LSLI" %}
+                </div>
+                {% for image in gallery.images %}
+                    <div class="column is-3-desktop is-6-tablet">
+                        <div class="card">
+                            <div class="card-image">
+                                {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    {{ image.description | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="popup-code-section" style="margin: 60px 0 30px;">
+    <h3 class="custom-title">6.6 Pop-Up Automatisierung</h3>
+</div>
+
+<p>
+    Um das Pop-Up automatisch bzw. über einen Tastendruck des Helfer-Taster zu öffnen, wird eine Automatisierung angelegt.
+</p>
+<br>
+<p>
+    Zur einfachen Einrichtung dieser Automatisierung habe ich ein Blueprint erstellt. Dieses kann mit einem Klick auf das Blueprint in der Tabelle herunter geladen und in Home Assistant installiert werden.
+</p>
+
+<table class="custom-table" id="blueprint-table">
+    <thead>
+        <tr>
+            <th>Blueprint</th>
+            <th>Blueprint kopiert</th>
+            <th>Beschreibung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="https://gist.github.com/MaxxKra/3dbc1164e0d037bda67911fccead5f36">Blueprint Pop-Up öffnen</td>
+            <td class="status" id="status-blueprint">❌</td>
+            <td>Ein Blueprint für die Automatisierung zum Öffnen eines Pop-Ups</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<table class="custom-table" id="automation-table">
+    <thead>
+        <tr>
+            <th>Automatisierung Name</th>
+            <th>Name kopiert</th>
+            <th>Entity ID Automatisierung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="Müllerinnerung Pop-Up">Müllerinnerung Pop-Up</td>
+            <td class="status" id="status-automation">❌</td>
+            <td>automation.mullerinnerung_pop_up</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<p>
+    Wie man das Blueprint installiert und die Automatisierung einrichtet, siehst du im ⬇️ Dropdown ⬇️
+</p>
+<div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown6', this)">Blueprint Installation und Einrichtung <span>&#9660;</span></button>
+    <div id="galleryDropdown6" class="dropdown-content" style="display: none;">
+        {% assign gallery_images = site.data.gallery_blueprint_popup %}
+        <div class="columns is-multiline">
+            {% for gallery in gallery_images %}
+                <div class="column is-12">
+                    <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                </div>
+                <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
+                    {{ gallery.subtitle | markdownify }}
+                    {% include youtube.html video="WP8SMkcWKlM" %}
+                </div>
+                {% for image in gallery.images %}
+                    <div class="column is-3-desktop is-6-tablet">
+                        <div class="card">
+                            <div class="card-image">
+                                {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    {{ image.description | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<p>
+    Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
+</p>
+<br>
+<h4 class="custom-title">
+    Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
+    Über Feedback und Unterstützung würde ich mich auf jeden Fall freuen.
+</h4>
+<br>
+<h3 class="custom-title">Danke und gutes Gelingen!</h3>
 
 {% include support_note.html %}
 </div>
@@ -603,7 +967,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         display: none; /* Standardmäßig versteckt */
     } 
     .dropdown {
-        margin: 20px 0;
+        margin: 0 0 20px;
         text-align: center;
     }
     .dropdown-toggle {
@@ -855,7 +1219,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         display: flex;
         justify-content: space-between;
         align-items: flex-start; /* Überschriften werden oben ausgerichtet */
-        margin-top: 30px;
+        margin: 50px 0;
         gap: 20px;
     }
     /* YAML-Code Container */
@@ -920,6 +1284,29 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     .custom-border-shape-select h4 {
         margin-bottom: 15px;
     }
+
+    .two-column-container {
+        display: flex;
+        gap: 20px; /* Abstand zwischen den Spalten */
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .left-column {
+        flex: 1; /* Linke Spalte nimmt den restlichen Platz ein */
+    }
+
+    .right-column {
+        flex-shrink: 0; /* Rechte Spalte bleibt in ihrer festen Größe */
+        text-align: center;
+    }
+
+    .right-column img {
+        max-width: 300px; /* Maximale Breite für das Bild */
+        height: auto; /* Bildverhältnis beibehalten */
+        cursor: pointer; /* Zeigt den Download-Link an */
+    }
+
 </style>
 
 <!--
@@ -936,9 +1323,11 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         try {
             const nextPickupTemplate = `{% raw %}{{ value.types | join(", ") }}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
             const individualPickupTemplate = `{% raw %}{% if value.daysTo == 0 %} Heute{% elif value.daysTo == 1 %} Morgen{% else %} in {{ value.daysTo }} Tagen{% endif %}{% endraw %}`;
+            const datePickupTemplate = `{% raw %}{{value.date.strftime("%d.%m.%Y")}}{% endraw %}`;
             
             document.getElementById("next-pickup-template").textContent = nextPickupTemplate;
             document.getElementById("individual-pickup-template").textContent = individualPickupTemplate;
+            document.getElementById("date-pickup-template").textContent = datePickupTemplate;
 
         } catch (error) {
             console.error("Error during DOMContentLoaded setup:", error);
@@ -946,7 +1335,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     });
     function showStep(stepNumber) {
         // Alle Abschnitte anzeigen, die kleiner oder gleich der aktuellen Schritt-Nummer sind
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 6; i++) {
             const step = document.getElementById(`step-${i}`);
             if (step) {
                 if (i <= stepNumber) {
@@ -1180,7 +1569,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         standardNameCell.textContent = "Nächste Abholung";
         standardNameCell.style.cursor = "pointer";
         standardNameCell.onclick = () => {
-            copyToClipboard("Nächste Abholung", standardCopyStatusCell); // Name wird kopiert
+            copyToClipboards("Nächste Abholung", standardCopyStatusCell); // Name wird kopiert
         };
         standardRow.appendChild(standardNameCell);
 
@@ -1219,7 +1608,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             customNameCell.textContent = customName;
             customNameCell.style.cursor = "pointer";
             customNameCell.onclick = () => {
-                copyToClipboard(customName, copyStatusCell); // Name wird kopiert
+                copyToClipboards(customName, copyStatusCell); // Name wird kopiert
             };
             sensorRow.appendChild(customNameCell);
 
@@ -1253,7 +1642,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         sensorTable.style.display = "table";
     }
 
-    function copyToClipboard(textToCopy, statusCell) {
+    function copyToClipboards(textToCopy, statusCell) {
         navigator.clipboard.writeText(textToCopy).then(() => {
             const checkmark = statusCell.querySelector(".copy-checkmark");
             if (checkmark) {
@@ -1613,6 +2002,17 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             customFontInput.style.display = "none";
         }
     }
+    // Event Listener für die Checkbox
+    document.getElementById("dateUseCheckbox").addEventListener("change", function () {
+        const dateOptionsDiv = document.getElementById("dateOptions");
+        if (this.checked) {
+            // Zeige den Container, wenn die Checkbox angehakt ist
+            dateOptionsDiv.date.display = "contents";
+        } else {
+            // Verstecke den Container, wenn die Checkbox nicht angehakt ist
+            dateOptionsDiv.date.display = "none";
+        }
+    });
 
     function getSelectedFont() {
         const fontSelection = document.getElementById("fontSelection").value;
@@ -1647,15 +2047,16 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         const rows = Array.from(imageTableBody.querySelectorAll("tr"));
         const sensorCount = rows.length;
 
-        const blinkend = document.getElementById("blinkendCheckbox").checked;
-        const styleUsed = document.getElementById("styleUseCheckbox").checked;
-        const styleUnused = !document.getElementById("styleUseCheckbox").checked;
-        const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value; // "heute" oder "morgen",
-        const darstellung = document.getElementById("darstellungAuswahl").value; // "einzeilig" oder "mehrzeilig"
-        const selectedFont = getSelectedFont(); // Funktion zur Auswahl der Schriftart
-        const StyleHintergrund = document.getElementById("backgroundSelect").value;
-        const StyleRahmenStil = document.getElementById("borderStyleSelect").value;
-        const StyleRahmenEcke = document.getElementById("borderShapeSelect").value;
+        const blinkend = document.getElementById("blinkendCheckbox").checked; // blinkende Tonne?
+        const dateUsed = document.getElementById("dateUseCheckbox").checked; // Datum angezeigt?
+        const styleUsed = document.getElementById("styleUseCheckbox").checked; // Style geändert
+        const styleUnused = !document.getElementById("styleUseCheckbox").checked; // Style nicht geändert
+        const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value; // Anzeige "heute" oder "morgen",
+        const darstellung = document.getElementById("darstellungAuswahl").value; // Karte einzeilig oder mehrzeilig
+        const selectedFont = getSelectedFont(); // Ausgewählte Schriftart
+        const StyleHintergrund = document.getElementById("backgroundSelect").value; // Gewählter Hintergrund
+        const StyleRahmenStil = document.getElementById("borderStyleSelect").value; // Gewählter Rahmen
+        const StyleRahmenEcke = document.getElementById("borderShapeSelect").value; // Gewählte Rahmen Form
 
         let yaml = "";
 
@@ -1698,6 +2099,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
             yaml += `  - type: horizontal-stack\n`;
             yaml += `    cards:\n`;
             yaml += `      - type: vertical-stack\n`;
@@ -1713,6 +2115,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - border: none\n`;
             yaml += `                - background: transparent\n`;
+            yaml += `                - padding: 1em 0 0 0\n`;
 
             if (blinkend) {
                 yaml += `            state:\n`;
@@ -1722,6 +2125,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `                  entity_picture:\n`;
                 yaml += `                    - animation:\n`;
                 yaml += `                        - blink 1s linear infinite\n`;
+            }
+
+            if (dateUsed) {
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensorEntity}_datum\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0\n`;
             }
 
             yaml += `          - type: custom:button-card\n`;
@@ -1738,6 +2156,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - background-color: transparent\n`;
             yaml += `                - border: none\n`;
+            yaml += `                - padding: 0 0 1em 0\n`;
         }
 
         // Für den Fall, dass 2 Sensoren erstellt wurden
@@ -1789,6 +2208,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
             yaml += `  - type: horizontal-stack\n`;
             yaml += `    cards:\n`;
 
@@ -1806,6 +2226,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - border: none\n`;
             yaml += `                - background: transparent\n`;
+            yaml += `                - padding: 1em 0 0 0\n`;
 
             if (blinkend) {
                 yaml += `            state:\n`;
@@ -1815,6 +2236,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `                  entity_picture:\n`;
                 yaml += `                    - animation:\n`;
                 yaml += `                        - blink 1s linear infinite\n`;
+            }
+
+            if (dateUsed) {
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor1.entity}_datum\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0\n`;
             }
 
             yaml += `          - type: custom:button-card\n`;
@@ -1831,6 +2267,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - background-color: transparent\n`;
             yaml += `                - border: none\n`;
+            yaml += `                - padding: 0 0 1em 0\n`;
 
             // YAML für den zweiten Sensor
             yaml += `      - type: vertical-stack\n`;
@@ -1846,6 +2283,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - border: none\n`;
             yaml += `                - background: transparent\n`;
+            yaml += `                - padding: 1em 0 0 0\n`;
 
             if (blinkend) {
                 yaml += `            state:\n`;
@@ -1855,6 +2293,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `                  entity_picture:\n`;
                 yaml += `                    - animation:\n`;
                 yaml += `                        - blink 1s linear infinite\n`;
+            }
+
+            if (dateUsed) {
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor2.entity}_datum\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0\n`;
             }
 
             yaml += `          - type: custom:button-card\n`;
@@ -1871,6 +2324,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `              card:\n`;
             yaml += `                - background-color: transparent\n`;
             yaml += `                - border: none\n`;
+            yaml += `                - padding: 0 0 1em 0\n`;
         }
 
         else if (sensorCount === 3) {
@@ -1917,6 +2371,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
             yaml += `  - type: horizontal-stack\n`;
             yaml += `    cards:\n`;
 
@@ -1934,6 +2389,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -1943,6 +2399,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -1959,6 +2430,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
         }
 
@@ -2007,6 +2479,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
             yaml += `  - type: horizontal-stack\n`;
             yaml += `    cards:\n`;
 
@@ -2024,6 +2497,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2033,6 +2507,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2049,6 +2538,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
         }
 
@@ -2096,6 +2586,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
 
             // Erste Zeile der horizontalen Sensoren
             yaml += `  - type: horizontal-stack\n`;
@@ -2115,6 +2606,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2124,6 +2616,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2140,6 +2647,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
 
             // Zweite Zeile der horizontalen Sensoren
@@ -2160,6 +2668,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2169,6 +2678,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2185,6 +2709,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
         }
 
@@ -2232,6 +2757,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
 
             // Erste Zeile der horizontalen Sensoren
             yaml += `  - type: horizontal-stack\n`;
@@ -2251,6 +2777,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2260,6 +2787,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2276,6 +2818,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
 
             // Zweite Zeile der horizontalen Sensoren
@@ -2296,6 +2839,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2305,6 +2849,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2321,6 +2880,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
         }
 
@@ -2369,6 +2929,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
 
             // Erste Zeile der horizontalen Sensoren
             yaml += `  - type: horizontal-stack\n`;
@@ -2388,6 +2949,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2397,6 +2959,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2413,6 +2990,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
 
             // Zweite Zeile der horizontalen Sensoren
@@ -2433,6 +3011,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - border: none\n`;
                 yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
 
                 if (blinkend) {
                     yaml += `            state:\n`;
@@ -2442,6 +3021,21 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                     yaml += `                  entity_picture:\n`;
                     yaml += `                    - animation:\n`;
                     yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
                 }
 
                 yaml += `          - type: custom:button-card\n`;
@@ -2458,6 +3052,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                 yaml += `              card:\n`;
                 yaml += `                - background-color: transparent\n`;
                 yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
             });
         }
 
@@ -2484,7 +3079,171 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     document.getElementById("update-example-and-code").addEventListener("click", () => {
         updateExampleCard();
         generateCardYAML();
+        showStep(6);
     });
+
+
+
+//   █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████      ██████   //
+//  ██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██        ██        //
+//  ███████ ██████  ███████ ██      ███████ ██ ██  ██ ██    ██       ██        ███████   //
+//  ██   ██ ██   ██      ██ ██      ██   ██ ██  ██ ██ ██    ██       ██        ██    ██  //
+//  ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██         ██████   //
+                                                                                    
+
+
+// Funktion zum Kopieren in die Zwischenablage
+function copyToClipboard(helperName, statusId) {
+    navigator.clipboard.writeText(helperName)
+        .then(() => {
+            // Erfolgreich kopiert, ändere den Status auf ✔️
+            const statusElement = document.getElementById(statusId);
+            statusElement.textContent = "✔️";
+        })
+        .catch(err => {
+            console.error("Fehler beim Kopieren:", err);
+        });
+}
+
+// Eventlistener für die Helfernamen
+document.querySelectorAll(".copyable").forEach(element => {
+    element.addEventListener("click", () => {
+        const helperName = element.getAttribute("data-helper"); // Name des Helfers
+        const statusId = element.nextElementSibling.id; // ID des Status-Felds
+        copyToClipboard(helperName, statusId);
+    });
+});
+
+
+
+function generatePopupYAML() {
+    const imageTableBody = document.getElementById('image-list-output').querySelector('tbody');
+    const rows = Array.from(imageTableBody.querySelectorAll("tr"));
+    const sensorCount = rows.length;
+
+    const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value;
+    const selectedFont = getSelectedFont();
+    const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+    const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
+
+    // Dynamisches Sammeln der Sensordaten
+    const sensors = rows.map((row, index) => ({
+        entity: row.cells[2]?.textContent.trim() || "",
+        image: row.cells[1]?.textContent.trim() || "",
+        index: index + 1 // 1-basiert
+    }));
+
+    let yaml = "";
+
+    yaml += `type: custom:popup-card\n`;
+    yaml += `dismissable: true\n`;
+    yaml += `size: normal\n`;
+    yaml += `entity: input_button.mullerinnerung_taster\n`;
+    yaml += `style: |-\n`;
+    yaml += `  --popup-max-width: 1500px;\n`;
+    yaml += `  --popup-min-width: 1000px;\n`;
+    yaml += `title: Nicht vergessen!\n`;
+    yaml += `card:\n`;
+    yaml += `  type: picture-elements\n`;
+    yaml += `  elements:\n`;
+
+    // Titelbereich
+    yaml += `    - type: custom:button-card\n`;
+    yaml += `      entity: ${entityText}\n`;
+    yaml += `      show_icon: false\n`;
+    yaml += `      show_name: false\n`;
+    yaml += `      show_state: true\n`;
+    yaml += `      styles:\n`;
+    yaml += `        card:\n`;
+    yaml += `          - background: transparent\n`;
+    yaml += `          - border: none\n`;
+    yaml += `        state:\n`;
+    yaml += `          - font-size: 2em\n`;
+    yaml += `          - font-family: ${selectedFont}\n`;
+    yaml += `          - color: var(--primary-color)\n`;
+    yaml += `          - white-space: unset\n`;
+    yaml += `          - text-overflow: unset\n`;
+    yaml += `          - word-break: break-word\n`;
+    yaml += `          - text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px grey\n`;
+    yaml += `      style:\n`;
+    yaml += `        left: 50%\n`;
+    yaml += `        top: 13%\n`;
+    yaml += `        width: 90%\n`;
+
+    // Dynamisches Hinzufügen der Sensoren
+    sensors.forEach(sensor => {
+        if (sensor.entity && sensor.image) {
+            yaml += `    - type: custom:button-card\n`;
+            yaml += `      entity: ${sensor.entity}\n`;
+            yaml += `      show_icon: false\n`;
+            yaml += `      show_name: false\n`;
+            yaml += `      show_state: false\n`;
+            yaml += `      show_entity_picture: true\n`;
+            yaml += `      size: 100%\n`;
+            yaml += `      state:\n`;
+            yaml += `        - value: ${valueText}\n`;
+            yaml += `          entity_picture: /local/muell/${sensor.image}\n`;
+            yaml += `      styles:\n`;
+            yaml += `        card:\n`;
+            yaml += `          - background: transparent\n`;
+            yaml += `          - border: none\n`;
+
+            // Dynamische Positionierung basierend auf dem Index
+            let position = getPositionByIndex(sensor.index); // Funktion zur Berechnung der Position
+            yaml += `      style:\n`;
+            yaml += `        left: ${position.left}%\n`;
+            yaml += `        top: ${position.top}%\n`;
+            yaml += `        width: ${position.width}%\n`;
+        }
+    });
+
+    yaml += `  image: /local/muell/popup_background.png\n`;
+    yaml += `grid_options:\n`;
+    yaml += `  columns: 24\n`;
+    yaml += `  rows: auto\n`;
+
+    // Setze den generierten YAML-Code in das `pre`-Tag
+    const popupOutput = document.getElementById("popup-code-output");
+    popupOutput.innerHTML = `<code>${yaml}</code>`;
+}
+
+// Funktion zur Berechnung der Position basierend auf dem Index
+function getPositionByIndex(index) {
+    const positions = {
+        1: { left: 27, top: 75, width: 22 },
+        2: { left: 57, top: 75, width: 22 },
+        3: { left: 87, top: 75, width: 22 },
+        4: { left: 12, top: 79, width: 23 },
+        5: { left: 42, top: 79, width: 23 },
+        6: { left: 72, top: 79, width: 23 }
+    };
+    return positions[index] || { left: 50, top: 50, width: 20 }; // Standardposition
+}
+
+function copyPopupCode() {
+    const popupCodeOutput = document.getElementById("popup-code-output");
+    const codeText = popupCodeOutput.textContent;
+
+    navigator.clipboard.writeText(codeText)
+        .then(() => {
+            showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!"); // Erfolgsnachricht
+        })
+        .catch(err => {
+            console.error("Fehler beim Kopieren des Codes:", err);
+            showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten."); // Fehlermeldung
+        });
+}
+
+// Update both the example card and YAML code
+document.getElementById("popup-code").addEventListener("click", () => {
+    generatePopupYAML(); // YAML generieren
+
+    // Beispielbild anzeigen
+    const exampleContainer = document.getElementById("example-popup-container");
+    exampleContainer.style.display = "block";
+});
+
+
 </script>
 
 

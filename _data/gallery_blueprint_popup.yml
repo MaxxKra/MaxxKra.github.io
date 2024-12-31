@@ -1,0 +1,44 @@
+- title: Blueprint Automatisierung hinzufügen und einrichten
+  subtitle: |-
+    Hier erfährst du, wie du das Blueprint für die Pop-Up Automatisierung in Home Assistant hinzufügst und einrichtest.
+  images:
+    - link: /img/HA-Buttons/Blueprint_importieren_Ablauf_k.png
+      large_link: /img/HA-Buttons/Blueprint_importieren_Ablauf.png
+      alt: Blueprints öffnen
+      description: |-
+        ### 1. Automatisierung Blueprint öffnen
+
+        Gehe zu `Einstellungen` - `Automatisierungen & Szenen` - `Blueprints` und klicke auf `Blueprint importieren`
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Blueprint_Blueprint_importieren_2_k.png
+      large_link: /img/HA-Buttons/Blueprint_Blueprint_importieren_2.png
+      alt: Blueprint Adresse eintragen
+      description: |-
+        ### 2. Blueprint Adresse eintragen
+
+        Trage die kopierte URL Adresse des Blueprints ein und klicke auf `Vorschau`
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Blueprint_Blueprint_importieren_3_k.png
+      large_link: /img/HA-Buttons/Blueprint_Blueprint_importieren_3.png
+      alt: Blueprint Pfad
+      description: |-
+        ### 3. Blueprint importieren
+
+        Kontrolliere bei Bedarf den Pfad des Blueprints sowie den Inhalt und klicke auf `Blueprint importieren`
+      ratio: is-3by2
+    - link: /img/muell/Popup_Automatisierung_k.png
+      large_link: /img/muell/Popup_Automatisierung.png
+      alt: Pop-Up Automatisierung einrichten
+      description: |-
+        ### 4. Pop-Up Automatisierung einrichten
+
+        Öffne das hinzugefügte Blueprint und trage alle notwendigen Informationen ein.
+      ratio: is-3by2
+    - link: /img/muell/Popup_Automatisierung_2_k.png
+      large_link: /img/muell/Popup_Automatisierung_2.png
+      alt: Pop-Up Automatisierung speichern
+      description: |-
+        ### 5. Pop-Up Automatisierung speichern
+
+        Ändere den Namen auf einen individuellen Namen um, füge bei Bedarf eine Beschreibung ein un klicke auf `Umbenennen`
+      ratio: is-3by2

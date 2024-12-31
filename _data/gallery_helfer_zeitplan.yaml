@@ -1,0 +1,35 @@
+- title: Home Assistant - Zeitplan Helfer anlegen
+  images:
+    - link: /img/HA-Buttons/Ablauf_Helfer_erstellen_k.png
+      large_link: /img/HA-Buttons/Ablauf_Helfer_erstellen.png
+      alt: Ablauf Helfer erstellen
+      description: |-
+        ### 1. Helfer erstellen Ablauf
+
+        Navigiere in den Einstellungen über `Geräte & Dienste` zu `Helfer`. Klicke dort auf `HELFER ERSTELLEN`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Helfer_Liste_Zeitplan_k.png
+      large_link: /img/HA-Buttons/Helfer_Liste_Zeitplan.png
+      alt: Helfer Liste Zeitplan
+      description: |-
+        ### 2. Helfer Liste: Zeitplan auswählen
+
+        Wähle in der Liste den Eintrag `Zeitplan` aus, um einen neuen Zeitplan anzulegen.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Zeitplan_Helfer_erstellen_k.png
+      large_link: /img/HA-Buttons/Zeitplan_Helfer_erstellen.png
+      alt: Zeitplan einrichten
+      description: |-
+        ### 3. Zeitplan einrichten
+
+        Füge einen individuellen Namen für den Zeitplan ein und wähle ein Icon. Für die aktive Zeit des Zeitplans markiere die Felder. Danch klicke auf `ERSTELLEN`.
+      ratio: is-3by2
+    - link: /img/HA-Buttons/Zeitplan_Helfer_bearbeiten_k.png
+      large_link: /img/HA-Buttons/Zeitplan_Helfer_bearbeiten.png
+      alt: Zeitplan bearbeiten
+      description: |-
+        ### 4. Zeitplan einrichtenbearbeiten
+
+        Um den die Zeitpunkte der Aktivierung detaillierter einzurichten, klicke auf einen Eintrag und füge Minuten hinzu.
+        Danch klicke auf `SPEICHERN`.
+      ratio: is-3by2
