@@ -7,17 +7,29 @@ show_sidebar: false
 layout: page
 ---
 <div class="guide-container">
-<h1 class="custom-title">Müllkalender Code-Generator</h1>
-
+<h1 class="custom-title">Müllerinnerung Code-Generator</h1>
+<br>
+<p>
+    Mit diesem Code-Generator hast du die Möglichkeit, deine Müllerinnerung vom Anlegen des Kalenders über das Einrichten der Sensoren und Templates bis hin zur Dashboard- und Pop-Up- Karte durchzuführen.
+</p>
 <!-- Wichtiger Hinweis -->
 <div class="important-container">
     <h3>❗Wichtig</h3>
     <p>
-        Vor dem Erstellen der Codes stelle sicher, dass die Integration <strong>"Waste Collection Schedule"</strong> in HACS heruntergeladen und installiert ist.<br>
-        Mit der neuesten Version dieser Integration kannst du die Sensoren usw. direkt in Home Assistant unter Geräte & Dienste einrichten.<br> 
-        Im weiteren Verlauf dieser Code-Generierung werden alle notwendigen Angaben für diese Integration für dich bereitgestellt.
+        Bevor du startest stelle sicher, dass die hier angeführten Hinweise vorhanden / eingerichtet sind!
+    </p>
+    <p>
+        Ebenfalls ist zu beachten, dass derzeit nur ICS Dateien und ICS-URLs für den Codegenerator genutzt werden können.
     </p>
 </div>
+<br>
+<h4>Was muss vor der Bearbeitung mit dem Code-Generator vorbereitet werden:</h4>
+
+<ul class="styled-list-start">
+    <li>Herunterladen und installieren der <strong>Waste Collection Schedule</strong> in HACS</li>
+    <li>Anlegen eines <strong>muell</strong> Ordners im <strong>config/www/</strong> Ordner</li>
+    <li>Bereitstellung einer ICS Datei oder URL</li>
+</ul>
 <div id="custom-alert" style="display: none;">
     <div id="custom-alert-content">
         <h4 id="custom-alert-title"></h4>
@@ -37,21 +49,22 @@ layout: page
         <button id="decision-no">Nein</button>
     </div>
 </div>
+<br>
+<button class="custom-button" onclick="showStep(1);">Hinweise gelesen! Vorbereitungen getroffen! Bereit zu starten!</button>
 <!--
  █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████      ██ 
 ██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██        ███ 
 ███████ ██████  ███████ ██      ███████ ██ ██  ██ ██    ██       ██         ██ 
 ██   ██ ██   ██      ██ ██      ██   ██ ██  ██ ██ ██    ██       ██         ██ 
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██         ██ 
-                                                                               
 -->
 
-<div id="step-1">
+<div id="step-1" style="display:none;">
 <h2 class="custom-title">1. Kalenderdaten Auslesen</h2>
 
 <p>
     Zum Auslesen der verschiedenen Abholungen aus deinem Müllkalender, gib bitte deine URL an oder lade die ICS-Datei hoch und bestätige mit<br>
-    <strong>Kalendereinträge extrahieren</strong>
+    <strong>Kalendereinträge extrahieren</strong>.
 </p>
 
 <!-- File Upload and URL Input -->
@@ -83,28 +96,38 @@ layout: page
 Zusätzlich hast du die Möglichkeit individuelle Bezeichnungen zu vergeben.
 </p>
 
-<div class="important-container">
+<div id="umlaut-warning-container" class="important-container" style="display: none;">
+    <h3>❗Achtung</h3>
     <p>
-        <strong>Achtung!</strong> Deine persönlichen Bezeichnungen dürfen keine Umlaute enthalten und Leerzeichen sollen vermieden werden!
+        Deine persönlichen Bezeichnungen dürfen keine Umlaute enthalten und Leerzeichen sollen vermieden werden!
     </p>
 </div>
-    <!-- Warnungscontainer -->
-    <div id="warning-container" class="important-container" style="display: none;">
-        <h3>❗Achtung</h3>
-        <p>
-            Deine ICS-Datei enthält ungültige Einträge. Diese sollten angepasst werden, um Fehler zu vermeiden. 
-            Gehe dazu auf die Seite <a href="/icszusammenfuhren/" target="_blank">ICS zusammenführen / bearbeiten</a>.<br>
-            Die Verarbeitung wird dennoch fortgesetzt, aber überprüfe die Einträge vor dem Erstellen der Codes.
-        </p>
-    </div>
+<!-- Warnungscontainer -->
+<div id="warning-container" class="important-container" style="display: none;">
+    <h3>❗Achtung</h3>
+    <p>
+        Deine Kalender enthält ungültige Einträge wie z.B. <strong>Ä, Ö, Ü, Leerzeichen oder Sonderzeichen </strong>.<br>
+        Diese Einträge sollten unbedingt ohne diese Zeichen angepasst werden, um Fehler zu vermeiden.<br>
+        Am Besten korrigierst du diese hier über die <strong>Eigenen Bezeichnungen</strong> und in der Waste Collection Schedule gleichermaßen über die <strong>Mülltypen (Alias-Namen)</strong>. 
+    </p>
+</div>
+<div id="url-warning-container" class="important-container" style="display: none;">
+    <h3>❗Achtung</h3>
+    <p>
+        Wenn das Laden der Daten deiner URL nicht funktioniert, wurde die Anfrage von dieser Seite vermutlich abgelehnt.<br>
+        In diesem Fall, lade dir die ICS Datei lokal auf deinen Rechner und füge sie als Datei in den Codegenerator ein, um mit der Codeerstellung fortzufahren.<br>
+        In der Waste Collection Schedule kannst du versuchen, die URL trotzdem zu verwenden.
+    </p>
+</div>
 <p>
     Wähle deine Bezeichnung so, dass sie kurz und sinnvoll ist. Es ist nicht notwendig, das Wort <strong>Tonne</strong> in die Bezeichnung aufzunehmen, da dies automatisch vom Codegenerator ergänzt wird. 
+</p>
+<p>
     Beispiel: Aus der Bezeichnung <strong>Papier</strong> wird automatisch <strong>die Papier Tonne</strong>.
 </p>
 <p>
     Eine Ausnahme bilden <strong>Gelbe Tonne</strong> und <strong>Gelber Sack</strong>, da diese ohne den Zusatz nicht eindeutig wären.
 </p>
-
 <p>
 Nach den Änderungen klicke auf<br>
 <strong>Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</strong>
@@ -144,8 +167,14 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div id="step-3" style="display:none;">
 <h2 class="custom-title">3. Sensoren Konfiguration</h2>
 
-<p>An diesem Punkt kann die Integration <strong>Waste Collection Schedule</strong> in Home Assistant eingerichtet werden.<br>
-Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <strong>⬇️ Dropdown Menü ⬇️</strong></p>
+<p>
+    Wenn du eine ICS Datei verwendest, sollte an diesem Punkt diese Datei in deinem <strong>www/muell/</strong> Ordner abgelegt werden.
+</p>
+
+<p>
+    Nun kann die bereits installierte Integration <strong>Waste Collection Schedule</strong> in Home Assistant - Geräte & Dienste eingerichtet werden.<br>
+    Eine detaillierte Beschreibung wie diese einzurichten ist, findest du im <strong>⬇️ Dropdown Menü ⬇️</strong>
+</p>
 
 <div class="dropdown">
     <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown', this)">Waste Collection Schedule Integration und Sensor Einrichtung <span>&#9660;</span></button>
@@ -177,17 +206,28 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         </div>
     </div>
 </div>
+<h4>Was kann in der Waste Collection Schedule Integration eingerichtet werden:</h4>
 
-
+<ul class="styled-list-start">
+    <li><strong>Kalender</strong> - Anlegen deines Abfallkalenders mittels ICS, URL oder Abfall App</li>
+    <li><strong>Mülltypen</strong> - Änderung der Bezeichnungen deiner einzelnen Abholungen (Alias Namen)</li>
+    <li><strong>Sensor Nächste Abholung</strong> - Ein Sensor welche die nächste Abholung als Status ausgibt</li>
+    <li><strong>Sensor einzelne Abholung</strong> - Sensoren für jeden einzelnen Mülltyp mit "heute", "morgen" oder "in Tragen"</li>
+    <li><strong>Sensor Datum</strong> - Sensoren welche das Datum der nächsten Abholung einzelner Mülltypen ausgibt</li>
+</ul>
+<br>
 <p>
     Nun müssen den Sensoren bzw. Abholungen die Tonnenfarben zugeordnet werden.<br>
     Wichtig ist, dass <strong>keine</strong> Farbe zweimal verwendet werden darf.
 </p>
 
 <p>
-    Mit einem Klick auf den Sensor-Namen wird dieser in die Zwischenablage kopiert.<br>
-    Dadurch wird das Eintragen in Home Assistant als Sensor-Name wesentlich einfacher.
+    Mit einem Klick auf den Sensor-Namen in der Tabelle wird dieser in die Zwischenablage kopiert.<br>
+    Kopierte Einträge werden mit einem ✔️ gekennzeichnet.<br>
+    Dann den Sensor-Namen zusammen mit dem Werte-Template in die Waste Collection Schedule eintragen.
 </p>
+
+<h3 class="custom-subtitle" id="sensor-header" style="display:none;">Anzulegende Sensoren und Mülltypen</h3>
 
 <table class="custom-table" id="sensor-table" style="display:none;">
     <thead>
@@ -203,25 +243,46 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     </tbody>
 </table>
 
-<!-- Code Output for Templates in a Code Block with Copy Button -->
-<h3 class="custom-subtitle" id="template-header" style="display:none;">Werte Templates</h3>
+<h3 class="custom-subtitle" id="template-header" style="display:none;">Werte Templates Sensoren</h3>
 
-<div id="code-output" style="display:none;">
+<div id="code-output-next" style="display:none;">
     <h4>Werte Template Nächste Abholung</h4>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('next-pickup-template')">Copy</button>
+        <button class="copy-button" onclick="copyCode('next-pickup-template', this)">Kopieren</button>
         <pre id="next-pickup-template" class="language-yaml"><code></code></pre>
     </div>
     <h4>Werte Template einzelne Abholungen</h4>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('individual-pickup-template')">Copy</button>
+        <button class="copy-button" onclick="copyCode('individual-pickup-template', this)">Kopieren</button>
         <pre id="individual-pickup-template" class="language-yaml"><code></code></pre>
     </div>
+</div>
+
+<h3 class="custom-subtitle" id="date-sensor-header" style="display:none;">Optionale Datum Sensoren</h3>
+
+<p>
+    Wenn du das Datum der einzelnen Abholung benötigst, kannst du dir diesen Sensor ebenfalls anlegen.<br>
+    Nutze dazu den Sensor Namen mit dem Zusatz <strong>Datum</strong>, kopiere ihn mit einem Klick aus der Liste 
+    und lege diesen Sensor zusammen mit dem <strong>Werte Template Datum einzelne Abholungen</strong> in der Waste Collection Schedule an.
+</p>
+
+<table class="custom-table" id="date-sensor-table" style="display: none;">
+    <thead>
+        <tr>
+            <th>Sensor Name</th>
+            <th>Kopiert</th>
+            <th>Entity ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dynamically populated rows will go here -->    
+    </tbody>
+</table>
+
+<div id="code-output-date" style="display:none;">
     <h4>Werte Template Datum einzelne Abholungen</h4>
-    <p>Wenn du das Datum der einzelnen Abholung benötigst, kannst du dir diesen Sensor ebenfalls anlegen.<br>
-    Nutze dazu den Sensor Namen mit dem Zusatz <strong>Datum</strong> und dieses Werte Template</p>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('date-pickup-template')">Copy</button>
+        <button class="copy-button" onclick="copyCode('date-pickup-template', this)">Kopieren</button>
         <pre id="date-pickup-template" class="language-yaml"><code></code></pre>
     </div>
 </div>
@@ -292,17 +353,17 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <label for="keineMorgen">Anzeige Text "keine" für Morgen</label>
 </div>
 
-<button class="custom-button" onclick="createTemplates()">Templates erstellen</button>
+<button class="custom-button" onclick="showStep(5); createTemplates()">Templates erstellen</button>
 
 <!-- Output for "Müllabholung Heute" -->
 <div id="helper-template-output-heute" style="display:none;">
     <div class="custom-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Heute</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: none;">&#10003;</span>
+        <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-heute')">Copy</button>
+        <button class="copy-button" onclick="copyCode('helper-template-heute', this)">Kopieren</button>
         <pre id="helper-template-heute" class="language-yaml"><code></code></pre>
     </div>
 </div>
@@ -312,10 +373,10 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <div class="custom-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Heute</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: none;">&#10003;</span>
+        <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-text-heute')">Copy</button>
+        <button class="copy-button" onclick="copyCode('helper-template-text-heute', this)">Kopieren</button>
         <pre id="helper-template-text-heute" class="language-yaml"><code></code></pre>
     </div>
 </div>
@@ -325,10 +386,10 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <div class="custom-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Morgen</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: none;">&#10003;</span>
+        <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-morgen')">Copy</button>
+        <button class="copy-button" onclick="copyCode('helper-template-morgen', this)">Kopieren</button>
         <pre id="helper-template-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
@@ -338,14 +399,16 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <div class="custom-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Morgen</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: none;">&#10003;</span>
+        <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
     <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-text-morgen')">Copy</button>
+        <button class="copy-button" onclick="copyCode('helper-template-text-morgen', this)">Kopieren</button>
         <pre id="helper-template-text-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
-<button class="custom-button" onclick="showStep(5); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
+</div>
+<div id="step-5" style="display:none;">
+<button class="custom-button" onclick="showStep(6); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
 </div>
 
 <!--
@@ -357,7 +420,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                                                                               
 -->
 
-<div id="step-5" style="display:none;">
+<div id="step-6" style="display:none;">
 <h2 class="custom-title">5. Dashboard-Karten</h2>
 
 <div class="important-container">
@@ -522,14 +585,14 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
                                                                                     
 -->
 
-<div id="step-6" style="display:none;">
+<div id="step-7" style="display:none;">
 
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
         <h4 class="custom-title">Generierter YAML-Code</h4>
         <div class="yaml-code-container">
-            <button class="copy-button" onclick="copyYAMLCode()">Copy</button>
+            <button class="copy-button" onclick="copyCode('yaml-code-output', this)">Kopieren</button>
             <pre id="yaml-code-output" class="language-yaml"><code></code></pre>
         </div>
     </div>
@@ -542,15 +605,19 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     </div>
 </div>
 
+<h4>Besteht noch Interesse an einer Dashboard Pop-Up Erinnerung?</h4><br>
+<button class="custom-button" onclick="showStep(8);">Ja! Weiter zu der Pop-Up Karte</button>
+</div>
+
+<div id="step-8" style="display:none;">
 <br>
 <h2 class="custom-title">6. Pop-Up-Karte</h2>
 
 <br>
 
-<p>
-    Zur Anzeige eines Pop-Up auf deinem Home Assistant Dashboard sind mehrere Schritte notwendig:
-</p>
-<ul>
+<h4>Zur Anzeige eines Pop-Up auf deinem Home Assistant Dashboard sind mehrere Schritte notwendig:</h4>
+
+<ul class="styled-list">
     <li>Herunterladen und Speichern des Hintergrund-Bilds</li>
     <li>Anlegen einer Helfer-Taste und eines Helfer-Zeitplans</li>
     <li>Erstellung des YAML-Codes für die Pop-Up Karte</li>
@@ -680,7 +747,12 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <h3 class="custom-title">6.3 Pop-Up Code erstellen</h3>
 </div>
 
-<h4>Soll das Pop-Up für die Abholung Morgen erinnern, muss im vorherigen Abschnitt des Codegenerators unter <strong>Anzeige Auswahl</strong> - <strong>Anzeige Morgen</strong> gewählt werden!!</h4>
+<div class="note-container">
+    <h3>💡 Hinweis</h3> 
+    <p>
+        Soll das Pop-Up für die Abholung Morgen erinnern, muss im vorherigen Abschnitt des Codegenerators unter <strong>Anzeige Auswahl</strong> - <strong>Anzeige Morgen</strong> gewählt werden!!
+    </p>
+</div>
 <br>
 <p>
     Mit einem Klick auf <strong>Pop-Up erstellen</strong> wird der Code für das Pop-Up nach deinen zuvor gewählten Einstellungen und Angaben erstellt. 
@@ -691,7 +763,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 </div>
 
 <p>
-    Den generierten Code kannst du mit <strong>Copy</strong> in die Zwischenablage kopieren.
+    Den generierten Code kannst du mit <strong>Kopieren</strong> in die Zwischenablage kopieren.
 </p>
 
 <div id="popup-options" class="dashboard-options">
@@ -699,7 +771,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     <div id="popup-output-container" class="yaml-output-container">
         <h4 class="custom-title">Generierter Pop-Up-Code</h4>
         <div class="yaml-code-container">
-            <button class="copy-button" onclick="copyPopupCode()">Copy</button>
+            <button class="copy-button" onclick="copyCode('popup-code-output', this)">Kopieren</button>
             <pre id="popup-code-output" class="language-yaml"><code></code></pre>
         </div>
     </div>
@@ -865,9 +937,8 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 <br>
 <h3 class="custom-title">Danke und gutes Gelingen!</h3>
 
-{% include support_note.html %}
 </div>
-
+{% include support_note.html %}
 </div>
 
 <!--
@@ -1202,6 +1273,12 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     .copy-button:hover {
         background: #005a9c;
     }
+    .copy-button.copied {
+        background: #72dd8b; /* Grüner Hintergrund */
+        color: white;       /* Weiße Schrift */
+        content: '✔️';      /* Symbol */
+        padding: 8px 12px;
+    }
     /* Button Container */
     .button-container {
         text-align: center;
@@ -1306,6 +1383,79 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         height: auto; /* Bildverhältnis beibehalten */
         cursor: pointer; /* Zeigt den Download-Link an */
     }
+    .styled-list {
+        list-style: none; /* Entfernt die Standard-Aufzählungspunkte */
+        counter-reset: list-counter; /* Initialisiert den Zähler */
+        padding-left: 0; /* Entfernt Einrückung */
+        margin: 20px 0; /* Abstand zur Umgebung */
+    }
+
+    .styled-list li {
+        counter-increment: list-counter; /* Erhöht den Zähler */
+        position: relative;
+        margin: 10px 30px; /* Abstand zwischen den Einträgen */
+        font-size: 1em;
+        line-height: 1.6;
+        color: #333; /* Dunkler Text */
+        background-color: #fff; /* Neutraler Hintergrund */
+        border-left: 3px solid #007acc; /* Farbliche Linie am linken Rand */
+        border-radius: 6px; /* Leicht abgerundete Kanten */
+        padding: 10px 60px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für visuelle Tiefe */
+        width: 55%;
+    }
+
+    .styled-list li::before {
+        content: "6." counter(list-counter); /* Fügt "6." + die Zählernummer hinzu */
+        position: absolute;
+        left: 10px; /* Platzierung der Nummer links */
+        top: 50%; /* Vertikale Ausrichtung */
+        transform: translateY(-50%);
+        font-weight: bold;
+        color: #007acc; /* Gleiche Farbe wie die Linie */
+        font-size: 1.2em;
+        background-color: #e6f3ff; /* Heller Hintergrund für die Nummer */
+        padding: 5px 10px;
+        border-radius: 50%; /* Rundes Design für die Nummerierung */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Nummer */
+        text-align: center;
+    }
+    .styled-list-start {
+        counter-reset: list-counter; /* Initialisiert den Zähler */
+        padding-left: 0; /* Entfernt Einrückung */
+        margin: 20px 0; /* Abstand zur Umgebung */
+    }
+
+    .styled-list-start li {
+        counter-increment: list-counter; /* Erhöht den Zähler */
+        position: relative;
+        margin: 10px 30px; /* Abstand zwischen den Einträgen */
+        font-size: 1em;
+        line-height: 1.6;
+        color: #333; /* Dunkler Text */
+        background-color: #fff; /* Neutraler Hintergrund */
+        border-left: 3px solid #007acc; /* Farbliche Linie am linken Rand */
+        border-radius: 6px; /* Leicht abgerundete Kanten */
+        padding: 10px 60px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für visuelle Tiefe */
+        width: 90%;
+    }
+
+    .styled-list-start li::before {
+        content: counter(list-counter); /* Fügt die Nummerierung hinzu */
+        position: absolute;
+        left: 10px; /* Platzierung der Nummer links */
+        top: 50%; /* Vertikale Ausrichtung */
+        transform: translateY(-50%);
+        font-weight: bold;
+        color: #007acc; /* Gleiche Farbe wie die Linie */
+        font-size: 1.2em;
+        background-color: #e6f3ff; /* Heller Hintergrund für die Nummer */
+        padding: 5px 15px;
+        border-radius: 50%; /* Rundes Design für die Nummerierung */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Nummer */
+        text-align: center;
+    }
 
 </style>
 
@@ -1335,7 +1485,7 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     });
     function showStep(stepNumber) {
         // Alle Abschnitte anzeigen, die kleiner oder gleich der aktuellen Schritt-Nummer sind
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 8; i++) {
             const step = document.getElementById(`step-${i}`);
             if (step) {
                 if (i <= stepNumber) {
@@ -1368,103 +1518,117 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         };
     }
 
-    async function extractEntries() {
-        try {
-            const fileInput = document.getElementById('icsFile');
-            const urlInput = document.getElementById('calendarUrl');
-            const entryTableBody = document.getElementById('entry-table').querySelector('tbody');
-            entryTableBody.innerHTML = "Lade und verarbeite Daten...";
-    
-            let icsData;
-    
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                icsData = await file.text();
-            } else if (urlInput.value) {
-                try {
-                    const response = await fetch(urlInput.value);
-                    if (!response.ok) throw new Error("ICS-Datei konnte nicht geladen werden.");
-                    icsData = await response.text();
-                } catch (error) {
-                    entryTableBody.innerHTML = `<tr><td colspan="3">Fehler beim Laden der ICS-Datei: ${error.message}</td></tr>`;
-                    console.error("Fetch error:", error);
-                    return;
+async function extractEntries() {
+    try {
+        const fileInput = document.getElementById('icsFile');
+        const urlInput = document.getElementById('calendarUrl');
+        const entryTableBody = document.getElementById('entry-table').querySelector('tbody');
+
+        // Alle Warncontainer ausblenden
+        const warningContainer = document.getElementById("warning-container");
+        const umlautWarningContainer = document.getElementById("umlaut-warning-container");
+        const urlWarningContainer = document.getElementById("url-warning-container");
+
+        warningContainer.style.display = "none";
+        umlautWarningContainer.style.display = "none";
+        urlWarningContainer.style.display = "none";
+
+        entryTableBody.innerHTML = "Lade und verarbeite Daten...";
+
+        let icsData;
+
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            icsData = await file.text();
+        } else if (urlInput.value) {
+            const icsUrl = urlInput.value;
+            try {
+                const response = await fetch(icsUrl);
+                if (!response.ok) {
+                    throw new Error(`ICS-Datei konnte nicht geladen werden: ${response.status} ${response.statusText}`);
                 }
-            } else {
-                entryTableBody.innerHTML = "<tr><td colspan='3'>Bitte eine ICS-Datei hochladen oder eine URL eingeben.</td></tr>";
+                icsData = await response.text();
+            } catch (error) {
+                // Zeige den URL-Warncontainer bei einem Fehler
+                urlWarningContainer.style.display = "block";
+                console.error("Fetch error:", error);
+                entryTableBody.innerHTML = `<tr><td colspan="3">Fehler beim Laden der URL: ${error.message}</td></tr>`;
                 return;
             }
-    
-            const summaryEntries = new Set();
-            const invalidEntries = [];
-            const lines = icsData.split("\n");
-    
-            for (let line of lines) {
-                if (line.startsWith("SUMMARY")) {
-                    const summaryText = line.split(":").slice(1).join(":").trim();
-                    summaryEntries.add(summaryText);
-    
-                    // Überprüfen, ob Ziffern oder Punkte enthalten sind
-                    if (/\d|\./.test(summaryText)) {
-                        invalidEntries.push(summaryText);
-                    }
-                }
-            }
-    
-            // Falls ungültige Einträge gefunden wurden
-            if (invalidEntries.length > 0) {
-                const proceed = await showCustomDecision(
-                    "Ungültige Einträge gefunden",
-                    "Folgende Einträge enthalten Ziffern oder Punkte:",
-                    invalidEntries
-                );
-                if (!proceed) {
-                    showCustomAlert(
-                        "Verarbeitung abgebrochen!",
-                        "Die Verarbeitung wurde wegen ungültiger Einträge abgebrochen. Bitte überprüfe die ICS-Datei."
-                    );
-                    return; // Abbrechen der Verarbeitung
-                }
-            }
-    
-            entryTableBody.innerHTML = "";
-            let idCounter = 0;
-            summaryEntries.forEach(entry => {
-                const row = document.createElement("tr");
-    
-                // Checkbox
-                const checkboxCell = document.createElement("td");
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.className = "entry-checkbox";
-                checkbox.id = `entry-checkbox-${idCounter}`;
-                checkboxCell.appendChild(checkbox);
-                row.appendChild(checkboxCell);
-    
-                // Summary Entry
-                const summaryCell = document.createElement("td");
-                summaryCell.textContent = entry;
-                summaryCell.id = `summary-${idCounter}`;
-                row.appendChild(summaryCell);
-    
-                // Custom Name Input
-                const customNameCell = document.createElement("td");
-                const customNameInput = document.createElement("input");
-                customNameInput.type = "text";
-                customNameInput.placeholder = "Eigene Bezeichnung";
-                customNameInput.className = "entry-custom-name";
-                customNameInput.id = `custom-name-${idCounter}`;
-                customNameCell.appendChild(customNameInput);
-                row.appendChild(customNameCell);
-    
-                entryTableBody.appendChild(row);
-                idCounter++;
-            });
-    
-        } catch (error) {
-            console.error("Error in extractEntries:", error);
+        } else {
+            entryTableBody.innerHTML = "<tr><td colspan='3'>Bitte eine ICS-Datei hochladen oder eine URL eingeben.</td></tr>";
+            return;
         }
+    
+        const summaryEntries = new Set();
+        const invalidEntries = [];
+        const lines = icsData.split("\n");
+    
+        for (let line of lines) {
+            if (line.startsWith("SUMMARY")) {
+                const summaryText = line.split(":").slice(1).join(":").trim();
+                summaryEntries.add(summaryText);
+    
+                // Überprüfen, ob Ziffern, Punkte oder unerlaubte Zeichen enthalten sind
+                if (/\d|\.|[äöüßÄÖÜ]|\s|[()!?]/.test(summaryText)) {
+                    invalidEntries.push(summaryText);
+                }
+            }
+        }
+    
+        // Zeige den Warnungscontainer bei ungültigen Einträgen
+        if (invalidEntries.length > 0) {
+            const warningContainer = document.getElementById("warning-container");
+            const umlautWarningContainer = document.getElementById("umlaut-warning-container");
+            warningContainer.style.display = "block"; // Container einblenden
+            umlautWarningContainer.style.display = "none"; // Umlaut-Warnung ausblenden
+        }
+    
+        entryTableBody.innerHTML = "";
+        let idCounter = 0;
+        summaryEntries.forEach(entry => {
+            const row = document.createElement("tr");
+    
+            // Checkbox
+            const checkboxCell = document.createElement("td");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "entry-checkbox";
+            checkbox.id = `entry-checkbox-${idCounter}`;
+            checkboxCell.appendChild(checkbox);
+            row.appendChild(checkboxCell);
+    
+            // Summary Entry
+            const summaryCell = document.createElement("td");
+            summaryCell.textContent = entry;
+            summaryCell.id = `summary-${idCounter}`;
+            
+            // Markiere ungültige Einträge
+            if (invalidEntries.includes(entry)) {
+                summaryCell.style.color = "red"; // Färbe ungültige Einträge rot
+                summaryCell.title = "Ungültiger Eintrag - bitte anpassen"; // Tooltip
+            }
+            row.appendChild(summaryCell);
+    
+            // Custom Name Input
+            const customNameCell = document.createElement("td");
+            const customNameInput = document.createElement("input");
+            customNameInput.type = "text";
+            customNameInput.placeholder = "Eigene Bezeichnung";
+            customNameInput.className = "entry-custom-name";
+            customNameInput.id = `custom-name-${idCounter}`;
+            customNameCell.appendChild(customNameInput);
+            row.appendChild(customNameCell);
+    
+            entryTableBody.appendChild(row);
+            idCounter++;
+        });
+    
+    } catch (error) {
+        console.error("Error in extractEntries:", error);
     }
+}
+
 
 
     // Funktion zum Anzeigen des benutzerdefinierten Dialogs
@@ -1545,8 +1709,12 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
 
         // Alles in Ordnung
         generateSensorTable(selectedEntries);
+        generateDateSensorTable(selectedEntries);
         document.getElementById("template-header").style.display = "block";
-        document.getElementById("code-output").style.display = "block";
+        document.getElementById("sensor-header").style.display = "block";
+        document.getElementById("date-sensor-header").style.display = "block";
+        document.getElementById("code-output-next").style.display = "block";
+        document.getElementById('code-output-date').style.display = 'block';
         return true;
     }
     function handleStepTransition() {
@@ -1569,13 +1737,14 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         standardNameCell.textContent = "Nächste Abholung";
         standardNameCell.style.cursor = "pointer";
         standardNameCell.onclick = () => {
+            toggleCopyStatus(standardCopyStatusCell);
             copyToClipboards("Nächste Abholung", standardCopyStatusCell); // Name wird kopiert
         };
         standardRow.appendChild(standardNameCell);
 
         // Kopiert-Status
         const standardCopyStatusCell = document.createElement("td");
-        standardCopyStatusCell.innerHTML = '<span class="copy-checkmark" style="display: none;">✔️</span>';
+        standardCopyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
         standardCopyStatusCell.style.textAlign = "center";
         standardRow.appendChild(standardCopyStatusCell);
 
@@ -1608,13 +1777,14 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
             customNameCell.textContent = customName;
             customNameCell.style.cursor = "pointer";
             customNameCell.onclick = () => {
-                copyToClipboards(customName, copyStatusCell); // Name wird kopiert
+                toggleCopyStatus(copyStatusCell); // Status ändern
+                copyToClipboards(customName, copyStatusCell); // Name kopieren
             };
             sensorRow.appendChild(customNameCell);
 
             // Kopiert-Status
             const copyStatusCell = document.createElement("td");
-            copyStatusCell.innerHTML = '<span class="copy-checkmark" style="display: none;">✔️</span>';
+            copyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
             copyStatusCell.style.textAlign = "center";
             sensorRow.appendChild(copyStatusCell);
 
@@ -1640,6 +1810,58 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         });
 
         sensorTable.style.display = "table";
+    }
+
+    // Funktion zum Umschalten des Kopierstatus
+    function toggleCopyStatus(statusCell) {
+        const checkmark = statusCell.querySelector(".copy-checkmark");
+        if (checkmark) {
+            checkmark.textContent = checkmark.textContent === "❌" ? "✔️" : "❌"; // Umschalten zwischen ❌ und ✔️
+        }
+    }
+
+    function generateDateSensorTable(selectedEntries) {
+        const dateSensorTableBody = document.getElementById('date-sensor-table').querySelector('tbody');
+        const dateSensorTable = document.getElementById('date-sensor-table');
+        dateSensorTableBody.innerHTML = "";
+
+        // Add rows for selected entries
+        selectedEntries.forEach((row) => {
+            const customName = row.querySelector(".entry-custom-name").value || row.querySelector("td:nth-child(2)").textContent;
+            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+                return {
+                    'ä': 'a', 'ö': 'o', 'ü': 'u',
+                    'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
+                }[match];
+            })}_datum`;
+
+            const sensorRow = document.createElement("tr");
+
+            // Sensor Name
+            const customNameCell = document.createElement("td");
+            customNameCell.textContent = `${customName} Datum`;
+            customNameCell.style.cursor = "pointer";
+            customNameCell.onclick = () => {
+                toggleCopyStatus(copyStatusCell); // Richtige Zelle für den Status
+                copyToClipboards(`${customName} Datum`, copyStatusCell); // Name wird kopiert
+            };
+            sensorRow.appendChild(customNameCell);
+
+            // Kopiert-Status
+            const copyStatusCell = document.createElement("td");
+            copyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
+            copyStatusCell.style.textAlign = "center";
+            sensorRow.appendChild(copyStatusCell);
+
+            // Entity ID
+            const sensorNameCell = document.createElement("td");
+            sensorNameCell.textContent = sensorName;
+            sensorRow.appendChild(sensorNameCell);
+
+            dateSensorTableBody.appendChild(sensorRow);
+        });
+
+        dateSensorTable.style.display = "table";
     }
 
     function copyToClipboards(textToCopy, statusCell) {
@@ -1742,18 +1964,17 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
     function copyTitleToClipboard(element) {
         const textToCopy = element.textContent.trim(); // Text der Überschrift
         navigator.clipboard.writeText(textToCopy).then(() => {
-            // Nur das entsprechende Bestätigungs-Icon anzeigen
+            // Suche nach dem Symbol in der gleichen Zeile wie die Überschrift
             const confirmationIcon = element.parentElement.querySelector('.copy-confirmation');
-            confirmationIcon.style.display = 'inline';
-            
-            // Nach 2 Sekunden das Icon wieder ausblenden
-            setTimeout(() => {
-                confirmationIcon.style.display = 'none';
-            }, 2000);
+            if (confirmationIcon) {
+                // Umschalten zwischen ❌ und ✔️
+                confirmationIcon.textContent = "✔️";
+            }
         }).catch(err => {
             console.error("Fehler beim Kopieren in die Zwischenablage:", err);
         });
     }
+
     function createTemplate(day, templateId, outputId) {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
         const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1);
@@ -1861,19 +2082,28 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         return result.filter(comb => comb.length > 0);
     }
 
-    function copyCode(elementId) {
+    function copyCode(elementId, button) {
         const codeElement = document.getElementById(elementId);
         const codeText = codeElement.innerText || codeElement.textContent;
 
         navigator.clipboard.writeText(codeText)
             .then(() => {
-                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!"); // Zeigt das benutzerdefinierte Fenster
+                // Zeigt das benutzerdefinierte Fenster
+                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
+
+                // Button-Text und Stil dauerhaft ändern
+                button.classList.add('copied'); // Füge die CSS-Klasse hinzu
+                button.innerHTML = "Kopiert ✔️";       // Ändere den Button-Inhalt auf das Symbol
+                button.style.backgroundColor = "#72dd8b"; // Grüner Hintergrund
+                button.style.color = "white";             // Weiße Schrift
+                
             })
             .catch(err => {
                 console.error("Fehler beim Kopieren des Codes: ", err);
-                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten."); // Fehlerhinweis
+                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
             });
     }
+
 
     function toggleDropdown(dropdownId, toggleButton) {
         var dropdownContent = document.getElementById(dropdownId);
@@ -3061,25 +3291,11 @@ Eine detaillierte Beschreibung wie diese einzurichten sind, findest du im <stron
         yamlOutput.innerHTML = `<code>${yaml}</code>`;
     }
 
-    function copyYAMLCode() {
-        const yamlCodeOutput = document.getElementById("yaml-code-output");
-        const codeText = yamlCodeOutput.textContent;
-
-        navigator.clipboard.writeText(codeText)
-            .then(() => {
-                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!"); // Erfolgsnachricht
-            })
-            .catch(err => {
-                console.error("Fehler beim Kopieren des Codes:", err);
-                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten."); // Fehlermeldung
-            });
-    }
-
     // Update both the example card and YAML code
     document.getElementById("update-example-and-code").addEventListener("click", () => {
         updateExampleCard();
         generateCardYAML();
-        showStep(6);
+        showStep(7);
     });
 
 
@@ -3218,20 +3434,6 @@ function getPositionByIndex(index) {
         6: { left: 72, top: 79, width: 23 }
     };
     return positions[index] || { left: 50, top: 50, width: 20 }; // Standardposition
-}
-
-function copyPopupCode() {
-    const popupCodeOutput = document.getElementById("popup-code-output");
-    const codeText = popupCodeOutput.textContent;
-
-    navigator.clipboard.writeText(codeText)
-        .then(() => {
-            showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!"); // Erfolgsnachricht
-        })
-        .catch(err => {
-            console.error("Fehler beim Kopieren des Codes:", err);
-            showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten."); // Fehlermeldung
-        });
 }
 
 // Update both the example card and YAML code

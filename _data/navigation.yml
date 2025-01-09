@@ -42,6 +42,10 @@
       link: /floorplanbuttonposition
     - name: Floorplan Icons
       link: /floorplanicondownload
+- name: Kurzanleitungen
+  dropdown:
+    - name: HACS installieren
+      link: /hacsinstallieren
 - name: Code Design
   dropdown:
     - name: ASCII Code
