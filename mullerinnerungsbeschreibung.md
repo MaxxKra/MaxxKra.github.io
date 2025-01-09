@@ -230,7 +230,7 @@ layout: page
         background-color: #1a1a1a;
         border: 1px solid #ddd;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
         font-family: Arial, sans-serif;
         line-height: 1.6;
     }
@@ -244,7 +244,7 @@ layout: page
 
     .ics-intro {
         text-align: center;
-        color: #555;
+        color: #a9a9a9;
         margin-bottom: 20px;
     }
 
@@ -309,7 +309,7 @@ layout: page
     background-color: #1a1a1a;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
     }
     .guide-title {
     text-align: center;
