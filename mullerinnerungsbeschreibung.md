@@ -302,15 +302,6 @@ layout: page
         color: #555;
         font-size: 1.1em;
     }
-
-
-    body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 20px;
-    }
     .guide-container {
     max-width: 100%;
     margin: auto;
