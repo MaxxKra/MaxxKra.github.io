@@ -302,6 +302,7 @@ layout: page
         color: #555;
         font-size: 1.1em;
     }
+
     .guide-container {
     max-width: 100%;
     margin: auto;
@@ -311,24 +312,29 @@ layout: page
     border-radius: 8px;
     box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
     }
+
     .guide-title {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
     }
+
     .guide-section {
     margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 15px;
     }
+
     .section-title {
     color: #4CAF50;
     font-size: 1.4em;
     margin-bottom: 10px;
     }
+
     p {
     margin: 10px 0;
     }
+
     .highlight-button {
     background: #4CAF50;
     color: #fff;
@@ -337,22 +343,27 @@ layout: page
     border-radius: 4px;
     cursor: pointer;
     }
+
     .highlight-button:hover {
     background: #45a049;
     }
+
     code {
     background: #f4f4f4;
     padding: 2px 4px;
     border-radius: 4px;
     }
+
     .guide-footer {
     text-align: center;
     margin-top: 20px;
     }
+
     .dropdown {
         margin: 20px 0;
         text-align: center;
     }
+
     .dropdown-toggle {
         font-size: 18px;
         font-weight: bold;
@@ -367,6 +378,7 @@ layout: page
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         display: inline-block;
     }
+
     .dropdown-toggle.rotated {
         writing-mode: vertical-rl;
         text-orientation: mixed;
@@ -375,17 +387,20 @@ layout: page
         width: 200px;
         height: auto;
     }
+
     .dropdown-toggle span {
         float: right;
     }
+
     .dropdown-content {
         padding: 20px;
-        background-color: #ffffff;
+        background-color: #1a1a1a;
         border: 1px solid #f39c12;
         border-radius: 5px;
         margin-top: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    
 </style>
 
 <script>
