@@ -14,7 +14,7 @@ permalink: pretty
 #theme_color: '#eeeeee'
 #fixed_navbar: top
 #direction: one of <ltr, rtl, auto>, default: ltr
-force_theme: light
+force_theme: dark
 
 theme: null
 
