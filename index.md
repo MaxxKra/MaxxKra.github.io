@@ -92,7 +92,7 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
     <div style="display: flex; padding: 20px; margin: 0;">
         <div style="flex: 1; color: white; padding: 20px; margin-right: 20px;">
             <h3 style="margin: 0; color: orange;">Termin:</h3>
-            <p style="margin: 0;" id="meetingDayDetails"></p>
+            <p id="meetingDayDetails" style="margin: 0;"></p>
             <p style="margin: 0;">Uhrzeit: {{ page.meeting_time }} Uhr</p>            
             <h3 style="margin: 10px 0 0; color: orange;">Ort:</h3>
             <p style="margin: 0;">Gemeinschaftszentrum Auweisen</p>
