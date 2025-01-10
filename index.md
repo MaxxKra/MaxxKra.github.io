@@ -16,7 +16,8 @@ Viel Spaß beim Schmökern, Testen und Designen.
 Beste Grüße, Maxx
 
 <div style="margin: 20px 0;">
-    <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz am <span id="meetingDay"></span> um {{ page.meeting_time }} Uhr</h2>
+    <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
+    am <span id="meetingDay"></span> um {{ page.meeting_time }} Uhr</h2>
 </div>
 
 <div id="countdown-container" style="text-align: center; padding: 20px;">
@@ -24,7 +25,7 @@ Beste Grüße, Maxx
     <div style="display: flex; justify-content: center; align-items: center; padding: 20px;" id="countdown-fields">
         <div id="days-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
             <div id="days" style="font-size: 64px;">00</div>
-            <div style="font-size: 20px;">Tage</div>
+            <div style="font-size: 20px;">Tagen</div>
         </div>
         <div id="hours-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
             <div id="hours" style="font-size: 64px;">00</div>
@@ -93,6 +94,10 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
     // Set the date we're counting down to
     var countDownDate = meetingDate.getTime();
 
+    // Get the day of the week from the date
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("meetingDay").innerHTML = meetingDate.toLocaleDateString('de-DE', options); // Wochentag anzeigen
+
     // Update the countdown every 1 second
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -105,8 +110,8 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
         // Update fields dynamically
         if (distance > 0) {
             document.getElementById("days-container").style.display = days > 0 ? "block" : "none";
-            document.getElementById("hours-container").style.display = (days <= 0 && hours > 0) ? "block" : "none";
-            document.getElementById("minutes-container").style.display = (days <= 0 && hours <= 0 && minutes > 0) ? "block" : "none";
+            document.getElementById("hours-container").style.display = (days > 0 && hours > 0) ? "block" : "none";
+            document.getElementById("minutes-container").style.display = (days > 0 && hours > 0 && minutes > 0) ? "block" : "none";
             
             if (days > 0) {
                 document.getElementById("days").innerHTML = days;
