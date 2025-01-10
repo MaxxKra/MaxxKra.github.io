@@ -8,20 +8,21 @@ meeting_date: "13-02-2025"  # Eingabe im DD-MM-YYYY Format
 meeting_time: "18:00"       # Eingabe im HH:mm Format
 ---
 <div class="page-content">
-<h1>Herzlich willkommen auf meiner Home Assistant Code Website</h1>
-<p>
+<h1 style="text-align: center";>Herzlich willkommen auf meiner Home Assistant Code Website</h1>
+<br>
+<p style="text-align: center";>
     Auf dieser Website dreht sich alles um Code-Snippets, Codegeneratoren und Code-Vorlagen für die Einrichtung, die Erweiterung und das Design von Home Assistant.<br>
 </p>
-<p>
+<p style="text-align: center";>
     Viel Spaß beim Schmökern, Testen und Designen.
 </p>
 <br>
-<p>
+<p style="text-align: center";>
     Beste Grüße, Maxx
 </p>
-
+<br>
 <div style="margin: 20px 0;">
-    <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
+    <h2 style="text-align: center";>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
     am <span id="meetingDay" style="margin: 0;"></span> um {{ page.meeting_time }} Uhr</h2>
 </div>
 
@@ -44,12 +45,13 @@ meeting_time: "18:00"       # Eingabe im HH:mm Format
 </div>
 
 
-<h2>Liebe Home Assistant-Enthusiasten,</h2>
-<p>
+<h2 style="text-align: center";>Liebe Home Assistant-Enthusiasten,</h2>
+<p style="text-align: center";>
     ich möchte mich herzlich für eure Teilnahme am letzten Treffen bedanken. Eure rege Beteiligung und die inspirierenden Gespräche haben dazu beigetragen, dass unsere Community weiter gewachsen ist. Vielen Dank für euer Engagement!
 </p>
-<p>
-    Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euch den Termin für das {{ page.meeting_title }} – Home Assistant Treffen:
+<p style="text-align: center";>
+    Ich freue mich, euch bereits zum nächsten Treffen einzuladen.<br> 
+    Bitte notiert euch den Termin für das {{ page.meeting_title }} – Home Assistant Treffen:
 </p>
 <div style="background-color: black; padding: 20px;">
     <div style="display: flex; padding: 20px; margin: 0;">
