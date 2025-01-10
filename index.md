@@ -17,7 +17,7 @@ Beste Grüße, Maxx
 
 <div style="margin: 20px 0;">
     <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
-    am <p id="meetingDay" style="margin: 0;"></p> um {{ page.meeting_time }} Uhr</h2>
+    am <span id="meetingDay" style="margin: 0;"></span> um {{ page.meeting_time }} Uhr</h2>
 </div>
 
 <div id="countdown-container" style="text-align: center; padding: 20px;">
