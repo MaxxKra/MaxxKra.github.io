@@ -84,7 +84,7 @@ Beste Grüße, Maxx
                 document.getElementById("minutes").innerHTML = minutes;
             } else {
                 clearInterval(x);
-                document.getElementById("countdown-title").innerHTML = "Das Treffen hat bereits begonnen!";
+                document.getElementById("countdown-title").innerHTML = "Wir basteln bereits an unserem Home Assistant.<br>Stoße dazu und bastle mit!";
                 document.getElementById("countdown-fields").style.display = "none";
             }
         }, 1000);
