@@ -56,6 +56,11 @@ Beste Grüße, Maxx
         element.innerHTML = meetingDayFormatted;
     });
 
+    // Update both meetingDay placeholders
+    document.querySelectorAll("#meetingDayDetails").forEach(function(element) {
+        element.innerHTML = meetingDayFormatted;
+    });
+
     // Update the countdown every 1 second
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -93,7 +98,7 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
     <div style="display: flex; padding: 20px; margin: 0;">
         <div style="flex: 1; color: white; padding: 20px; margin-right: 20px;">
             <h3 style="margin: 0; color: orange;">Termin:</h3>
-            <span id="meetingDay"></span>
+            <span id="meetingDayDetails"></span>
             <p style="margin: 0;">Uhrzeit: {{ page.meeting_time }} Uhr</p>            
             <h3 style="margin: 10px 0 0; color: orange;">Ort:</h3>
             <p style="margin: 0;">Gemeinschaftszentrum Auweisen</p>
