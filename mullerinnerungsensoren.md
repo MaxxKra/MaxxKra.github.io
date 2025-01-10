@@ -973,7 +973,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         margin: 15px 0;
         font-size: 16px;
         line-height: 1.5;
-        color: #333;
+        color: #d1d1d1;
     }
     /* Wichtiges Hinweis-Container */
     .important-container {
@@ -1070,7 +1070,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     }
     .dropdown-content {
         padding: 20px;
-        background-color: #ffffff;
+        background-color: #1a1a1a;
         border: 1px solid #f39c12;
         border-radius: 5px;
         margin-top: 10px;
@@ -1243,8 +1243,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     /* Code Container */
     .code-container {
         position: relative;
-        background-color: #e9e9e9;
-        border: 1px solid #c9c9c9;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         padding: 15px;
         margin-top: 5px;
@@ -1256,7 +1257,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
-        color: #333;
+        color: #d1d1d1;
     }
     /* Stil für den Copy-Button */
     .copy-button {
@@ -1316,11 +1317,11 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     /* YAML-Code */
     .yaml-code-container {
         position: relative;
-        background-color: #e9e9e9;
-        border: 1px solid #ccc;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 8px;
         padding: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         max-height: 400px;
         overflow: auto; /* Ermöglicht Scrollen */
     }
@@ -1336,7 +1337,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #ffffff;
+        background-color: #000000;
         overflow: hidden; /* Verhindert das Überlaufen von Bildern */
     }
     .example-image-wrapper img {
