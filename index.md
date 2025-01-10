@@ -17,7 +17,7 @@ Beste Grüße, Maxx
 
 <div style="margin: 20px 0;">
     <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
-    am <span id="meetingDay"></span> um {{ page.meeting_time }} Uhr</h2>
+    am <p id="meetingDay" style="margin: 0;"></p> um {{ page.meeting_time }} Uhr</h2>
 </div>
 
 <div id="countdown-container" style="text-align: center; padding: 20px;">
@@ -39,47 +39,60 @@ Beste Grüße, Maxx
 </div>
 
 <script>
-    // Parse the meeting date in DD-MM-YYYY format
-    var dateParts = "{{ page.meeting_date }}".split("-");
-    var timeParts = "{{ page.meeting_time }}".split(":");
-    var meetingDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]);
+    function updateMeetingDate() {
+        // Parse the meeting date in DD-MM-YYYY format
+        var dateParts = "{{ page.meeting_date }}".split("-");
+        var meetingDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
-    // Set the date we're counting down to
-    var countDownDate = meetingDate.getTime();
+        // Format the date in German
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var meetingDayFormatted = meetingDate.toLocaleDateString('de-DE', options);
 
-    // Get the day of the week from the date
-    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var meetingDayFormatted = meetingDate.toLocaleDateString('de-DE', options);
-
-    // Update both meetingDay placeholders
-    document.getElementById("meetingDay").innerHTML = meetingDayFormatted;
-    document.getElementById("meetingDayDetails").innerHTML = meetingDayFormatted;
-
-    // Update the countdown every 1 second
-    var x = setInterval(function() {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
-
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-        // Update fields dynamically
-        if (distance > 0) {
-            document.getElementById("countdown-title").innerHTML = "Das Treffen beginnt in:";
-            document.getElementById("days-container").style.display = days > 0 ? "block" : "none";
-            document.getElementById("hours-container").style.display = hours > 0 ? "block" : "none";
-            document.getElementById("minutes-container").style.display = minutes > 0 ? "block" : "none";
-
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-        } else {
-            clearInterval(x);
-            document.getElementById("countdown-title").innerHTML = "Das Treffen hat bereits begonnen!";
-            document.getElementById("countdown-fields").style.display = "none";
+        // Update meetingDay placeholders
+        document.getElementById("meetingDay").innerHTML = meetingDayFormatted;
+        var detailsElement = document.getElementById("meetingDayDetails");
+        if (detailsElement) {
+            detailsElement.innerHTML = meetingDayFormatted;
         }
-    }, 1000);
+    }
+
+    function startCountdown() {
+        // Parse the meeting date in DD-MM-YYYY format
+        var dateParts = "{{ page.meeting_date }}".split("-");
+        var timeParts = "{{ page.meeting_time }}".split(":");
+        var meetingDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]);
+        var countDownDate = meetingDate.getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Update fields dynamically
+            if (distance > 0) {
+                document.getElementById("countdown-title").innerHTML = "Das Treffen beginnt in:";
+                document.getElementById("days-container").style.display = days > 0 ? "block" : "none";
+                document.getElementById("hours-container").style.display = hours > 0 ? "block" : "none";
+                document.getElementById("minutes-container").style.display = minutes > 0 ? "block" : "none";
+
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+            } else {
+                clearInterval(x);
+                document.getElementById("countdown-title").innerHTML = "Das Treffen hat bereits begonnen!";
+                document.getElementById("countdown-fields").style.display = "none";
+            }
+        }, 1000);
+    }
+
+    // Initialize both functionalities
+    updateMeetingDate();
+    startCountdown();
 </script>
 
 ## Liebe Home Assistant-Enthusiasten,
