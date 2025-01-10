@@ -90,10 +90,13 @@ Beste Grüße, Maxx
         }, 1000);
     }
 
-    // Initialize both functionalities
-    updateMeetingDate();
-    startCountdown();
+    // Ensure scripts run after DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        updateMeetingDate();
+        startCountdown();
+    });
 </script>
+
 
 ## Liebe Home Assistant-Enthusiasten,
 
