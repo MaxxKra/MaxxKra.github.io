@@ -43,7 +43,7 @@ published: true
     <li>Nun öffne in Home Assistant deinen File-Editor oder Studio Code Server und erstelle im <code>www-Ordner</code> ein neues File mit Namen <code>font.css</code> und füge folgende Codezeilen ein:</li>
 </ul>
 
-<div class="code-container">
+<div class="custom-code-container">
     <button class="copy-button" onclick="copyCode('code-css-font', this)">Kopieren</button>
     <pre id="code-css-font" class="language-css"><code>
 /* Ersetze "Technology" mit dem Namen deiner Schriftart */
@@ -57,7 +57,7 @@ published: true
     <ul>
         <li>Füge ein weiteres File in deinen "www-Order" hinzu und gib ihm den Namen <code>loadfonts.js</code>. In dieses File füge folgenden Code ein:</li>
     </ul>
-<div class="code-container">
+<div class="custom-code-container">
     <button class="copy-button" onclick="copyCode('code-js-font', this)">Kopieren</button>
     <pre id="code-js-font" class="language-js"><code>
 function loadcss() {
@@ -82,7 +82,7 @@ loadcss();
         <li>Leere den Browser-Cache und teste, ob die Schrift funktioniert. Z.B. kannst du folgende Karte manuell in dein Dashboard einfügen:</li>
     </ul>
 
-<div class="code-container">
+<div class="custom-code-container">
     <button class="copy-button" onclick="copyCode('code-yaml-font', this)">Kopieren</button>
     <pre id="code-yaml-font" class="language-yaml"><code>
 # WICHTIG! Du musst card-mod installiert haben um den Stil der Karte zu ändern!
@@ -120,7 +120,7 @@ card_mod:
         box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
     }
     /* Code Container */
-    .code-container {
+    .custom-code-container {
         position: relative;
         background-color: #e9e9e9;
         border: 1px solid #c9c9c9;
@@ -131,7 +131,7 @@ card_mod:
         overflow: auto;
         max-height: 300px;
     }
-    .code-container code {
+    .custom-code-container code {
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
