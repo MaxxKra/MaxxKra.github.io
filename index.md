@@ -7,7 +7,7 @@ meeting_title: "2025.02"
 meeting_date: "10-01-2025"  # Eingabe im DD-MM-YYYY Format
 meeting_time: "07:25"       # Eingabe im HH:mm Format
 ---
-
+<div class="page-content">
 <h1>Herzlich willkommen auf meiner Home Assistant Code Website</h1>
 <p>
     Auf dieser Website dreht sich alles um Code-Snippets, Codegeneratoren und Code-Vorlagen für die Einrichtung, die Erweiterung und das Design von Home Assistant.<br>
@@ -90,7 +90,7 @@ meeting_time: "07:25"       # Eingabe im HH:mm Format
         </div>
     </div>
 </div>
-
+</div>
 <style>
     .page-content {
         max-width: 100%;
@@ -102,41 +102,6 @@ meeting_time: "07:25"       # Eingabe im HH:mm Format
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
-    }
-    .section-title {
-        color: orange;
-        font-family: 'Keania One', sans-serif;
-    }
-    .content-section {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    .event-info {
-        color: white;
-        background-color: black;
-        padding: 20px;
-        margin-right: 20px;
-        border-radius: 8px;
-    }
-    .map-container {
-        flex: 2;
-        padding: 20px;
-    }
-    .countdown-item {
-        flex: 1;
-        background-color: black;
-        padding: 20px;
-        margin: 0 5px;
-        text-align: center;
-        color: orange;
-        font-family: 'Keania One', sans-serif;
-        border-radius: 8px;
-    }
-    .countdown-value {
-        font-size: 64px;
-    }
-    .countdown-label {
-        font-size: 20px;
     }
 </style>
 
