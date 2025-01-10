@@ -8,35 +8,109 @@ meeting_date: "10-01-2025"  # Eingabe im DD-MM-YYYY Format
 meeting_time: "07:25"       # Eingabe im HH:mm Format
 ---
 
-# Herzlich willkommen auf meiner Home Assistant Code Website
+<div class="page-content">
+    <h1 class="section-title">Herzlich willkommen auf meiner Home Assistant Code Website</h1>
+    <div class="content-section">
+        <p>Auf dieser Website dreht sich alles um Code-Snippets, Codegeneratoren und Code-Vorlagen für die Einrichtung, die Erweiterung und das Design von Home Assistant. Viel Spaß beim Schmökern, Testen und Designen.</p>
+        <p>Beste Grüße, Maxx</p>
+    </div>
 
-Auf dieser Website dreht sich alles um Code-Snippets, Codegeneratoren und Code-Vorlagen für die Einrichtung, die Erweiterung und das Design von Home Assistant.
-Viel Spaß beim Schmökern, Testen und Designen.
+    <div class="content-section">
+        <h2 class="section-title">Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz</h2>
+        <p>Am <span id="meetingDay"></span> um {{ page.meeting_time }} Uhr</p>
+    </div>
 
-Beste Grüße, Maxx
-
-<div style="margin: 20px 0;">
-    <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz<br>
-    am <span id="meetingDay" style="margin: 0;"></span> um {{ page.meeting_time }} Uhr</h2>
-</div>
-
-<div id="countdown-container" style="text-align: center; padding: 20px;">
-    <h2 id="countdown-title" style="color: orange; font-family: 'Keania One', sans-serif;">Das Treffen beginnt in:</h2>
-    <div style="display: flex; justify-content: center; align-items: center; padding: 20px;" id="countdown-fields">
-        <div id="days-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-            <div id="days" style="font-size: 64px;">00</div>
-            <div style="font-size: 20px;">Tage</div>
+    <div class="content-section">
+        <h2 id="countdown-title" class="section-title">Das Treffen beginnt in:</h2>
+        <div id="countdown-fields" class="countdown">
+            <div id="days-container" class="countdown-item">
+                <div id="days" class="countdown-value">00</div>
+                <div class="countdown-label">Tage</div>
+            </div>
+            <div id="hours-container" class="countdown-item">
+                <div id="hours" class="countdown-value">00</div>
+                <div class="countdown-label">Stunden</div>
+            </div>
+            <div id="minutes-container" class="countdown-item">
+                <div id="minutes" class="countdown-value">00</div>
+                <div class="countdown-label">Minuten</div>
+            </div>
         </div>
-        <div id="hours-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-            <div id="hours" style="font-size: 64px;">00</div>
-            <div style="font-size: 20px;">Stunden</div>
+    </div>
+
+    <div class="content-section">
+        <h3>Liebe Home Assistant-Enthusiasten,</h3>
+        <p>Ich möchte mich herzlich für eure Teilnahme am letzten Treffen bedanken. Eure rege Beteiligung und die inspirierenden Gespräche haben dazu beigetragen, dass unsere Community weiter gewachsen ist. Vielen Dank für euer Engagement!</p>
+        <p>Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euch den Termin für das {{ page.meeting_title }} – Home Assistant Treffen:</p>
+    </div>
+
+    <div class="content-section event-details">
+        <div class="event-info">
+            <h4>Termin:</h4>
+            <p id="meetingDayDetails"></p>
+            <p>Uhrzeit: {{ page.meeting_time }} Uhr</p>
+
+            <h4>Ort:</h4>
+            <p>Gemeinschaftszentrum Auweisen</p>
+            <p>Wüstenrotplatz 2</p>
+            <p>4030 Linz Auweisen</p>
+            <p>WIFI und Strom vorhanden</p>
         </div>
-        <div id="minutes-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-            <div id="minutes" style="font-size: 64px;">00</div>
-            <div style="font-size: 20px;">Minuten</div>
+
+        <div class="map-container">
+            <iframe class="map" frameborder="0" scrolling="no" src="https://maps.google.com/maps?width=600&amp;height=450&amp;hl=en&amp;q=4030%20Linz%20Wüstenrotplatz%203&amp;t=h&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
         </div>
     </div>
 </div>
+
+<style>
+    .page-content {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+    .section-title {
+        color: orange;
+        font-family: 'Keania One', sans-serif;
+    }
+    .content-section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .event-info {
+        color: white;
+        background-color: black;
+        padding: 20px;
+        margin-right: 20px;
+        border-radius: 8px;
+    }
+    .map-container {
+        flex: 2;
+        padding: 20px;
+    }
+    .countdown-item {
+        flex: 1;
+        background-color: black;
+        padding: 20px;
+        margin: 0 5px;
+        text-align: center;
+        color: orange;
+        font-family: 'Keania One', sans-serif;
+        border-radius: 8px;
+    }
+    .countdown-value {
+        font-size: 64px;
+    }
+    .countdown-label {
+        font-size: 20px;
+    }
+</style>
 
 <script>
     function updateMeetingDate() {
@@ -96,53 +170,6 @@ Beste Grüße, Maxx
         startCountdown();
     });
 </script>
-
-
-## Liebe Home Assistant-Enthusiasten,
-
-ich möchte mich herzlich für eure Teilnahme am letzten Treffen bedanken. Eure rege Beteiligung und die inspirierenden Gespräche haben dazu beigetragen, dass unsere Community weiter gewachsen ist. Vielen Dank für euer Engagement!
-
-Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euch den Termin für das {{ page.meeting_title }} – Home Assistant Treffen:
-
-<div style="background-color: black; padding: 20px;">
-    <div style="display: flex; padding: 20px; margin: 0;">
-        <div style="flex: 1; color: white; padding: 20px; margin-right: 20px;">
-            <h3 style="margin: 0; color: orange;">Termin:</h3>
-            <p id="meetingDayDetails" style="margin: 0;"></p>
-            <p style="margin: 0;">Uhrzeit: {{ page.meeting_time }} Uhr</p>            
-            <h3 style="margin: 10px 0 0; color: orange;">Ort:</h3>
-            <p style="margin: 0;">Gemeinschaftszentrum Auweisen</p>
-            <p style="margin: 0;">Wüstenrotplatz 2</p>
-            <p style="margin: 0;">4030 Linz Auweisen</p>            
-            <p style="margin: 10px 0 0;">WIFI und Strom vorhanden</p>
-        </div>
-        <div style="flex: 2; padding: 20px;">
-            <div class="mapouter">
-                <div class="gmap_canvas">
-                    <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=450&amp;hl=en&amp;q=4030%20Linz%20Wüstenrotplatz%203&amp;t=h&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                </div>
-                <style>
-                    .mapouter {
-                        position: relative;
-                        text-align: right;
-                        width: 100%; /* Volle Breite */
-                        height: 450px; /* Feste Höhe */
-                    }
-                    .gmap_canvas {
-                        overflow: hidden;
-                        background: none!important;
-                        width: 100%; /* Volle Breite */
-                        height: 450px; /* Feste Höhe */
-                    }
-                    .gmap_iframe {
-                        width: 100%!important; /* Volle Breite */
-                        height: 450px!important; /* Feste Höhe */
-                    }
-                </style>
-            </div>
-        </div>
-    </div>
-</div>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
