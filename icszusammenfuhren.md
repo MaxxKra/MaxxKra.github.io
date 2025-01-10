@@ -102,7 +102,7 @@ layout: page
     }
     .ics-description {
         text-align: center;
-        color: #555;
+        color: #d1d1d1;
         margin-bottom: 20px;
     }
     .ics-step {
@@ -165,10 +165,10 @@ layout: page
         margin-top: 20px;
     }
     .ics-footer h4 {
-        color: #333;
+        color: #ffffff;
     }
     .ics-footer p {
-        color: #777;
+        color: #d1d1d1;
     }
     .important-container {
         background-color: #ff9982;
