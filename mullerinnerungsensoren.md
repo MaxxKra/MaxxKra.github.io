@@ -986,7 +986,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     .important-container h3 {
         color: #d12700;
         font-weight: bold;
-        text-shadow: 2px 2px 5px rgb(14, 14, 14);
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .important-container p {
         color: #383838;
@@ -1007,7 +1007,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     .note-container h3 {
         color: #0062ff;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .note-container p {
         color: #383838;
@@ -1391,8 +1391,8 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         padding-left: 0; /* Entfernt Einrückung */
         margin: 20px 0; /* Abstand zur Umgebung */
     }
-    .styled-list strong {
-        color: red
+    .styled-list li strong {
+        color: #007acc; /* Gleiche Farbe wie die Linie */
     }
 
     .styled-list li {
@@ -1429,6 +1429,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         counter-reset: list-counter; /* Initialisiert den Zähler */
         padding-left: 0; /* Entfernt Einrückung */
         margin: 20px 0; /* Abstand zur Umgebung */
+    }
+    .styled-list-start li strong {
+        color: #007acc; /* Gleiche Farbe wie die Linie */
     }
 
     .styled-list-start li {
