@@ -49,7 +49,12 @@ Beste Grüße, Maxx
 
     // Get the day of the week from the date
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById("meetingDay").innerHTML = meetingDate.toLocaleDateString('de-DE', options); // Wochentag anzeigen
+    var meetingDayFormatted = meetingDate.toLocaleDateString('de-DE', options);
+
+    // Update both meetingDay placeholders
+    document.querySelectorAll("#meetingDay").forEach(function(element) {
+        element.innerHTML = meetingDayFormatted;
+    });
 
     // Update the countdown every 1 second
     var x = setInterval(function() {
