@@ -53,7 +53,7 @@ published: true
 
 <div class="code-container">
     <button class="copy-button" onclick="copyCode('code-css-font', this)">Kopieren</button>
-    <pre id="code-css-font" class="language-yaml"><code>
+    <pre id="code-css-font" class="language-css"><code>
 /* Ersetze "Technology" mit dem Namen deiner Schriftart */
 @font-face {
   font-family: "DJBGetDigital";
