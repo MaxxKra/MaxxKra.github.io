@@ -81,12 +81,12 @@ layout: page
         max-width: 100%;
         margin: auto;
         padding: 20px;
-        background-color: #f9f9f9;
+        background-color: #1a1a1a;
         font-family: Arial, sans-serif;
         line-height: 1.6;
         border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
     }
     .ics-title {
         text-align: center;

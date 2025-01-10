@@ -3,8 +3,8 @@ title: Smart Home Bastler
 subtitle: Schritt für Schritt ins smarte Zuhause!
 layout: page
 show_sidebar: true
-meeting_title: "2024.12"
-meeting_date: "12-12-2024"  # Eingabe im DD-MM-YYYY Format
+meeting_title: "2025.02"
+meeting_date: "13-02-2025"  # Eingabe im DD-MM-YYYY Format
 meeting_time: "18:00"       # Eingabe im HH:mm Format
 ---
 
@@ -15,20 +15,25 @@ Viel Spaß beim Schmökern, Testen und Designen.
 
 Beste Grüße, Maxx
 
-# Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz am {{ page.meeting_date | date: "%d. %B %Y" }} um {{ page.meeting_time }} Uhr
+<div style="margin: 20px 0;">
+    <h2>Einladung zum {{ page.meeting_title }} Home Assistant-Treffen in Linz am <span id="meetingDay"></span> um {{ page.meeting_time }} Uhr</h2>
+</div>
 
-<div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-    <div style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-        <div id="days" style="font-size: 64px;">00</div>
-        <div style="font-size: 20px;">Tage</div>
-    </div>
-    <div style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-        <div id="hours" style="font-size: 64px;">00</div>
-        <div style="font-size: 20px;">Stunden</div>
-    </div>
-    <div style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
-        <div id="minutes" style="font-size: 64px;">00</div>
-        <div style="font-size: 20px;">Minuten</div>
+<div id="countdown-container" style="text-align: center; padding: 20px;">
+    <h2 id="countdown-title" style="color: orange; font-family: 'Keania One', sans-serif;">Das Treffen beginnt in:</h2>
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px;" id="countdown-fields">
+        <div id="days-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
+            <div id="days" style="font-size: 64px;">00</div>
+            <div style="font-size: 20px;">Tage</div>
+        </div>
+        <div id="hours-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
+            <div id="hours" style="font-size: 64px;">00</div>
+            <div style="font-size: 20px;">Stunden</div>
+        </div>
+        <div id="minutes-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
+            <div id="minutes" style="font-size: 64px;">00</div>
+            <div style="font-size: 20px;">Minuten</div>
+        </div>
     </div>
 </div>
 
@@ -44,16 +49,13 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
             <h3 style="margin: 0; color: orange;">Termin:</h3>
             <p style="margin: 0;" id="meetingDay"></p> <!-- Platzhalter für den Wochentag -->
             <p style="margin: 0;">{{ page.meeting_date | date: "%d. %B %Y" }}</p>
-            <p style="margin: 0;">Uhrzeit: {{ page.meeting_time }} Uhr</p>
-            
+            <p style="margin: 0;">Uhrzeit: {{ page.meeting_time }} Uhr</p>            
             <h3 style="margin: 10px 0 0; color: orange;">Ort:</h3>
             <p style="margin: 0;">Gemeinschaftszentrum Auweisen</p>
             <p style="margin: 0;">Wüstenrotplatz 2</p>
-            <p style="margin: 0;">4030 Linz Auweisen</p>
-            
+            <p style="margin: 0;">4030 Linz Auweisen</p>            
             <p style="margin: 10px 0 0;">WIFI und Strom vorhanden</p>
         </div>
-
         <div style="flex: 2; padding: 20px;">
             <div class="mapouter">
                 <div class="gmap_canvas">
@@ -86,37 +88,40 @@ Ich freue mich, euch bereits zum nächsten Treffen einzuladen. Bitte notiert euc
     // Parse the meeting date in DD-MM-YYYY format
     var dateParts = "{{ page.meeting_date }}".split("-");
     var timeParts = "{{ page.meeting_time }}".split(":");
-    var meetingDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]); // Monat ist 0-indexiert, Uhrzeit hinzugefügt
+    var meetingDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]);
 
     // Set the date we're counting down to
-    var countDownDate = meetingDate.getTime(); // Verwende das geparste Datum für den Countdown
-
-    // Get the day of the week from the date
-    var options = { weekday: 'long' };
-    document.getElementById("meetingDay").innerHTML = meetingDate.toLocaleDateString('de-DE', options); // Wochentag anzeigen
+    var countDownDate = meetingDate.getTime();
 
     // Update the countdown every 1 second
     var x = setInterval(function() {
-        // Aktuelles Datum und Uhrzeit
         var now = new Date().getTime();
-        
-        // Abstand zwischen jetzt und dem Countdown-Datum
         var distance = countDownDate - now;
-        
-        // Berechnungen für Tage, Stunden und Minuten
+
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        
-        // Ausgabe der Ergebnisse in die Elemente mit den jeweiligen IDs
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
 
-        // Wenn der Countdown abgelaufen ist, schreibe einen Text 
-        if (distance < 0) {
+        // Update fields dynamically
+        if (distance > 0) {
+            document.getElementById("days-container").style.display = days > 0 ? "block" : "none";
+            document.getElementById("hours-container").style.display = (days <= 0 && hours > 0) ? "block" : "none";
+            document.getElementById("minutes-container").style.display = (days <= 0 && hours <= 0 && minutes > 0) ? "block" : "none";
+            
+            if (days > 0) {
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+            } else if (hours > 0) {
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+            } else {
+                document.getElementById("minutes").innerHTML = minutes;
+            }
+        } else {
             clearInterval(x);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
+            document.getElementById("countdown-title").innerHTML = "Das Treffen hat bereits begonnen!";
+            document.getElementById("countdown-fields").style.display = "none";
         }
     }, 1000);
 </script>
