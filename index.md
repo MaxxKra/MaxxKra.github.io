@@ -31,7 +31,7 @@ meeting_time: "18:00"       # Eingabe im HH:mm Format
     <div style="display: flex; justify-content: center; align-items: center; padding: 20px;" id="countdown-fields">
         <div id="days-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
             <div id="days" style="font-size: 64px;">00</div>
-            <div style="font-size: 20px;">Tage</div>
+            <div style="font-size: 20px;">Tagen</div>
         </div>
         <div id="hours-container" style="flex: 1; background-color: black; padding: 20px; margin: 0 5px; text-align: center; color: orange; font-family: 'Keania One', sans-serif;">
             <div id="hours" style="font-size: 64px;">00</div>
