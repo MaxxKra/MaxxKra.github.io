@@ -977,32 +977,32 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     }
     /* Wichtiges Hinweis-Container */
     .important-container {
-        background-color: rgba(255, 100, 0, 0.3);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #ff0000;
+        border: 8px solid rgb(255, 0, 0);
     }
     .important-container h3 {
         color: #d12700;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 2px 2px 5px rgb(14, 14, 14);
     }
     .important-container p {
         color: #383838;
         font-family: Arial Black;
     }
     .important-container strong {
-        color: #d12700;
+        color:rgb(255, 0, 0);
         text-transform: uppercase;
     }
     /* Hinweise */
     .note-container {
-        background-color: rgba(117, 234, 255, 0.5);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #0062ff;
+        border: 8px solid #0062ff;
     }
     .note-container h3 {
         color: #0062ff;
@@ -1390,6 +1390,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         counter-reset: list-counter; /* Initialisiert den Zähler */
         padding-left: 0; /* Entfernt Einrückung */
         margin: 20px 0; /* Abstand zur Umgebung */
+    }
+    .styled-list strong {
+        color: red
     }
 
     .styled-list li {
