@@ -5,7 +5,7 @@ layout: page
 show_sidebar: true
 meeting_title: "2025.02"
 meeting_date: "10-01-2025"  # Eingabe im DD-MM-YYYY Format
-meeting_time: "18:00"       # Eingabe im HH:mm Format
+meeting_time: "07:25"       # Eingabe im HH:mm Format
 ---
 
 # Herzlich willkommen auf meiner Home Assistant Code Website
