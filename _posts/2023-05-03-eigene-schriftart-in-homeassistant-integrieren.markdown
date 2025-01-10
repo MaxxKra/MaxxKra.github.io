@@ -9,14 +9,6 @@ image: /img/blog/eigene_Schriftart/blog-post-eigene-schriftarten.png
 published: true
 ---
 
-<head>
-    <!-- Einbindung von Prism.js für Syntaxhervorhebung und Zeilennummern (helles Theme) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-coy.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-</head>
-
 <div class="page-content">
 <div id="custom-alert" style="display: none;">
     <div id="custom-alert-content">
@@ -65,8 +57,9 @@ published: true
     <ul>
         <li>Füge ein weiteres File in deinen "www-Order" hinzu und gib ihm den Namen <code>loadfonts.js</code>. In dieses File füge folgenden Code ein:</li>
     </ul>
-
-    <pre class="line-numbers"><code class="language-js">
+<div class="code-container">
+    <button class="copy-button" onclick="copyCode('code-js-font', this)">Kopieren</button>
+    <pre id="code-js-font" class="language-js"><code>
 function loadcss() {
     let css = '/local/fonts.css?v=0.005';
 
@@ -83,12 +76,15 @@ function loadcss() {
 }
 loadcss();
     </code></pre>
+</div>
 
     <ul>
         <li>Leere den Browser-Cache und teste, ob die Schrift funktioniert. Z.B. kannst du folgende Karte manuell in dein Dashboard einfügen:</li>
     </ul>
 
-    <pre class="line-numbers"><code class="language-yaml">
+<div class="code-container">
+    <button class="copy-button" onclick="copyCode('code-yaml-font', this)">Kopieren</button>
+    <pre id="code-yaml-font" class="language-yaml"><code>
 # WICHTIG! Du musst card-mod installiert haben um den Stil der Karte zu ändern!
 # Ändere die font-family auf deine Schriftart
 type: markdown
@@ -103,6 +99,7 @@ card_mod:
       border: transparent;
     }
     </code></pre>
+</div>
 
     <p>In meinem Fall sieht das Endergebnis so aus:</p>
 
