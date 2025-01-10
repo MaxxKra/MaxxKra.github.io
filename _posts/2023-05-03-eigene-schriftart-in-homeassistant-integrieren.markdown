@@ -18,36 +18,49 @@ published: true
 </head>
 
 <div class="page-content">
-
-    <div style="text-align: center;">
-        <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftarten.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
+<div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content">
+        <h4 id="custom-alert-title"></h4>
+        <p id="custom-alert-message"></p>
+        <button id="close-alert">OK</button>
     </div>
+</div>
+<div style="text-align: center;">
+    <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftarten.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
+</div>
 
-    <h2>Eigene Schriftart</h2>
+<h2>Eigene Schriftart</h2>
 
-    <p>Ich wollte unbedingt für meine Dashboards eine Schriftart zur Auswahl haben, welche meine Uhr in digitaler Schrift anzeigt.</p>
+<p>
+    Ich wollte unbedingt für meine Dashboards eine Schriftart zur Auswahl haben, welche meine Uhr in digitaler Schrift anzeigt.
+</p>
 
-    <p>Da ich als "font-family" keine passende Schrift gefunden habe, fügte ich mir eine im Netz gefundene in Home Assistant hinzu.
-    Hier die notwendigen Schritte und Codes zum Nachmachen:</p>
+<p>
+    Da ich als "font-family" keine passende Schrift gefunden habe, fügte ich mir eine im Netz gefundene in Home Assistant hinzu.<br>
+    Hier die notwendigen Schritte und Codes zum Nachmachen:
+</p>
 
-    <div style="text-align: center;">
-        <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftart-digital-uhr.png" alt="Digitale Uhr" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
-    </div>
+<div style="text-align: center;">
+    <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftart-digital-uhr.png" alt="Digitale Uhr" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
+</div>
 
-    <ul>
-        <li>Lade dir eine Schrift deiner Wahl aus dem Internet z.B von <a href="https://www.1001fonts.com/technology-font.html" target="_blank">1001fonts.com</a></li>
-        <li>Dann musst du die heruntergeladene "ttf-Datei" in ein "woff2" konvertieren. Nutze dazu diesen <a href="https://www.fontconverter.io/de" target="_blank">Konverter</a>.</li>
-        <li>Entpacke die erstellte Datei und speichere das <code>&lt;deine-Schrift&gt;.woff2</code> in deinen <code>www-Ordner</code> in Home Assistant. In meinem Fall ist es <code>Technology.woff2</code>.</li>
-        <li>Nun öffne in Home Assistant deinen File-Editor oder Studio Code Server und erstelle im <code>www-Ordner</code> ein neues File mit Namen <code>font.css</code> und füge folgende Codezeilen ein:</li>
-    </ul>
+<ul>
+    <li>Lade dir eine Schrift deiner Wahl aus dem Internet z.B von <a href="https://www.1001fonts.com/technology-font.html" target="_blank">1001fonts.com</a></li>
+    <li>Dann musst du die heruntergeladene "ttf-Datei" in ein "woff2" konvertieren. Nutze dazu diesen <a href="https://www.fontconverter.io/de" target="_blank">Konverter</a>.</li>
+    <li>Entpacke die erstellte Datei und speichere das <code>&lt;deine-Schrift&gt;.woff2</code> in deinen <code>www-Ordner</code> in Home Assistant. In meinem Fall ist es <code>Technology.woff2</code>.</li>
+    <li>Nun öffne in Home Assistant deinen File-Editor oder Studio Code Server und erstelle im <code>www-Ordner</code> ein neues File mit Namen <code>font.css</code> und füge folgende Codezeilen ein:</li>
+</ul>
 
-    <pre class="line-numbers"><code class="language-css">
+<div class="code-container">
+    <button class="copy-button" onclick="copyCode('code-css-font', this)">Kopieren</button>
+    <pre id="code-css-font" class="language-yaml"><code>
 /* Ersetze "Technology" mit dem Namen deiner Schriftart */
 @font-face {
   font-family: "DJBGetDigital";
   src: url(/local/Technology.woff2) format('woff2');
 }
     </code></pre>
+</div>
 
     <ul>
         <li>Füge ein weiteres File in deinen "www-Order" hinzu und gib ihm den Namen <code>loadfonts.js</code>. In dieses File füge folgenden Code ein:</li>
@@ -97,64 +110,143 @@ card_mod:
         <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftart-digital-uhr-2.png" alt="Digitale Uhr 2" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
     </div>
 
-    <style>
-        /* Hintergrundfarbe und Rahmen für den Code-Container */
-        .code-container {
-            position: relative;
-            background-color: #fdfdfd; /* Heller Hintergrund */
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
+<style>
+    /* Code Container */
+    .code-container {
+        position: relative;
+        background-color: #e9e9e9;
+        border: 1px solid #c9c9c9;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 5px;
+        margin-bottom: 30px;
+        overflow: auto;
+        max-height: 300px;
+    }
+    .code-container code {
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        font-size: 0.95em;
+        line-height: 1.5;
+        color: #333;
+    }
+    /* Stil für den Copy-Button */
+    .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #007acc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        font-size: 0.85em;
+        cursor: pointer;
+        z-index: 10;
+    }
+    .copy-button:hover {
+        background: #005a9c;
+    }
+    .copy-button.copied {
+        background: #72dd8b; /* Grüner Hintergrund */
+        color: white;       /* Weiße Schrift */
+        content: '✔️';      /* Symbol */
+        padding: 8px 12px;
+    }
+    #custom-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    #custom-alert-content {
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 400px;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    #custom-alert-title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+    }
+    #custom-alert-message {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #666;
+    }
+    #close-alert {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    #close-alert:hover {
+        background-color: #218838;
+    }
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
         }
-
-        /* Stil für Code-Text */
-        .code-container code {
-            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-            font-size: 0.95em;
-            line-height: 1.5;
-            color: #333; /* Dunklere Textfarbe für bessere Lesbarkeit */
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
+    }
+</style>
 
-        /* Stil für den Copy-Button */
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #007acc;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            font-size: 0.85em;
-            cursor: pointer;
-            z-index: 10;
-        }
+<script>
 
-        /* Hover-Effekt für den Copy-Button */
-        .copy-button:hover {
-            background: #005a9c;
-        }
-    </style>
+    function showCustomAlert(title, message) {
+        const alertBox = document.getElementById("custom-alert");
+        const alertTitle = document.getElementById("custom-alert-title");
+        const alertMessage = document.getElementById("custom-alert-message");
+    
+        alertTitle.textContent = title;   // Überschrift setzen
+        alertMessage.textContent = message; // Nachricht setzen
+        alertBox.style.display = "flex"; // Fenster anzeigen
+    
+        document.getElementById("close-alert").onclick = function () {
+            alertBox.style.display = "none"; // Fenster schließen
+        };
+    }
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('.copy-button').forEach((button) => {
-            button.addEventListener('click', () => {
-                const codeBlock = button.nextElementSibling.querySelector('code');
-                const code = codeBlock.innerText;
-                navigator.clipboard.writeText(code).then(() => {
-                    button.textContent = 'Copied!';
-                    setTimeout(() => {
-                        button.textContent = 'Copy';
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
+    function copyCode(elementId, button) {
+        const codeElement = document.getElementById(elementId);
+        const codeText = codeElement.innerText || codeElement.textContent;
+
+        navigator.clipboard.writeText(codeText)
+            .then(() => {
+                // Zeigt das benutzerdefinierte Fenster
+                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
+
+                // Button-Text und Stil dauerhaft ändern
+                button.classList.add('copied'); // Füge die CSS-Klasse hinzu
+                button.innerHTML = "Kopiert ✔️";       // Ändere den Button-Inhalt auf das Symbol
+                button.style.backgroundColor = "#72dd8b"; // Grüner Hintergrund
+                button.style.color = "white";             // Weiße Schrift
+                
+            })
+            .catch(err => {
+                console.error("Fehler beim Kopieren des Codes: ", err);
+                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
             });
-        });
-    });
-    </script>
+    }
+</script>
 
 </div>
