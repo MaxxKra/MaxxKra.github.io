@@ -297,10 +297,8 @@ layout: page
     }
 
     .ics-footer {
-        text-align: center;
-        margin-top: 20px;
-        color: #555;
-        font-size: 1.1em;
+    text-align: center;
+    margin-top: 20px;
     }
 
     .guide-container {
