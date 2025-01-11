@@ -56,7 +56,7 @@ layout: page
     </div>
     <!-- Footer -->
     <footer class="ics-footer">
-        <p>Viel Erfolg bei der Nutzung des ICS Code Generators! 🎉</p>
+        <h3>Viel Erfolg bei der Nutzung des ICS Code Generators! 🎉</h3>
     </footer>
 </div>
 
@@ -81,13 +81,9 @@ layout: page
             Nach Fertigstellung deiner Eingaben kannst du die Datei herunterladen
         </p>
     </section>
-    <!-- Hinweis -->
-    <div class="ics-note">
-        <p><strong>Hinweis:</strong> Problematische Einträge werden hervorgehoben. Überprüfe diese sorgfältig!</p>
-    </div>
     <!-- Footer -->
     <footer class="ics-footer">
-        <p>Viel Erfolg beim Erstellen deines ICS Kalenders! 🎉</p>
+        <h3>Viel Erfolg beim Erstellen deines ICS Kalenders! 🎉</h3>
     </footer>
 </div>
 
@@ -249,7 +245,7 @@ layout: page
   </section>
 
   <footer class="guide-footer">
-    <h2>Viel Erfolg bei der Einrichtung! 🎉</h2>
+    <h3>Viel Erfolg bei der Einrichtung! 🎉</h3>
   </footer>
 </div>
 
