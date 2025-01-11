@@ -752,7 +752,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
     }
     /* Tabellenkopf */
     .styled-table thead th {
-        background-color: #d9e8f5; /* Helles Blau */
+        background-color:#007bff;
         color: #333; /* Dunkle Schrift */
         padding: 10px;
         font-weight: bold;
