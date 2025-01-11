@@ -69,28 +69,28 @@ layout: page
         <button class="ics-button" onclick="copyEditedToClipboard()">Bearbeitete Datei kopieren</button>
         <button class="ics-button" onclick="downloadEditedICSFile()">Bearbeitete Datei herunterladen</button>
     </section>
-    <section class="ics-step">
-        <h3>3. Eigene ICS-Datei erstellen</h3>
-        <p>Fülle die Felder aus, um eigene Events zu erstellen und in eine ICS-Datei zu exportieren.</p>
-        <form id="ics-creation-form">
-            <div class="ics-file-group">
-                <label for="calendarName">Kalendername:</label>
-                <input type="text" id="calendarName" placeholder="z.B. Mein Kalender">
-            </div>
-            <div class="ics-file-group">
-                <label for="eventName">Eventname:</label>
-                <input type="text" id="eventName" placeholder="z.B. Restabfall">
-            </div>
-            <div class="ics-file-group">
-                <label for="eventDate">Eventdatum:</label>
-                <input type="date" id="eventDate">
-            </div>
-            <button type="button" class="ics-button" onclick="addEventToICS()">Event hinzufügen</button>
-        </form>
-        <textarea id="created-ics-output" rows="20" readonly></textarea>
-        <br>
-        <button class="ics-button" onclick="downloadCreatedICS()">Erstellten Kalender herunterladen</button>
-    </section>
+<section class="ics-step">
+    <h3>3. Eigene ICS-Datei erstellen</h3>
+    <p>Fülle die Felder aus, um eigene Events zu erstellen und in eine ICS-Datei zu exportieren.</p>
+    <form id="ics-creation-form">
+        <div class="ics-file-group">
+            <label for="calendarName">Kalendername:</label>
+            <input type="text" id="calendarName" placeholder="z.B. Mein Kalender">
+        </div>
+        <div class="ics-file-group">
+            <label for="eventName">Eventname:</label>
+            <input type="text" id="eventName" placeholder="z.B. Restabfall">
+        </div>
+        <div class="ics-file-group">
+            <label for="eventDate">Eventdatum:</label>
+            <input type="date" id="eventDate" placeholder="tt.mm.jjjj">
+        </div>
+        <button type="button" class="ics-button" onclick="addEventToICS()">Event hinzufügen</button>
+    </form>
+    <textarea id="created-ics-output" rows="10" readonly></textarea>
+    <br>
+    <button class="ics-button" onclick="downloadCreatedICS()">Erstellten Kalender herunterladen</button>
+</section>
     <footer class="ics-footer">
         <h4>Viel Erfolg! 🎉</h4>
         <p>Mit dem ICS Code Generator kannst du deine Kalender schnell und einfach bearbeiten.</p>
@@ -129,48 +129,50 @@ layout: page
     }
     .ics-step {
         margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
     }
     .ics-step h3 {
         color: #4CAF50;
-        font-size: 1.2em;
-        margin-bottom: 10px;
-    }
-    .ics-input-section {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .ics-url-input,
-    .ics-file-upload {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .ics-url-input label,
-    .ics-file-upload label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .ics-url-input input,
-    .ics-file-upload input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        text-align: center;
     }
     .ics-file-group {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        margin-bottom: 15px;
+        gap: 8px;
+    }
+    .ics-file-group label {
+        font-weight: bold;
+        color: #d1d1d1;
+    }
+    .ics-file-group input {
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #1a1a1a;
+        color: #d1d1d1;
+    }
+    .ics-file-group input:focus {
+        outline: none;
+        border-color: #4CAF50;
     }
     .ics-button {
-        padding: 10px 15px;
-        background-color: #4CAF50;
+        padding: 10px 20px;
+        font-size: 1em;
         color: #fff;
+        background-color: #4CAF50;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        font-size: 1em;
-        align-self: flex-start;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
     }
     .ics-button:hover {
         background-color: #45a049;
@@ -181,6 +183,11 @@ layout: page
         border: 1px solid #ccc;
         border-radius: 4px;
         resize: vertical;
+        background-color: #1a1a1a;
+        color: #d1d1d1;
+        font-family: Arial, sans-serif;
+        font-size: 1em;
+        line-height: 1.5;
     }
     .ics-footer {
         text-align: center;
@@ -208,6 +215,7 @@ layout: page
         font-family: Arial Black;
     }
 </style>
+
 
 <script>
     function mergeICSFiles() {
