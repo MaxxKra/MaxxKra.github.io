@@ -11,27 +11,28 @@ layout: page
 <div class="ics-container">
     <h1 class="ics-header">ICS Code Generator</h1>
     <p class="ics-intro">
-        Der ICS Code Generator ermöglicht das Hochladen, Bearbeiten und Zusammenführen von ICS-Kalenderdateien.
+        Der ICS Code Generator ermöglicht das Hochladen und Zusammenführen von ICS-Kalenderdateien.
     </p>    
     <!-- Abschnitt: Dateien hochladen -->
     <section class="ics-section">
-        <h2>1. ICS-Dateien hochladen oder abrufen</h2>
+        <h2>1. ICS-Dateien hochladen, auslesen oder zusammenführen</h2>
         <p>
-            Lade bis zu sechs <code>.ics</code>-Dateien hoch oder gib die URL einer Datei an. 
+            Lade bis zu sechs <code>.ics</code>-Dateien hoch. 
             Klicke anschließend auf <button class="ics-btn">ICS Datei(en) verarbeiten</button>.
         </p>
         <ul>
             <li>Option 1: Datei direkt vom Computer hochladen.</li>
-            <li>Option 2: URL einer Kalenderdatei angeben.</li>
+            <li>Option 2: Kalendereinträge auslesen</li>
+            <li>Option 3: Mehrere ICS-Dateien zu einem zusammenführen</li>
             <li>Automatische Prüfung auf problematische Einträge.</li>
         </ul>
     </section>
     <!-- Abschnitt: Datei bearbeiten -->
     <section class="ics-section">
-        <h2>2. Datei anzeigen und bearbeiten</h2>
+        <h2>2. Datei anzeigen und kontrollieren</h2>
         <p>
             Nach der Verarbeitung werden die Kalenderdaten in einem Textbereich angezeigt. 
-            Bearbeite sie bei Bedarf und speichere die Änderungen.
+            Kontrolliere sie und speichere die Änderungen.
         </p>
         <ul>
             <li>Untersuche die Inhalte der Datei.</li>
@@ -59,6 +60,36 @@ layout: page
     </footer>
 </div>
 
+<div class="ics-container">
+    <h1 class="ics-header">Eigenen ICS Kalender erstellen</h1>
+    <p class="ics-intro">
+        Mit diesem Tool <strong>Eigene ICS erstellen</strong> kann ein Kalender mit eigenem Namen, frei definierten Event-Namen und Ereignisdatum erstellt werden. 
+    </p>    
+    <!-- Abschnitt: Dateien hochladen -->
+    <section class="ics-section">
+        <h2>Funktionsweise</h2>
+        <ul>
+            <li>1: Trage einen Namen bei <strong>Kalendername</strong> ein</li>
+            <li>2: Vergib einen Namen für dein Ereignis bei <strong>Eventname</strong></li>
+            <li>3: Wähle ein Datum für das Ereignis oder trage es ein</li>
+            <li>4: Klicke auf <strong>Event hinzufügen</strong></li>
+        </ul>
+        <p>
+            Mit jedem Klick wird ein weiteres Event nach deinen Angaben hinzugefügt.
+        </p>
+        <p>
+            Nach Fertigstellung deiner Eingaben kannst du die Datei herunterladen
+        </p>
+    </section>
+    <!-- Hinweis -->
+    <div class="ics-note">
+        <p><strong>Hinweis:</strong> Problematische Einträge werden hervorgehoben. Überprüfe diese sorgfältig!</p>
+    </div>
+    <!-- Footer -->
+    <footer class="ics-footer">
+        <p>Viel Erfolg beim Erstellen deines ICS Kalenders! 🎉</p>
+    </footer>
+</div>
 
 <div class="guide-container">
   <h1 class="guide-title">Müllerinnerung Sensoren Codegenerator</h1>
