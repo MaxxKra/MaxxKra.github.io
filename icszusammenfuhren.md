@@ -7,18 +7,27 @@ layout: page
 ---
 <div class="ics-guide">
     <h1 class="ics-title">ICS Code Generator</h1>
-    <h2 class="ics-subtitle">ICS-Dateien hochladen oder von URL abrufen</h2>
+    <h2 class="ics-subtitle">ICS-Dateien zum Bearbeiten hochladen oder eigene erstellen</h2>
     <p class="ics-description">
-        Lade eine oder mehrere ICS-Dateien hoch oder gib die URL einer ICS-Datei an, um sie zu bearbeiten oder zusammenzuführen.
+        Lade eine oder mehrere ICS-Dateien hoch um sie auszulesen oder zusammenzuführen, oder erstelle dir eine ICS Datei nach eigenen Angaben und lade sie herunter.
     </p>
-    <section class="ics-step">
+    <h2 class="ics-subtitle">Was möchtest du machen?</h2>
+    <div class="ics-options">
+        <label>
+            <input type="checkbox" id="mergeICSCheckbox" onchange="toggleSections()"> Mehrere ICS zusammenführen
+        </label>
+        <label>
+            <input type="checkbox" id="createICSCheckbox" onchange="toggleSections()"> Eigene ICS erstellen
+        </label>
+    </div>
+    <section class="ics-step" id="merge-section" style="display: none;">
         <h3>1. ICS-Dateien hochladen oder URL verwenden</h3>
         <p>
-            Wähle entweder eine <code>.ics</code>-Datei aus oder gib die URL einer Datei an. Du kannst auch mehrere Dateien hochladen, um sie zusammenzuführen.
+            Wähle entweder eine oder mehrere <code>.ics</code>-Dateien aus um sie auszulesen bzw. zusammenzuführen.
         </p>
         <form class="ics-file-upload">
             <div class="ics-file-group">
-                <label for="file1">ICS Datei 1 (erforderlich, wenn keine URL):</label>
+                <label for="file1">ICS Datei 1 (erforderlich):</label>
                 <input type="file" id="file1" accept=".ics">
             </div>
             <div class="ics-file-group">
@@ -52,7 +61,7 @@ layout: page
             </p>
         </div>
     </div>
-    <section class="ics-step">
+    <section class="ics-step" id="edit-section" style="display: none;">
         <h3>2. Zusammengeführte ICS-Datei bearbeiten</h3>
         <p>
             Die verarbeiteten Inhalte der ICS-Dateien werden hier angezeigt. Du kannst sie überprüfen und die Daten in die Zwischenablage kopieren oder bearbeiten.
@@ -69,7 +78,7 @@ layout: page
         <button class="ics-button" onclick="copyEditedToClipboard()">Bearbeitete Datei kopieren</button>
         <button class="ics-button" onclick="downloadEditedICSFile()">Bearbeitete Datei herunterladen</button>
     </section>
-<section class="ics-step">
+<section class="ics-step" id="create-section" style="display: none;">
     <h3>3. Eigene ICS-Datei erstellen</h3>
     <p>Fülle die Felder aus, um eigene Events zu erstellen und in eine ICS-Datei zu exportieren.</p>
     <form id="ics-creation-form">
@@ -139,6 +148,22 @@ layout: page
         font-size: 1.4em;
         margin-bottom: 15px;
         text-align: center;
+    }
+    .ics-options {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .ics-options label {
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 1.2em;
+        color: #d1d1d1;
+        cursor: pointer;
+    }
+
+    .ics-options input {
+        margin-right: 5px;
     }
     .ics-file-group {
         display: flex;
@@ -231,6 +256,29 @@ layout: page
 
 
 <script>
+function toggleSections() {
+    const mergeCheckbox = document.getElementById('mergeICSCheckbox');
+    const createCheckbox = document.getElementById('createICSCheckbox');
+    const mergeSection = document.getElementById('merge-section');
+    const editSection = document.getElementById('edit-section');
+    const createSection = document.getElementById('create-section');
+
+    // Sichtbarkeit basierend auf Checkbox-Zustand
+    if (mergeCheckbox.checked) {
+        mergeSection.style.display = 'block';
+        editSection.style.display = 'block';
+    } else {
+        mergeSection.style.display = 'none';
+        editSection.style.display = 'none';
+    }
+
+    if (createCheckbox.checked) {
+        createSection.style.display = 'block';
+    } else {
+        createSection.style.display = 'none';
+    }
+}
+
     function mergeICSFiles() {
         const files = [
             document.getElementById('file1').files[0],
