@@ -21,7 +21,7 @@ layout: page
         </label>
     </div>
     <section class="ics-step" id="merge-section" style="display: none;">
-        <h3>1. ICS-Dateien hochladen oder URL verwenden</h3>
+        <h3>ICS-Dateien hochladen oder URL verwenden</h3>
         <p>
             Wähle entweder eine oder mehrere <code>.ics</code>-Dateien aus um sie auszulesen bzw. zusammenzuführen.
         </p>
@@ -62,7 +62,7 @@ layout: page
         </div>
     </div>
     <section class="ics-step" id="edit-section" style="display: none;">
-        <h3>2. Zusammengeführte ICS-Datei bearbeiten</h3>
+        <h3>Zusammengeführte ICS-Datei</h3>
         <p>
             Die verarbeiteten Inhalte der ICS-Dateien werden hier angezeigt. Du kannst sie überprüfen und die Daten in die Zwischenablage kopieren oder bearbeiten.
         </p>
@@ -79,8 +79,10 @@ layout: page
         <button class="ics-button" onclick="downloadEditedICSFile()">Bearbeitete Datei herunterladen</button>
     </section>
 <section class="ics-step" id="create-section" style="display: none;">
-    <h3>3. Eigene ICS-Datei erstellen</h3>
+    <h3>Eigene ICS-Datei erstellen</h3>
     <p>Fülle die Felder aus, um eigene Events zu erstellen und in eine ICS-Datei zu exportieren.</p>
+    <p>Mit jedem Klick des Buttons <strong>Event hinzufügen</strong>, werden dein eingetragener Eventname und das Eventdatum deinem gewählten Kalendernamen hinzugefügt</p>
+    <p>Wenn alle Einträge getroffen sind, kannst du deinen erstellten ICS-Kalender herunterladen</p>
     <form id="ics-creation-form">
         <div class="ics-file-group">
             <label for="calendarName">Kalendername:</label>
