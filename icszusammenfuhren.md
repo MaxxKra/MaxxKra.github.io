@@ -151,6 +151,7 @@ layout: page
         color: #d1d1d1;
     }
     .ics-file-group input {
+        width: 50%;
         padding: 10px;
         font-size: 1em;
         border: 1px solid #ccc;
@@ -164,16 +165,26 @@ layout: page
     }
     .ics-file-group input[type="date"] {
         height: 40px; /* Angemessene Höhe */
-        width: auto; /* Automatische Breite, passend zum Inhalt */
+        width: 50%; /* Automatische Breite, passend zum Inhalt */
         max-width: 100%; /* Verhindert, dass es über die verfügbare Breite hinausgeht */
-        padding: 5px 10px;
+        position: relative;
+        padding-right: 30px; /* Platz für das Icon */
         font-size: 1em;
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: #1a1a1a;
         color: #d1d1d1;
     }
-
+    .ics-file-group input[type="date"]::after {
+        content: '\f073'; /* Unicode für Kalender-Icon (FontAwesome) */
+        font-family: 'FontAwesome';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none; /* Verhindert, dass das Icon klickbar ist */
+        color: #4CAF50; /* Icon-Farbe */
+    }
     .ics-file-group input[type="date"]:focus {
         outline: none;
         border-color: #4CAF50; /* Grün als Fokusfarbe */
