@@ -291,9 +291,6 @@ Du kannst dir hier die Einträge der nächsten 10 Jahre des Kalenders ansehen un
 
 <div id="event-table" class="styled-table-container" style="margin-top: 20px;"></div>
 
-
-<div id="event-table" class="styled-table-container" style="margin-top: 20px;"></div>
-
 <a href="/assets/calendar/advent_calendar.ics" download="Advent_Kalender.ics" class="download-button">
   📅 Advent-Kalender ICS herunterladen
 </a>
@@ -750,25 +747,34 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         width: 100%;
         border-collapse: collapse;
         font-family: Arial, sans-serif;
+        text-align: left;
         margin: 20px 0;
     }
-    th, td {
-        text-align: left;
+    /* Tabellenkopf */
+    table thead th {
+        background-color: #d9e8f5; /* Helles Blau */
+        color: #333; /* Dunkle Schrift */
         padding: 10px;
-    }
-    th {
-        background-color: #f4f4f4;
         font-weight: bold;
-        border-bottom: 2px solid #ddd;
+        text-transform: uppercase;
+        border-bottom: 2px solid #a4c8e1; /* Graublauer Rand */
     }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
+    /* Tabellenzellen */
+    table tbody tr:nth-child(odd) {
+        background-color: #f0f7ff; /* Helles Blau */
     }
-    tr:hover {
-        background-color: #f1f1f1;
+    table tbody tr:nth-child(even) {
+        background-color: #e6eef7; /* Graublau */
     }
-    td {
-        border-bottom: 1px solid #ddd;
+    table tbody td {
+        color: #333; /* Dunkle Schrift */
+        padding: 10px;
+        border-bottom: 1px solid #a4c8e1; /* Graublauer Rand */
+    }
+    /* Hervorhebung bei Hover */
+    table tbody tr:hover {
+        background-color: #cfe0f5; /* Intensiveres Blau */
+        transition: background-color 0.3s ease;
     }
     /* Zentrieren der gesamten Bildreihe */
     .columns.is-centered {
