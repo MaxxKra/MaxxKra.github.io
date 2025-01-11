@@ -469,31 +469,32 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
     Mit den Entitäten des ESP, des Kalender-Templates und des Schalters, konnte ich dann folgende Automatisierung anlegen.
 </p>
 
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-  <h2 style="text-align: center; color: #444;">Was macht nun diese Automatisierung?</h2>
-  <p style="line-height: 1.6; color: #555;">
-    Diese Automatisierung steuert den Adventskranz entsprechend des aktuellen Adventsstatus. 
+<div class="advent-container">
+  <h2>Was macht nun diese Automatisierung?</h2>
+  <p>
+    Diese Automatisierung steuert den Adventskranz entsprechend des aktuellen Adventsstatus.
   </p>
-  <ul style="line-height: 1.6; color: #555;">
+  <ul>
     <li>
       <strong>Wenn der Schalter "Adventskranz" eingeschaltet wird:</strong>
-      <ul style="margin-top: 5px; list-style-type: disc; padding-left: 20px;">
+      <ul>
         <li>Es wird geprüft, welche Adventwoche gerade ist.</li>
         <li>Je nach Woche werden 1 bis 4 Kerzen eingeschaltet.</li>
         <li>Die Lichterkette wird immer eingeschaltet.</li>
       </ul>
     </li>
-    <li style="margin-top: 15px;">
+    <li>
       <strong>Wenn der Schalter "Adventskranz" ausgeschaltet wird:</strong>
-      <ul style="margin-top: 5px; list-style-type: disc; padding-left: 20px;">
+      <ul>
         <li>Alle Kerzen und die Lichterkette werden ausgeschaltet.</li>
       </ul>
     </li>
   </ul>
-  <p style="margin-top: 20px; text-align: center; color: #777;">
+  <p>
     Diese Automatisierung sorgt für eine stimmungsvolle Beleuchtung während der Adventszeit.
   </p>
 </div>
+
 
 
 <div class="code-container">
@@ -950,6 +951,48 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
             transform: scale(1);
         }
     }
+    .advent-container {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #444; /* Dunkler Rand für das Theme */
+        border-radius: 8px;
+        background-color: #333; /* Dunkler Hintergrund */
+        color: #eee; /* Helle Schriftfarbe */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Schatten für etwas Tiefe */
+    }
+    .advent-container h2 {
+        text-align: center;
+        color: #ddd; /* Helle Farbe für Überschrift */
+    }
+    .advent-container p {
+        line-height: 1.6;
+        margin-top: 15px;
+        color: #ccc; /* Helle Farbe für normalen Text */
+        text-align: center;
+    }
+    .advent-container ul {
+        line-height: 1.6;
+        margin: 15px 0;
+        padding-left: 20px;
+        color: #bbb; /* Helle Farbe für Listenelemente */
+    }
+    .advent-container ul li {
+        margin-top: 10px;
+    }
+    .advent-container ul li ul {
+        margin-top: 5px;
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+    .advent-container ul li ul li {
+        margin-top: 5px;
+    }
+    .advent-container strong {
+        color: #fff; /* Helle Farbe für hervorgehobenen Text */
+    }
+
 </style>
 
 
