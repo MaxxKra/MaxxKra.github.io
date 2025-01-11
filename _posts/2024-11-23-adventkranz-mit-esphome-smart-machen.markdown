@@ -9,15 +9,7 @@ image: /img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png
 published: true
 ---
 
-<head>
-    <!-- Einbindung von Prism.js für Syntaxhervorhebung und Zeilennummern (helles Theme) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-coy.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-</head>
-
-
+<div class="page-content">
 <div style="text-align: center;">
     <img src="/img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
 </div>
@@ -720,8 +712,19 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
 {% include image-modal.html ratio="is-4by3" link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS_k.png" alt="Example image" large_link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS.png" %}
 </div>
 </div>
-
+</div>
 <style>
+    .page-content {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
     /* Allgemeines Styling für Dropdown-Menü */
     .styled-select {
         width: 200px;
