@@ -743,7 +743,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         width: 80%;
     }
     /* Tabellenstyling */
-    table {
+    .styled-table {
         width: 100%;
         border-collapse: collapse;
         font-family: Arial, sans-serif;
@@ -751,7 +751,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         margin: 20px 0;
     }
     /* Tabellenkopf */
-    table thead th {
+    .styled-table thead th {
         background-color: #d9e8f5; /* Helles Blau */
         color: #333; /* Dunkle Schrift */
         padding: 10px;
@@ -760,19 +760,19 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         border-bottom: 2px solid #a4c8e1; /* Graublauer Rand */
     }
     /* Tabellenzellen */
-    table tbody tr:nth-child(odd) {
+    .styled-table tbody tr:nth-child(odd) {
         background-color: #f0f7ff; /* Helles Blau */
     }
-    table tbody tr:nth-child(even) {
+    .styled-table tbody tr:nth-child(even) {
         background-color: #e6eef7; /* Graublau */
     }
-    table tbody td {
+    .styled-table tbody td {
         color: #333; /* Dunkle Schrift */
         padding: 10px;
         border-bottom: 1px solid #a4c8e1; /* Graublauer Rand */
     }
     /* Hervorhebung bei Hover */
-    table tbody tr:hover {
+    .styled-table tbody tr:hover {
         background-color: #cfe0f5; /* Intensiveres Blau */
         transition: background-color 0.3s ease;
     }
@@ -965,6 +965,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         function createTable(events) {
             eventTableContainer.innerHTML = ""; // Tabelle leeren
             const table = document.createElement("table");
+            table.classList.add("styled-table"); // Klasse hinzufügen
             table.style.width = "100%";
             table.setAttribute("border", "1");
 
