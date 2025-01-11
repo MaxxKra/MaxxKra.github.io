@@ -79,15 +79,11 @@ layout: page
             </div>
             <div class="ics-file-group">
                 <label for="eventName">Eventname:</label>
-                <input type="text" id="eventName" placeholder="z.B. Meeting">
+                <input type="text" id="eventName" placeholder="z.B. Restabfall">
             </div>
             <div class="ics-file-group">
                 <label for="eventDate">Eventdatum:</label>
                 <input type="date" id="eventDate">
-            </div>
-            <div class="ics-file-group">
-                <label for="eventTime">Eventzeit (optional):</label>
-                <input type="time" id="eventTime">
             </div>
             <button type="button" class="ics-button" onclick="addEventToICS()">Event hinzufügen</button>
         </form>
@@ -336,58 +332,55 @@ layout: page
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     }
-    
-    let icsContent = `BEGIN:VCALENDAR
-    VERSION:2.0
-    PRODID:-//YourAppName//EN
-    `;
 
-    function addEventToICS() {
-        const calendarName = document.getElementById('calendarName').value || "Mein Kalender";
-        const eventName = document.getElementById('eventName').value || "Unbekanntes Event";
-        const eventDate = document.getElementById('eventDate').value;
-        const eventTime = document.getElementById('eventTime').value || "00:00";
+let icsContent = "";
 
-        if (!eventDate) {
-            alert("Bitte ein Datum für das Event auswählen.");
-            return;
-        }
+function addEventToICS() {
+    const calendarName = document.getElementById('calendarName').value || "Mein Kalender";
+    const eventName = document.getElementById('eventName').value || "Unbekanntes Event";
+    const eventDate = document.getElementById('eventDate').value;
 
-        // Formatieren von Datum und Zeit im ICS-Format
-        const dateTime = eventDate.replace(/-/g, "") + "T" + eventTime.replace(":", "") + "00";
-
-        // Erstelle einen neuen Event-Eintrag
-        const eventEntry = `
-    BEGIN:VEVENT
-    SUMMARY:${eventName}
-    DTSTART:${dateTime}
-    DTEND:${dateTime}
-    DESCRIPTION:${calendarName}
-    END:VEVENT
-    `;
-
-        // Füge den Event-Eintrag zur ICS-Datei hinzu
-        icsContent += eventEntry;
-
-        // Zeige den aktuellen Inhalt der ICS-Datei im Textfeld an
-        document.getElementById('created-ics-output').value = icsContent + "\nEND:VCALENDAR";
+    if (!eventDate) {
+        alert("Bitte ein Datum für das Event auswählen.");
+        return;
     }
 
-    function downloadCreatedICS() {
-        const finalICSContent = icsContent + "\nEND:VCALENDAR";
-
-        const blob = new Blob([finalICSContent], { type: 'text/calendar' });
-        const url = URL.createObjectURL(blob);
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'mein_kalender.ics';
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+    if (!icsContent) {
+        icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:${calendarName}
+`;
     }
+
+    const eventEntry = `BEGIN:VEVENT
+SUMMARY:${eventName}
+DTSTART;VALUE=DATE:${eventDate.replace(/-/g, "")}
+DESCRIPTION:${eventName}
+END:VEVENT
+`;
+
+    icsContent += eventEntry;
+
+    // Zeige den aktuellen Inhalt der ICS-Datei im Textfeld an
+    document.getElementById('created-ics-output').value = `${icsContent}END:VCALENDAR`;
+}
+
+function downloadCreatedICS() {
+    const calendarName = document.getElementById('calendarName').value || "Mein Kalender";
+    const finalICSContent = `${icsContent}END:VCALENDAR`;
+
+    const blob = new Blob([finalICSContent], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${calendarName}.ics`;
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
 
 </script>
