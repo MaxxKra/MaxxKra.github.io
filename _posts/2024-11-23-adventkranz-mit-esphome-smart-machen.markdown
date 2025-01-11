@@ -168,7 +168,7 @@ published: true
         </div>
     </div>
 </div>
-<div class="custom-code-container">
+<div class="code-container">
     <button class="copy-button" onclick="copyCode('code-yaml-esp', this)">Kopieren</button>
     <pre id="code-yaml-esp" class="language-yaml"><code>
 esphome:
@@ -387,7 +387,7 @@ Auch hierzu findest du eine Beschreibung im ⬇️ Dropdown ⬇️
     <li><strong>Name</strong>: Advent</li>
     <li><strong>Icon</strong>: mdi:pine-tree-variant-outline</li>
 </ul>
-<div class="custom-code-container">
+<div class="code-container">
     <button class="copy-button" onclick="copyCode('code-yaml-calendar', this)">Kopieren</button>
     <pre id="code-yaml-calendar" class="language-yaml"><code>
 {% raw %}
@@ -499,7 +499,7 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 </div>
 
 
-<div class="custom-code-container">
+<div class="code-container">
     <h4>Die Automatisierung im YAML-Code</h4>
     <button class="copy-button" onclick="copyCode('code-yaml-automation', this)">Kopieren</button>
     <pre id="code-yaml-automation" class="language-yaml"><code>
@@ -659,7 +659,7 @@ mode: single
     <li><strong>Icon</strong>: mdi:window-closed-variant</li>
 </ul>
 
-<div class="custom-code-container">
+<div class="code-container">
     <h4>Template-Helfer Adventkalender</h4>
     <button class="copy-button" onclick="copyCode('code-yaml-advent', this)">Kopieren</button>
     <pre id="code-yaml-advent" class="language-yaml"><code>
@@ -689,7 +689,7 @@ kein
     <li><strong>Icon</strong>: mdi:calendar-check-outline</li>
 </ul>
 
-<div class="custom-code-container">
+<div class="code-container">
     <h4>Template-Helfer Tage bis XMAS</h4>
     <button class="copy-button" onclick="copyCode('code-yaml-adventdays', this)">Kopieren</button>
     <pre id="code-yaml-adventdays" class="language-yaml"><code>
