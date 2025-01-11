@@ -165,17 +165,15 @@ layout: page
     }
     .ics-file-group input[type="date"] {
         background-color: #ffffff; /* Heller Hintergrund */
-        color:rgb(5, 153, 0); /* Schwarzer Text */
+        color: #000000; /* Schwarzer Text */
         height: 40px;
-        border: 1px solid rgb(0, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
         border-radius: 4px;
         padding: 5px 10px;
     }
     .ics-file-group input[type="date"]:focus {
         outline: none;
-        color: #d1d1d1
-        background-color: #1a1a1a
-        border-color: #4CAF50; /* Grün als Fokusfarbe */
+        border: 2px solid #4CAF50; /* Grün als Fokusfarbe */
     }
     .ics-button {
         padding: 10px 20px;
