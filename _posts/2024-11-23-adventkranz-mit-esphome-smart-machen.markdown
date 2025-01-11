@@ -10,6 +10,13 @@ published: true
 ---
 
 <div class="page-content">
+<div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content">
+        <h4 id="custom-alert-title"></h4>
+        <p id="custom-alert-message"></p>
+        <button id="close-alert">OK</button>
+    </div>
+</div>
 <div style="text-align: center;">
     <img src="/img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
 </div>
@@ -161,11 +168,9 @@ published: true
         </div>
     </div>
 </div>
-
-<div class="code-container">
-    <h4>ESP-Code:</h4>
-    <button class="copy-button">Copy</button>
-    <pre class="line-numbers"><code class="language-yaml">
+<div class="custom-code-container">
+    <button class="copy-button" onclick="copyCode('code-yaml-esp', this)">Kopieren</button>
+    <pre id="code-yaml-esp" class="language-yaml"><code>
 esphome:
   name: adventskranz
   friendly_name: Adventskranz
@@ -382,10 +387,9 @@ Auch hierzu findest du eine Beschreibung im ⬇️ Dropdown ⬇️
     <li><strong>Name</strong>: Advent</li>
     <li><strong>Icon</strong>: mdi:pine-tree-variant-outline</li>
 </ul>
-
-<div class="code-container">
-    <button class="copy-button">Copy</button>
-    <pre class="line-numbers"><code class="language-yaml">
+<div class="custom-code-container">
+    <button class="copy-button" onclick="copyCode('code-yaml-calendar', this)">Kopieren</button>
+    <pre id="code-yaml-calendar" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTKAL = states.calendar.advent.state %}
 {%- if ADVENTKAL == 'off' %}
@@ -495,11 +499,10 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 </div>
 
 
-
-<div class="code-container">
+<div class="custom-code-container">
     <h4>Die Automatisierung im YAML-Code</h4>
-    <button class="copy-button">Copy</button>
-    <pre class="line-numbers"><code class="language-yaml">
+    <button class="copy-button" onclick="copyCode('code-yaml-automation', this)">Kopieren</button>
+    <pre id="code-yaml-automation" class="language-yaml"><code>
 alias: Adventskranz Automatisierung
 description: Steuert den Adventskranz entsprechend des aktuellen Adventsstatus
 triggers:
@@ -656,10 +659,10 @@ mode: single
     <li><strong>Icon</strong>: mdi:window-closed-variant</li>
 </ul>
 
-<div class="code-container">
+<div class="custom-code-container">
     <h4>Template-Helfer Adventkalender</h4>
-    <button class="copy-button">Copy</button>
-    <pre class="line-numbers"><code class="language-yaml">
+    <button class="copy-button" onclick="copyCode('code-yaml-advent', this)">Kopieren</button>
+    <pre id="code-yaml-advent" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTMONAT = (12) %}
 {% set HEILIGABEND = (12, 24) %}
@@ -686,10 +689,10 @@ kein
     <li><strong>Icon</strong>: mdi:calendar-check-outline</li>
 </ul>
 
-<div class="code-container">
+<div class="custom-code-container">
     <h4>Template-Helfer Tage bis XMAS</h4>
-    <button class="copy-button">Copy</button>
-    <pre class="line-numbers"><code class="language-yaml">
+    <button class="copy-button" onclick="copyCode('code-yaml-adventdays', this)">Kopieren</button>
+    <pre id="code-yaml-adventdays" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTMONAT = (12) %}
 {% set HEILIGABEND = (12, 24) %}
@@ -737,13 +740,11 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         background-color: #f9f9f9;
         cursor: pointer;
     }
-
     /* Tabellencontainer */
     .styled-table-container {
         margin: auto;
         width: 80%;
     }
-
     /* Tabellenstyling */
     table {
         width: 100%;
@@ -751,26 +752,21 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         font-family: Arial, sans-serif;
         margin: 20px 0;
     }
-
     th, td {
         text-align: left;
         padding: 10px;
     }
-
     th {
         background-color: #f4f4f4;
         font-weight: bold;
         border-bottom: 2px solid #ddd;
     }
-
     tr:nth-child(even) {
         background-color: #f9f9f9;
     }
-
     tr:hover {
         background-color: #f1f1f1;
     }
-
     td {
         border-bottom: 1px solid #ddd;
     }
@@ -778,19 +774,16 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
     .columns.is-centered {
         justify-content: center;
     }
-
     /* Bildcontainer anpassen */
     .column img {
         display: block;
         margin: auto;
         max-width: 100%;
     }
-
     /* Abstand zwischen nebeneinander liegenden Bildern */
     .columns .column {
         padding: 10px;
     }
-
     /* Schatten um das Bild hinzufügen */
     .column figure {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -809,50 +802,53 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         text-align: center;
         cursor: pointer;
     }
-
     .download-button:hover {
         background-color: #0056b3;
     }
+    /* Code Container */
     .code-container {
         position: relative;
-        background-color: #fdfdfd; /* Heller Hintergrund */
-        border: 1px solid #ddd;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         padding: 15px;
-        margin-bottom: 20px;
-        overflow: auto; /* Scrollbar hinzufügen */
-        max-height: 300px; /* Maximale Höhe festlegen */
+        margin-top: 5px;
+        margin-bottom: 30px;
+        overflow: auto;
+        max-height: 300px;
     }
-
-    /* Stil für Code-Text */
     .code-container code {
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
-        color: #333; /* Dunklere Textfarbe für bessere Lesbarkeit */
+        color: #d1d1d1;
     }
-
     /* Stil für den Copy-Button */
     .copy-button {
         position: absolute;
         top: 10px;
         right: 10px;
         background: #007acc;
-        color: #fff;
+        color: white;
         border: none;
         border-radius: 5px;
-        padding: 5px 10px;
+        padding: 8px 12px;
         font-size: 0.85em;
         cursor: pointer;
         z-index: 10;
     }
-
-    /* Hover-Effekt für den Copy-Button */
     .copy-button:hover {
         background: #005a9c;
     }
+    .copy-button.copied {
+        background: #72dd8b; /* Grüner Hintergrund */
+        color: white;       /* Weiße Schrift */
+        content: '✔️';      /* Symbol */
+        padding: 8px 12px;
+    }
     .dropdown {
-        margin: 20px 0;
+        margin: 0 0 20px;
         text-align: center;
     }
     .dropdown-toggle {
@@ -882,7 +878,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
     }
     .dropdown-content {
         padding: 20px;
-        background-color: #ffffff;
+        background-color: #1a1a1a;
         border: 1px solid #f39c12;
         border-radius: 5px;
         margin-top: 10px;
@@ -891,6 +887,62 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
     .blog-footer {
     text-align: center;
     margin-top: 20px;
+    }
+    #custom-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    #custom-alert-content {
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 400px;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    #custom-alert-title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+    }
+    #custom-alert-message {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #666;
+    }
+    #close-alert {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    #close-alert:hover {
+        background-color: #218838;
+    }
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 </style>
 
@@ -1009,6 +1061,41 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
             dropdownContent.style.display = "none";
             toggleButton.classList.remove("rotated"); // Klasse entfernen
         }
+    }
+    function showCustomAlert(title, message) {
+        const alertBox = document.getElementById("custom-alert");
+        const alertTitle = document.getElementById("custom-alert-title");
+        const alertMessage = document.getElementById("custom-alert-message");
+    
+        alertTitle.textContent = title;   // Überschrift setzen
+        alertMessage.textContent = message; // Nachricht setzen
+        alertBox.style.display = "flex"; // Fenster anzeigen
+    
+        document.getElementById("close-alert").onclick = function () {
+            alertBox.style.display = "none"; // Fenster schließen
+        };
+    }
+
+    function copyCode(elementId, button) {
+        const codeElement = document.getElementById(elementId);
+        const codeText = codeElement.innerText || codeElement.textContent;
+
+        navigator.clipboard.writeText(codeText)
+            .then(() => {
+                // Zeigt das benutzerdefinierte Fenster
+                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
+
+                // Button-Text und Stil dauerhaft ändern
+                button.classList.add('copied'); // Füge die CSS-Klasse hinzu
+                button.innerHTML = "Kopiert ✔️";       // Ändere den Button-Inhalt auf das Symbol
+                button.style.backgroundColor = "#72dd8b"; // Grüner Hintergrund
+                button.style.color = "white";             // Weiße Schrift
+                
+            })
+            .catch(err => {
+                console.error("Fehler beim Kopieren des Codes: ", err);
+                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
+            });
     }
 </script>
 

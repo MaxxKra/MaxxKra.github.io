@@ -120,10 +120,11 @@ card_mod:
         box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
     }
     /* Code Container */
-    .custom-code-container {
+    .code-container {
         position: relative;
-        background-color: #e9e9e9;
-        border: 1px solid #c9c9c9;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         padding: 15px;
         margin-top: 5px;
@@ -131,11 +132,11 @@ card_mod:
         overflow: auto;
         max-height: 300px;
     }
-    .custom-code-container code {
+    .code-container code {
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
-        color: #333;
+        color: #d1d1d1;
     }
     /* Stil für den Copy-Button */
     .copy-button {
