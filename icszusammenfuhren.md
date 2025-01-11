@@ -157,64 +157,41 @@ layout: page
         border-radius: 4px;
         background-color: #1a1a1a;
         color: #d1d1d1;
-        width: 60%; /* Breite der Eingabefelder reduziert */
-        max-width: 300px; /* Maximalbreite festgelegt */
-        min-width: 200px; /* Mindestbreite festgelegt */
-        display: block; /* Sorgt dafür, dass das Label über dem Input bleibt */
-        margin: 0 auto; /* Zentriert das Eingabefeld */
     }
-
+    .ics-file-group input:focus {
+        outline: none;
+        border-color: #4CAF50;
+    }
     .ics-file-group input[type="date"] {
-        height: 40px; /* Höhe für bessere Sichtbarkeit des Date-Pickers */
+        height: 40px; /* Angemessene Höhe */
+        width: auto; /* Automatische Breite, passend zum Inhalt */
+        max-width: 100%; /* Verhindert, dass es über die verfügbare Breite hinausgeht */
         padding: 5px 10px;
         font-size: 1em;
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: #1a1a1a;
         color: #d1d1d1;
-        width: 60%; /* Gleiche Breite wie andere Eingabefelder */
-        max-width: 300px;
-        min-width: 200px;
-        margin: 0 auto;
     }
 
-    .ics-file-group input:focus {
+    .ics-file-group input[type="date"]:focus {
         outline: none;
-        border-color: #4CAF50; /* Fokusfarbe */
+        border-color: #4CAF50; /* Grün als Fokusfarbe */
     }
-
     .ics-button {
-        padding: 10px 15px;
+        padding: 10px 20px;
         font-size: 1em;
-        background-color: #4CAF50;
         color: #fff;
+        background-color: #4CAF50;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        margin: 10px auto;
-        display: block;
-        width: 60%; /* Gleiche Breite wie die Eingabefelder */
-        max-width: 300px;
+        margin-top: 10px;
+        width: 100%;
         text-align: center;
     }
-
     .ics-button:hover {
         background-color: #45a049;
-    }
-
-    textarea {
-        width: 90%;
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #1a1a1a;
-        color: #d1d1d1;
-        resize: vertical;
-        display: block;
-        font-size: 1em;
-        line-height: 1.5;
     }
     textarea {
         width: 100%;
