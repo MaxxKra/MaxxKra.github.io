@@ -69,6 +69,32 @@ layout: page
         <button class="ics-button" onclick="copyEditedToClipboard()">Bearbeitete Datei kopieren</button>
         <button class="ics-button" onclick="downloadEditedICSFile()">Bearbeitete Datei herunterladen</button>
     </section>
+    <section class="ics-step">
+        <h3>3. Eigene ICS-Datei erstellen</h3>
+        <p>Fülle die Felder aus, um eigene Events zu erstellen und in eine ICS-Datei zu exportieren.</p>
+        <form id="ics-creation-form">
+            <div class="ics-file-group">
+                <label for="calendarName">Kalendername:</label>
+                <input type="text" id="calendarName" placeholder="z.B. Mein Kalender">
+            </div>
+            <div class="ics-file-group">
+                <label for="eventName">Eventname:</label>
+                <input type="text" id="eventName" placeholder="z.B. Meeting">
+            </div>
+            <div class="ics-file-group">
+                <label for="eventDate">Eventdatum:</label>
+                <input type="date" id="eventDate">
+            </div>
+            <div class="ics-file-group">
+                <label for="eventTime">Eventzeit (optional):</label>
+                <input type="time" id="eventTime">
+            </div>
+            <button type="button" class="ics-button" onclick="addEventToICS()">Event hinzufügen</button>
+        </form>
+        <textarea id="created-ics-output" rows="20" readonly></textarea>
+        <br>
+        <button class="ics-button" onclick="downloadCreatedICS()">Erstellten Kalender herunterladen</button>
+    </section>
     <footer class="ics-footer">
         <h4>Viel Erfolg! 🎉</h4>
         <p>Mit dem ICS Code Generator kannst du deine Kalender schnell und einfach bearbeiten.</p>
@@ -310,4 +336,58 @@ layout: page
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     }
+    
+    let icsContent = `BEGIN:VCALENDAR
+    VERSION:2.0
+    PRODID:-//YourAppName//EN
+    `;
+
+    function addEventToICS() {
+        const calendarName = document.getElementById('calendarName').value || "Mein Kalender";
+        const eventName = document.getElementById('eventName').value || "Unbekanntes Event";
+        const eventDate = document.getElementById('eventDate').value;
+        const eventTime = document.getElementById('eventTime').value || "00:00";
+
+        if (!eventDate) {
+            alert("Bitte ein Datum für das Event auswählen.");
+            return;
+        }
+
+        // Formatieren von Datum und Zeit im ICS-Format
+        const dateTime = eventDate.replace(/-/g, "") + "T" + eventTime.replace(":", "") + "00";
+
+        // Erstelle einen neuen Event-Eintrag
+        const eventEntry = `
+    BEGIN:VEVENT
+    SUMMARY:${eventName}
+    DTSTART:${dateTime}
+    DTEND:${dateTime}
+    DESCRIPTION:${calendarName}
+    END:VEVENT
+    `;
+
+        // Füge den Event-Eintrag zur ICS-Datei hinzu
+        icsContent += eventEntry;
+
+        // Zeige den aktuellen Inhalt der ICS-Datei im Textfeld an
+        document.getElementById('created-ics-output').value = icsContent + "\nEND:VCALENDAR";
+    }
+
+    function downloadCreatedICS() {
+        const finalICSContent = icsContent + "\nEND:VCALENDAR";
+
+        const blob = new Blob([finalICSContent], { type: 'text/calendar' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'mein_kalender.ics';
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
 </script>
