@@ -30,6 +30,46 @@ layout: page
     <li>Anlegen eines <strong>muell</strong> Ordners im <strong>config/www/</strong> Ordner</li>
     <li>Bereitstellung einer ICS Datei oder URL</li>
 </ul>
+
+<div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('noISCdropdown', this)">
+        Was mache ich, wennich keine ICS Datei oder URL habe?<span>&#9660;</span>
+    </button>
+    <div id="noICSdropdown" class="dropdown-content" style="display: none; padding: 10px; text-align: left; line-height: 1.5;">
+        <h3><strong>Verwendung des Codegenerators ohne ICS Datei oder URL</strong></h3>
+        <p>
+            Wenn du keine ICS Datei oder eine URL zur Einrichtung deines Kalenders in der <strong>Waste Collection Schedule</strong> hast, kannst du den Codegenerator mit einem kleinen Trick trotzdem nutzen.
+        </p>
+        <p>
+            Da in der neuen <strong>Waste Collection Schedule</strong> Integration, die Namen der einzelnen Abholungen frei vergeben werden können, kannst du dir zur Nutzung des Codegenartors eine Helfer-ICS Datei anlegen.
+        </p>
+        <ol>
+            <li>Gehe im Menü <strong>Müllerinnerung Tools</strong> auf <strong>ICS zusammenführen / erstellen</strong></li>
+            <li>Wähle die Checkbox <strong>Eigen ICS erstellen</strong></li>
+            <li>Trage einen frei gewählten Kalendernamen ein</li>
+            <li>Trage einen Eventnamen ein, welcher einer deiner Abholungen entspricht (z.B. Restabfall)</li>
+            <li>Wähle ein Eventdatum (dieses hat keine Relevanz im Codegenerator)</li>
+            <li>Klicke auf <strong>Event hinzufügen</strong><em>2</em>.</li>
+        </ol>
+        <p>
+            Es wird ein Kalender mit deinem Kalendernamen und deinem Eventnamen erstellt.<br>
+            Für jede weitere deiner Abholungen trage einen neuen Eventnamen und ein Datum ein und bestätige immer mit <strong>Event hinzufügen</strong>
+        </p>
+        <p>
+            Wenn deine Einträge für alle Abholungen abgeschlossen sind, klicke auf <strong>Erstellten Kalender herunterladen.</strong>
+        </p>
+        <p>
+            Nun kannst du diesen heruntergeladenen Kalender für den Codegenerator verwenden.
+        </p>
+        <p>
+            <strong>Hinweis:</strong> Verwende für deine Eventnamen (Abholungen) keine Umlaute und vermeide Leerzeichen. Ausnahme z.B. Gelber Sack oder Gelbe Tonne
+        </p>
+        <p>
+            <strong>Viel Erfolg! 🎉</strong>
+        </p>
+    </div>
+</div> 
+
 <div id="custom-alert" style="display: none;">
     <div id="custom-alert-content">
         <h4 id="custom-alert-title"></h4>
