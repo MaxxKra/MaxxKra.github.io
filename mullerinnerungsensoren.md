@@ -98,8 +98,8 @@ layout: page
 ██   ██ ██   ██      ██ ██      ██   ██ ██  ██ ██ ██    ██       ██         ██ 
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██         ██ 
 -->
-
 <div id="step-1" style="display:none;">
+<section class="content-section">
 <h2 class="custom-title">1. Kalenderdaten Auslesen</h2>
 
 <p>
@@ -119,6 +119,7 @@ layout: page
 </div>
 
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
+</section>
 </div>
 
 <!--
@@ -130,6 +131,7 @@ layout: page
 -->
 
 <div id="step-2" style="display:none;">
+<section class="content-section">
 <h2 class="custom-title">2. Kalenderdaten Umwandeln</h2>
 
 <p>Im nächsten Schritt wähle jene Einträge aus, welche zu deinen Sensoren hinzugefügt werden sollen.<br> 
@@ -194,6 +196,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div id="confirm-step-2" style="text-align: center; margin-top: 20px;">
     <button class="custom-button" onclick="handleStepTransition();">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
 </div>
+</section>
 </div>
 
 <!--
@@ -205,6 +208,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-3" style="display:none;">
+<section class="content-section">
 <h2 class="custom-title">3. Sensoren Konfiguration</h2>
 
 <p>
@@ -331,6 +335,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         Sensoren angelegt? Weiter zu den Templates!
     </button>
 </div>
+</section>
 </div>
 
 <!--
@@ -342,6 +347,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-4" style="display:none;">
+<section class="content-section">
 <h2 class="custom-title">4. Templates Erstellen</h2>
 
 <!-- Hinweisfenster mit Beschreibung -->
@@ -449,6 +455,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 </div>
 <div id="step-5" style="display:none;">
 <button class="custom-button" onclick="showStep(6); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
+</section>
 </div>
 
 <!--
@@ -461,6 +468,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-6" style="display:none;">
+<section class="content-section">
 <h2 class="custom-title">5. Dashboard-Karten</h2>
 
 <div class="important-container">
@@ -612,8 +620,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div class="button-container">
     <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
 </div>
-
-
+</section>
 </div>
 
 <!--
@@ -626,7 +633,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-7" style="display:none;">
-
+<section class="content-section">
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
@@ -969,6 +976,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
     Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
 </p>
+</section>
 <br>
 <h4 class="custom-title">
     Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
@@ -1001,6 +1009,26 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .content-section {
+        margin-bottom: 30px;
+    }
+
+    .content-section h2 {
+        color: #4CAF50;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .content-section ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+
+    .content-section ul li {
+        margin-bottom: 10px;
     }
     /* Titel und Untertitel */
     .custom-title, .custom-subtitle {
