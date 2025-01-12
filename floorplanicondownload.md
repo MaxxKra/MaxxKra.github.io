@@ -115,7 +115,7 @@ layout: page
     }
     .icon-table {
         width: 100%;
-        background-color: #393939;
+        background-color: #232323;
         border-collapse: collapse;
         margin-top: 20px;
     }
@@ -140,7 +140,7 @@ layout: page
         justify-content: center;
         height: 100%;
         width: 100%;
-        border: 1px solid #f9f9f9;
+        border: 1px dashed #ccffbb70;
         padding: 10px;
         position: relative;
     }
@@ -167,6 +167,7 @@ layout: page
     .icon-download-button {
         background-color: #4CAF50; /* Grüner Hintergrund */
         color: white; /* Weiße Schrift */
+        width: 30%;
         padding: 10px 20px; /* Innenabstand */
         font-size: 16px; /* Schriftgröße */
         border: none; /* Kein Rahmen */
