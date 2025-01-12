@@ -621,7 +621,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div class="button-container">
     <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
 </div>
-</section>
 </div>
 
 <!--
@@ -634,7 +633,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-7" style="display:none;">
-<section class="content-section">
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
@@ -655,9 +653,11 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
 <h4>Besteht noch Interesse an einer Dashboard Pop-Up Erinnerung?</h4><br>
 <button class="custom-button" onclick="showStep(8);">Ja! Weiter zu der Pop-Up Karte</button>
+</section>
 </div>
 
 <div id="step-8" style="display:none;">
+<section class="content-section">
 <br>
 <h2 class="custom-title">6. Pop-Up-Karte</h2>
 
