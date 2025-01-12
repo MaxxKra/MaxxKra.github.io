@@ -14,7 +14,7 @@ layout: page
         Der ICS Code Generator ermöglicht das Hochladen und Zusammenführen von ICS-Kalenderdateien.
     </p>    
     <!-- Abschnitt: Dateien hochladen -->
-    <section class="ics-section">
+    <section class="content-section">
         <h2>1. ICS-Dateien hochladen, auslesen oder zusammenführen</h2>
         <p>
             Lade bis zu sechs <code>.ics</code>-Dateien hoch. 
@@ -28,7 +28,7 @@ layout: page
         </ul>
     </section>
     <!-- Abschnitt: Datei bearbeiten -->
-    <section class="ics-section">
+    <section class="content-section">
         <h2>2. Datei anzeigen und kontrollieren</h2>
         <p>
             Nach der Verarbeitung werden die Kalenderdaten in einem Textbereich angezeigt. 
@@ -40,7 +40,7 @@ layout: page
         </ul>
     </section>
     <!-- Abschnitt: Exportieren -->
-    <section class="ics-section">
+    <section class="content-section">
         <h2>3. Datei exportieren</h2>
         <p>
             Nach der Bearbeitung kannst du die Datei herunterladen oder in die Zwischenablage kopieren:
@@ -66,7 +66,7 @@ layout: page
         Mit diesem Tool <strong>Eigene ICS erstellen</strong> kann ein Kalender mit eigenem Namen, frei definierten Event-Namen und Ereignisdatum erstellt werden. 
     </p>    
     <!-- Abschnitt: Dateien hochladen -->
-    <section class="ics-section">
+    <section class="content-section">
         <h2>Funktionsweise</h2>
         <ul>
             <li>1: Trage einen Namen bei <strong>Kalendername</strong> ein</li>
@@ -90,7 +90,7 @@ layout: page
 <div class="guide-container">
   <h1 class="guide-title">Müllerinnerung Sensoren Codegenerator</h1>
   
-  <section class="guide-section">
+  <section class="content-section">
     <h2 class="section-title">1. Kalenderdaten auslesen</h2>
     <p>
       <strong>Datei hochladen oder URL eingeben:</strong><br>
@@ -103,7 +103,7 @@ layout: page
     </p>
   </section>
 
-  <section class="guide-section">
+  <section class="content-section">
     <h2 class="section-title">2. Kalenderdaten umwandeln</h2>
     <p>
       <strong>Einträge prüfen und anpassen:</strong><br>
@@ -120,7 +120,7 @@ layout: page
     </p>
   </section>
 
-  <section class="guide-section">
+  <section class="content-section">
     <h2 class="section-title">3. Sensoren Konfiguration</h2>
     <p>
       <strong>Integration installieren:</strong><br>
@@ -170,7 +170,7 @@ layout: page
     </p>
   </section>
 
-  <section class="guide-section">
+  <section class="content-section">
     <h2 class="section-title">4. Templates erstellen</h2>
     <p>
       <strong>Optionen festlegen:</strong><br>
@@ -221,7 +221,7 @@ layout: page
     </p>
   </section>
 
-  <section class="guide-section">
+  <section class="content-section">
     <h2 class="section-title">5. Dashboard-Karten</h2>
     <p>
       <strong>Vorbereitung:</strong><br>
@@ -275,23 +275,23 @@ layout: page
         margin-bottom: 20px;
     }
 
-    .ics-section {
+    .content-section {
         margin-bottom: 30px;
     }
 
-    .ics-section h2 {
+    .content-section h2 {
         color: #4CAF50;
         font-size: 1.5em;
         margin-bottom: 10px;
     }
 
-    .ics-section ul {
+    .content-section ul {
         margin: 10px 0 0 20px;
         padding: 0;
         list-style-type: disc;
     }
 
-    .ics-section ul li {
+    .content-section ul li {
         margin-bottom: 10px;
     }
 
@@ -342,12 +342,6 @@ layout: page
     text-align: center;
     color: #333;
     margin-bottom: 20px;
-    }
-
-    .guide-section {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
     }
 
     .section-title {
