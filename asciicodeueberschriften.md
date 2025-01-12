@@ -228,7 +228,6 @@ console.log(typeof figlet);  // Sollte "object" anzeigen, wenn die Bibliothek ko
         padding: 8px;
         color: #000000;
         background-color: #9fb9fb;
-        max-width: 30%;
         border: 1px solid #ffffff;
         box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
