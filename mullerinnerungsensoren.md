@@ -451,11 +451,13 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         <pre id="helper-template-text-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
+</section>
 </div>
 <div id="step-5" style="display:none;">
+<section class="content-section">
 <button class="custom-button" onclick="showStep(6); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
-</div>
 </section>
+</div>
 
 <!--
  █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████     ███████ 
