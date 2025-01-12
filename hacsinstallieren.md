@@ -96,10 +96,81 @@ layout: page
         max-width: 100%;
         margin: auto;
         padding: 20px;
-        background-color: #f9f9f9;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
         border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .content-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
+    }
+
+    .content-section h2 {
+        color: #5bacff;
+        font-size: 1.75em;
+        margin-bottom: 10px;
+    }
+
+    .content-section ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+
+    .content-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .guide-footer {
+        text-align: center;
+    }
+    /* Wichtiges Hinweis-Container */
+    .important-container {
+        background-color: rgb(255, 255, 255);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 8px solid rgb(255, 0, 0);
+    }
+    .important-container h3 {
+        color: #d12700;
+        font-weight: bold;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
+    }
+    .important-container p {
+        color: #383838;
+        font-family: Arial Black;
+    }
+    .important-container strong {
+        color:rgb(255, 0, 0);
+        text-transform: uppercase;
+    }
+    /* Hinweise */
+    .note-container {
+        background-color: rgb(255, 255, 255);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 8px solid #0062ff;
+    }
+    .note-container h3 {
+        color: #0062ff;
+        font-weight: bold;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
+    }
+    .note-container p {
+        color: #383838;
+    }
+    .note-container strong {
+        color: #0062ff;
+        text-transform: uppercase;
     }
     /* Titel und Untertitel */
     .custom-title, .custom-subtitle {
