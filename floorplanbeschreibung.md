@@ -7,6 +7,41 @@ layout: page
 ---
 
 <style>
+    .guide-container {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .content-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
+    }
+
+    .content-section h2 {
+        color: #5bacff;
+        font-size: 1.75em;
+        margin-bottom: 10px;
+    }
+
+    .content-section ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+
+    .content-section ul li {
+        margin-bottom: 10px;
+    }
     .floorplan-description {
         font-family: Arial, sans-serif;
         line-height: 1.6;
@@ -74,11 +109,11 @@ layout: page
     }
 </style>
 
-<div class="floorplan-description">
+<div class="guide-container">
 
     <h1>Floorplan Codegeneratoren</h1>
 
-    <section id="beleuchtungsbilder">
+    <section class="content-section" id="beleuchtungsbilder">
         <h2>Floorplan Beleuchtungsbilder Generator</h2>
         <p>
             Mit dem Floorplan Beleuchtungsbilder Generator kannst du interaktive Visualisierungen für dein Home Assistant Dashboard erstellen.
@@ -106,7 +141,7 @@ layout: page
 
     <hr>
 
-    <section id="button-position">
+    <section class="content-section" id="button-position">
         <h2>Floorplan Button Position Generator</h2>
         <p>
             Der Floorplan Button Position Generator ist ein Werkzeug, um Buttons für Entitäten in deinem Home Assistant Floorplan 
@@ -136,5 +171,7 @@ layout: page
     <footer>
         <p>Viel Erfolg beim Einrichten deines Floorplans! Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.</p>
     </footer>
+<br>
+{% include support_note.html %}
 
 </div>
