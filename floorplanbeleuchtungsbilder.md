@@ -656,10 +656,12 @@ layout: page
         color: #efefef;
         font-family: monospace;
     }
+
     .dropdown {
         margin: 20px 0;
         text-align: center;
     }
+
     .dropdown-toggle {
         font-size: 18px;
         font-weight: bold;
@@ -674,6 +676,7 @@ layout: page
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         display: inline-block;
     }
+
     .dropdown-toggle.rotated {
         writing-mode: vertical-rl;
         text-orientation: mixed;
@@ -682,12 +685,14 @@ layout: page
         width: 200px;
         height: auto;
     }
+
     .dropdown-toggle span {
         float: right;
     }
+
     .dropdown-content {
         padding: 20px;
-        background-color: #ffffff;
+        background-color: #1a1a1a;
         border: 1px solid #f39c12;
         border-radius: 5px;
         margin-top: 10px;
