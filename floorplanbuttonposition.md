@@ -5,7 +5,7 @@ description: Generiere YAML-Code für Home Assistant anhand der Markierungen und
 show_sidebar: false
 layout: page
 ---
-<div class="floorplan-main-container">
+<div class="guide-container">
 
 <div id="custom-alert" style="display: none;">
     <div id="custom-alert-content">
@@ -14,6 +14,7 @@ layout: page
         <button id="close-alert">OK</button>
     </div>
 </div>
+<section class="content-section">
 
 <h1 class="floorplan-main-title">Floorplan Button Positionierung</h1>
 
@@ -63,8 +64,10 @@ layout: page
         </div>
     <button class="custom-button" onclick="updateEntityDropdown()">Entitäten-Liste aktualisieren</button>
 </div>
+</section>
 
 
+<section class="content-section">
 <h3>Bild hochladen</h3>
 
 <p>
@@ -83,7 +86,9 @@ layout: page
     <img src="" alt="Floorplan" id="floorplan">
     <div class="floorplan-coords" id="coords">left: 0%, top: 0%</div>
 </div>
+</section>
 
+<section class="content-section">
 <!-- Formular für zusätzliche Angaben -->
 <h3>Button-Einstellungen</h3>
 <div class="important-container">
@@ -219,7 +224,9 @@ layout: page
     <label for="navigation-path-hold">Navigationspfad (Hold):</label>
     <input type="text" id="navigation-path-hold" placeholder="Pfad für Navigation (Hold)">
 </div>
+</section>
 
+<section class="content-section">
 <h3>Markierte Positionen:</h3>
 
 <table id="position-table" border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
@@ -239,7 +246,9 @@ layout: page
         <!-- Dynamisch generierte Einträge -->
     </tbody>
 </table>
+</section>
 
+<section class="content-section">
 <div class="floorplan-button-container">
     <button class="floorplan-button floorplan-button-primary" onclick="generateYAML()">YAML-Code generieren</button>
     <button class="floorplan-button floorplan-button-info" onclick="copyYAML()">YAML-Code kopieren</button>
@@ -249,6 +258,7 @@ layout: page
 
 <h3>Generierter YAML-Code:</h3>
 <textarea id="yaml-output" rows="20" cols="80" readonly></textarea>
+</section>
 
 <footer class="guide-footer">
     <h2>Viel Erfolg bei der Positionierung deiner Buttons! 🎉</h2>
@@ -259,6 +269,45 @@ layout: page
 </div>
 
 <style>
+    .guide-container {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .content-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
+    }
+
+    .content-section h2 {
+        color: #5bacff;
+        font-size: 1.75em;
+        margin-bottom: 10px;
+    }
+
+    .content-section ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+
+    .content-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .guide-footer {
+        text-align: center;
+    }
     /* Wichtiges Hinweis-Container */
     .important-container {
         background-color: rgba(255, 100, 0, 0.3);
@@ -302,11 +351,11 @@ layout: page
     }
 
     .entity-preview-container {
-        background-color: #f9f9f9;
+        background-color: #9fb9fb;
         border: 1px solid #ddd;
         border-radius: 5px;
         padding: 15px;
-        margin-top: 20px;
+        margin: 10px 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -319,8 +368,9 @@ layout: page
 
     .code-container {
         position: relative;
-        background-color: #e9e9e9;
-        border: 1px solid #c9c9c9;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         padding: 15px;
         margin-top: 5px;
@@ -355,10 +405,11 @@ layout: page
     .copy-button:hover {
         background: #005a9c;
     }
-
     .copy-button.copied {
-        background: #72dd8b;
-        color: white;
+        background: #72dd8b; /* Grüner Hintergrund */
+        color: white;       /* Weiße Schrift */
+        content: '✔️';      /* Symbol */
+        padding: 8px 12px;
     }
     #custom-alert {
         position: fixed;
@@ -417,12 +468,14 @@ layout: page
         }
     }
     .custom-input, select {
-        width: 100%;
-        background-color: #e9e9e9;
-        padding: 10px;
-        margin-top: 5px;
+        padding: 8px;
+        color: #000000;
+        background-color: #9fb9fb;
+        max-width: 30%;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
-        border: 1px solid #c9c9c9;
+        font-size: 14px;
     }
     .custom-button {
         background-color: #4CAF50;
