@@ -18,7 +18,7 @@ Danach kannst du die generierte Überschrift in deinen Code-Editor einfügen.
 <div style="display: flex; flex-direction: column; gap: 10px; width: 30%;">
     <div class="custom-form-group">
         <label for="fontSelect">Schriftart:</label>
-        <select id="fontSelect" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+        <select id="fontSelect" style="width: 100%;">
             <option value="Banner3" selected>Banner3</option>
             <option value="Banner">Banner</option>
             <option value="Big">Big</option>
@@ -51,7 +51,7 @@ Danach kannst du die generierte Überschrift in deinen Code-Editor einfügen.
     </div>
     <div class="custom-form-group">
         <label for="widthSelect">Buchstaben Breite:</label>
-        <select id="widthSelect" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+        <select id="widthSelect" style="width: 100%;">
             <option value="default" selected>Normal</option>
             <option value="full">Full</option>
             <option value="fitted">Fitted</option>
@@ -76,7 +76,7 @@ Danach kannst du die generierte Überschrift in deinen Code-Editor einfügen.
 
 <!-- Ausgabefeld -->
 <div style="text-align: center; margin: 20px;">
-    <pre id="asciiOutput" class="yaml-output" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px; background-color: #f8f8f8;"></pre>
+    <pre id="asciiOutput" class="yaml-output" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;"></pre>
 </div>
 </div>
 
@@ -223,6 +223,16 @@ console.log(typeof figlet);  // Sollte "object" anzeigen, wenn die Bibliothek ko
         display: block;
         font-weight: bold;
         margin-bottom: 5px;
+    }
+    .custom-form-group input, .custom-form-group select {
+        padding: 8px;
+        color: #000000;
+        background-color: #9fb9fb;
+        max-width: 30%;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
+        border-radius: 5px;
+        font-size: 14px;
     }
 
     /* Buttons für Generieren, Test All und Kopieren */
