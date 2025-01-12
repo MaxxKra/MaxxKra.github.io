@@ -276,7 +276,11 @@ layout: page
     }
 
     .content-section {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
     }
 
     .content-section h2 {
