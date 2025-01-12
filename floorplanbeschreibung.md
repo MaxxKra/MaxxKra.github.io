@@ -42,77 +42,14 @@ layout: page
     .content-section ul li {
         margin-bottom: 10px;
     }
-    .floorplan-description {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-    .floorplan-description h1 {
+    .guide-footer {
         text-align: center;
-        color: #007BFF;
-        font-size: 2.5em;
-        margin-bottom: 20px;
-    }
-
-    .floorplan-description h2 {
-        color: #0056b3;
-        border-bottom: 2px solid #0056b3;
-        padding-bottom: 5px;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        font-size: 1.8em;
-    }
-
-    .floorplan-description p {
-        margin-bottom: 15px;
-        font-size: 1.1em;
-    }
-
-    .floorplan-description ul {
-        margin: 15px 0;
-        padding-left: 20px;
-        list-style-type: disc;
-    }
-
-    .floorplan-description ul li {
-        margin-bottom: 10px;
-    }
-
-    .floorplan-description ol {
-        margin: 15px 0;
-        padding-left: 20px;
-        list-style-type: decimal;
-    }
-
-    .floorplan-description ol li {
-        margin-bottom: 10px;
-    }
-
-    .floorplan-description hr {
-        border: none;
-        border-top: 2px solid #ddd;
-        margin: 30px 0;
-    }
-
-    .floorplan-description footer {
-        text-align: center;
-        font-size: 1em;
-        color: #666;
-        margin-top: 40px;
     }
 </style>
 
 <div class="guide-container">
-
     <h1>Floorplan Codegeneratoren</h1>
-
     <section class="content-section" id="beleuchtungsbilder">
         <h2>Floorplan Beleuchtungsbilder Generator</h2>
         <p>
@@ -138,9 +75,7 @@ layout: page
             <li>YAML-Code generieren und in Home Assistant einbinden.</li>
         </ol>
     </section>
-
     <hr>
-
     <section class="content-section" id="button-position">
         <h2>Floorplan Button Position Generator</h2>
         <p>
@@ -165,11 +100,11 @@ layout: page
             <li>YAML-Code generieren und in Home Assistant einbinden.</li>
         </ol>
     </section>
-
     <hr>
-
-    <footer class="floorplan-description">
-        <p>Viel Erfolg beim Einrichten deines Floorplans! Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.</p>
+    <footer class="guide-footer">
+        <p>
+            Viel Erfolg beim Einrichten deines Floorplans! Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.
+        </p>
     </footer>
 <br>
 {% include support_note.html %}
