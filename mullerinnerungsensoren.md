@@ -1013,7 +1013,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     }
 
     .content-section h2 {
-        color: #4CAF50;
+        color: #5bacff;
         font-size: 1.75em;
         margin-bottom: 10px;
     }
@@ -1026,6 +1026,10 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
     .content-section ul li {
         margin-bottom: 10px;
+    }
+
+    .content h1 {
+        color: #5bacff
     }
     /* Titel und Untertitel */
     .custom-title, .custom-subtitle {
