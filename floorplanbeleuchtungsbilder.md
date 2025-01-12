@@ -15,7 +15,7 @@ layout: page
         <button id="close-alert">OK</button>
     </div>
 </div>
-<section class="guide-container">
+<section class="content-section">
 <h1 class="floorplan-title">Floorplan Beleuchtungsbilder</h1>
 
 <h2 class="floorplan-subtitle">Erstelle die YAML-Codes für deine Beleuchtungsbilder</h2>
@@ -60,6 +60,7 @@ layout: page
 </div>
 </section>
 
+<section class="content-section">
 <h3>Entitätenliste mit Home Assistant abfragen</h3>
 
 <p>
@@ -101,7 +102,9 @@ layout: page
         </div>
     <button class="custom-button generate" onclick="updateEntityDropdown()">Entitäten-Liste aktualisieren</button>
 </div>
+</section>
 
+<section class="content-section">
 <h3>Grundlegende Einstellungen</h3>
 
 <p>
@@ -129,7 +132,9 @@ layout: page
         <a href="/img/floorplan/1x1_transparent.png" download class="download-link">hier herunterladen</a>.
     </p>
 </div>
+</section>
 
+<section class="content-section">
 <h3>Hintergrundbild hochladen</h3>
 
 <p>
@@ -143,7 +148,9 @@ layout: page
     <input type="file" id="background-upload" accept="image/*" onchange="handleBackgroundImageUpload()" style="display: none;">
     <span id="background-image-display" class="file-name-display">Kein Bild ausgewählt</span>
 </div>
+</section>
 
+<section class="content-section">
 <h3>Entitätsbilder Einstellungen</h3>
 
 <p>
@@ -208,6 +215,8 @@ layout: page
     <img id="preview-background" alt="Hintergrundbild Vorschau" style="width: 100%; display: none;">
     <div id="preview-entities" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
 </div>
+</section>
+<section class="content-section">
 <br>
 <div class="custom-button-container">
     <button class="custom-button generate" onclick="generateYAML()">YAML-Code generieren</button>
@@ -223,6 +232,7 @@ layout: page
 </p>
 
 <textarea id="yaml-output" rows="20" cols="80" readonly></textarea>
+</section>
 
 <footer class="guide-footer">
     <h2>Viel Erfolg bei der Einrichtung deines Floorplans! 🎉</h2>
