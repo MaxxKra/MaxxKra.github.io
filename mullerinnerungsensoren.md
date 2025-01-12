@@ -400,9 +400,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 </div>
 
 <button class="custom-button" onclick="showStep(5); createTemplates()">Templates erstellen</button>
-</section>
-
-<section class="content-section">
 <!-- Output for "Müllabholung Heute" -->
 <div id="helper-template-output-heute" style="display:none;">
     <div class="custom-title-inline">
