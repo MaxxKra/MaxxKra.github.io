@@ -615,12 +615,15 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Wenn alle Einstellungen getroffen wurden, klicke auf <strong>Beispiel anzeigen & Code generieren</strong><br>
     Du kannst nachträglich jederzeit Einstellungen ändern und den Code neu generieren.
 </p>
+</section>
 
 
 <!-- Button zur Aktualisierung -->
 <div class="button-container">
+<section class="content-section">
     <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
 </div>
+</section>
 </div>
 
 <!--
@@ -633,6 +636,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div id="step-7" style="display:none;">
+<section class="content-section">
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
