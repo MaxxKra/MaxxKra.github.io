@@ -777,25 +777,6 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         background-color: #cfe0f5; /* Intensiveres Blau */
         transition: background-color 0.3s ease;
     }
-    /* Zentrieren der gesamten Bildreihe */
-    .columns.is-centered {
-        justify-content: center;
-    }
-    /* Bildcontainer anpassen */
-    .column img {
-        display: block;
-        margin: auto;
-        max-width: 100%;
-    }
-    /* Abstand zwischen nebeneinander liegenden Bildern */
-    .columns .column {
-        padding: 10px;
-    }
-    /* Schatten um das Bild hinzufügen */
-    .column figure {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-    }
     /* Download-Button */
     .download-button {
         display: inline-block;

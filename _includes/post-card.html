@@ -1,9 +1,7 @@
 <div class="card">
     {% if post.image %}
     <div class="card-image">
-        {% unless post.layout == "post" %}
         <img src="{{ post.image }}" alt="{{ post.title }}">
-        {% endunless %}
     </div>
     {% else %}
     <header class="card-header">
@@ -12,7 +10,9 @@
     {% endif %}
     <div class="card-content">
         <div class="content">
+            {% if post.image %}
             <a class="title is-4" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+            {% endif %}
             {% if post.summary %}
             {{ post.summary | markdownify }}
             {% else %}
