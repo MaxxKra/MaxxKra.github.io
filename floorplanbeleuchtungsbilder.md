@@ -365,7 +365,7 @@ layout: page
 
     .file-name-display {
         display: inline-block;
-        color: #333;
+        color: #a7a7a7;
         font-size: 14px;
         font-weight: bold;
         margin-right: 10px;
@@ -523,7 +523,7 @@ layout: page
     }
     .floorplan-intro {
         text-align: center;
-        color: #555;
+        color: #d1d1d1;
         margin-bottom: 20px;
     }
     .floorplan-form-group {
@@ -582,15 +582,19 @@ layout: page
         text-align: left;
     }
     #entities-table th {
-        background-color: #f1f1f1;
+        background-color: #9fb9fb;
         font-weight: bold;
+        color: #000000;
     }
     #entities-table td input, #entities-table td select {
+        padding: 8px;
+        color: #000000;
+        background-color: #9fb9fb;
         width: 100%;
-        padding: 6px;
-        font-size: 14px;
-        border: 1px solid #ddd;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
+        font-size: 14px;
     }
     /* Buttons für Zeilen hinzufügen und entfernen */
     .action-button {
