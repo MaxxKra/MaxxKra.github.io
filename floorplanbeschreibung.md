@@ -102,11 +102,12 @@ layout: page
     </section>
     <hr>
     <footer class="guide-footer">
-        <p>
-            Viel Erfolg beim Einrichten deines Floorplans! Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.
-        </p>
+        <h3>
+            Viel Erfolg beim Einrichten deines Floorplans! 🎉<br>
+            Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.
+        </h3>
+    <br>
+    {% include support_note.html %}
     </footer>
-<br>
-{% include support_note.html %}
 
 </div>
