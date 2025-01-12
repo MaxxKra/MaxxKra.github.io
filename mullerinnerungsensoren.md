@@ -47,22 +47,22 @@ layout: page
             <li>Gehe im Menü <strong>Müllerinnerung Tools</strong> auf <strong>ICS zusammenführen / erstellen</strong></li>
             <li>Wähle die Checkbox <strong>Eigen ICS erstellen</strong></li>
             <li>Trage einen frei gewählten Kalendernamen ein</li>
-            <li>Trage einen Eventnamen ein, welcher einer deiner Abholungen entspricht (z.B. Restabfall)</li>
+            <li>Trage einen Eventnamen ein, welcher einem deiner Mülltypen / Abholungen entspricht (z.B. Restabfall)</li>
             <li>Wähle ein Eventdatum (dieses hat keine Relevanz im Codegenerator)</li>
-            <li>Klicke auf <strong>Event hinzufügen</strong><em>2</em>.</li>
+            <li>Klicke auf <strong>Event hinzufügen</strong></li>
         </ol>
         <p>
             Es wird ein Kalender mit deinem Kalendernamen und deinem Eventnamen erstellt.<br>
-            Für jede weitere deiner Abholungen trage einen neuen Eventnamen und ein Datum ein und bestätige immer mit <strong>Event hinzufügen</strong>
+            Für jede weitere deiner Abholungen (unterschidliche Mülltypen) trage einen neuen Eventnamen und ein Datum ein und bestätige immer mit <strong>Event hinzufügen</strong>
         </p>
         <p>
-            Wenn deine Einträge für alle Abholungen abgeschlossen sind, klicke auf <strong>Erstellten Kalender herunterladen.</strong>
+            Wenn deine Einträge für jeweils einen deiner Mülltypen abgeschlossen sind, klicke auf <strong>Erstellten Kalender herunterladen.</strong>
         </p>
         <p>
             Nun kannst du diesen heruntergeladenen Kalender für den Codegenerator verwenden.
         </p>
         <p>
-            <strong>Hinweis:</strong> Verwende für deine Eventnamen (Abholungen) keine Umlaute und vermeide Leerzeichen. Ausnahme z.B. Gelber Sack oder Gelbe Tonne
+            <strong>Hinweis:</strong> Verwende für deine Eventnamen (Mülltypen) keine Umlaute und vermeide Leerzeichen. Nimm nur die Allgemeine Bezichnung deiner Mülltypen ohne den Zusatz "Tonne", ausnahme z.B. Gelber Sack oder Gelbe Tonne. 
         </p>
         <p>
             <strong>Viel Erfolg! 🎉</strong>
