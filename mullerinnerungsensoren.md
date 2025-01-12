@@ -33,9 +33,9 @@ layout: page
 
 <div class="dropdown">
     <button class="dropdown-toggle" onclick="toggleDropdown('noISCdropdown', this)">
-        Was mache ich, wennich keine ICS Datei oder URL habe?<span>&#9660;</span>
+        Was mache ich, wennich keine ICS Datei oder URL habe? <span>&#9660;</span>
     </button>
-    <div id="noICSdropdown" class="dropdown-content" style="display: none; padding: 10px; text-align: left; line-height: 1.5;">
+    <div id="noISCdropdown" class="dropdown-content" style="display: none;">
         <h3><strong>Verwendung des Codegenerators ohne ICS Datei oder URL</strong></h3>
         <p>
             Wenn du keine ICS Datei oder eine URL zur Einrichtung deines Kalenders in der <strong>Waste Collection Schedule</strong> hast, kannst du den Codegenerator mit einem kleinen Trick trotzdem nutzen.
