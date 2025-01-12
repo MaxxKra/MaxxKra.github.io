@@ -57,7 +57,7 @@ layout: page
 <div class="floorplan-form-group">
     <label for="entity-list-upload">Entitäten-Liste hochladen oder einfügen:</label>
     <input type="file" id="entity-list-upload" accept=".txt,.csv" onchange="loadEntityList(event)" style="margin-bottom: 10px;">
-    <textarea id="entity-list-text" placeholder="Entitäten manuell eingeben (eine pro Zeile)" rows="5" style="width: 100%;"></textarea>
+    <textarea class="textarea-list" id="entity-list-text" placeholder="Entitäten manuell eingeben (eine pro Zeile)" rows="5" style="width: 100%;"></textarea>
         <div class="entity-preview-container" id="entity-preview" style="display: none; margin-top: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
             <h4>Hochgeladene Entitäten</h4>
             <textarea id="uploaded-entity-list" rows="10" style="width: 100%;" readonly></textarea>
@@ -310,37 +310,37 @@ layout: page
     }
     /* Wichtiges Hinweis-Container */
     .important-container {
-        background-color: rgba(255, 100, 0, 0.3);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #ff0000;
+        border: 8px solid rgb(255, 0, 0);
     }
     .important-container h3 {
         color: #d12700;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .important-container p {
         color: #383838;
         font-family: Arial Black;
     }
     .important-container strong {
-        color: #d12700;
+        color:rgb(255, 0, 0);
         text-transform: uppercase;
     }
     /* Hinweise */
     .note-container {
-        background-color: rgba(117, 234, 255, 0.5);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #0062ff;
+        border: 8px solid #0062ff;
     }
     .note-container h3 {
         color: #0062ff;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .note-container p {
         color: #383838;
@@ -349,7 +349,6 @@ layout: page
         color: #0062ff;
         text-transform: uppercase;
     }
-
     .entity-preview-container {
         background-color: #9fb9fb;
         border: 1px solid #ddd;
@@ -383,7 +382,7 @@ layout: page
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
-        color: #333;
+        color: #d1d1d1;
         white-space: pre-wrap;
     }
 
@@ -582,7 +581,11 @@ layout: page
     }
     .floorplan-form-group input, .floorplan-form-group select {
         padding: 8px;
-        border: 1px solid #ddd;
+        color: #000000;
+        background-color: #9fb9fb;
+        max-width: 30%;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         font-size: 14px;
     }
@@ -613,6 +616,15 @@ layout: page
     .floorplan-button-danger {
         background-color: #dc3545;
         color: #fff;
+    }
+    .textarea-list {
+        width:100%;
+        background-color: #c3c3c3;
+        color: #000000;
+        font-size: 0.9em;
+        font-weight: bold;
+        padding: 10px;
+        margin-bottom: 10px;
     }
     #yaml-output {
         width: 100%;
