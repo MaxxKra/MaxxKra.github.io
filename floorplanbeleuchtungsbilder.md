@@ -15,7 +15,7 @@ layout: page
         <button id="close-alert">OK</button>
     </div>
 </div>
-
+<section class="guide-container">
 <h1 class="floorplan-title">Floorplan Beleuchtungsbilder</h1>
 
 <h2 class="floorplan-subtitle">Erstelle die YAML-Codes für deine Beleuchtungsbilder</h2>
@@ -58,6 +58,7 @@ layout: page
         </div>
     </div>
 </div>
+</section>
 
 <h3>Entitätenliste mit Home Assistant abfragen</h3>
 
