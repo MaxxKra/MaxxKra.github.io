@@ -969,16 +969,17 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
     Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
 </p>
-<br>
+</div>
+<div class="content-section" id="support-section;">
 <h4 class="custom-title">
     Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
     Über Feedback und Unterstützung würde ich mich auf jeden Fall freuen.
 </h4>
 <br>
-<h3 class="custom-title">Danke und gutes Gelingen!</h3>
-
-</div>
+<h3 class="custom-title">Danke und gutes Gelingen! 🎉</h3>
+<br>
 {% include support_note.html %}
+</div>
 </div>
 
 <!--
