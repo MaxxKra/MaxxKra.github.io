@@ -312,37 +312,37 @@ layout: page
     }
     /* Wichtiges Hinweis-Container */
     .important-container {
-        background-color: rgba(255, 100, 0, 0.3);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #ff0000;
+        border: 8px solid rgb(255, 0, 0);
     }
     .important-container h3 {
         color: #d12700;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .important-container p {
         color: #383838;
         font-family: Arial Black;
     }
     .important-container strong {
-        color: #d12700;
+        color:rgb(255, 0, 0);
         text-transform: uppercase;
     }
     /* Hinweise */
     .note-container {
-        background-color: rgba(117, 234, 255, 0.5);
+        background-color: rgb(255, 255, 255);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border: 3px solid #0062ff;
+        border: 8px solid #0062ff;
     }
     .note-container h3 {
         color: #0062ff;
         font-weight: bold;
-        text-shadow: 2px 2px 5px #ffffff;
+        text-shadow: 0 0 1px rgb(0, 0, 0);
     }
     .note-container p {
         color: #383838;
@@ -351,7 +351,6 @@ layout: page
         color: #0062ff;
         text-transform: uppercase;
     }
-
     #preview-entities img {
         position: absolute;
         top: 0;
@@ -401,11 +400,12 @@ layout: page
         font-size: 16px;
         font-weight: bold;
     }
-
+    /* Code Container */
     .code-container {
         position: relative;
-        background-color: #e9e9e9;
-        border: 1px solid #c9c9c9;
+        background-color: #9fb9fb;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         padding: 15px;
         margin-top: 5px;
@@ -413,15 +413,13 @@ layout: page
         overflow: auto;
         max-height: 300px;
     }
-
     .code-container code {
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         font-size: 0.95em;
         line-height: 1.5;
-        color: #333;
-        white-space: pre-wrap;
+        color: #d1d1d1;
     }
-
+    /* Stil für den Copy-Button */
     .copy-button {
         position: absolute;
         top: 10px;
@@ -434,16 +432,15 @@ layout: page
         font-size: 0.85em;
         cursor: pointer;
         z-index: 10;
-        transition: background-color 0.3s, transform 0.2s;
     }
-
     .copy-button:hover {
         background: #005a9c;
     }
-
     .copy-button.copied {
-        background: #72dd8b;
-        color: white;
+        background: #72dd8b; /* Grüner Hintergrund */
+        color: white;       /* Weiße Schrift */
+        content: '✔️';      /* Symbol */
+        padding: 8px 12px;
     }
     #custom-alert {
         position: fixed;
