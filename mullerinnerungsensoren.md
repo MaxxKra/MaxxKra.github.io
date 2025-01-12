@@ -1014,7 +1014,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
     .content-section h2 {
         color: #4CAF50;
-        font-size: 1.5em;
+        font-size: 1.75em;
         margin-bottom: 10px;
     }
 
