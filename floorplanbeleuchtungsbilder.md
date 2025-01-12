@@ -652,7 +652,9 @@ layout: page
         font-size: 14px;
         border: 1px solid #ddd;
         border-radius: 5px;
-        background-color: #f8f8f8;
+        background-color: #5d5d5d;
+        color: #efefef;
+        font-family: monospace;
     }
     .dropdown {
         margin: 20px 0;
