@@ -98,8 +98,8 @@ layout: page
 ██   ██ ██   ██      ██ ██      ██   ██ ██  ██ ██ ██    ██       ██         ██ 
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██         ██ 
 -->
-<div id="step-1" style="display:none;">
-<section class="content-section">
+
+<div class="content-section" id="step-1" style="display:none;">
 <h2 class="custom-title">1. Kalenderdaten Auslesen</h2>
 
 <p>
@@ -119,7 +119,6 @@ layout: page
 </div>
 
 <button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
-</section>
 </div>
 
 <!--
@@ -130,8 +129,7 @@ layout: page
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██        ███████ 
 -->
 
-<div id="step-2" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-2" style="display:none;">
 <h2 class="custom-title">2. Kalenderdaten Umwandeln</h2>
 
 <p>Im nächsten Schritt wähle jene Einträge aus, welche zu deinen Sensoren hinzugefügt werden sollen.<br> 
@@ -196,7 +194,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div id="confirm-step-2" style="text-align: center; margin-top: 20px;">
     <button class="custom-button" onclick="handleStepTransition();">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
 </div>
-</section>
 </div>
 
 <!--
@@ -207,8 +204,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██        ██████  
 -->
 
-<div id="step-3" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-3" style="display:none;">
 <h2 class="custom-title">3. Sensoren Konfiguration</h2>
 
 <p>
@@ -335,7 +331,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         Sensoren angelegt? Weiter zu den Templates!
     </button>
 </div>
-</section>
 </div>
 
 <!--
@@ -346,8 +341,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 ██   ██ ██████  ███████  ██████ ██   ██ ██   ████ ██    ██       ██             ██ 
 -->
 
-<div id="step-4" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-4" style="display:none;">
 <h2 class="custom-title">4. Templates Erstellen</h2>
 
 <!-- Hinweisfenster mit Beschreibung -->
@@ -400,6 +394,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 </div>
 
 <button class="custom-button" onclick="showStep(5); createTemplates()">Templates erstellen</button>
+
 <!-- Output for "Müllabholung Heute" -->
 <div id="helper-template-output-heute" style="display:none;">
     <div class="custom-title-inline">
@@ -451,12 +446,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         <pre id="helper-template-text-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
-</section>
 </div>
-<div id="step-5" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-5" style="display:none;">
 <button class="custom-button" onclick="showStep(6); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
-</section>
 </div>
 
 <!--
@@ -468,8 +460,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                                                                               
 -->
 
-<div id="step-6" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-6" style="display:none;">
 <h2 class="custom-title">5. Dashboard-Karten</h2>
 
 <div class="important-container">
@@ -615,15 +606,14 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Wenn alle Einstellungen getroffen wurden, klicke auf <strong>Beispiel anzeigen & Code generieren</strong><br>
     Du kannst nachträglich jederzeit Einstellungen ändern und den Code neu generieren.
 </p>
-</section>
 
 
 <!-- Button zur Aktualisierung -->
 <div class="button-container">
-<section class="content-section">
     <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
 </div>
-</section>
+
+
 </div>
 
 <!--
@@ -635,8 +625,8 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                                                                                     
 -->
 
-<div id="step-7" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-7" style="display:none;">
+
 <div id="dashboard-options" class="dashboard-options">
     <!-- YAML-Ausgabefenster -->
     <div id="yaml-output-container" class="yaml-output-container">
@@ -657,11 +647,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
 <h4>Besteht noch Interesse an einer Dashboard Pop-Up Erinnerung?</h4><br>
 <button class="custom-button" onclick="showStep(8);">Ja! Weiter zu der Pop-Up Karte</button>
-</section>
 </div>
 
-<div id="step-8" style="display:none;">
-<section class="content-section">
+<div class="content-section" id="step-8" style="display:none;">
 <br>
 <h2 class="custom-title">6. Pop-Up-Karte</h2>
 
@@ -981,7 +969,6 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
     Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
 </p>
-</section>
 <br>
 <h4 class="custom-title">
     Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
