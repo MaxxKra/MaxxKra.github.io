@@ -6,7 +6,7 @@ show_sidebar: false
 layout: page
 ---
 
-<div class="icon-main-container">
+<div class="guide-container">
     <h1 class="icon-main-title">Floorplan Icons Download</h1>
     <h2 class="icon-main-subtitle">Icons aussuchen und einzeln oder gesamt herunterladen </h2>
     <p class="icon-main-intro">
@@ -51,6 +51,40 @@ layout: page
     {% include support_note.html %}
 </div>
 <style>
+    .guide-container {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
+    }
+    .content-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
+    }
+    .content-section h2 {
+        color: #5bacff;
+        font-size: 1.75em;
+        margin-bottom: 10px;
+    }
+    .content-section ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+    .content-section ul li {
+        margin-bottom: 10px;
+    }
+    .guide-footer {
+        text-align: center;
+    }
     .icon-main-container {
         max-width: 100%;
         margin-bottom: 100px;

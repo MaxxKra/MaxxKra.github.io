@@ -470,7 +470,7 @@ layout: page
         padding: 8px;
         color: #000000;
         background-color: #9fb9fb;
-        max-width: 30%;
+        max-width: 100%;
         border: 1px solid #ffffff;
         box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
