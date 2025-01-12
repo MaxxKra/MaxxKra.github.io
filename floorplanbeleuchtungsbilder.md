@@ -386,11 +386,11 @@ layout: page
     }
 
     .entity-preview-container {
-        background-color: #f9f9f9;
+        background-color: #9fb9fb;
         border: 1px solid #ddd;
         border-radius: 5px;
         padding: 15px;
-        margin-top: 20px;
+        margin: 10px 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
