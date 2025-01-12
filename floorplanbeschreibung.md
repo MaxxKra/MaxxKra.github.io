@@ -168,7 +168,7 @@ layout: page
 
     <hr>
 
-    <footer>
+    <footer class="floorplan-description">
         <p>Viel Erfolg beim Einrichten deines Floorplans! Für weitere Informationen kannst du die einzelnen Generator-Seiten besuchen.</p>
     </footer>
 <br>
