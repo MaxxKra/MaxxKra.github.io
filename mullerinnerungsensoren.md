@@ -363,7 +363,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    {% include youtube.html video="3fhL_K4o3Dg" %}
+                    <div style="margin: 0 auto; max-width: 60%;">
+                        {% include youtube.html video="3fhL_K4o3Dg" %}
+                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
