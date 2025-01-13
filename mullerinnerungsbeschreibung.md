@@ -252,14 +252,14 @@ layout: page
 <style>
     .ics-container {
         max-width: 100%;
-        margin-bottom: 100px;
+        margin: auto;
         padding: 20px;
         background-color: #1a1a1a;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 4px 6px rgba(255, 255, 255, 0.3);
         font-family: Arial, sans-serif;
         line-height: 1.6;
+        border: 1px solid #1598b3;
+        border-radius: 8px;
+        box-shadow: 0 4px 4px 6px #1598b380;
     }
 
     .ics-header {
