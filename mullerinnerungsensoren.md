@@ -30,10 +30,10 @@ layout: page
     <li>Anlegen eines <strong>muell</strong> Ordners im <strong>config/www/</strong> Ordner</li>
     <li>Bereitstellung einer ICS Datei oder URL</li>
 </ul>
-
+<br>
 <div class="dropdown">
     <button class="dropdown-toggle" onclick="toggleDropdown('noISCdropdown', this)">
-        Was mache ich, wennich keine ICS Datei oder URL habe? <span>&#9660;</span>
+        Was mache ich, wenn ich keine ICS Datei oder URL habe? <span>&#9660;</span>
     </button>
     <div id="noISCdropdown" class="dropdown-content" style="display: none; padding: 10px; text-align: left; line-height: 1.5;">
         <h3><strong>Verwendung des Codegenerators ohne ICS Datei oder URL</strong></h3>

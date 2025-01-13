@@ -8,8 +8,8 @@ layout: page
 
 
 <div class="ics-container">
-    <h1 class="main-header">Müllerinnerung Tools</h1>
-    <p class="main-intro">
+    <h1 class="main-header" style="color: #1598b3; font-size: 2.5em;">Müllerinnerung Tools</h1>
+    <p class="main-intro" style="color:#d8d8d8; font-size: 1em;">
         Die Müllerinnerung Tools ermöglichen es, Müllabholungen effizient zu planen, Kalenderdaten zu bearbeiten, Sensoren zu konfigurieren und Dashboards sowie Pop-Up-Karten in Home Assistant zu erstellen. Alles an einem Ort für deine perfekte Organisation!
     </p>
 </div>
@@ -406,11 +406,6 @@ layout: page
         color: #a9a9a9;
         margin-bottom: 20px;
         font-size: 1em
-    }
-
-    .content h1 {
-        color: #1598b3;
-        font-size: 2.5em;
     }
     .ics-container {
         max-width: 100%;
