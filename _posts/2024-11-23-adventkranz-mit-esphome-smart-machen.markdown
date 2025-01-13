@@ -10,18 +10,6 @@ published: true
 ---
 
 <div class="page-content">
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
-    </div>
-</div>
-<div style="text-align: center;">
-    <img src="/img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
-</div>
-
-
 <h2>Einen smarten Adventskranz bauen</h2>
 
 <p>
@@ -712,6 +700,13 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
 <div class="column is-5">
 {% include image-modal.html ratio="is-4by3" link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS_k.png" alt="Example image" large_link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS.png" %}
 </div>
+</div>
+<div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content">
+        <h4 id="custom-alert-title"></h4>
+        <p id="custom-alert-message"></p>
+        <button id="close-alert">OK</button>
+    </div>
 </div>
 </div>
 <style>
