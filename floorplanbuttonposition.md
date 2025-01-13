@@ -75,7 +75,7 @@ layout: page
 </p>
 
 <!-- Bild-Upload -->
-<div class="custom-form-group">
+<div class="floorplan-form-group">
     <label for="image-upload" class="custom-label">Bild hochladen:</label>
     <input type="file" id="image-upload" class="custom-input" accept="image/*">
 <p id="image-dimensions">Bildabmessungen: Noch kein Bild hochgeladen</p>
