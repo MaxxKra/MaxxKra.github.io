@@ -9,7 +9,6 @@ image: /img/blog/smarter_Adventkranz/blog-post-smarter-adventskranz.png
 published: true
 ---
 
-<div class="page-content">
 <p>
     Da meine Frau und ich das Glück haben, bei zwei unglaublich süßen Katern wohnen zu dürfen, ist es leider nicht möglich, echte, brennende Kerzen in der Wohnung zu nutzen. 
     Da wir dennoch gerne zur Weihnachtszeit einen Adventskranz aufstellen und dieser natürlich leuchtende Kerzen haben soll, kam mir die Idee, einfach einen smarten Adventskranz zu bauen und diesen voll automatisiert zu gestalten.
@@ -705,7 +704,6 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         <p id="custom-alert-message"></p>
         <button id="close-alert">OK</button>
     </div>
-</div>
 </div>
 <style>
     .page-content {

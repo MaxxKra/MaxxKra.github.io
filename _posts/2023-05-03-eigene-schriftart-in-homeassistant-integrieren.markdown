@@ -9,7 +9,6 @@ image: /img/blog/eigene_Schriftart/blog-post-eigene-schriftarten.png
 published: true
 ---
 
-<div class="page-content">
 <p>
     Ich wollte unbedingt für meine Dashboards eine Schriftart zur Auswahl haben, welche meine Uhr in digitaler Schrift anzeigt.
 </p>
@@ -99,7 +98,6 @@ card_mod:
         <p id="custom-alert-message"></p>
         <button id="close-alert">OK</button>
     </div>
-</div>
 </div>
 
 <style>
