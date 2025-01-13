@@ -28,8 +28,9 @@ layout: page
         <button id="decision-no">Nein</button>
     </div>
 </div>
-
-{% include youtube.html video="j54-l1iPa6g" %}
+<div style="align-items: center; max-width: 60%;">
+    {% include youtube.html video="j54-l1iPa6g" %}
+</div>
 <br>
 <h1 class="custom-title">HACS in Home Assistant OS installieren</h1>
 <br>
