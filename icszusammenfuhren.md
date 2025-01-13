@@ -6,7 +6,7 @@ show_sidebar: false
 layout: page
 ---
 <div class="ics-guide">
-    <h1 class="ics-title" style="color: #1598b3; font-size: 2.5em;">>ICS Code Generator</h1>
+    <h1 class="ics-title" style="color: #1598b3; font-size: 2.5em;">ICS Code Generator</h1>
     <h2 class="ics-subtitle">ICS-Dateien zum Bearbeiten hochladen oder eigene erstellen</h2>
     <p class="ics-description">
         Lade eine oder mehrere ICS-Dateien hoch um sie auszulesen oder zusammenzuführen, oder erstelle dir eine ICS Datei nach eigenen Angaben und lade sie herunter.
