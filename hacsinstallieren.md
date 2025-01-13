@@ -28,7 +28,7 @@ layout: page
         <button id="decision-no">Nein</button>
     </div>
 </div>
-<div style="align-items: center; max-width: 60%;">
+<div style="display: flex; justify-content: center; align-items: center; margin: 0 auto; max-width: 60%;">
     {% include youtube.html video="j54-l1iPa6g" %}
 </div>
 <br>
