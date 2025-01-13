@@ -244,6 +244,86 @@ layout: page
     </p>
   </section>
 
+<section class="content-section">
+    <h2 class="section-title">6. Pop-Up Karte</h2>
+    <p>
+        Die Pop-Up Karte zeigt Müllabholungen prominent an und blendet dazu ein individuelles Pop-Up ein. 
+        Diese Funktion hilft, wichtige Informationen direkt auf dem Dashboard sichtbar zu machen.
+    </p>
+    <h3>6.1 Hintergrundbild hinzufügen</h3>
+    <p>
+        Für das Pop-Up wird ein Hintergrundbild benötigt:
+    </p>
+    <ul>
+        <li>Lade das <strong>Hintergrundbild</strong> herunter.</li>
+        <li>Speichere es in Home Assistant unter <code>www/muell</code>.</li>
+        <li>Vergewissere dich, dass das Bild vor der Einrichtung des Pop-Ups gespeichert ist, um Cache-Probleme zu vermeiden.</li>
+    </ul>
+    <h3>6.2 Helfer erstellen</h3>
+    <p>
+        Für die Pop-Up Karte werden zwei Helfer benötigt:
+    </p>
+    <ul>
+        <li><strong>Müllerinnerung Taster:</strong> Zum manuellen Auslösen des Pop-Ups.</li>
+        <li><strong>Müllerinnerung Zeitplan:</strong> Zum automatischen Öffnen des Pop-Ups anhand eines Zeitplans.</li>
+    </ul>
+    <p>
+        Lege die Helfer mit den entsprechenden Namen in Home Assistant an. Detaillierte Anleitungen dazu findest du im 
+        <button class="dropdown-toggle" onclick="toggleDropdown('helperDropdown', this)">
+            Helfer Anleitung anzeigen <span>&#9660;</span>
+        </button>.
+    </p>
+    <div id="helperDropdown" class="dropdown-content" style="display: none;">
+        <p>Video- und Bildanleitungen zur Erstellung der Helfer.</p>
+    </div>
+    <h3>6.3 YAML-Code für das Pop-Up generieren</h3>
+    <p>
+        Generiere den Code für das Pop-Up basierend auf deinen Einstellungen:
+    </p>
+    <ul>
+        <li>Wähle die Anzeige für <strong>Heute</strong> oder <strong>Morgen</strong>.</li>
+        <li>Klicke auf <button class="highlight-button">Pop-Up erstellen</button>, um den YAML-Code zu generieren.</li>
+        <li>Kopiere den Code in die Zwischenablage.</li>
+    </ul>
+    <h3>6.4 Pop-Up Karte auf Dashboards einfügen</h3>
+    <p>
+        Füge die Pop-Up Karte auf deinen Home Assistant Dashboards hinzu:
+    </p>
+    <ul>
+        <li>Erstelle eine neue Karte.</li>
+        <li>Wähle den Typ <strong>Manuell</strong>.</li>
+        <li>Füge den kopierten YAML-Code ein und speichere die Änderungen.</li>
+    </ul>
+    <h3>6.5 Browser Mod und Browser ID einrichten</h3>
+    <p>
+        Um das Pop-Up nur auf bestimmten Geräten anzuzeigen, richte die Browser ID ein:
+    </p>
+    <ul>
+        <li>Installiere die <strong>Browser Mod Integration</strong>.</li>
+        <li>Registriere die Browser, auf denen das Pop-Up erscheinen soll.</li>
+        <li>Weise den Browsern eine ID zu.</li>
+    </ul>
+    <p>
+        Weitere Informationen findest du im 
+        <button class="dropdown-toggle" onclick="toggleDropdown('browserModDropdown', this)">
+            Browser Mod Anleitung <span>&#9660;</span>
+        </button>.
+    </p>
+    <div id="browserModDropdown" class="dropdown-content" style="display: none;">
+        <p>Video- und Bildanleitungen zur Einrichtung von Browser Mod und Browser ID.</p>
+    </div>
+    <h3>6.6 Automatisierung erstellen</h3>
+    <p>
+        Damit das Pop-Up automatisch angezeigt wird, lege eine Automatisierung an:
+    </p>
+    <ul>
+        <li>Lade das bereitgestellte <strong>Blueprint</strong> herunter und installiere es in Home Assistant.</li>
+        <li>Erstelle eine Automatisierung mit dem Namen <strong>Müllerinnerung Pop-Up</strong>.</li>
+        <li>Verknüpfe die Automatisierung mit dem <strong>Müllerinnerung Taster</strong> und dem <strong>Müllerinnerung Zeitplan</strong>.</li>
+    </ul>
+</section>
+
+
   <footer class="guide-footer">
     <h3>Viel Erfolg bei der Einrichtung! 🎉</h3>
   </footer>
