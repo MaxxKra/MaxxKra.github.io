@@ -10,19 +10,6 @@ published: true
 ---
 
 <div class="page-content">
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
-    </div>
-</div>
-<div style="text-align: center;">
-    <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftarten.png" alt="Titelbild" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
-</div>
-
-<h2>Eigene Schriftart</h2>
-
 <p>
     Ich wollte unbedingt für meine Dashboards eine Schriftart zur Auswahl haben, welche meine Uhr in digitaler Schrift anzeigt.
 </p>
@@ -106,6 +93,14 @@ card_mod:
     <div style="text-align: center;">
         <img src="/img/blog/eigene_Schriftart/blog-post-eigene-schriftart-digital-uhr-2.png" alt="Digitale Uhr 2" style="max-width: 60%; height: auto; border-radius: 10px; margin-bottom: 30px;">
     </div>
+<div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content">
+        <h4 id="custom-alert-title"></h4>
+        <p id="custom-alert-message"></p>
+        <button id="close-alert">OK</button>
+    </div>
+</div>
+</div>
 
 <style>
     .page-content {

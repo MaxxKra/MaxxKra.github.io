@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Adventskranz mit ESPHome smart machen"
+title: "Einen smarten Adventskranz bauen"
 date: 2024-11-23 08:03:24
 categories: Dashboard
 tags: [Adventskranz, ESPHome, D1 Mini, Home Assistant, Automatisierung, DIY Smart Home, Weihnachtsdeko, Mikrocontroller, Smarte Beleuchtung, Advent]
@@ -10,8 +10,6 @@ published: true
 ---
 
 <div class="page-content">
-<h2>Einen smarten Adventskranz bauen</h2>
-
 <p>
     Da meine Frau und ich das Glück haben, bei zwei unglaublich süßen Katern wohnen zu dürfen, ist es leider nicht möglich, echte, brennende Kerzen in der Wohnung zu nutzen. 
     Da wir dennoch gerne zur Weihnachtszeit einen Adventskranz aufstellen und dieser natürlich leuchtende Kerzen haben soll, kam mir die Idee, einfach einen smarten Adventskranz zu bauen und diesen voll automatisiert zu gestalten.
