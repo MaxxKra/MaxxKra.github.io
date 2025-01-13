@@ -13,6 +13,7 @@ published: true
 <p>
     Da meine Frau und ich das Glück haben, bei zwei unglaublich süßen Katern wohnen zu dürfen, ist es leider nicht möglich, echte, brennende Kerzen in der Wohnung zu nutzen.
 </p>
+
 <p>
     Da wir dennoch gerne zur Weihnachtszeit einen Adventskranz aufstellen und dieser natürlich leuchtende Kerzen haben soll, kam mir die Idee, einfach einen smarten Adventskranz zu bauen und diesen voll automatisiert zu gestalten.
 </p>
