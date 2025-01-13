@@ -70,9 +70,12 @@ layout: page
         border-radius: 8px;
     }
     .content-section h2 {
-        color: #5bacff;
+        color: #1598b3;
         font-size: 1.75em;
         margin-bottom: 10px;
+    }
+    .content h1 {
+        color: #1598b3
     }
     .content-section ul {
         margin: 10px 0 0 20px;
