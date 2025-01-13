@@ -14,7 +14,7 @@ layout: page
     </p>
 </div>
 <div class="ics-container">
-    <h1 class="ics-header">ICS Code Generator</h1>
+    <h1 class="ics-header">1. ICS Code Generator</h1>
     <p class="ics-intro">
         Der ICS Code Generator ermöglicht das Hochladen und Zusammenführen von ICS-Kalenderdateien.
     </p> 
@@ -66,7 +66,7 @@ layout: page
 </div>
 
 <div class="ics-container">
-    <h1 class="ics-header">Eigenen ICS Kalender erstellen</h1>
+    <h1 class="ics-header">2. Eigenen ICS Kalender erstellen</h1>
     <p class="ics-intro">
         Mit diesem Tool <strong>Eigene ICS erstellen</strong> kann ein Kalender mit eigenem Namen, frei definierten Event-Namen und Ereignisdatum erstellt werden. 
     </p>    
@@ -93,7 +93,7 @@ layout: page
 </div>
 
 <div class="ics-container">
-  <h1 class="ics-header">Müllerinnerung Sensoren Codegenerator</h1>
+  <h1 class="ics-header">3. Müllerinnerung Sensoren Codegenerator</h1>
   
   <section class="content-section">
     <h2 class="section-title">1. Kalenderdaten auslesen</h2>
@@ -394,7 +394,7 @@ layout: page
 
 <style>
 
-    .main-header, .main-header h1 {
+    .main-header {
         text-align: center;
         color: #1598b3;
         font-size: 2.5em;
@@ -406,6 +406,11 @@ layout: page
         color: #a9a9a9;
         margin-bottom: 20px;
         font-size: 1em
+    }
+
+    .content h1 {
+        color: #1598b3;
+        font-size: 2.5em;
     }
     .ics-container {
         max-width: 100%;
