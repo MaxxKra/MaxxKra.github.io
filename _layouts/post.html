@@ -41,6 +41,12 @@ layout: default
     <h1 class="title">{{ page.title }}</h1>
     <p>Veröffentlicht: {{ page.date | date: '%d. %m. %Y' }} von {{ page.author }}</p>
 
+    {% if post.image %}
+    <div class="card-image">
+        <img src="{{ post.image }}" alt="{{ post.title }}">
+    </div>
+    {% endif%}
+
     {% if page.series %}
     {% include series.html %}
     {% endif %}
