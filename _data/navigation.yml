@@ -28,7 +28,7 @@
   dropdown:
     - name: Beschreibung Müllerinnerung Codegenerator
       link: /mullerinnerungsbeschreibung
-    - name: ICS zusammenführen / bearbeiten
+    - name: ICS zusammenführen / erstellen
       link: /icszusammenfuhren
     - name: Müllerinnerung Sensoren
       link: /mullerinnerungsensoren

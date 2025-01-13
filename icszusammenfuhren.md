@@ -1,6 +1,6 @@
 ---
 title: ICS Code Generator
-subtitle: ICS-Dateien hochladen oder von URL abrufen
+subtitle: ICS-Dateien hochladen oder erstellen
 description: Lade ICS-Dateien hoch oder rufe sie von einer URL ab, um sie zu bearbeiten oder zusammenzuführen.
 show_sidebar: false
 layout: page
