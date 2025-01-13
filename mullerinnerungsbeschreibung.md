@@ -87,8 +87,8 @@ layout: page
     </footer>
 </div>
 
-<div class="guide-container">
-  <h1 class="guide-title">Müllerinnerung Sensoren Codegenerator</h1>
+<div class="ics-container">
+  <h1 class="ics-header">Müllerinnerung Sensoren Codegenerator</h1>
   
   <section class="content-section">
     <h2 class="section-title">1. Kalenderdaten auslesen</h2>
