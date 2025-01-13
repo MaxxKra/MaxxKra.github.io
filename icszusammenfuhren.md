@@ -110,7 +110,7 @@ layout: page
 </div>
 
 <style>
-    .guide-container {
+    .ics-guide {
         max-width: 100%;
         margin: auto;
         padding: 20px;
