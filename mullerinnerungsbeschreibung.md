@@ -394,7 +394,7 @@ layout: page
 
 <style>
 
-    .main-header {
+    .main-header, .main-header h1 {
         text-align: center;
         color: #1598b3;
         font-size: 2.5em;
