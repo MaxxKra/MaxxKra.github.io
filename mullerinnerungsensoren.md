@@ -708,7 +708,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    {% include youtube.html video="7HlL8uKRyC0" %}
+                    <div style="margin: 0 auto; max-width: 60%;">
+                        {% include youtube.html video="7HlL8uKRyC0" %}
+                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -736,7 +738,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    {% include youtube.html video="_oR8JQHNYqY" %}
+                    <div style="margin: 0 auto; max-width: 60%;">
+                        {% include youtube.html video="_oR8JQHNYqY" %}
+                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -866,7 +870,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                 </div>
                 <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
                     {{ gallery.subtitle | markdownify }}
-                    {% include youtube.html video="_GxgMv0LSLI" %}
+                    <div style="margin: 0 auto; max-width: 60%;">
+                        {% include youtube.html video="_GxgMv0LSLI" %}
+                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -947,7 +953,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                 </div>
                 <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
                     {{ gallery.subtitle | markdownify }}
-                    {% include youtube.html video="WP8SMkcWKlM" %}
+                    <div style="margin: 0 auto; max-width: 60%;">
+                        {% include youtube.html video="WP8SMkcWKlM" %}
+                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
