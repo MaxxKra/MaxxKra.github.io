@@ -673,7 +673,7 @@ layout: page
         text-orientation: mixed;
         transform: rotate(180deg); /* Text von unten nach oben */
         padding: 20px 30px;
-        width: 15%;
+        width: 8%;
         height: auto;
     }
 
