@@ -268,13 +268,37 @@ layout: page
         <li><strong>Müllerinnerung Zeitplan:</strong> Zum automatischen Öffnen des Pop-Ups anhand eines Zeitplans.</li>
     </ul>
     <p>
-        Lege die Helfer mit den entsprechenden Namen in Home Assistant an. Detaillierte Anleitungen dazu findest du im 
-        <button class="dropdown-toggle" onclick="toggleDropdown('helperDropdown', this)">
-            Helfer Anleitung anzeigen <span>&#9660;</span>
-        </button>.
+        Lege die Helfer mit den entsprechenden Namen in Home Assistant an. Detaillierte Anleitungen dazu findest du im
     </p>
-    <div id="helperDropdown" class="dropdown-content" style="display: none;">
-        <p>Video- und Bildanleitungen zur Erstellung der Helfer.</p>
+    <div class="dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown4', this)">Helfer-Zeitplan einrichten <span>&#9660;</span></button>
+        <div id="galleryDropdown4" class="dropdown-content" style="display: none;">
+            {% assign gallery_images = site.data.gallery_helfer_zeitplan %}
+            <div class="columns is-multiline">
+                {% for gallery in gallery_images %}
+                    <div class="column is-12">
+                        <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                        <div style="margin: 0 auto; max-width: 60%;">
+                            {% include youtube.html video="_oR8JQHNYqY" %}
+                        </div>
+                    </div>
+                    {% for image in gallery.images %}
+                        <div class="column is-3-desktop is-6-tablet">
+                            <div class="card">
+                                <div class="card-image">
+                                    {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">
+                                        {{ image.description | markdownify }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <h3>6.3 YAML-Code für das Pop-Up generieren</h3>
     <p>
@@ -305,10 +329,40 @@ layout: page
     </ul>
     <p>
         Weitere Informationen findest du im 
-        <button class="dropdown-toggle" onclick="toggleDropdown('browserModDropdown', this)">
-            Browser Mod Anleitung <span>&#9660;</span>
-        </button>.
     </p>
+    <div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown5', this)">Browser Mod und Browser ID einrichten <span>&#9660;</span></button>
+        <div id="galleryDropdown5" class="dropdown-content" style="display: none;">
+            {% assign gallery_images = site.data.gallery_browser_mod_id %}
+            <div class="columns is-multiline">
+                {% for gallery in gallery_images %}
+                    <div class="column is-12">
+                        <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+                    </div>
+                    <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
+                        {{ gallery.subtitle | markdownify }}
+                        <div style="margin: 0 auto; max-width: 60%;">
+                            {% include youtube.html video="_GxgMv0LSLI" %}
+                        </div>
+                    </div>
+                    {% for image in gallery.images %}
+                        <div class="column is-3-desktop is-6-tablet">
+                            <div class="card">
+                                <div class="card-image">
+                                    {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">
+                                        {{ image.description | markdownify }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     <div id="browserModDropdown" class="dropdown-content" style="display: none;">
         <p>Video- und Bildanleitungen zur Einrichtung von Browser Mod und Browser ID.</p>
     </div>
