@@ -6,7 +6,6 @@ show_sidebar: false
 layout: page 
 ---
 
-{% include support_note.html %}
 
 <div class="ics-container">
     <h1 class="ics-header">Müllerinnerung Tools</h1>
@@ -380,7 +379,11 @@ layout: page
 
   <footer class="guide-footer">
     <h3>Viel Erfolg bei der Einrichtung! 🎉</h3>
+    <br>
+    {% include support_note.html %}
   </footer>
+
+
 </div>
 
 <style>
