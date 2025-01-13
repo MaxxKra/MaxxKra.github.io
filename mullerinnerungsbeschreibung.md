@@ -9,9 +9,9 @@ layout: page
 {% include support_note.html %}
 
 <div class="ics-container">
-    <h1 class="ics-header">ICS Code Generator</h1>
+    <h1 class="ics-header">Müllerinnerung Tools</h1>
     <p class="ics-intro">
-        Der ICS Code Generator ermöglicht das Hochladen und Zusammenführen von ICS-Kalenderdateien.
+        Die Müllerinnerung Tools ermöglichen es, Müllabholungen effizient zu planen, Kalenderdaten zu bearbeiten, Sensoren zu konfigurieren und Dashboards sowie Pop-Up-Karten in Home Assistant zu erstellen. Alles an einem Ort für deine perfekte Organisation!
     </p>    
     <!-- Abschnitt: Dateien hochladen -->
     <section class="content-section">
