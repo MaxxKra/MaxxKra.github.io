@@ -247,5 +247,3 @@ card_mod:
             });
     }
 </script>
-
-</div>
