@@ -187,7 +187,7 @@ layout: page
 </div>
 
 <!-- Auswahl für die Tap- und Hold-Action mit jeweiligen Navigationspfaden -->
-<div class="floorplan-form-group-horizontal">
+<div class="floorplan-marker-form">
     <div class="floorplan-form-group-full">
         <label for="marker-tap-action">Tap Action:</label>
         <select id="marker-tap-action" onchange="toggleNavigationPathInput('tap')">
