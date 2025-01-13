@@ -575,11 +575,11 @@ layout: page
         gap: 10px;
         margin-top: 20px;
     }
-    .floorplan-form-group {
+    .floorplan-form-group, .floorplan-form-group-full {
         display: flex;
         flex-direction: column;
     }
-    .floorplan-form-group label {
+    .floorplan-form-group label, .floorplan-form-group-full label {
         font-weight: bold;
         margin-bottom: 5px;
     }
