@@ -1785,7 +1785,7 @@ async function extractEntries() {
             "Schwarz-Braun": "schwarz-braun.png", 
             "gelber Sack": "gelb_sack.png", 
             "schwarzer Sack": "schwarz_sack.png",
-            "roter Sack": "rot_sack",
+            "roter Sack": "rot_sack.png",
             "blauer Sack": "blau_sack.png",
             "grüner Sack": "gruen_sack.png"
         };
