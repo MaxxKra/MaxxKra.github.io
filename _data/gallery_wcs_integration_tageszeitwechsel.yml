@@ -1,0 +1,21 @@
+- images:
+    - link: /img/muell/WCS-Integration_k.png
+      large_link: /img/muell/WCS-Integration.png
+      alt: WCS Integration
+      description: |-
+        Gehe in Home Assistant auf Einstellungen, Geräte & Dienste und klicke auf die Integration Waste Collection Schedule
+      ratio: is-3by2
+    - link: /img/muell/WCS-Integration_offen_k.png
+      large_link: /img/muell/WCS-Integration_offen.png
+      alt: WCS Konfiguration öffnen
+      description: |-
+        Klicke auf `Konfigurieren` um die Konfiguration der Integration zu öffnen
+      ratio: is-3by2
+    - link: /img/muell/WCS-Integration_Tageszeitwechsel_k.png
+      large_link: /img/muell/WCS-Integration_Tageszeitwechsel.png
+      alt: Tageszeitwechsel ändern
+      description: |-
+        Bis zu diesem eingestelltem Zeitpunkt werden Abholungen für `heute` und auch für `morgen` angezeigt.
+
+        Ändere diese auf dein Bedürfnis um.
+      ratio: is-3by2

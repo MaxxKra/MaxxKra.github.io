@@ -8,7 +8,16 @@ meeting_date: "13-02-2025"  # Eingabe im DD-MM-YYYY Format
 meeting_time: "18:00"       # Eingabe im HH:mm Format
 ---
 <div class="page-content">
-<h1 style="text-align: center;">Herzlich willkommen auf meiner<br>Home Assistant<br>Code Website</h1>
+<h1 style="text-align: center; line-height: 1.6; font-size: 2.6em;">
+    Herzlich willkommen auf meiner<br>
+    <span style="white-space: nowrap;">
+        <img src="/img/logos/ha-logo.png" alt="Home Assistant Logo" style="width: 60px; height: auto; vertical-align: middle;"> 
+        Home Assistant 
+        <img src="/img/logos/ha-logo.png" alt="Home Assistant Logo" style="width: 60px; height: auto; vertical-align: middle;">
+    </span>
+    <br>
+    Code Website
+</h1>
 <br>
 <p style="text-align: center;">
     Auf dieser Website dreht sich alles um Code-Snippets, Codegeneratoren und Code-Vorlagen für die Einrichtung, die Erweiterung und das Design von Home Assistant.<br>

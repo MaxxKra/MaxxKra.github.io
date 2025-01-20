@@ -6,10 +6,10 @@ tags: [Home Assistant, Abfallerinnerung, Müllerinnerung, Waste Collection Sched
 show_sidebar: false
 layout: page
 ---
-<div class="guide-container">
-<h1 class="custom-title">Müllerinnerung Code-Generator</h1>
+<div class="shb-main-container">
+<h1 class="shb-main-title">Müllerinnerung Code-Generator</h1>
 <br>
-<p>
+<p class="shb-main-description">
     Mit diesem Code-Generator hast du die Möglichkeit, deine Müllerinnerung vom Anlegen des Kalenders über das Einrichten der Sensoren und Templates bis hin zur Dashboard- und Pop-Up- Karte durchzuführen.
 </p>
 <!-- Wichtiger Hinweis -->
@@ -22,20 +22,21 @@ layout: page
         Ebenfalls ist zu beachten, dass derzeit nur ICS Dateien und ICS-URLs für den Codegenerator genutzt werden können.
     </p>
 </div>
-<br>
-<h4>Was muss vor der Bearbeitung mit dem Code-Generator vorbereitet werden:</h4>
+<h4 class="shb-section-title-left">Was muss vor der Bearbeitung mit dem Code-Generator vorbereitet werden:</h4>
 
-<ul class="styled-list-start">
+<ul class="shb-list-start">
     <li>Herunterladen und installieren der <strong>Waste Collection Schedule</strong> in HACS</li>
     <li>Anlegen eines <strong>muell</strong> Ordners im <strong>config/www/</strong> Ordner</li>
     <li>Bereitstellung einer ICS Datei oder URL</li>
 </ul>
-<br>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('noISCdropdown', this)">
-        Was mache ich, wenn ich keine ICS Datei oder URL habe? <span>&#9660;</span>
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('noISCdropdown', this)">
+        Was mache ich, wenn ich keine ICS Datei oder URL habe? <span>⬇️</span>
     </button>
-    <div id="noISCdropdown" class="dropdown-content" style="display: none; padding: 10px; text-align: left; line-height: 1.5;">
+    <div id="noISCdropdown" class="shb-dropdown-content" style="display: none;">
+        <div class="shb-dropdown-youtube">
+            {% include youtube.html video="r4koAf8UnwQ" %}
+        </div>
         <h3><strong>Verwendung des Codegenerators ohne ICS Datei oder URL</strong></h3>
         <p>
             Wenn du keine ICS Datei oder eine URL zur Einrichtung deines Kalenders in der <strong>Waste Collection Schedule</strong> hast, kannst du den Codegenerator mit einem kleinen Trick trotzdem nutzen.
@@ -70,27 +71,17 @@ layout: page
     </div>
 </div> 
 
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
-    </div>
-</div>
-<div id="custom-decision" style="display: none;">
-    <div id="custom-decision-content">
-        <h4 id="custom-decision-title"></h4>
-        <p id="custom-decision-message"></p>
-        <ul id="custom-decision-list"></ul>
-        <p id="custom-decision-question" style="font-weight: bold; margin-top: 10px;">
-            Möchtest du die Verarbeitung fortsetzen?
-        </p>
-        <button id="decision-yes">Ja</button>
-        <button id="decision-no">Nein</button>
+<div id="shb-custom-alert" style="display: none;">
+    <div id="shb-custom-alert-content">
+        <h4 id="shb-custom-alert-title"></h4>
+        <p id="shb-custom-alert-message"></p>
+        <button id="shb-close-alert">OK</button>
     </div>
 </div>
 <br>
-<button class="custom-button" onclick="showStep(1);">Hinweise gelesen! Vorbereitungen getroffen! Bereit zu starten!</button>
+<div class="shb-button">
+    <button class="shb-button shb-button-main" style="margin-bottom: 30px;" onclick="showStep(1);">👇  Hinweise gelesen! Vorbereitungen getroffen! Bereit zu starten!  👇</button>
+</div>
 <!--
  █████  ██████  ███████  ██████ ██   ██ ███    ██ ██ ████████ ████████      ██ 
 ██   ██ ██   ██ ██      ██      ██   ██ ████   ██ ██    ██       ██        ███ 
@@ -100,25 +91,26 @@ layout: page
 -->
 
 <div class="content-section" id="step-1" style="display:none;">
-<h2 class="custom-title">1. Kalenderdaten Auslesen</h2>
+<h2 class="shb-section-title-center">1. Kalenderdaten Auslesen</h2>
 
 <p>
     Zum Auslesen der verschiedenen Abholungen aus deinem Müllkalender, gib bitte deine URL an oder lade die ICS-Datei hoch und bestätige mit<br>
     <strong>Kalendereinträge extrahieren</strong>.
 </p>
 
-<!-- File Upload and URL Input -->
-<div class="custom-form-group">
-    <label for="icsFile" class="custom-label">ICS-Datei hochladen</label>
-    <input type="file" id="icsFile" class="custom-input" accept=".ics" />
+<div class="shb-form-group">
+    <label for="icsFile">ICS-Datei hochladen</label>
+    <input type="file" id="icsFile" style="width: 30%" accept=".ics" />
 </div>
 
-<div class="custom-form-group">
-    <label for="calendarUrl" class="custom-label">oder ICS-URL eingeben</label>
-    <input type="url" id="calendarUrl" class="custom-input" placeholder="https://example.com/kalender.ics" />
+<div class="shb-form-group">
+    <label for="calendarUrl">oder ICS-URL eingeben</label>
+    <input type="url" id="calendarUrl" style="width: 30%" placeholder="https://example.com/kalender.ics" />
 </div>
 
-<button class="custom-button" onclick="extractEntries(); showStep(2);">Kalendereinträge extrahieren!</button>
+<div class="shb-button">
+    <button class="shb-button shb-button-main" style="margin-bottom: 30px;" onclick="extractEntries(); showStep(2);">👇  Kalendereinträge extrahieren!  👇</button>
+</div>
 </div>
 
 <!--
@@ -130,10 +122,10 @@ layout: page
 -->
 
 <div class="content-section" id="step-2" style="display:none;">
-<h2 class="custom-title">2. Kalenderdaten Umwandeln</h2>
+<h2 class="shb-section-title-center">2. Kalenderdaten Umwandeln</h2>
 
-<p>Im nächsten Schritt wähle jene Einträge aus, welche zu deinen Sensoren hinzugefügt werden sollen.<br> 
-Zusätzlich hast du die Möglichkeit individuelle Bezeichnungen zu vergeben.
+<p>
+    Im nächsten Schritt wähle jene Einträge aus, welche zu deinen Sensoren hinzugefügt werden sollen.<br> Zusätzlich hast du die Möglichkeit individuelle Bezeichnungen zu vergeben.
 </p>
 
 <div id="umlaut-warning-container" class="important-container" style="display: none;">
@@ -173,10 +165,11 @@ Nach den Änderungen klicke auf<br>
 <strong>Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</strong>
 </p>
 
-<table class="custom-table" id="entry-table">
+<div class="shb-styled-table-container">
+<table class="shb-custom-table" id="entry-table">
     <thead>
         <tr>
-            <th>Auswählen</th>
+            <th style="text-align: center;">Auswählen</th>
             <th>Kalendereintrag</th>
             <th>Eigene Bezeichnung</th>
         </tr>
@@ -185,14 +178,15 @@ Nach den Änderungen klicke auf<br>
         <!-- Dynamically populated rows will go here -->
     </tbody>
 </table>
+</div>
 
 <p>
-Es kommt häufig vor, dass Kalendereinträge nicht nur die einfachen Namen sonder mit zusätzlichem Text versehen sind.<br>
-In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als Alias in der Waste Collection Schedule angelegt werden.
+    Es kommt häufig vor, dass Kalendereinträge nicht nur die einfachen Namen sonder mit zusätzlichem Text versehen sind.<br>
+    In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als Alias in der Waste Collection Schedule angelegt werden.
 </p>
 
-<div id="confirm-step-2" style="text-align: center; margin-top: 20px;">
-    <button class="custom-button" onclick="handleStepTransition();">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
+<div class="shb-button" id="confirm-step-2">
+    <button class="shb-button shb-button-main" style="margin-bottom: 30px;" onclick="handleStepTransition();">👇  Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!  👇</button>
 </div>
 </div>
 
@@ -205,7 +199,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div class="content-section" id="step-3" style="display:none;">
-<h2 class="custom-title">3. Sensoren Konfiguration</h2>
+<h2 class="shb-section-title-center">3. Sensoren Konfiguration</h2>
 
 <p>
     Wenn du eine ICS Datei verwendest, sollte an diesem Punkt diese Datei in deinem <strong>www/muell/</strong> Ordner abgelegt werden.
@@ -216,9 +210,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Eine detaillierte Beschreibung wie diese einzurichten ist, findest du im <strong>⬇️ Dropdown Menü ⬇️</strong>
 </p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown', this)">Waste Collection Schedule Integration und Sensor Einrichtung <span>&#9660;</span></button>
-    <div id="galleryDropdown" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown', this)">Waste Collection Schedule Integration und Sensor Einrichtung <span>⬇️</span></button>
+    <div id="galleryDropdown" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_mull_helfer %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -246,9 +240,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         </div>
     </div>
 </div>
-<h4>Was kann in der Waste Collection Schedule Integration eingerichtet werden:</h4>
+<h4 class="shb-section-title-left">Was kann in der Waste Collection Schedule Integration eingerichtet werden:</h4>
 
-<ul class="styled-list-start">
+<ul class="shb-list-start">
     <li><strong>Kalender</strong> - Anlegen deines Abfallkalenders mittels ICS, URL oder Abfall App</li>
     <li><strong>Mülltypen</strong> - Änderung der Bezeichnungen deiner einzelnen Abholungen (Alias Namen)</li>
     <li><strong>Sensor Nächste Abholung</strong> - Ein Sensor welche die nächste Abholung als Status ausgibt</li>
@@ -267,13 +261,13 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Dann den Sensor-Namen zusammen mit dem Werte-Template in die Waste Collection Schedule eintragen.
 </p>
 
-<h3 class="custom-subtitle" id="sensor-header" style="display:none;">Anzulegende Sensoren und Mülltypen</h3>
+<h3 class="shb-section-title-center" id="sensor-header" style="display:none;">Anzulegende Sensoren und Mülltypen</h3>
 
-<table class="custom-table" id="sensor-table" style="display:none;">
+<table class="shb-custom-table" id="sensor-table" style="display:none;">
     <thead>
         <tr>
             <th>Sensor Name</th>
-            <th>Kopiert</th>
+            <th style="text-align: center;">Kopiert</th>
             <th>Entity ID</th>
             <th>Tonnen Farbe</th>
         </tr>
@@ -283,22 +277,22 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     </tbody>
 </table>
 
-<h3 class="custom-subtitle" id="template-header" style="display:none;">Werte Templates Sensoren</h3>
+<h3 class="shb-section-title-center" id="template-header" style="display:none;">Werte Templates Sensoren</h3>
 
 <div id="code-output-next" style="display:none;">
     <h4>Werte Template Nächste Abholung</h4>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('next-pickup-template', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('next-pickup-template', this)">Kopieren</button>
         <pre id="next-pickup-template" class="language-yaml"><code></code></pre>
     </div>
     <h4>Werte Template einzelne Abholungen</h4>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('individual-pickup-template', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('individual-pickup-template', this)">Kopieren</button>
         <pre id="individual-pickup-template" class="language-yaml"><code></code></pre>
     </div>
 </div>
 
-<h3 class="custom-subtitle" id="date-sensor-header" style="display:none;">Optionale Datum Sensoren</h3>
+<h3 class="shb-section-title-center" id="date-sensor-header" style="display:none;">Optionale Datum Sensoren</h3>
 
 <p>
     Wenn du das Datum der einzelnen Abholung benötigst, kannst du dir diesen Sensor ebenfalls anlegen.<br>
@@ -306,11 +300,11 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     und lege diesen Sensor zusammen mit dem <strong>Werte Template Datum einzelne Abholungen</strong> in der Waste Collection Schedule an.
 </p>
 
-<table class="custom-table" id="date-sensor-table" style="display: none;">
+<table class="shb-custom-table" id="date-sensor-table" style="display: none;">
     <thead>
         <tr>
             <th>Sensor Name</th>
-            <th>Kopiert</th>
+            <th style="text-align: center;">Kopiert</th>
             <th>Entity ID</th>
         </tr>
     </thead>
@@ -321,14 +315,47 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
 <div id="code-output-date" style="display:none;">
     <h4>Werte Template Datum einzelne Abholungen</h4>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('date-pickup-template', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('date-pickup-template', this)">Kopieren</button>
         <pre id="date-pickup-template" class="language-yaml"><code></code></pre>
     </div>
 </div>
-<div id="confirm-step-3" style="text-align: center; margin-top: 20px;">
-    <button class="custom-button" onclick="if (validateColors()) { showStep(4); }">
-        Sensoren angelegt? Weiter zu den Templates!
+
+<h3 class="shb-section-title-center">Tageszeit des Anzeigewechsel ändern</h3>
+
+<p>
+    In der Integration ist der Wechsel der Tageszeit lt. Standard <strong>10:00 Uhr</strong>.<br>
+    Ab diesem Zeitpunkt wird die Abholung für heute und morgen gewechselt und daher nicht mehr angezeigt.<br>
+    Diese Zeit kann wie folgt auf eigene Bedürfnisse geändert werden.
+</p>
+
+<div class="columns is-centered">
+{% assign gallery_images = site.data.gallery_wcs_integration_tageszeitwechsel %}
+    <div class="columns is-multiline">
+        {% for gallery in gallery_images %}
+            <div class="column is-12">
+                <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
+            </div>
+            {% for image in gallery.images %}
+                <div class="column is-3-desktop is-6-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            {% include image-modal.html ratio=image.ratio link=image.link alt=image.alt large_link=image.large_link %}
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                {{ image.description | markdownify }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="shb-button" id="confirm-step-3" style="margin-top: 20px;">
+    <button class="shb-button shb-button-main" onclick="if (validateColors()) { showStep(4); }">👇  Sensoren angelegt? Weiter zu den Templates!  👇
     </button>
 </div>
 </div>
@@ -342,7 +369,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div class="content-section" id="step-4" style="display:none;">
-<h2 class="custom-title">4. Templates Erstellen</h2>
+<h2 class="shb-section-title-center">4. Templates Erstellen</h2>
 
 <!-- Hinweisfenster mit Beschreibung -->
 <div class="note-container">
@@ -353,19 +380,21 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     </p>
 </div>
 
-<p>Eine Beschreibung wie man einen Template-Sensor Helfer in Home Assistant anlegt,findest du im <strong>⬇️ Dropdown Menü ⬇️</strong></p>
+<p>
+    Eine Beschreibung wie man einen Template-Sensor Helfer in Home Assistant anlegt,findest du im <strong>⬇️ Dropdown Menü ⬇️</strong>
+</p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown2', this)">Home Assistant - Template Sensor Helfer anlegen <span>&#9660;</span></button>
-    <div id="galleryDropdown2" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown2', this)">Home Assistant - Template Sensor Helfer anlegen <span>⬇️</span></button>
+    <div id="galleryDropdown2" class="shb-dropdown-content" style="display: none;">
+        <div class="shb-dropdown-youtube">
+            {% include youtube.html video="3fhL_K4o3Dg" %}
+        </div>
         {% assign gallery_images = site.data.gallery_helfer_Template_mullerinnerung %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    <div style="margin: 0 auto; max-width: 60%;">
-                        {% include youtube.html video="3fhL_K4o3Dg" %}
-                    </div>
                 </div>
                 {% for image in gallery.images %}
                     <div class="column is-3-desktop is-6-tablet">
@@ -388,69 +417,77 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
 
 <!-- Checkboxen für "keine"-Anzeige -->
-<div class="custom-form-group">
-    <input type="checkbox" id="keineHeute" />
-    <label for="keineHeute">Anzeige Text "keine" für Heute</label><br>
-    <input type="checkbox" id="keineMorgen" />
-    <label for="keineMorgen">Anzeige Text "keine" für Morgen</label>
+<div class="shb-form-group">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="keineHeute" />
+        <label for="keineHeute">Anzeige Text "keine" für Heute</label>
+    </div>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="keineMorgen" />
+        <label for="keineMorgen">Anzeige Text "keine" für Morgen</label>
+    </div>
 </div>
 
-<button class="custom-button" onclick="showStep(5); createTemplates()">Templates erstellen</button>
-
+<div class="shb-button">
+    <button class="shb-button shb-button-main" onclick="showStep(5); createTemplates()">👇  Templates erstellen  👇</button>
+</div>
+<br>
 <!-- Output for "Müllabholung Heute" -->
 <div id="helper-template-output-heute" style="display:none;">
-    <div class="custom-title-inline">
+    <div class="shb-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Heute</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
         <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-heute', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('helper-template-heute', this)">Kopieren</button>
         <pre id="helper-template-heute" class="language-yaml"><code></code></pre>
     </div>
 </div>
 
 <!-- Ausgabe für "Müllabholung Text Heute" -->
 <div id="helper-template-output-text-heute" style="display:none;">
-    <div class="custom-title-inline">
+    <div class="shb-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Heute</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
         <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-text-heute', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('helper-template-text-heute', this)">Kopieren</button>
         <pre id="helper-template-text-heute" class="language-yaml"><code></code></pre>
     </div>
 </div>
 
 <!-- Output for "Müllabholung Morgen" -->
 <div id="helper-template-output-morgen" style="display:none;">
-    <div class="custom-title-inline">
+    <div class="shb-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Morgen</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
         <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-morgen', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('helper-template-morgen', this)">Kopieren</button>
         <pre id="helper-template-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
 
 <!-- Ausgabe für "Müllabholung Text Morgen" -->
 <div id="helper-template-output-text-morgen" style="display:none;">
-    <div class="custom-title-inline">
+    <div class="shb-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Morgen</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
         <span class="copy-confirmation" style="display: inline;">❌</span>
     </div>
-    <div class="code-container">
-        <button class="copy-button" onclick="copyCode('helper-template-text-morgen', this)">Kopieren</button>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('helper-template-text-morgen', this)">Kopieren</button>
         <pre id="helper-template-text-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
 </div>
 <div class="content-section" id="step-5" style="display:none;">
-<button class="custom-button" onclick="showStep(6); createImageList();">Templates angelegt? Weiter zu den Dashboard-Karten!</button>
+    <div class="shb-button">
+        <button class="shb-button shb-button-main" onclick="showStep(6); createImageList();">👇  Templates angelegt? Weiter zu den Dashboard-Karten!  👇</button>
+    </div>
 </div>
 
 <!--
@@ -463,7 +500,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <div class="content-section" id="step-6" style="display:none;">
-<h2 class="custom-title">5. Dashboard-Karten</h2>
+<h2 class="shb-section-title-center">5. Dashboard-Karten</h2>
 
 <div class="important-container">
     <h3>❗Wichtig</h3>
@@ -484,31 +521,33 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <div id="image-list-output"></div>
 
 
-<div id="example-section" style="margin-top: 20px;">
-    <h3 class="custom-title">Dashboard-Karten Optionen</h3>
+<div id="example-section" style="margin-top: 50px;">
+    <h3 class="shb-section-title-left">Dashboard-Karten Optionen</h3>
 </div>
 
 <div id="sensor-summary" class="sensor-summary">
     <p>
-        Du hast <span id="sensor-count" style="font-weight: bold; color: #4CAF50;">0</span> Sensoren angelegt.
+        Du hast <span id="sensor-count" style="font-weight: bold; color: #4be0ff;">0</span> Sensoren angelegt.
     </p>
 </div>
 
-<p class="description-text">
+<p>
     Mit dieser Checkbox kannst du auswählen, ob die Tonne bei Abholung blinken soll.<br>
     Bei der Anzeige Auswahl wird eingestellt, ob der Text und die optional blinkende Tonne für heute oder morgen angezeigt werden soll.
 </p>
 
 <!-- Checkbox für "Tonne blinkend" -->
-<div class="custom-form-group">
-    <input type="checkbox" id="blinkendCheckbox">
-    <label for="blinkendCheckbox">Tonne blinkend</label>
+<div class="shb-form-group">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="blinkendCheckbox">
+        <label for="blinkendCheckbox">Tonne blinkend</label>
+    </div>
 </div>
 
 <!-- Auswahlliste für "Anzeige Heute" und "Anzeige Morgen" -->
-<div class="custom-form-group">
-    <label for="anzeigeAuswahl" class="custom-label">Anzeige Auswahl:</label>
-    <select id="anzeigeAuswahl" class="custom-input">
+<div class="shb-form-group">
+    <label for="anzeigeAuswahl">Anzeige Auswahl:</label>
+    <select id="anzeigeAuswahl" style="width: 30%;">
         <option value="heute">Anzeige Heute</option>
         <option value="morgen">Anzeige Morgen</option>
     </select>
@@ -520,33 +559,33 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 </p>
 
 <!-- Auswahlliste für Darstellung -->
-<div class="custom-form-group">
-    <label for="darstellungAuswahl" class="custom-label">Darstellung bei 4 Abholungen/Sensoren:</label>
-    <select id="darstellungAuswahl" class="custom-input">
+<div class="shb-form-group">
+    <label for="darstellungAuswahl">Darstellung bei 4 Abholungen/Sensoren:</label>
+    <select id="darstellungAuswahl" style="width: 30%;">
         <option value="einzeilig">Darstellung Einzeilig</option>
         <option value="mehrzeilig">Darstellung Mehrzeilig</option>
     </select>
 </div>
 
 <!-- Checkbox für "Datum anzeigen" -->
-<div class="custom-form-group">
-    <label for="dateUseCheckbox" class="custom-label">Datum der Abholung anzeigen?</label>
-    <input type="checkbox" id="dateUseCheckbox">
-    <label for="dateUseCheckbox">Datum anzeigen</label>
+<div class="shb-form-group">
+    <label for="dateUseCheckbox">Datum der Abholung anzeigen?</label>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="dateUseCheckbox">
+        <label for="dateUseCheckbox">Datum anzeigen</label>
+    </div>
 </div>
 
-<p class="description-text">
+<p>
     Das Datum der Abholung kann auf der Karte nur ausgewählt werden, wenn der/die Sensor/Sensoren für diese Entität in der Waste Collection Schedule eingerichtet wurde/wurden.<br>
     Die Entität dieses Sensors soll demnach aus dem Sensor Namen der Abholung und dem Zusatz <strong>Datum</strong> bestehen.<br>
     <strong>Beispiel: "Restabfall Datum" = "sensor.restabfall_datum"</strong>
 </p>
 
-<br>
-
-<div class="font-selection">
-    <label for="fontSelection" class="custom-label">Schriftart auswählen:</label>
-    <p class="description-text">Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.</p>
-    <select id="fontSelection" class="custom-input" onchange="toggleCustomFontInput()">
+<div class="shb-form-group">
+    <label for="fontSelection">Schriftart auswählen:</label>
+    <p style="margin-bottom: 0; padding-bottom: 0;">Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.</p>
+    <select id="fontSelection" style="width: 30%;" onchange="toggleCustomFontInput()">
         <option value="Arial Rounded MT" selected>Arial Rounded MT (Standard)</option>
         <option value="Arial">Arial</option>
         <option value="Verdana">Verdana</option>
@@ -556,18 +595,20 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         <option value="Georgia">Georgia</option>
         <option value="Custom">Eigene Schriftart</option>
     </select>
-    <input type="text" id="customFontInput" class="custom-input" style="display: none; margin-top: 10px;" placeholder="Eigene Schriftart eingeben">
+    <input type="text" id="customFontInput" style="display: none; margin-top: 10px; width: 30%;" placeholder="Eigene Schriftart eingeben">
 </div>
 
 <!-- Checkbox für "Style anpassen" -->
-<div class="custom-form-group">
-    <label for="styleUseCheckbox" class="custom-label">Karten Design anpassen?</label>
-    <input type="checkbox" id="styleUseCheckbox">
-    <label for="styleUseCheckbox">Style ändern</label>
+<div class="shb-form-group">
+    <label for="styleUseCheckbox">Karten Design anpassen?</label>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="styleUseCheckbox">
+        <label for="styleUseCheckbox">Style ändern</label>
+    </div>
 </div>
 
 <!-- Versteckter Container mit 3 Auswahllisten -->
-<div id="styleOptions" class="style-options">
+<div id="styleOptions" class="shb-style-options">
     <div class="important-container">
         <h3>❗Wichtig</h3>
         <p>
@@ -575,28 +616,28 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
             Nur mit diesen Dashboard-Integrationen ist eine Änderung des Hintergrund und des Rahmens möglich.
         </p>
     </div>
-    <div class="custom-select-group">
+    <div class="shb-select-group">
         <!-- Hintergrund -->
-        <div class="custom-background-select">
-            <label class="custom-label" for="backgroundSelect">Hintergrund:</label>
-            <select id="backgroundSelect" class="custom-input">
+        <div class="shb-form-group" style="width: 30%">
+            <label for="backgroundSelect">Hintergrund:</label>
+            <select id="backgroundSelect">
                 <option value="transparent">Transparent</option>
                 <option value=" ">Standard</option>
             </select>
         </div>
         <!-- Rahmen Aussehen -->
-        <div class="custom-border-style-select">
-            <label class="custom-label" for="borderStyleSelect">Rahmen Aussehen:</label>
-            <select id="borderStyleSelect" class="custom-input">
+        <div class="shb-form-group" style="width: 30%">
+            <label for="borderStyleSelect">Rahmen Aussehen:</label>
+            <select id="borderStyleSelect">
                 <option value="none">Keinen Rahmen</option>
                 <option value=" ">Standard Rahmen</option>
                 <option value="1px solid var(--primary-color)">Dicker Rahmen Theme Farbe</option>
             </select>
         </div>
         <!-- Rahmen Form -->
-        <div class="custom-border-shape-select">
-            <label class="custom-label" for="borderShapeSelect">Rahmen Form:</label>
-            <select id="borderShapeSelect" class="custom-input">
+        <div class="shb-form-group" style="width: 30%">
+            <label for="borderShapeSelect">Rahmen Form:</label>
+            <select id="borderShapeSelect">
                 <option value="0px">Eckig</option>
                 <option value="12px">Abgerundet</option>
             </select>
@@ -604,15 +645,14 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     </div>
 </div>
 
-<p class="description-text">
+<p>
     Wenn alle Einstellungen getroffen wurden, klicke auf <strong>Beispiel anzeigen & Code generieren</strong><br>
     Du kannst nachträglich jederzeit Einstellungen ändern und den Code neu generieren.
 </p>
 
-
 <!-- Button zur Aktualisierung -->
-<div class="button-container">
-    <button id="update-example-and-code" class="custom-button">Beispiel anzeigen & Code generieren</button>
+<div class="shb-button">
+    <button class="shb-button shb-button-main" id="update-example-and-code">👇  Beispiel anzeigen & Code generieren  👇</button>
 </div>
 
 
@@ -629,37 +669,40 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 
 <div class="content-section" id="step-7" style="display:none;">
 
-<div id="dashboard-options" class="dashboard-options">
+
+<div id="dashboard-options" class="shb-select-group">
     <!-- YAML-Ausgabefenster -->
-    <div id="yaml-output-container" class="yaml-output-container">
-        <h4 class="custom-title">Generierter YAML-Code</h4>
-        <div class="yaml-code-container">
-            <button class="copy-button" onclick="copyCode('yaml-code-output', this)">Kopieren</button>
-            <pre id="yaml-code-output" class="language-yaml"><code></code></pre>
+    <div id="yaml-output-container" class="shb-vertical-half-container">
+        <h4 class="shb-section-title-center">Generierter YAML-Code</h4>
+        <div class="shb-code-container" style="max-height: 400px;">
+            <button class="copy-code-button" onclick="copyCode('yaml-code-output', this)">Kopieren</button>
+            <pre id="yaml-code-output"><code></code></pre>
         </div>
     </div>
     <!-- Beispielbild -->
-    <div id="example-card-container" class="example-card-container">
-        <h4 class="custom-title">Beispielkarte</h4>
-        <div class="example-image-wrapper">
+    <div id="example-card-container" class="shb-vertical-half-container">
+        <h4 class="shb-section-title-center">Beispielkarte</h4>
+        <div class="shb-image-wrapper">
             <img id="example-image" src="" alt="Beispielkarte">
         </div>
     </div>
 </div>
 
-<h4>Besteht noch Interesse an einer Dashboard Pop-Up Erinnerung?</h4><br>
-<button class="custom-button" onclick="showStep(8);">Ja! Weiter zu der Pop-Up Karte</button>
+<h3 class="shb-section-title-center">Besteht noch Interesse an einer Dashboard Pop-Up Erinnerung?</h3><br>
+<div class="shb-button">
+    <button class="shb-button shb-button-main" onclick="showStep(8);">👇  Ja! Weiter zu der Pop-Up Karte  👇</button>
+</div>
 </div>
 
 <div class="content-section" id="step-8" style="display:none;">
-<br>
-<h2 class="custom-title">6. Pop-Up-Karte</h2>
+
+<h2 class="shb-section-title-center">6. Pop-Up-Karte</h2>
 
 <br>
 
-<h4>Zur Anzeige eines Pop-Up auf deinem Home Assistant Dashboard sind mehrere Schritte notwendig:</h4>
+<h4 class="shb-section-title-left">Zur Anzeige eines Pop-Up auf deinem Home Assistant Dashboard sind mehrere Schritte notwendig:</h4>
 
-<ul class="styled-list">
+<ul class="shb-list-start">
     <li>Herunterladen und Speichern des Hintergrund-Bilds</li>
     <li>Anlegen einer Helfer-Taste und eines Helfer-Zeitplans</li>
     <li>Erstellung des YAML-Codes für die Pop-Up Karte</li>
@@ -668,31 +711,30 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     <li>Einrichtung der Automatisierung für das Pop-Up</li>
 </ul>
 
-<div id="popup-background-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.1 Hintergrund-Bild</h3>
-</div>
 
-<div class="two-column-container">
+<h3 class="shb-section-title-center">6.1 Hintergrund-Bild</h3>
+
+
+<div class="shb-two-column-container">
     <!-- Linke Spalte -->
-    <div class="left-column">
+    <div class="shb-left-column">
         <p>
-            Für das Pop-Up ist ein Hintergrundbild notwendig. Dieses kannst du dir hier mit einem Klick auf das Bild herunterladen und in Home Assistant in deinen <strong>"muell"</strong>-Ordner speichern.
+            Für das Pop-Up ist ein Hintergrundbild notwendig. 
+        </p>
+        <p>
+            Dieses kannst du dir hier mit einem Klick auf das Bild herunterladen und in Home Assistant in deinen <strong>"muell"</strong>-Ordner speichern.<br>
             Achte darauf, das Bild vor dem ersten Erstellen der Dashboard-Karte abzuspeichern, da ansonsten durch den Home Assistant Cache längere Zeit Fehler angezeigt werden können.
         </p>
     </div>
-
     <!-- Rechte Spalte -->
-    <div class="right-column">
+    <div class="shb-right-column">
         <a href="/img/muell/popup_background.png" download>
-            <img src="/img/muell/popup_background.png" alt="Hintergrundbild für Pop-Up" style="max-width: 300px;">
+            <img src="/img/muell/popup_background.png" alt="Hintergrundbild für Pop-Up">
         </a>
     </div>
 </div>
 
-
-<div id="popup-helper-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.2 Helfer anlegen</h3>
-</div>
+<h3 class="shb-section-title-center">6.2 Helfer anlegen</h3>
 <p>
     Für das Öffnen des Pop-Ups ist ein Helfer-Taster erforderlich, und für die Automatisierung wird ein Helfer-Zeitplan benötigt.<br>
     Diese beiden Helfer tragen die Bezeichnungen <strong>Müllerinnerung Taster</strong> und <strong>Müllerinnerung Zeitplan</strong>. Sie müssen mit genau diesen Namen angelegt werden, um die Funktionalität des Pop-Ups sicherzustellen.
@@ -700,15 +742,15 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
  Wie man die notwendigen Helfer anlegt, findest du in den folgenden ⬇️ Dropdowns ⬇️
 </p>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown3', this)">Helfer-Taster einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown3" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">Helfer-Taster einrichten <span>⬇️</span></button>
+    <div id="galleryDropdown3" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_helfer_taster %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    <div style="margin: 0 auto; max-width: 60%;">
+                    <div class="shb-dropdown-youtube">
                         {% include youtube.html video="7HlL8uKRyC0" %}
                     </div>
                 </div>
@@ -730,15 +772,15 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
         </div>
     </div>
 </div>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown4', this)">Helfer-Zeitplan einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown4" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown4', this)">Helfer-Zeitplan einrichten <span>⬇️</span></button>
+    <div id="galleryDropdown4" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_helfer_zeitplan %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
                 <div class="column is-12">
                     <p class="title is-3 has-text-centered">{{ gallery.title }}</p>
-                    <div style="margin: 0 auto; max-width: 60%;">
+                    <div class="shb-dropdown-youtube">
                         {% include youtube.html video="_oR8JQHNYqY" %}
                     </div>
                 </div>
@@ -766,32 +808,29 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Lege diese Helfer in Home Assistant an und fahre anschließend mit dem nächsten Schritt fort.
 </p>
 
-<table class="custom-table" id="helper-table">
+<table class="shb-custom-table" id="helper-table">
     <thead>
         <tr>
             <th>Helfer Name</th>
-            <th>Name kopiert</th>
+            <th style="text-align: center;">Name kopiert</th>
             <th>Helfer Entity-ID</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td class="copyable" data-helper="Müllerinnerung Taster">Müllerinnerung Taster</td>
-            <td class="status" id="status-taster">❌</td>
+            <td class="status" id="status-taster" style="text-align: center;">❌</td>
             <td>input_button.mullerinnerung_taster</td>
         </tr>
         <tr>
             <td class="copyable" data-helper="Müllerinnerung Zeitplan">Müllerinnerung Zeitplan</td>
-            <td class="status" id="status-zeitplan">❌</td>
+            <td class="status" id="status-zeitplan" style="text-align: center;">❌</td>
             <td>schedule.mullerinnerung_zeitplan</td>
         </tr>
     </tbody>
 </table>
 
-
-<div id="popup-code-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.3 Pop-Up Code erstellen</h3>
-</div>
+<h3 class="shb-section-title-center">6.3 Pop-Up Code erstellen</h3>
 
 <div class="note-container">
     <h3>💡 Hinweis</h3> 
@@ -804,35 +843,33 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Mit einem Klick auf <strong>Pop-Up erstellen</strong> wird der Code für das Pop-Up nach deinen zuvor gewählten Einstellungen und Angaben erstellt. 
 </p>
 
-<div class="button-container">
-    <button id="popup-code" class="custom-button">Pop-Up erstellen</button>
+<div class="shb-button">
+    <button class="shb-button shb-button-main" id="popup-code">👇  Pop-Up erstellen  👇</button>
 </div>
 
 <p>
     Den generierten Code kannst du mit <strong>Kopieren</strong> in die Zwischenablage kopieren.
 </p>
 
-<div id="popup-options" class="dashboard-options">
+<div id="popup-options" class="shb-select-group">
     <!-- YAML-Ausgabefenster -->
-    <div id="popup-output-container" class="yaml-output-container">
-        <h4 class="custom-title">Generierter Pop-Up-Code</h4>
-        <div class="yaml-code-container">
-            <button class="copy-button" onclick="copyCode('popup-code-output', this)">Kopieren</button>
-            <pre id="popup-code-output" class="language-yaml"><code></code></pre>
+    <div id="popup-output-container" class="shb-vertical-half-container">
+        <h4 class="shb-section-title-center">Generierter Pop-Up-Code</h4>
+        <div class="shb-code-container" style="max-height: 400px;">
+            <button class="copy-code-button" onclick="copyCode('popup-code-output', this)">Kopieren</button>
+            <pre id="popup-code-output"><code></code></pre>
         </div>
     </div>
     <!-- Beispielbild -->
-    <div id="example-popup-container" class="example-card-container" style="display: none;">
-        <h4 class="custom-title">Pop-Up Beispiel</h4>
-        <div class="example-image-wrapper">
+    <div id="example-popup-container" class="shb-vertical-half-container" style="display: none;">
+        <h4 class="shb-section-title-center">Pop-Up Beispiel</h4>
+        <div class="shb-image-wrapper">
             <img id="example-popup" src="/img/muell/popupCard_example.png" alt="Pop-Up Beispiel">
         </div>
     </div>
 </div>
 
-<div id="popup-code-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.4 Pop-Up auf Dashboard speichern</h3>
-</div>
+<h3 class="shb-section-title-center">6.4 Pop-Up auf Dashboard speichern</h3>
 
 <p>
     Der kopierte Pop-Up Code wird nun auf jedes Dashboard gespeichert auf welchem es agezeigt werden soll.<br>
@@ -845,9 +882,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Um das zu erreichen, ist eine Browser ID sowie eine Automatisierung notwendig. 
 </p>
 
-<div id="popup-code-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.5 Browser ID einrichten</h3>
-</div>
+<h3 class="shb-section-title-center">6.5 Browser ID einrichten</h3>
 
 <p>
     Mit Browser Mod und dessen Browser ID ist es möglich, Aktionen auf Dashboards von registrierten Browsern auszuführen.<br>
@@ -859,9 +894,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
     Wie man Browser Mod und die Browser ID einrichtet, erfährst du im ⬇️ Dropdown ⬇️
 </p>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown5', this)">Browser Mod und Browser ID einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown5" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown5', this)">Browser Mod und Browser ID einrichten <span>⬇️</span></button>
+    <div id="galleryDropdown5" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_browser_mod_id %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -870,7 +905,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                 </div>
                 <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
                     {{ gallery.subtitle | markdownify }}
-                    <div style="margin: 0 auto; max-width: 60%;">
+                    <div class="shb-dropdown-youtube">
                         {% include youtube.html video="_GxgMv0LSLI" %}
                     </div>
                 </div>
@@ -893,9 +928,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     </div>
 </div>
 
-<div id="popup-code-section" style="margin: 60px 0 30px;">
-    <h3 class="custom-title">6.6 Pop-Up Automatisierung</h3>
-</div>
+<h3 class="shb-section-title-center">6.6 Pop-Up Automatisierung</h3>
 
 <p>
     Um das Pop-Up automatisch bzw. über einen Tastendruck des Helfer-Taster zu öffnen, wird eine Automatisierung angelegt.
@@ -905,35 +938,35 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Zur einfachen Einrichtung dieser Automatisierung habe ich ein Blueprint erstellt. Dieses kann mit einem Klick auf das Blueprint in der Tabelle herunter geladen und in Home Assistant installiert werden.
 </p>
 
-<table class="custom-table" id="blueprint-table">
+<table class="shb-custom-table" id="blueprint-table">
     <thead>
         <tr>
             <th>Blueprint</th>
-            <th>Blueprint kopiert</th>
+            <th style="text-align: center;">Blueprint kopiert</th>
             <th>Beschreibung</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td class="copyable" data-helper="https://gist.github.com/MaxxKra/3dbc1164e0d037bda67911fccead5f36">Blueprint Pop-Up öffnen</td>
-            <td class="status" id="status-blueprint">❌</td>
+            <td class="status" id="status-blueprint" style="text-align: center;">❌</td>
             <td>Ein Blueprint für die Automatisierung zum Öffnen eines Pop-Ups</td>
         </tr>
     </tbody>
 </table>
 <br>
-<table class="custom-table" id="automation-table">
+<table class="shb-custom-table" id="automation-table">
     <thead>
         <tr>
             <th>Automatisierung Name</th>
-            <th>Name kopiert</th>
+            <th style="text-align: center;">Name kopiert</th>
             <th>Entity ID Automatisierung</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td class="copyable" data-helper="Müllerinnerung Pop-Up">Müllerinnerung Pop-Up</td>
-            <td class="status" id="status-automation">❌</td>
+            <td class="status" id="status-automation" style="text-align: center;">❌</td>
             <td>automation.mullerinnerung_pop_up</td>
         </tr>
     </tbody>
@@ -942,9 +975,9 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 <p>
     Wie man das Blueprint installiert und die Automatisierung einrichtet, siehst du im ⬇️ Dropdown ⬇️
 </p>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown6', this)">Blueprint Installation und Einrichtung <span>&#9660;</span></button>
-    <div id="galleryDropdown6" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown6', this)">Blueprint Installation und Einrichtung <span>⬇️</span></button>
+    <div id="galleryDropdown6" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_blueprint_popup %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -953,7 +986,7 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                 </div>
                 <div class="column is-12" style="font-size: 1.2rem; font-weight: 400;">
                     {{ gallery.subtitle | markdownify }}
-                    <div style="margin: 0 auto; max-width: 60%;">
+                    <div class="shb-dropdown-youtube">
                         {% include youtube.html video="WP8SMkcWKlM" %}
                     </div>
                 </div>
@@ -980,16 +1013,16 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
     Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
 </p>
 </div>
-<div class="content-section" id="support-section;">
-<h4 class="custom-title">
-    Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
-    Über Feedback und Unterstützung würde ich mich auf jeden Fall freuen.
-</h4>
-<br>
-<h3 class="custom-title">Danke und gutes Gelingen! 🎉</h3>
-<br>
+
+
+<footer class="shb-footer">
+    <p>Ich hoffe dieser Codegenerator konnte dir bei der Einrichtung deiner Müllerinnerung helfen.<br>
+    Über Feedback und Unterstützung würde ich mich auf jeden Fall freuen.</p>
+    <h2>Danke und gutes Gelingen! 🎉</h2>
+</footer>
+
 {% include support_note.html %}
-</div>
+
 </div>
 
 <!--
@@ -1002,547 +1035,146 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
 -->
 
 <style>
-    .guide-container {
-        max-width: 100%;
-        margin: auto;
-        padding: 20px;
-        background-color: #1a1a1a;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        border: 1px solid #1598b3;
-        border-radius: 8px;
-        box-shadow: 0 4px 4px 6px #1598b380;
-    }
-
-    .content-section {
-        margin-bottom: 20px;
-        padding: 15px;
-        background-color: #252525;
-        border: 1px solid #444;
-        border-radius: 8px;
-    }
-
-    .content-section h2 {
-        color: #1598b3;
-        font-size: 1.75em;
-        margin-bottom: 10px;
-    }
-
-    .content-section ul {
-        margin: 10px 0 0 20px;
-        padding: 0;
-        list-style-type: disc;
-    }
-
-    .content-section ul li {
-        margin-bottom: 10px;
-    }
-
-    .content h1 {
-        color: #1598b3
-    }
-    /* Titel und Untertitel */
-    .custom-title, .custom-subtitle {
-        text-align: center;
-        font-weight: bold;
-        margin-top: 20px;
-    }
-    /* Beschreibungstext */
-    .description-text {
-        margin: 15px 0;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #d1d1d1;
-    }
-    /* Wichtiges Hinweis-Container */
-    .important-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid rgb(255, 0, 0);
-    }
-    .important-container h3 {
-        color: #d12700;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .important-container p {
-        color: #383838;
-        font-family: Arial Black;
-    }
-    .important-container strong {
-        color:rgb(255, 0, 0);
-        text-transform: uppercase;
-    }
-    /* Hinweise */
-    .note-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid #0062ff;
-    }
-    .note-container h3 {
-        color: #0062ff;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .note-container p {
-        color: #383838;
-    }
-    .note-container strong {
-        color: #0062ff;
-        text-transform: uppercase;
-    }
-    .custom-title-inline {
-        display: flex; /* Elemente nebeneinander anordnen */
-        align-items: baseline; /* Ausrichtung an der Grundlinie */
-        gap: 10px; /* Abstand zwischen den Elementen */
-    }    
-    .custom-title-inline h4 {
-        margin: 0;
-        padding: 0;
-        font-size: 24px; /* Größere Schriftgröße für die Überschrift */
-        line-height: 1.2; /* Für saubere vertikale Ausrichtung */
-    }    
-    .custom-title-inline p {
-        margin: 0;
-        padding: 0;
-        font-size: 16px; /* Kleinere Schriftgröße für den Text */
-        line-height: 1.2; /* Passend zur `h4` */
-    }    
-    .copy-confirmation {
-        font-size: 24px; /* Gleiche Schriftgröße wie `h4` */
-        color: green; /* Bestätigungsfarbe */
-        margin-left: 10px; /* Abstand zur Überschrift */
-        display: none; /* Standardmäßig versteckt */
-    } 
-    .dropdown {
-        margin: 0 0 20px;
-        text-align: center;
-    }
-    .dropdown-toggle {
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        background-color: #f39c12;
-        color: #ffffff;
-        padding: 10px 5px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        width: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-    }
-    .dropdown-toggle.rotated {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg); /* Text von unten nach oben */
-        padding: 20px 30px;
-        width: 200px;
-        height: auto;
-    }
-    .dropdown-toggle span {
-        float: right;
-    }
-    .dropdown-content {
-        padding: 20px;
-        background-color: #1a1a1a;
-        border: 1px solid #f39c12;
-        border-radius: 5px;
-        margin-top: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
     /* Sensor-Zusammenfassung */
     .sensor-summary {
-        margin-top: 15px;
-        font-size: 18px;
+        margin: 15px 0;
+        font-size: 1.2em;
         line-height: 1.5;
         text-align: left;
-    }
-    /* Formulareingabefelder und Buttons */
-    .custom-form-group {
-        margin-top: 20px;
-    }
-    #custom-alert {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    #custom-alert-content {
-        background-color: #fff;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 400px;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-    #custom-alert-title {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
-    #custom-alert-message {
-        margin-bottom: 15px;
-        font-size: 16px;
-        color: #666;
-    }
-    #close-alert {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    #close-alert:hover {
-        background-color: #218838;
-    }
-    /* Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-    #custom-decision {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }    
-    #custom-decision-content {
-        background: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        text-align: center;
-        max-width: 400px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }    
-    #custom-decision h4 {
-        margin: 0 0 10px;
-    }    
-    #custom-decision p {
-        margin: 0 0 20px;
-    }    
-    #custom-decision button {
-        margin: 0 5px;
-        padding: 10px 20px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-    }    
-    #custom-decision button:hover {
-        background-color: #0056b3;
-    }
-    #custom-decision-list {
-        text-align: left;
-        max-height: 300px;
-        overflow-y: auto;
-        margin: 10px 0;
-        padding: 0;
-        list-style: none;
-    }    
-    #custom-decision-list li {
-        margin: 5px 0;
-    }
-    #custom-decision-question {
-        font-size: 1.1em;
-        text-align: center;
-        margin-top: 10px;
-    }
-    .custom-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .custom-input, .custom-button, select {
-        width: 100%;
-        background-color: #e9e9e9;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #c9c9c9;
-    }
-    .custom-button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        font-size: 16px;
+        color: #ffffff;
+        border: 2px solid #1598b3;
         border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .custom-button:hover {
-        background-color: #45a049;
-    }
-    /* Tabellen für Kalender- und Sensorkonfigurationen */
-    .custom-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    .custom-table th, .custom-table td {
-        border: 1px solid #c9c9c9;
         padding: 8px;
-        text-align: center;
-        vertical-align: middle;
+        width: fit-content;
     }
-    .custom-table select {
-        vertical-align: middle;
-    }
-    /* Code Container */
-    .code-container {
-        position: relative;
-        background-color: #9fb9fb;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        overflow: auto;
-        max-height: 300px;
-    }
-    .code-container code {
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        font-size: 0.95em;
-        line-height: 1.5;
-        color: #d1d1d1;
-    }
-    /* Stil für den Copy-Button */
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #007acc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-        font-size: 0.85em;
-        cursor: pointer;
-        z-index: 10;
-    }
-    .copy-button:hover {
-        background: #005a9c;
-    }
-    .copy-button.copied {
-        background: #72dd8b; /* Grüner Hintergrund */
-        color: white;       /* Weiße Schrift */
-        content: '✔️';      /* Symbol */
-        padding: 8px 12px;
-    }
-    /* Button Container */
-    .button-container {
-        text-align: center;
-        margin-top: 25px;
-    }        /* Styling für die Auswahllisten */
-    .custom-select-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start; /* Überschriften werden oben ausgerichtet */
-        margin-top: 30px;
-        gap: 20px;
-    }
-    /* Dashboard Optionen Container */
-    .dashboard-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start; /* Überschriften werden oben ausgerichtet */
-        margin: 50px 0;
-        gap: 20px;
-    }
-    /* YAML-Code Container */
-    .yaml-output-container,
-    .example-card-container {
-        width: 48%;
-        display: flex;
-        flex-direction: column;
-    }
-    /* YAML-Code Header und Container */
-    .yaml-output-container h4,
-    .example-card-container h4 {
-        margin-bottom: 15px; /* Einheitlicher Abstand zur nächsten Sektion */
-    }
-    /* YAML-Code */
-    .yaml-code-container {
-        position: relative;
-        background-color: #9fb9fb;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 8px;
-        padding: 15px;
-        max-height: 400px;
-        overflow: auto; /* Ermöglicht Scrollen */
-    }
-    /* Beispielkarte Container */
-    .example-card-container {
-        padding: 0px;
-        text-align: center;
-    }
-    /* Bild im Beispielkarten-Container */
-    .example-image-wrapper {
+    /* Tabelle */
+    .shb-custom-table {
         width: 100%;
-        height: 400px; /* Gleiche Höhe wie das YAML-Fenster */
+        border: 2px solid #1ab5d5;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    /* Kopfzeile */
+    .shb-custom-table thead th {
+        background-color: #1ab5d5;
+        color: #ffffff;
+        padding: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: 1px solid #000;
+    }
+
+    /* Alternierende Zeilenfarben im Tabellenkörper */
+    .shb-custom-table tbody tr:nth-child(odd) {
+        background-color: #b8f3ff;
+    }
+
+    .shb-custom-table tbody tr:nth-child(even) {
+        background-color: #97ecfd;
+    }
+
+    /* Zellenstile */
+    .shb-custom-table tbody td {
+        padding: 10px;
+        vertical-align: middle;
+        border: 2px solid #1ab5d5;
+        color: #000000;
+    }
+
+    /* Hover-Effekt */
+    .shb-custom-table tbody tr:hover {
+        background-color: #90caf9;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Checkbox-Stil */
+    .shb-custom-checkbox {
+        transform: scale(1.4);
+        margin: 0 20px;
+    }
+    .shb-two-column-container {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #000000;
-        overflow: hidden; /* Verhindert das Überlaufen von Bildern */
-    }
-    .example-image-wrapper img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain; /* Skaliert das Bild proportional */
-    }
-    .style-options {
-        display: none; /* Standardmäßig ausgeblendet */
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-top: 20px;
         gap: 20px;
-    }
-    .custom-background-select,
-    .custom-border-style-select,
-    .custom-border-shape-select {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-    }
-    .custom-background-select h4,
-    .custom-border-style-select h4,
-    .custom-border-shape-select h4 {
-        margin-bottom: 15px;
-    }
-
-    .two-column-container {
-        display: flex;
-        gap: 20px; /* Abstand zwischen den Spalten */
         align-items: center;
-        margin-top: 20px;
+        margin: 20px 10%;
     }
 
-    .left-column {
-        flex: 1; /* Linke Spalte nimmt den restlichen Platz ein */
-    }
-
-    .right-column {
-        flex-shrink: 0; /* Rechte Spalte bleibt in ihrer festen Größe */
+    .shb-left-column {
+        flex: 1;
         text-align: center;
     }
 
-    .right-column img {
-        max-width: 300px; /* Maximale Breite für das Bild */
-        height: auto; /* Bildverhältnis beibehalten */
-        cursor: pointer; /* Zeigt den Download-Link an */
-    }
-    .styled-list {
-        list-style: none; /* Entfernt die Standard-Aufzählungspunkte */
-        counter-reset: list-counter; /* Initialisiert den Zähler */
-        padding-left: 0; /* Entfernt Einrückung */
-        margin: 20px 0; /* Abstand zur Umgebung */
-    }
-    .styled-list li strong {
-        color: #007acc; /* Gleiche Farbe wie die Linie */
-    }
-
-    .styled-list li {
-        counter-increment: list-counter; /* Erhöht den Zähler */
-        position: relative;
-        margin: 10px 30px; /* Abstand zwischen den Einträgen */
-        font-size: 1em;
-        line-height: 1.6;
-        color: #333; /* Dunkler Text */
-        background-color: #fff; /* Neutraler Hintergrund */
-        border-left: 3px solid #007acc; /* Farbliche Linie am linken Rand */
-        border-radius: 6px; /* Leicht abgerundete Kanten */
-        padding: 10px 60px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für visuelle Tiefe */
-        width: 55%;
-    }
-
-    .styled-list li::before {
-        content: "6." counter(list-counter); /* Fügt "6." + die Zählernummer hinzu */
-        position: absolute;
-        left: 10px; /* Platzierung der Nummer links */
-        top: 50%; /* Vertikale Ausrichtung */
-        transform: translateY(-50%);
-        font-weight: bold;
-        color: #007acc; /* Gleiche Farbe wie die Linie */
-        font-size: 1.2em;
-        background-color: #e6f3ff; /* Heller Hintergrund für die Nummer */
-        padding: 5px 10px;
-        border-radius: 50%; /* Rundes Design für die Nummerierung */
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Nummer */
+    .shb-right-column {
+        flex: 0.4;
         text-align: center;
     }
-    .styled-list-start {
-        counter-reset: list-counter; /* Initialisiert den Zähler */
-        padding-left: 0; /* Entfernt Einrückung */
-        margin: 20px 0; /* Abstand zur Umgebung */
-    }
-    .styled-list-start li strong {
-        color: #007acc; /* Gleiche Farbe wie die Linie */
+
+    .shb-right-column img {
+        max-width: 300px;
+        height: auto;
+        cursor: pointer;
     }
 
-    .styled-list-start li {
-        counter-increment: list-counter; /* Erhöht den Zähler */
-        position: relative;
-        margin: 10px 30px; /* Abstand zwischen den Einträgen */
-        font-size: 1em;
-        line-height: 1.6;
-        color: #333; /* Dunkler Text */
-        background-color: #fff; /* Neutraler Hintergrund */
-        border-left: 3px solid #007acc; /* Farbliche Linie am linken Rand */
-        border-radius: 6px; /* Leicht abgerundete Kanten */
-        padding: 10px 60px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für visuelle Tiefe */
-        width: 90%;
+    /* Checkbox-Stil */
+    .shb-custom-checkbox {
+        transform: scale(1.4);
+        margin: 0 20px;
     }
 
-    .styled-list-start li::before {
-        content: counter(list-counter); /* Fügt die Nummerierung hinzu */
-        position: absolute;
-        left: 10px; /* Platzierung der Nummer links */
-        top: 50%; /* Vertikale Ausrichtung */
-        transform: translateY(-50%);
-        font-weight: bold;
-        color: #007acc; /* Gleiche Farbe wie die Linie */
-        font-size: 1.2em;
-        background-color: #e6f3ff; /* Heller Hintergrund für die Nummer */
-        padding: 5px 15px;
-        border-radius: 50%; /* Rundes Design für die Nummerierung */
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Nummer */
-        text-align: center;
+    /* Input-Felder in der Tabelle */
+    .shb-custom-input {
+        padding: 8px;
+        color: #000000;
+        background-color: #1ab5d5;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .shb-custom-input::placeholder {
+        color: #ffffff;
+        font-style: italic;
+        opacity: 0.8;
+    }
+
+    .shb-custom-input:focus {
+        background-color: #99eafb;
+        border: 2px solid #0048ff;
+        box-shadow: 0 4px 10px #7199ff;
+        outline: none;
+    }
+
+    .color-select {
+        padding: 8px;
+        color: #000000;
+        background-color: #1ab5d5;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .color-select:focus {
+        background-color: #37c4e1;
+        border: 2px solid #0048ff;
+        box-shadow: 0 4px 10px #7199ff;
+        outline: none;
+    }
+
+    /* Stile für die Optionen */
+    .color-select option {
+        background-color: #99eafb;
+    }
+
+    /* Jede zweite Zeile heller */
+    .color-select option:nth-child(even) {
+        background-color: #b4f2ff
     }
 
 </style>
@@ -1584,26 +1216,18 @@ In solch einem Fall, kann im nächsten Schritt die eigene Bezeichnung auch als A
                 }
             }
         }
-    
+
         // Automatisch scrollen, um den ausgewählten Schritt in den Fokus zu bringen
         const currentStep = document.getElementById(`step-${stepNumber}`);
         if (currentStep) {
-            currentStep.scrollIntoView({ behavior: "smooth" });
-        }
-    }
+            // Höhe der fixierten Navbar
+            const navbarHeight = document.querySelector('.navbar').offsetHeight || 0;
 
-    function showCustomAlert(title, message) {
-        const alertBox = document.getElementById("custom-alert");
-        const alertTitle = document.getElementById("custom-alert-title");
-        const alertMessage = document.getElementById("custom-alert-message");
-    
-        alertTitle.textContent = title;   // Überschrift setzen
-        alertMessage.textContent = message; // Nachricht setzen
-        alertBox.style.display = "flex"; // Fenster anzeigen
-    
-        document.getElementById("close-alert").onclick = function () {
-            alertBox.style.display = "none"; // Fenster schließen
-        };
+            // Scrollen unter Berücksichtigung der Navbar-Höhe
+            const offsetTop = currentStep.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+            window.scrollTo({ top: offsetTop, behavior: "smooth" });
+        }
     }
 
 async function extractEntries() {
@@ -1679,10 +1303,11 @@ async function extractEntries() {
     
             // Checkbox
             const checkboxCell = document.createElement("td");
+            checkboxCell.setAttribute("style", "text-align: center;");
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
-            checkbox.className = "entry-checkbox";
-            checkbox.id = `entry-checkbox-${idCounter}`;
+            checkbox.className = "shb-custom-checkbox";
+            checkbox.id = `shb-custom-checkbox-${idCounter}`;
             checkboxCell.appendChild(checkbox);
             row.appendChild(checkboxCell);
     
@@ -1703,7 +1328,7 @@ async function extractEntries() {
             const customNameInput = document.createElement("input");
             customNameInput.type = "text";
             customNameInput.placeholder = "Eigene Bezeichnung";
-            customNameInput.className = "entry-custom-name";
+            customNameInput.className = "shb-custom-input";
             customNameInput.id = `custom-name-${idCounter}`;
             customNameCell.appendChild(customNameInput);
             row.appendChild(customNameCell);
@@ -1717,66 +1342,23 @@ async function extractEntries() {
     }
 }
 
-
-
-    // Funktion zum Anzeigen des benutzerdefinierten Dialogs
-    function showCustomDecision(title, message, invalidEntries) {
-        return new Promise((resolve) => {
-            const decisionElement = document.getElementById('custom-decision');
-            const titleElement = document.getElementById('custom-decision-title');
-            const messageElement = document.getElementById('custom-decision-message');
-            const listElement = document.getElementById('custom-decision-list');
-            const yesButton = document.getElementById('decision-yes');
-            const noButton = document.getElementById('decision-no');
-            const questionElement = document.getElementById('custom-decision-question');
-    
-            // Setze Titel und Nachricht
-            titleElement.textContent = title;
-            messageElement.textContent = message;
-    
-            // Leere die Liste und füge neue Einträge hinzu
-            listElement.innerHTML = "";
-            invalidEntries.forEach((entry) => {
-                const listItem = document.createElement('li');
-                listItem.textContent = entry;
-                listElement.appendChild(listItem);
-            });
-    
-            // Setze Frage (kann falls nötig angepasst werden)
-            questionElement.textContent = "Möchtest du die Verarbeitung fortsetzen?";
-    
-            // Event-Listener für Buttons
-            yesButton.onclick = () => {
-                decisionElement.style.display = 'none';
-                resolve(true);
-            };
-    
-            noButton.onclick = () => {
-                decisionElement.style.display = 'none';
-                resolve(false);
-            };
-    
-            // Dialog anzeigen
-            decisionElement.style.display = 'flex';
-        });
-    }
     function checkEntries() {
         const entryTableBody = document.getElementById('entry-table').querySelector('tbody');
         const umlautPattern = /[äöüÄÖÜß]/;
         const selectedEntries = Array.from(entryTableBody.querySelectorAll("tr")).filter(row => {
-            return row.querySelector(".entry-checkbox").checked;
+            return row.querySelector(".shb-custom-checkbox").checked;
         });
 
         // Warnung, wenn keine Checkbox ausgewählt wurde
         if (selectedEntries.length === 0) {
-            showCustomAlert("Keine Auswahl getroffen!", "Bitte wähle mindestens einen Eintrag aus!");
+            showSHBcustomAlert("Keine Auswahl getroffen!", "Bitte wähle mindestens einen Eintrag aus!");
             return false; // Fehler: keine Auswahl getroffen
         }
 
         let umlautWarning = false;
 
         selectedEntries.forEach(row => {
-            const customName = row.querySelector(".entry-custom-name").value.trim(); // Eigene Bezeichnung
+            const customName = row.querySelector(".shb-custom-input").value.trim(); // Eigene Bezeichnung
             const summaryText = row.querySelector("td:nth-child(2)").textContent.trim(); // Kalendereintrag (SUMMARY)
 
             // Prüfe auf Umlaute in der eigenen Bezeichnung
@@ -1791,7 +1373,7 @@ async function extractEntries() {
         });
 
         if (umlautWarning) {
-            showCustomAlert("Umlaute entdeckt!", "Bitte eigene Kalendereinträge kontrollieren und eigene Bezeichnungen anpassen!");
+            showSHBcustomAlert("Umlaute entdeckt!", "Bitte eigene Kalendereinträge kontrollieren und eigene Bezeichnungen anpassen!");
             return false; // Fehler
         }
 
@@ -1850,7 +1432,7 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            const customName = row.querySelector(".entry-custom-name").value || row.querySelector("td:nth-child(2)").textContent;
+            const customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
             const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
@@ -1915,7 +1497,7 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            const customName = row.querySelector(".entry-custom-name").value || row.querySelector("td:nth-child(2)").textContent;
+            const customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
             const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
@@ -1995,12 +1577,12 @@ async function extractEntries() {
         });
 
         if (colorNotSelected) {
-            showCustomAlert("Keine Tonnen-Farben?", "Die Farben der Tonne sollten zugeordnet werden!");
+            showSHBcustomAlert("Keine Tonnen-Farben?", "Die Farben der Tonne sollten zugeordnet werden!");
             return false; // Rückgabe `false`, wenn eine Farbe fehlt
         }
 
         if (duplicateColor) {
-            showCustomAlert("Doppelte Farbe erkannt!", "Jede Farbe darf nur einmal ausgewählt werden!");
+            showSHBcustomAlert("Doppelte Farbe erkannt!", "Jede Farbe darf nur einmal ausgewählt werden!");
             return false; // Rückgabe `false`, wenn Farben doppelt sind
         }
 
@@ -2170,47 +1752,12 @@ async function extractEntries() {
         return result.filter(comb => comb.length > 0);
     }
 
-    function copyCode(elementId, button) {
-        const codeElement = document.getElementById(elementId);
-        const codeText = codeElement.innerText || codeElement.textContent;
-
-        navigator.clipboard.writeText(codeText)
-            .then(() => {
-                // Zeigt das benutzerdefinierte Fenster
-                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
-
-                // Button-Text und Stil dauerhaft ändern
-                button.classList.add('copied'); // Füge die CSS-Klasse hinzu
-                button.innerHTML = "Kopiert ✔️";       // Ändere den Button-Inhalt auf das Symbol
-                button.style.backgroundColor = "#72dd8b"; // Grüner Hintergrund
-                button.style.color = "white";             // Weiße Schrift
-                
-            })
-            .catch(err => {
-                console.error("Fehler beim Kopieren des Codes: ", err);
-                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
-            });
-    }
-
-
-    function toggleDropdown(dropdownId, toggleButton) {
-        var dropdownContent = document.getElementById(dropdownId);
-        if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
-            dropdownContent.style.display = "block";
-            toggleButton.classList.add("rotated"); // Klasse hinzufügen
-        } else {
-            dropdownContent.style.display = "none";
-            toggleButton.classList.remove("rotated"); // Klasse entfernen
-        }
-    }
-
-
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
         const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Überspringe die Standardreihe "Nächste Abholung"
         
         // Tabelle für die Ausgabe erstellen
-        let imageTable = '<table class="custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th>Bild Vorschau</th></tr></thead><tbody>';
+        let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau</th></tr></thead><tbody>';
         
         // Mapping von Farben zu Bilddateinamen
         const colorToImageMap = {
@@ -2246,7 +1793,7 @@ async function extractEntries() {
                         <td>${sensorName}</td>
                         <td>${imageName}</td>
                         <td>${entityID}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="${imagePath}" download="${imageName}">
                                 <img src="${imagePath}" alt="${imageName}" style="width: 50px; height: auto; cursor: pointer;" title="Bild herunterladen">
                             </a>
@@ -2271,13 +1818,13 @@ async function extractEntries() {
         const sensorCountElement = document.getElementById('sensor-count');
         
         if (sensorCount === 1) {
-            sensorCountElement.textContent = "einen Sensor";
+            sensorCountElement.textContent = "einen Sensor / eine Müll-Type";
         } else {
-            sensorCountElement.textContent = `${sensorCount} Sensoren`;
+            sensorCountElement.textContent = `${sensorCount} Sensoren / Müll-Typen`;
         }
 
         sensorSummary.style.display = "block"; // Zusammenfassung einblenden
-        sensorSummary.innerHTML = `Du hast <span style="font-weight: bold; color: #4CAF50;">${sensorCount === 1 ? "einen Sensor" : `${sensorCount} Sensoren`}</span> angelegt.`;
+        sensorSummary.innerHTML = `Du hast <span style="font-weight: bold; color: #4be0ff;">${sensorCount === 1 ? "einen Sensor / eine Müll-Type" : `${sensorCount} Sensoren / Müll-Typen`}</span> angelegt.`;
     }
 
     function updateExampleCard() {
@@ -2320,17 +1867,6 @@ async function extractEntries() {
             customFontInput.style.display = "none";
         }
     }
-    // Event Listener für die Checkbox
-    document.getElementById("dateUseCheckbox").addEventListener("change", function () {
-        const dateOptionsDiv = document.getElementById("dateOptions");
-        if (this.checked) {
-            // Zeige den Container, wenn die Checkbox angehakt ist
-            dateOptionsDiv.date.display = "contents";
-        } else {
-            // Verstecke den Container, wenn die Checkbox nicht angehakt ist
-            dateOptionsDiv.date.display = "none";
-        }
-    });
 
     function getSelectedFont() {
         const fontSelection = document.getElementById("fontSelection").value;

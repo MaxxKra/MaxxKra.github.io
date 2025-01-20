@@ -6,21 +6,21 @@ show_sidebar: false
 layout: page
 ---
 
-<div class="guide-container">
+<div class="shb-main-container">
 
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
+<div id="shb-custom-alert" style="display: none;">
+    <div id="shb-custom-alert-content">
+        <h4 id="shb-custom-alert-title"></h4>
+        <p id="shb-custom-alert-message"></p>
+        <button id="shb-close-alert">OK</button>
     </div>
 </div>
 <section class="content-section">
-<h1 class="floorplan-title">Floorplan Beleuchtungsbilder</h1>
+<h1 class="shb-main-title">Floorplan Beleuchtungsbilder</h1>
 
-<h2 class="floorplan-subtitle">Erstelle die YAML-Codes für deine Beleuchtungsbilder</h2>
+<h2 class="shb-section-title-center">Erstelle die YAML-Codes für deine Beleuchtungsbilder</h2>
 
-<p class="floorplan-intro">
+<p class="shb-main-description">
     Was sind Beleuchtungsbilder?<br>
     Als Beleuchtungsbilder versteht man jene in Sweet Home 3D oder anderen 3D Planungstools generierte Bilder, welche den Zustand einzelner Beleuchtungs-Entitäten aus Home Assistant auf einzelnen Bildern darstellt. 
     Jedes dieser Entitäts-Bilder zeigt nur den ausgeleuchteten Raum, wohingegen der Rest des Bildes schwarz bleibt.<br>
@@ -31,9 +31,12 @@ layout: page
     Beispiele und Erklärungen für Beleuchtungsbilder findest du im 🔽 Dropdown Menü 🔽.
 </p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown', this)">Beleuchtungsbilder Beispiele<span>&#9660;</span></button>
-    <div id="galleryDropdown" class="dropdown-content" style="display: none;">
+
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown', this)">
+        Beleuchtungsbilder Beispiele<span>⬇️</span>
+    </button>
+    <div id="galleryDropdown" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_beleuchtungsbilder_example %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -70,9 +73,9 @@ layout: page
     Diese kannst du kopieren und entweder direkt hier einfügen oder eine .csv oder .txt Datei erstellen und diese hier einfügen
 </p>
 
-<div class="floorplan-form-group">
-    <label for="domain-select">Wähle eine Domain:</label>
-    <select id="domain-select" onchange="updateTemplateCode()">
+<div class="shb-form-group">
+    <label for="domain-select">Auswahl:</label>
+    <select id="domain-select" style="width: 30%;" onchange="updateTemplateCode()">
         <option value="light">light</option>
         <option value="switch">switch</option>
         <option value="input_boolean">input_boolean</option>
@@ -80,8 +83,8 @@ layout: page
     </select>
 </div>
 
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('template-output', this)">Code kopieren</button>
+<div class="shb-code-container">
+    <button class="copy-code-button" onclick="copyCode('template-output', this)">Code kopieren</button>
     <pre id="template-output">
         <code>
 {%- raw %}
@@ -91,16 +94,25 @@ layout: page
     </pre>
 </div>
 
-<div class="floorplan-form-group">
-    <label for="entity-list-upload">Entitäten-Liste hochladen oder einfügen:</label>
-    <p>Um das Auswählen deiner Entitäten für die Codegenerierung einfacher zu gestalten, sind hier alle Entitäten für deine Beleuchtungsbilder einzugeben oder hochzuladen. Mit einem Klick auf <strong>Entitäten-Liste aktualisieren</strong> werden diese Entitäten in den Entität Dropdown der nachfolgenden Tabelle geladen.</p>
-    <input type="file" id="entity-list-upload" accept=".txt,.csv" onchange="loadEntityList(event)" style="margin-bottom: 10px;">
-    <textarea class="textarea-list" id="entity-list-text" placeholder="Entitäten manuell eingeben (eine pro Zeile)" rows="5;"></textarea>
-        <div class="entity-preview-container" id="entity-preview" style="display: none; margin-top: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-            <h4>Hochgeladene Entitäten</h4>
-            <textarea id="uploaded-entity-list" rows="10" style="width: 100%;" readonly></textarea>
-        </div>
-    <button class="custom-button generate" onclick="updateEntityDropdown()">Entitäten-Liste aktualisieren</button>
+<h4 class="shb-section-title-left">Entitäten Liste erstellen</h4>
+<p>
+    Um das Auswählen deiner Entitäten für die Codegenerierung einfacher zu gestalten, sind hier alle Entitäten für deine Beleuchtungsbilder einzugeben oder hochzuladen. Mit einem Klick auf <strong>Entitäten-Liste aktualisieren</strong> werden diese Entitäten in den Entität Dropdown der nachfolgenden Tabelle geladen.
+</p>
+<div class="shb-form-group">
+    <label for="entity-list-upload">Datei auswählen</label>
+    <input type="file" id="entity-list-upload" accept=".txt,.csv" onchange="loadEntityList(event)" style="width: 30%"/>
+</div>
+
+<div class="shb-text-output" id="entity-preview;">
+    <textarea class="shb-text-code-output" id="entity-list-text" rows="5" cols="80" placeholder="Entitäten manuell eingeben (eine pro Zeile)"></textarea>
+</div>
+<div class="shb-text-output" id="entity-preview" style="display: none;">
+    <h4>Hochgeladene Entitäten</h4>
+    <textarea class="shb-text-code-output" id="uploaded-entity-list" rows="10" cols="80" readonly></textarea>
+</div>
+
+<div class="shb-button">
+    <button class="shb-button shb-button-blue" onclick="updateEntityDropdown()" style="width: 30%">Entitäten-Liste aktualisieren</button>
 </div>
 </section>
 
@@ -113,9 +125,10 @@ layout: page
 <p>
     Der Speicherpfad ist hier mit /local/lovelace/floorplan/ angegeben. Dies ist allerdings nur ein Vorschlag für eine übersichtliche Struktur. Lege dir die Ordner in deinem www-Ordner (/local/) nach deinen Bedürfnissen an oder verwende den vorgeschlagenen Pfad. Wichtig ist, dass der korrekte Pfad deiner Beleuchtungsbilder hier eingegeben wird.
 </p>
-<div class="floorplan-form-group">
+
+<div class="shb-form-group">
     <label for="path-input">Speicherpfad der Floorplan Bilder:</label>
-    <input type="text" id="path-input" value="/local/lovelace/floorplan/" placeholder="/local/lovelace/floorplan/">
+    <input type="text" id="path-input" value="/local/lovelace/floorplan/" placeholder="/local/lovelace/floorplan/" style="width: 30%">
 </div>
 <br>
 <p>
@@ -124,9 +137,9 @@ layout: page
     Der Dateiname ist hier mit <strong>1x1_transparent.png</strong> voreingestellt. Dieser kann natürlich geändert werden. 
 </p>
 <br>
-<div class="floorplan-form-group">
+<div class="shb-form-group">
     <label for="transparent-image-input">Dateiname 1 Pixel Bild:</label>
-    <input type="text" id="transparent-image-input" placeholder="1x1_transparent.png">
+    <input type="text" id="transparent-image-input" placeholder="1x1_transparent.png" style="width: 30%">
     <p style="margin-top: 10px;">
         Wenn du noch kein transparentes 1 Pixel Bild haben solltest, kannst du es 
         <a href="/img/floorplan/1x1_transparent.png" download class="download-link">hier herunterladen</a>.
@@ -142,10 +155,10 @@ layout: page
     Dieses Hintergrundbild definiert die Größe deines Floorplans und muss das gleiche Format und die gleichen Abmessungen wie die Beleuchtungsbilder haben.<br>
     Eine Vorschau deines Hintergrundbilds wird nach dem Hochladen unten angezeigt.
 </p>
-<div class="floorplan-form-group">
+
+<div class="shb-form-group">
     <label for="background-upload">Hintergrundbild hochladen:</label>
-    <button class="file-upload-button" onclick="triggerBackgroundUpload()">Datei auswählen</button>
-    <input type="file" id="background-upload" accept="image/*" onchange="handleBackgroundImageUpload()" style="display: none;">
+    <input type="file" id="background-upload" accept="image/*" onchange="handleBackgroundImageUpload()" style="width: 30%;">
     <span id="background-image-display" class="file-name-display">Kein Bild ausgewählt</span>
 </div>
 </section>
@@ -174,39 +187,48 @@ layout: page
     Die von dir getroffenen Einstellungen und Namen der hochgeladenen Bilder werden automatisch in den YAML-Code übernommen und deine Bilder in der Vorschau angezeigt.
 </p>
 
-<table id="entities-table">
-    <thead>
-        <tr>
-            <th>Entität (entity)</th>
-            <th>Bild auswählen</th>
-            <th>Option</th>
-            <th>Aktionen</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <select class="entity-dropdown">
-                    <option value="">Bitte auswählen...</option>
-                </select>
-            </td>
-            <td>
-                <button class="file-upload-button" onclick="triggerFileInput(this)">Datei auswählen</button>
-                <input type="file" class="file-upload" accept="image/*" style="display: none;" onchange="handleFileUpload(this)">
-            </td>
-            <td>
-                <select>
-                    <option value="switch">Licht ein-aus</option>
-                    <option value="dimmable">Licht dimmbar</option>
-                    <option value="rgb">Licht RGB</option>
-                    <option value="rgbw">Licht RGBW</option>
-                    <option value="cover">Abdeckungen</option>
-                </select>
-            </td>
-            <td><button class="action-button remove-button" onclick="removeRow(this)">&#x2212;</button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="shb-styled-table-container" style="width: 100%;">
+    <table id="entities-table" class="shb-styled-table">
+        <thead>
+            <tr>
+                <th>Entität (entity)</th>
+                <th>Bild auswählen</th>
+                <th>Option</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="shb-form-group" style="margin: 0">
+                        <select class="entity-dropdown" style="width: 100%;">
+                            <option value="">Bitte auswählen...</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="shb-form-group" style="margin: 0">
+                        <input type="file" class="file-upload" accept="image/*" style="width: 100%;" onchange="handleFileUpload(this)">
+                    </div>
+                </td>
+                <td>
+                    <div class="shb-form-group" style="margin: 0">
+                        <select style="width: 100%;">
+                            <option value="switch">Licht ein-aus</option>
+                            <option value="dimmable">Licht dimmbar</option>
+                            <option value="rgb">Licht RGB</option>
+                            <option value="rgbw">Licht RGBW</option>
+                            <option value="cover">Abdeckungen</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <button class="action-button remove-button" onclick="removeRow(this)">&#x2212;</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <button class="action-button add-button" onclick="addRow()">&#x2b;</button>
 <br>
@@ -217,12 +239,12 @@ layout: page
 </div>
 </section>
 <section class="content-section">
-<br>
-<div class="custom-button-container">
-    <button class="custom-button generate" onclick="generateYAML()">YAML-Code generieren</button>
-    <button class="custom-button copy" onclick="copyYAML()">YAML-Code kopieren</button>
-    <button class="custom-button remove" onclick="clearYAML()">YAML-Code löschen</button>
-    <button class="custom-button clear" onclick="clearInputs()">Eingaben löschen</button>
+
+<div class="shb-button-container">
+    <button class="shb-button shb-button-blue" style="min-width: 22%" onclick="generateYAML()">YAML-Code generieren</button>
+    <button class="shb-button shb-button-green" style="min-width: 22%" onclick="copyYAML()">YAML-Code kopieren</button>
+    <button class="shb-button shb-button-yellow" style="min-width: 22%" onclick="clearYAML()">YAML-Code löschen</button>
+    <button class="shb-button shb-button-red" style="min-width: 22%" onclick="clearInputs()">Eingaben löschen</button>
 </div>
 
 <h3>Generierter YAML-Code:</h3>
@@ -231,10 +253,12 @@ layout: page
     Nach dem Ausfüllen der oben stehenden Felder und dem Drücken auf <strong>YAML-Code generieren</strong>, erscheint hier der fertige YAML-Code. Dieser wird mit einem Klick auf <strong>YAML-Code kopieren</strong> in die Zwischenablage kopiert und kann in deine Home Assistant Dashboard Konfiguration eingefügt werden, um die Grundlage deines Floorplans zu bilden. Mit <strong>YAML-Code löschen</strong> wird der erstellte Code gelöscht, mit <strong>Eingaben löschen werden alle bisherigen Eingaben inkl. Bilderpfad, transparentem Pixel und Hintergrundbild entfernt.</strong>
 </p>
 
-<textarea id="yaml-output" rows="20" cols="80" readonly></textarea>
+<div class="shb-text-output">
+    <textarea class="shb-text-code-output" id="yaml-output" rows="20" cols="80" readonly></textarea>
+</div>
 </section>
 
-<footer class="guide-footer">
+<footer class="shb-footer">
     <h2>Viel Erfolg bei der Einrichtung deines Floorplans! 🎉</h2>
 </footer>
 
@@ -246,49 +270,6 @@ layout: page
 
 
 <style>
-    .guide-container {
-        max-width: 100%;
-        margin: auto;
-        padding: 20px;
-        background-color: #1a1a1a;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        border: 1px solid #1598b3;
-        border-radius: 8px;
-        box-shadow: 0 4px 4px 6px #1598b380;
-    }
-
-    .content-section {
-        margin-bottom: 20px;
-        padding: 15px;
-        background-color: #252525;
-        border: 1px solid #444;
-        border-radius: 8px;
-    }
-
-    .content-section h2 {
-        color: #1598b3;
-        font-size: 1.75em;
-        margin-bottom: 10px;
-    }
-
-    .content h1 {
-        color: #1598b3
-    }
-
-    .content-section ul {
-        margin: 10px 0 0 20px;
-        padding: 0;
-        list-style-type: disc;
-    }
-
-    .content-section ul li {
-        margin-bottom: 10px;
-    }
-
-    .guide-footer {
-        text-align: center;
-    }
     .blend-preview {
         margin-top: 20px;
         padding: 10px;
@@ -313,47 +294,6 @@ layout: page
         height: auto;
         position: relative;
         z-index: 1;
-    }
-    /* Wichtiges Hinweis-Container */
-    .important-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid rgb(255, 0, 0);
-    }
-    .important-container h3 {
-        color: #d12700;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .important-container p {
-        color: #383838;
-        font-family: Arial Black;
-    }
-    .important-container strong {
-        color:rgb(255, 0, 0);
-        text-transform: uppercase;
-    }
-    /* Hinweise */
-    .note-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid #0062ff;
-    }
-    .note-container h3 {
-        color: #0062ff;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .note-container p {
-        color: #383838;
-    }
-    .note-container strong {
-        color: #0062ff;
-        text-transform: uppercase;
     }
     #preview-entities img {
         position: absolute;
@@ -384,186 +324,8 @@ layout: page
         font-size: 14px;
         cursor: pointer;
     }
-
     .file-upload-button:hover {
         background-color: #0056b3;
-    }
-
-    .entity-preview-container {
-        background-color: #9fb9fb;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 10px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .entity-preview-container h4 {
-        margin-bottom: 10px;
-        color: #333;
-        font-size: 16px;
-        font-weight: bold;
-    }
-    /* Code Container */
-    .code-container {
-        position: relative;
-        background-color: #9fb9fb;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        overflow: auto;
-        max-height: 300px;
-    }
-    .code-container code {
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        font-size: 0.95em;
-        line-height: 1.5;
-        color: #d1d1d1;
-    }
-    /* Stil für den Copy-Button */
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #007acc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-        font-size: 0.85em;
-        cursor: pointer;
-        z-index: 10;
-    }
-    .copy-button:hover {
-        background: #005a9c;
-    }
-    .copy-button.copied {
-        background: #72dd8b; /* Grüner Hintergrund */
-        color: white;       /* Weiße Schrift */
-        content: '✔️';      /* Symbol */
-        padding: 8px 12px;
-    }
-    #custom-alert {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    #custom-alert-content {
-        background-color: #fff;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 400px;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-    #custom-alert-title {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
-    #custom-alert-message {
-        margin-bottom: 15px;
-        font-size: 16px;
-        color: #666;
-    }
-    #close-alert {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    #close-alert:hover {
-        background-color: #218838;
-    }
-    /* Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-    .floorplan-container {
-        max-width: 100%;
-        margin: auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .floorplan-title {
-        text-align: center;
-        color: #333;
-        font-size: 2em;
-        margin-bottom: 10px;
-    }
-    .floorplan-subtitle {
-        text-align: center;
-        color: #666;
-        font-size: 1.4em;
-        margin-bottom: 20px;
-    }
-    .floorplan-intro {
-        text-align: center;
-        color: #d1d1d1;
-        margin-bottom: 20px;
-    }
-    .floorplan-form-group {
-        display: flex;
-        flex-direction: column;
-    }
-    .floorplan-form-group label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .floorplan-form-group input, .floorplan-form-group select {
-        padding: 8px;
-        color: #000000;
-        background-color: #9fb9fb;
-        max-width: 30%;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .floorplan-form-group-horizontal {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .floorplan-form-group-horizontal .floorplan-form-group {
-        flex: 1;
-    }
-    .textarea-list {
-        width:100%;
-        background-color: #c3c3c3;
-        color: #000000;
-        font-size: 0.9em;
-        font-weight: bold;
-        padding: 10px;
-        margin-bottom: 10px;
     }
     .download-link {
         color: #007bff;
@@ -572,33 +334,6 @@ layout: page
     .download-link:hover {
         color: #0056b3;
         text-decoration: none;
-    }
-    /* Tabellengestaltung */
-    #entities-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
-    #entities-table th, #entities-table td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-    #entities-table th {
-        background-color: #9fb9fb;
-        font-weight: bold;
-        color: #000000;
-    }
-    #entities-table td input, #entities-table td select {
-        padding: 8px;
-        color: #000000;
-        background-color: #9fb9fb;
-        width: 100%;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        font-size: 14px;
     }
     /* Buttons für Zeilen hinzufügen und entfernen */
     .action-button {
@@ -618,89 +353,6 @@ layout: page
     }
     .remove-button {
         background-color: #dc3545;
-    }
-
-    /* Hauptbuttons Styling */
-    .custom-button-container {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    .custom-button {
-        padding: 10px 15px;
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        color: #fff;
-    }
-    .custom-button.generate {
-        background-color: #007bff;
-    }
-    .custom-button.copy {
-        background-color: #17a2b8;
-    }
-    .custom-button.remove {
-        background-color: #ffc107;
-        color: #000;
-    }
-    .custom-button.clear {
-        background-color: #dc3545;
-    }
-
-    /* YAML-Ausgabe Styling */
-    #yaml-output {
-        width: 100%;
-        margin-top: 20px;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #5d5d5d;
-        color: #efefef;
-        font-family: monospace;
-    }
-
-    .dropdown {
-        margin: 20px 0;
-        text-align: center;
-    }
-
-    .dropdown-toggle {
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        background-color: #f39c12;
-        color: #ffffff;
-        padding: 10px 5px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        width: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-    }
-
-    .dropdown-toggle.rotated {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg); /* Text von unten nach oben */
-        padding: 20px 30px;
-        width: 200px;
-        height: auto;
-    }
-
-    .dropdown-toggle span {
-        float: right;
-    }
-
-    .dropdown-content {
-        padding: 20px;
-        background-color: #1a1a1a;
-        border: 1px solid #f39c12;
-        border-radius: 5px;
-        margin-top: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .guide-footer {
     text-align: center;
@@ -726,38 +378,6 @@ function updateTemplateCode() {
 
 // Initialer Template-Code für die Standardauswahl "light"
 updateTemplateCode();
-
-function copyCode(elementId, button) {
-    const codeElement = document.getElementById(elementId);
-    const codeText = codeElement.innerText || codeElement.textContent;
-
-    navigator.clipboard.writeText(codeText)
-        .then(() => {
-            showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
-
-            button.classList.add('copied');
-            button.textContent = "Kopiert ✔️";
-        })
-        .catch(err => {
-            console.error("Fehler beim Kopieren des Codes: ", err);
-            showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
-        });
-}
-
-
-function showCustomAlert(title, message) {
-    const alertBox = document.getElementById("custom-alert");
-    const alertTitle = document.getElementById("custom-alert-title");
-    const alertMessage = document.getElementById("custom-alert-message");
-
-    alertTitle.textContent = title;
-    alertMessage.textContent = message;
-    alertBox.style.display = "flex";
-
-    document.getElementById("close-alert").onclick = function () {
-        alertBox.style.display = "none";
-    };
-}
 
 let entityList = [];
 
@@ -798,10 +418,10 @@ function updateEntityDropdown() {
     // Kombiniere hochgeladene und manuell eingegebene Entitäten
     entityList = [...new Set([...entityList, ...manualEntities])];
 
-    // Aktualisiere alle Dropdown-Menüs in der Tabelle
+    // Alle Dropdowns in der Tabelle aktualisieren
     const dropdowns = document.querySelectorAll('.entity-dropdown');
     dropdowns.forEach(dropdown => {
-        dropdown.innerHTML = '<option value="">Bitte auswählen...</option>'; // Dropdown zurücksetzen
+        dropdown.innerHTML = '<option value="">Bitte auswählen...</option>'; // Zurücksetzen
         entityList.forEach(entity => {
             const option = document.createElement('option');
             option.value = entity;
@@ -810,25 +430,14 @@ function updateEntityDropdown() {
         });
     });
 
-    // Zeige Erfolgsmeldung
-    showCustomAlert("ERFOLG!", "Die Entitäten-Liste wurde erfolgreich aktualisiert!");
+    // Zeige Erfolgsmeldung (optional)
+    showSHBcustomAlert("ERFOLG!", "Die Entitäten-Liste wurde erfolgreich aktualisiert!");
 
     // Leere das Vorschaulisten-Fenster nach Aktualisierung
     const previewContainer = document.getElementById("entity-preview");
     const previewTextarea = document.getElementById("uploaded-entity-list");
     previewTextarea.value = ""; // Vorschauliste leeren
     previewContainer.style.display = "none"; // Verstecke die Vorschau
-}
-
-function toggleDropdown(dropdownId, toggleButton) {
-    var dropdownContent = document.getElementById(dropdownId);
-    if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
-        dropdownContent.style.display = "block";
-        toggleButton.classList.add("rotated"); // Klasse hinzufügen
-    } else {
-        dropdownContent.style.display = "none";
-        toggleButton.classList.remove("rotated"); // Klasse entfernen
-    }
 }
 
 // Trigger den versteckten Datei-Upload-Input
@@ -840,17 +449,13 @@ function triggerFileInput(button) {
 // Verarbeite den Dateiupload und aktualisiere den Dateinamen
 function handleFileUpload(input) {
     const file = input.files[0];
-    const fileButton = input.previousElementSibling; // Button "Datei auswählen"
-
     if (file) {
-        fileButton.textContent = file.name; // Zeige den Dateinamen im Button
-        input.dataset.filename = file.name; // Speichere den Dateinamen für die Vorschau und YAML-Generierung
+        input.dataset.filename = file.name; // Speichere den Dateinamen
     } else {
-        fileButton.textContent = 'Datei auswählen';
-        input.dataset.filename = ''; // Falls kein Bild ausgewählt ist
+        input.dataset.filename = ''; // Leere den gespeicherten Dateinamen
     }
 
-    // Aktualisiere die Vorschau
+    // Vorschau aktualisieren
     updatePreview();
 }
 
@@ -948,45 +553,44 @@ function updatePreview() {
 
 // Funktion zum Hinzufügen einer neuen Zeile zur Tabelle
 function addRow() {
-    const table = document.getElementById('entities-table').getElementsByTagName('tbody')[0];
+    const table = document.querySelector('#entities-table tbody');
     const newRow = table.rows[0].cloneNode(true);
 
-    // Leere alle Eingabefelder in der neuen Zeile
-    newRow.querySelectorAll('input').forEach(input => {
-        input.value = ''; // Eingabefeld leeren
-        if (input.classList.contains('file-upload')) {
-            input.dataset.filename = ''; // dataset.filename zurücksetzen
-        }
+    // Leere alle Eingabefelder und Dropdowns in der neuen Zeile
+    newRow.querySelectorAll('input[type="file"]').forEach(input => {
+        input.value = ''; // Datei-Upload zurücksetzen
+        input.dataset.filename = ''; // Gespeicherter Dateiname zurücksetzen
     });
 
     newRow.querySelectorAll('select').forEach(select => {
         select.value = ''; // Dropdown zurücksetzen
     });
 
-    const fileButton = newRow.querySelector('.file-upload-button');
-    if (fileButton) fileButton.textContent = 'Datei auswählen';
-
     table.appendChild(newRow);
 
-    // Aktualisiere die Vorschau
+    // Vorschau aktualisieren
     updatePreview();
 }
 
 
 // Funktion zum Entfernen einer Zeile aus der Tabelle
 function removeRow(button) {
-    const row = button.parentNode.parentNode;
+    const row = button.closest('tr');
     const table = row.parentNode;
+
     if (table.rows.length > 1) {
         row.remove();
     }
+
+    // Vorschau aktualisieren
+    updatePreview();
 }
 
 // Funktion zum Leeren des YAML-Code-Feldes
 function clearYAML() {
     document.getElementById('yaml-output').value = '';
 
-    showCustomAlert('Hinweis', 'Deine YAML-Configuration wurde gelöscht!');
+    showSHBcustomAlert('Hinweis', 'Deine YAML-Configuration wurde gelöscht!');
 }
 
 // Funktion zum Löschen der Eingabefelder, Entfernen der Vorschau und Anzeigen eines Alerts
@@ -1030,7 +634,7 @@ function clearInputs() {
     previewEntities.innerHTML = '';
 
     // Benachrichtigung anzeigen
-    showCustomAlert('Hinweis', 'Alle Eingaben wurden gelöscht und müssen neu getroffen werden.');
+    showSHBcustomAlert('Hinweis', 'Alle Eingaben wurden gelöscht und müssen neu getroffen werden.');
 }
 
 // Funktion zum Generieren des YAML-Codes
@@ -1044,7 +648,7 @@ function generateYAML() {
     let yaml = '';
 
     if (!path || !backgroundImage || !transparentImage) {
-        showCustomAlert('Achtung','Bitte alle allgemeinen Felder ausfüllen!');
+        showSHBcustomAlert('Achtung','Bitte alle allgemeinen Felder ausfüllen!');
         return;
     }
 
@@ -1196,6 +800,6 @@ function copyYAML() {
     const yamlOutput = document.getElementById('yaml-output');
     yamlOutput.select();
     document.execCommand('copy');
-    showCustomAlert('Super','Dein fertiger YAML-Code wurde in die Zwischenablage kopiert!');
+    showSHBcustomAlert('Super','Dein fertiger YAML-Code wurde in die Zwischenablage kopiert!');
 }
 </script>

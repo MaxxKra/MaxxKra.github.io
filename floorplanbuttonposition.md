@@ -5,22 +5,22 @@ description: Generiere YAML-Code für Home Assistant anhand der Markierungen und
 show_sidebar: false
 layout: page
 ---
-<div class="guide-container">
+<div class="shb-main-container">
 
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
+<div id="shb-custom-alert" style="display: none;">
+    <div id="shb-custom-alert-content">
+        <h4 id="shb-custom-alert-title"></h4>
+        <p id="shb-custom-alert-message"></p>
+        <button id="shb-close-alert">OK</button>
     </div>
 </div>
 <section class="content-section">
 
-<h1 class="floorplan-main-title">Floorplan Button Positionierung</h1>
+<h1 class="shb-main-title">Floorplan Button Positionierung</h1>
 
-<h2 class="floorplan-main-subtitle">Positioniere deine Buttons für alle Entitäten direkt auf deinem Floorplan</h2>
+<h2 class="shb-section-title-center">Positioniere deine Buttons für alle Entitäten direkt auf deinem Floorplan</h2>
 
-<p class="floorplan-main-intro">
+<p class="shb-main-description">
     Mit diesem Tool kannst du durch Eingabe der Angaben zu deinen Entitäten, die Buttons direkt auf deinem Floorplan-Hintergrund positionieren. Nach der Positionierung, generierst du dir den YAML-Code um diesen direkt auf deinem Home Assistant Dashboard Floorplan einzutragen.
 </p>
 
@@ -33,9 +33,9 @@ layout: page
     Diese kannst du kopieren und entweder direkt hier einfügen oder eine .csv oder .txt Datei erstellen und diese hier einfügen
 </p>
 
-<div class="floorplan-form-group">
-    <label for="domain-select">Wähle eine Domain:</label>
-    <select id="domain-select" onchange="updateTemplateCode()">
+<div class="shb-form-group">
+    <label for="domain-select">Auswahl:</label>
+    <select id="domain-select" style="width: 30%;" onchange="updateTemplateCode()">
         <option value="light">light</option>
         <option value="switch">switch</option>
         <option value="input_boolean">input_boolean</option>
@@ -43,8 +43,8 @@ layout: page
     </select>
 </div>
 
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('template-output', this)">Code kopieren</button>
+<div class="shb-code-container">
+    <button class="copy-code-button" onclick="copyCode('template-output', this)">Code kopieren</button>
     <pre id="template-output">
         <code>
 {%- raw %}
@@ -54,15 +54,25 @@ layout: page
     </pre>
 </div>
 
-<div class="floorplan-form-group">
-    <label for="entity-list-upload">Entitäten-Liste hochladen oder einfügen:</label>
-    <input type="file" id="entity-list-upload" accept=".txt,.csv" onchange="loadEntityList(event)" style="margin-bottom: 10px;">
-    <textarea class="textarea-list" id="entity-list-text" placeholder="Entitäten manuell eingeben (eine pro Zeile)" rows="5" style="width: 100%;"></textarea>
-        <div class="entity-preview-container" id="entity-preview" style="display: none; margin-top: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-            <h4>Hochgeladene Entitäten</h4>
-            <textarea id="uploaded-entity-list" rows="10" style="width: 100%;" readonly></textarea>
-        </div>
-    <button class="custom-button" onclick="updateEntityDropdown()">Entitäten-Liste aktualisieren</button>
+<h4 class="shb-section-title-left">Entitäten Liste erstellen</h4>
+<p>
+    Um das Auswählen deiner Entitäten für die Codegenerierung einfacher zu gestalten, sind hier alle Entitäten für deine Beleuchtungsbilder einzugeben oder hochzuladen. Mit einem Klick auf <strong>Entitäten-Liste aktualisieren</strong> werden diese Entitäten in den Entität Dropdown der nachfolgenden Tabelle geladen.
+</p>
+<div class="shb-form-group">
+    <label for="entity-list-upload">Datei auswählen</label>
+    <input type="file" id="entity-list-upload" accept=".txt,.csv" onchange="loadEntityList(event)" style="width: 30%"/>
+</div>
+
+<div class="shb-text-output" id="entity-preview;">
+    <textarea class="shb-text-code-output" id="entity-list-text" rows="5" cols="80" placeholder="Entitäten manuell eingeben (eine pro Zeile)"></textarea>
+</div>
+<div class="shb-text-output" id="entity-preview" style="display: none;">
+    <h4>Hochgeladene Entitäten</h4>
+    <textarea class="shb-text-code-output" id="uploaded-entity-list" rows="10" cols="80" readonly></textarea>
+</div>
+
+<div class="shb-button">
+    <button class="shb-button shb-button-blue" onclick="updateEntityDropdown()" style="width: 30%">Entitäten-Liste aktualisieren</button>
 </div>
 </section>
 
@@ -75,16 +85,18 @@ layout: page
 </p>
 
 <!-- Bild-Upload -->
-<div class="floorplan-form-group">
-    <label for="image-upload" class="custom-label">Bild hochladen:</label>
-    <input type="file" id="image-upload" class="custom-input" accept="image/*">
+<div class="shb-form-group">
+    <label for="image-upload">Bild hochladen:</label>
+    <input type="file" id="image-upload" accept="image/*" style="width: 30%;">
 <p id="image-dimensions">Bildabmessungen: Noch kein Bild hochgeladen</p>
 </div>
 
 <!-- Bildcontainer -->
-<div class="floorplan-container" id="container" style="display: none;">
-    <img src="" alt="Floorplan" id="floorplan">
-    <div class="floorplan-coords" id="coords">left: 0%, top: 0%</div>
+<div class="shb-center-container">
+    <div class="floorplan-container" id="container" style="display: none;">
+        <img src="" alt="Floorplan" id="floorplan">
+        <div class="floorplan-coords" id="coords">left: 0%, top: 0%</div>
+    </div>
 </div>
 </section>
 
@@ -98,11 +110,11 @@ layout: page
         Diese Integration ist unbedingt vorab zu installieren!
     </p>
 </div>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('tutorialDropdown', this)">
-        Wie positioniere ich die Buttons auf dem Bild?<span>&#9660;</span>
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('tutorialDropdown', this)">
+        Wie positioniere ich die Buttons auf dem Bild?<span>⬇️</span>
     </button>
-    <div id="tutorialDropdown" class="dropdown-content" style="display: none; padding: 10px; text-align: left; line-height: 1.5;">
+    <div id="tutorialDropdown" class="shb-dropdown-content" style="display: none;">
         <p><strong>Schritt-für-Schritt-Anleitung:</strong></p>
         <ol>
             <li>Wähle eine Entität aus der Liste aus</li>
@@ -133,50 +145,50 @@ layout: page
     </div>
 </div>    
 
-<div class="floorplan-marker-form">
-    <div class="floorplan-form-group-full">
+<div class="shb-grid-cont-2">
+    <div class="shb-form-group" style="margin: 10px 0">
         <label for="marker-entity">Entität (entity):</label>
         <select id="marker-entity">
             <option value="">Bitte auswählen...</option>
             <!-- Dynamisch hinzugefügte Optionen -->
         </select>
     </div>  
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 10px 0">
         <label for="marker-path">Speicherpfad der Icons:</label>
         <input type="text" id="marker-path" placeholder="/local/lovelace/icon/">
     </div>    
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="icon-dropdown">Icon im Zustand 'An':</label>
-        <div class="custom-dropdown">
-            <button id="on-icon-button" class="custom-dropdown-button" onclick="toggleIconDropdown()">Bitte auswählen...</button>
-            <div class="custom-dropdown-content" id="icon-dropdown">
+        <div class="shb-img-dropdown">
+            <button id="on-icon-button" class="shb-img-dropdown-button" onclick="toggleIconDropdown()">Bitte auswählen...</button>
+            <div class="shb-img-dropdown-content" id="icon-dropdown">
                 <!-- Dynamisch generierte Icons -->
             </div>
         </div>
         <input type="text" id="custom-on-icon" placeholder="Eigenen Namen eingeben" style="margin-top: 10px; width: 100%;">
         <input type="hidden" id="selected-icon" name="selected-icon">
     </div>
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="off-icon-dropdown">Icon im Zustand 'Aus':</label>
-        <div class="custom-dropdown">
-            <button id="off-icon-button" class="custom-dropdown-button" onclick="toggleOffIconDropdown()">Bitte auswählen...</button>
-            <div class="custom-dropdown-content" id="off-icon-dropdown">
+        <div class="shb-img-dropdown">
+            <button id="off-icon-button" class="shb-img-dropdown-button" onclick="toggleOffIconDropdown()">Bitte auswählen...</button>
+            <div class="shb-img-dropdown-content" id="off-icon-dropdown">
                 <!-- Dynamisch generierte Icons -->
             </div>
         </div>
         <input type="text" id="custom-off-icon" placeholder="Eigenen Namen eingeben" style="margin-top: 10px; width: 100%;">
         <input type="hidden" id="selected-off-icon" name="selected-off-icon">
     </div>
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="marker-default-icon">Icon bei Fehler:</label>
         <input type="text" id="marker-default-icon" value="fehler.png">
     </div>        
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="marker-size">Größe des Icons (%):</label>
         <input type="text" id="marker-size" value="2">
     </div>    
     <!-- Auswahl für die Form des Markers -->
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="marker-shape">Form des Buttons:</label>
         <select id="marker-shape">
             <option value="50%">Rund</option>
@@ -187,8 +199,8 @@ layout: page
 </div>
 
 <!-- Auswahl für die Tap- und Hold-Action mit jeweiligen Navigationspfaden -->
-<div class="floorplan-marker-form">
-    <div class="floorplan-form-group-full">
+<div class="shb-grid-cont-2">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="marker-tap-action">Tap Action:</label>
         <select id="marker-tap-action" onchange="toggleNavigationPathInput('tap')">
             <option value="toggle">Umschalten</option>
@@ -200,7 +212,7 @@ layout: page
         </select>
         <input type="text" id="navigation-path-tap" placeholder="Pfad für Navigation (Tap)" style="display:none; margin-top: 5px;">
     </div>
-    <div class="floorplan-form-group-full">
+    <div class="shb-form-group" style="margin: 0 0 10px 0">
         <label for="marker-hold-action">Hold Action:</label>
         <select id="marker-hold-action" onchange="toggleNavigationPathInput('hold')">
             <option value="more-info" selected>Mehr Info</option>
@@ -215,12 +227,12 @@ layout: page
 </div>
 
 <!-- Eingabefelder für den Navigationspfad, nur sichtbar, wenn "Navigieren" ausgewählt ist -->
-<div class="floorplan-form-group" id="navigation-path-group-tap" style="display: none;">
+<div class="shb-form-group" id="navigation-path-group-tap" style="display: none; margin: 0 0 10px 0;">
     <label for="navigation-path-tap">Navigationspfad (Tap):</label>
     <input type="text" id="navigation-path-tap" placeholder="Pfad für Navigation (Tap)">
 </div>
 
-<div class="floorplan-form-group" id="navigation-path-group-hold" style="display: none;">
+<div class="shb-form-group" id="navigation-path-group-hold" style="display: none; margin: 0 0 10px 0;">
     <label for="navigation-path-hold">Navigationspfad (Hold):</label>
     <input type="text" id="navigation-path-hold" placeholder="Pfad für Navigation (Hold)">
 </div>
@@ -235,11 +247,11 @@ layout: page
             <th>Position</th>
             <th>Entität</th>
             <th>Icon-Pfad</th>
-            <th>Fehler-Icon</th>
-            <th>An-Icon</th>
-            <th>Aus-Icon</th>
-            <th>Größe (%)</th>
-            <th>Form</th>
+            <th style="text-align: center">Fehler-Icon</th>
+            <th style="text-align: center">An-Icon</th>
+            <th style="text-align: center">Aus-Icon</th>
+            <th style="text-align: center">Größe (%)</th>
+            <th style="text-align: center">Form</th>
         </tr>
     </thead>
     <tbody>
@@ -249,18 +261,21 @@ layout: page
 </section>
 
 <section class="content-section">
-<div class="floorplan-button-container">
-    <button class="floorplan-button floorplan-button-primary" onclick="generateYAML()">YAML-Code generieren</button>
-    <button class="floorplan-button floorplan-button-info" onclick="copyYAML()">YAML-Code kopieren</button>
-    <button class="floorplan-button floorplan-button-warning" onclick="removeMarkers()">Alle Markierungen entfernen</button>
-    <button class="floorplan-button floorplan-button-danger" onclick="clearYAML()">YAML-Code löschen</button>
+<div class="shb-button-container">
+    <button class="shb-button shb-button-blue" style="min-width: 22%" onclick="generateYAML()">YAML-Code generieren</button>
+    <button class="shb-button shb-button-green" style="min-width: 22%" onclick="copyYAML()">YAML-Code kopieren</button>
+    <button class="shb-button shb-button-yellow" style="min-width: 22%" onclick="removeMarkers()">Alle Markierungen entfernen</button>
+    <button class="shb-button shb-button-red" style="min-width: 22%" onclick="clearYAML()">YAML-Code löschen</button>
 </div>
 
 <h3>Generierter YAML-Code:</h3>
-<textarea id="yaml-output" rows="20" cols="80" readonly></textarea>
+<div class="shb-text-output">
+    <textarea class="shb-text-code-output" id="yaml-output" rows="20" cols="80" readonly>
+    </textarea>
+</div>
 </section>
 
-<footer class="guide-footer">
+<footer class="shb-footer">
     <h2>Viel Erfolg bei der Positionierung deiner Buttons! 🎉</h2>
 </footer>
 
@@ -269,36 +284,6 @@ layout: page
 </div>
 
 <style>
-    .guide-container {
-        max-width: 100%;
-        margin: auto;
-        padding: 20px;
-        background-color: #1a1a1a;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        border: 1px solid #1598b3;
-        border-radius: 8px;
-        box-shadow: 0 4px 4px 6px #1598b380;
-    }
-
-    .content-section {
-        margin-bottom: 20px;
-        padding: 15px;
-        background-color: #252525;
-        border: 1px solid #444;
-        border-radius: 8px;
-    }
-
-    .content-section h2 {
-        color: #1598b3;
-        font-size: 1.75em;
-        margin-bottom: 10px;
-    }
-
-    .content h1 {
-        color: #1598b3
-    }
-
     .content-section ul {
         margin: 10px 0 0 20px;
         padding: 0;
@@ -308,238 +293,14 @@ layout: page
     .content-section ul li {
         margin-bottom: 10px;
     }
-
-    .guide-footer {
-        text-align: center;
-    }
-    /* Wichtiges Hinweis-Container */
-    .important-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid rgb(255, 0, 0);
-    }
-    .important-container h3 {
-        color: #d12700;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .important-container p {
-        color: #383838;
-        font-family: Arial Black;
-    }
-    .important-container strong {
-        color:rgb(255, 0, 0);
-        text-transform: uppercase;
-    }
-    /* Hinweise */
-    .note-container {
-        background-color: rgb(255, 255, 255);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 8px solid #0062ff;
-    }
-    .note-container h3 {
-        color: #0062ff;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgb(0, 0, 0);
-    }
-    .note-container p {
-        color: #383838;
-    }
-    .note-container strong {
-        color: #0062ff;
-        text-transform: uppercase;
-    }
-    .entity-preview-container {
-        background-color: #9fb9fb;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 10px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .entity-preview-container h4 {
-        margin-bottom: 10px;
-        color: #333;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .code-container {
-        position: relative;
-        background-color: #9fb9fb;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        overflow: auto;
-        max-height: 300px;
-    }
-
-    .code-container code {
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        font-size: 0.95em;
-        line-height: 1.5;
-        color: #d1d1d1;
-        white-space: pre-wrap;
-    }
-
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #007acc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-        font-size: 0.85em;
-        cursor: pointer;
-        z-index: 10;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .copy-button:hover {
-        background: #005a9c;
-    }
-    .copy-button.copied {
-        background: #72dd8b; /* Grüner Hintergrund */
-        color: white;       /* Weiße Schrift */
-        content: '✔️';      /* Symbol */
-        padding: 8px 12px;
-    }
-    #custom-alert {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    #custom-alert-content {
-        background-color: #fff;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 400px;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-    #custom-alert-title {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
-    #custom-alert-message {
-        margin-bottom: 15px;
-        font-size: 16px;
-        color: #666;
-    }
-    #close-alert {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    #close-alert:hover {
-        background-color: #218838;
-    }
-    /* Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-    .custom-input, select {
-        padding: 8px;
-        color: #000000;
-        background-color: #9fb9fb;
-        max-width: 100%;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .custom-button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .custom-button:hover {
-        background-color: #45a049;
-    }
-
-    .floorplan-main-container {
-        max-width: 100%;
-        margin: auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .floorplan-main-title {
-        text-align: center;
-        color: #333;
-        font-size: 2em;
-        margin-bottom: 10px;
-    }
-    .floorplan-main-subtitle {
-        text-align: center;
-        color: #666;
-        font-size: 1.4em;
-        margin-bottom: 20px;
-    }
-    .floorplan-main-intro {
-        text-align: center;
-        color: #555;
-        margin-bottom: 20px;
-    }
-    .custom-form-group {
-        margin-top: 20px;
-    }
-    .custom-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
     .floorplan-container {
         position: relative;
         display: inline-block;
         margin-top: 20px;
-        border: 1px solid #ddd;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         padding: 0;
         background-color: #f9f9f9;
-        border-radius: 8px;
         margin-bottom: 20px;
     }
     img {
@@ -569,139 +330,11 @@ layout: page
         transform: translate(-50%, -50%);
         pointer-events: none;
     }
-    .floorplan-marker-form {
+    .shb-grid-cont-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         margin-top: 20px;
-    }
-    .floorplan-form-group, .floorplan-form-group-full {
-        display: flex;
-        flex-direction: column;
-    }
-    .floorplan-form-group label, .floorplan-form-group-full label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .floorplan-form-group input, .floorplan-form-group select {
-        padding: 8px;
-        color: #000000;
-        background-color: #9fb9fb;
-        max-width: 30%;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .floorplan-form-group-full input, .floorplan-form-group-full select {
-        padding: 8px;
-        color: #000000;
-        background-color: #9fb9fb;
-        max-width: 100%;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .floorplan-button-container {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    .floorplan-button {
-        padding: 10px 15px;
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .floorplan-button-primary {
-        background-color: #007bff;
-        color: #fff;
-    }
-    .floorplan-button-info {
-        background-color: #17a2b8;
-        color: #fff;
-    }
-    .floorplan-button-warning {
-        background-color: #ffc107;
-        color: #fff;
-    }
-    .floorplan-button-danger {
-        background-color: #dc3545;
-        color: #fff;
-    }
-    .textarea-list {
-        width:100%;
-        background-color: #c3c3c3;
-        color: #000000;
-        font-size: 0.9em;
-        font-weight: bold;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    #yaml-output {
-        width: 100%;
-        margin-top: 20px;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f8f8f8;
-    }
-    .floorplan-form-group-horizontal {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .floorplan-form-group-horizontal .floorplan-form-group {
-        flex: 1;
-    }
-
-    .dropdown {
-        margin: 20px 0;
-        text-align: center;
-    }
-
-    .dropdown-toggle {
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        background-color: #f39c12;
-        color: #ffffff;
-        padding: 10px 5px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        width: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-    }
-
-    .dropdown-toggle.rotated {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg); /* Text von unten nach oben */
-        padding: 20px 30px;
-        width: 8%;
-        height: auto;
-    }
-
-    .dropdown-toggle span {
-        float: right;
-    }
-
-    .dropdown-content {
-        padding: 20px;
-        background-color: #1a1a1a;
-        border: 1px solid #f39c12;
-        border-radius: 5px;
-        margin-top: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .guide-footer {
-    text-align: center;
-    margin-top: 20px;
     }
     #marker-on-icon option {
         padding: 10px;
@@ -715,44 +348,45 @@ layout: page
         margin-right: 10px;
         vertical-align: middle;
     }
-    .custom-dropdown {
+    .shb-img-dropdown {
         position: relative;
         display: inline-block;
         width: 100%;
     }
 
-    .custom-dropdown-button {
-        background-color: #e9e9e9;
+    .shb-img-dropdown-button {
+        background-color: #1ab5d5;
         color: #000000;
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
         border-radius: 5px;
         width: 100%;
         text-align: left;
         cursor: pointer;
     }
 
-    .custom-dropdown-button::after {
+    .shb-img-dropdown-button::after {
         content: "▼";
         float: right;
         margin-right: 10px;
         color: #000000;
     }
 
-    .custom-dropdown-content {
+    .shb-img-dropdown-content {
         display: none;
         position: absolute;
         background-color: #6b6b6b;
-        border: 1px solid #ddd;
+        border: 1px solid #ffffff;
         border-radius: 5px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 5px #ffffff;
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
         width: 100%;
     }
 
-    .custom-dropdown-content div {
+    .shb-img-dropdown-content div {
         padding: 10px;
         display: flex;
         align-items: center;
@@ -761,11 +395,11 @@ layout: page
         color: #fff;
     }
 
-    .custom-dropdown-content div:hover {
+    .shb-img-dropdown-content div:hover {
         background-color: #555;
     }
 
-    .custom-dropdown-content img {
+    .shb-img-dropdown-content img {
         width: 30px;
         height: 30px;
         margin-right: 10px;
@@ -859,29 +493,15 @@ function copyCode(elementId, button) {
 
     navigator.clipboard.writeText(codeText)
         .then(() => {
-            showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
+            showSHBcustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
 
             button.classList.add('copied');
             button.textContent = "Kopiert ✔️";
         })
         .catch(err => {
             console.error("Fehler beim Kopieren des Codes: ", err);
-            showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
+            showSHBcustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
         });
-}
-
-function showCustomAlert(title, message) {
-    const alertBox = document.getElementById("custom-alert");
-    const alertTitle = document.getElementById("custom-alert-title");
-    const alertMessage = document.getElementById("custom-alert-message");
-
-    alertTitle.textContent = title;
-    alertMessage.textContent = message;
-    alertBox.style.display = "flex";
-
-    document.getElementById("close-alert").onclick = function () {
-        alertBox.style.display = "none";
-    };
 }
 
 let entityList = [];
@@ -935,7 +555,7 @@ function updateEntityDropdown() {
     });
 
     // Zeige Erfolgsmeldung
-    showCustomAlert("ERFOLG!", "Die Entitäten-Liste wurde erfolgreich aktualisiert!");
+    showSHBcustomAlert("ERFOLG!", "Die Entitäten-Liste wurde erfolgreich aktualisiert!");
 
     // Leere das Vorschaulisten-Fenster nach Aktualisierung
     const previewContainer = document.getElementById("entity-preview");
@@ -1170,11 +790,11 @@ function updatePositionTable(marker) {
         <td>left: ${marker.x}%, top: ${marker.y}%</td>
         <td>${marker.entity}</td>
         <td>${marker.path}</td>
-        <td>${defaultIconHTML}</td>
-        <td>${onIconHTML}</td>
-        <td>${offIconHTML}</td>
-        <td>${marker.size}</td>
-        <td>${marker.shape === "50%" ? "Rund" : marker.shape === "0%" ? "Eckig" : "Abgerundet"}</td>
+        <td style="text-align: center">${defaultIconHTML}</td>
+        <td style="text-align: center">${onIconHTML}</td>
+        <td style="text-align: center">${offIconHTML}</td>
+        <td style="text-align: center">${marker.size}</td>
+        <td style="text-align: center">${marker.shape === "50%" ? "Rund" : marker.shape === "0%" ? "Eckig" : "Abgerundet"}</td>
     `;
 
     tableBody.appendChild(row);
@@ -1308,7 +928,7 @@ function generateYAML() {
 function copyYAML() {
   yamlOutput.select();
   document.execCommand('copy');
-  showCustomAlert('Super!', 'Dein YAML-Code wurde in die Zwischenablage kopiert!');
+  showSHBcustomAlert('Super!', 'Dein YAML-Code wurde in die Zwischenablage kopiert!');
 }
 function toggleDropdown(dropdownId, toggleButton) {
     var dropdownContent = document.getElementById(dropdownId);

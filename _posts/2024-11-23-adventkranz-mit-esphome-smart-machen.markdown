@@ -35,9 +35,11 @@ published: true
     Die meisten der Komponenten könnt ihr in meinem Amazon Shop ansehen und gerne kaufen.
 </p>
 
-<a href="https://amzn.to/4fK08yu" target="_blank" style="color: white; text-decoration: none;">
-<button style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Link zum Shop</button>
-</a>
+<div class="shb-button">
+    <a href="https://amzn.to/4fK08yu" target="_blank" style="color: white; text-decoration: none;">
+    <button class="shb-button shb-button-blue" style="width: 30%">Link zum Shop</button>
+    </a>
+</div>
 
 <h3>Schritt 2. Kerzen verdrahten</h3>
 
@@ -47,7 +49,7 @@ published: true
 </p>
 
 <div class="columns is-centered">
-{% assign gallery_images = site.data.gallery_adventskranz_kerze %}
+{% assign gallery_images = site.data.gallery_adventkranz_kerze %}
     <div class="columns is-multiline">
         {% for gallery in gallery_images %}
             <div class="column is-12">
@@ -84,15 +86,19 @@ published: true
 <div class="columns is-centered">
 <div class="column is-5">
 {% include image-modal.html ratio="is-4by3" link="/img/blog/smarter_Adventkranz/ESP_Verdrahtung_k.png" alt="Example image" large_link="/img/blog/smarter_Adventkranz/ESP_Verdrahtung.png" %}
-<a href="/img/blog/smarter_Adventkranz/Smarter_Adventkranz_Anschluss.pdf" download="Smarter_Adventkranz_Anschluss.pdf" class="download-button">
-  📈 Anschlussplan
-</a>
+    <div class="shb-button">
+        <a href="/img/blog/smarter_Adventkranz/Smarter_Adventkranz_Anschluss.pdf" download="Smarter_Adventkranz_Anschluss.pdf">
+        <button class="shb-button shb-button-blue" style="width: 100%">📈 Anschlussplan</button>
+        </a>
+    </div>
 </div>
 <div class="column is-5">
 {% include image-modal.html ratio="is-4by3" link="/img/blog/smarter_Adventkranz/ESP32_D1-Mini_Pinout_k.png" alt="Example image" large_link="/img/blog/smarter_Adventkranz/ESP32_D1-Mini_Pinout.png" %}
-<a href="/img/blog/smarter_Adventkranz/D1_Mini_ESP32_-_pinout.pdf" download="D1_Mini_ESP32_-_pinout.pdf" class="download-button">
-  📈 ESP32 Pinout
-</a>
+    <div class="shb-button">
+        <a href="/img/blog/smarter_Adventkranz/D1_Mini_ESP32_-_pinout.pdf" download="D1_Mini_ESP32_-_pinout.pdf">
+        <button class="shb-button shb-button-blue" style="width: 100%">📈 ESP32 Pinout</button>
+        </a>
+    </div>
 </div>
 </div>
 
@@ -130,9 +136,11 @@ published: true
     Eine kurze Beschreibung wie man in ESPHome ein Gerät hinzufügt, findest du im ⬇️ Dropdown ⬇️
 </p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown', this)">ESPHome - Neues Gerät einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown', this)">
+        ESPHome - Neues Gerät einrichten<span>⬇️</span>
+    </button>
+    <div id="galleryDropdown" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_esp_new_device %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -157,8 +165,8 @@ published: true
         </div>
     </div>
 </div>
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('code-yaml-esp', this)">Kopieren</button>
+<div class="shb-code-container">
+    <button class="copy-code-button" onclick="copyCode('code-yaml-esp', this)">Kopieren</button>
     <pre id="code-yaml-esp" class="language-yaml"><code>
 esphome:
   name: adventskranz
@@ -271,27 +279,33 @@ output:
 Du kannst dir hier die Einträge der nächsten 10 Jahre des Kalenders ansehen und ihn wenn du möchtest herunterladen.
 </p>
 
-<div style="text-align: center;">
-    <label for="year-select" style="font-weight: bold; margin-bottom: 10px; display: block;">Jahr auswählen:</label>
-    <select id="year-select" class="styled-select">
-        <option value="all">Alle Jahre</option>
-    </select>
+<div class="shb-form-group-container">
+    <div class="shb-form-group">
+        <label for="year-select">Jahr auswählen:</label>
+        <select id="year-select">
+            <option value="all">Alle Jahre</option>
+        </select>
+    </div>
 </div>
 
-<div id="event-table" class="styled-table-container" style="margin-top: 20px;"></div>
+<div id="event-table" class="shb-styled-table-container" style="margin-top: 20px;"></div>
 
-<a href="/assets/calendar/advent_calendar.ics" download="Advent_Kalender.ics" class="download-button">
-  📅 Advent-Kalender ICS herunterladen
-</a>
+<div style="text-align: center;">
+     <a href="/assets/calendar/advent_calendar.ics" download="Advent_Kalender.ics">
+    <button class="shb-button shb-button-blue">📅 Advent-Kalender ICS herunterladen</button>
+    </a>
+</div>
 
 <p>
     Diesen Kalender habe ich in Home Assistant eingerichtet, um ihn für Automatisierungen und Templates zu nutzen.<br>
     Wenn du wissen möchtest, wie man auf einfachem Weg in Home Assistant einen Kalender einrichtet, sieh in den ⬇️ Dropdown ⬇️
 </p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown2', this)">Neuen lokalen Kalender einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown2" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown2', this)">
+        Neuen lokalen Kalender einrichten<span>⬇️</span>
+    </button>
+    <div id="galleryDropdown2" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_kalender_erstellen %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -339,9 +353,12 @@ Um eine Anzeige in Home Assistant zu haben, welcher Status des Kalenders gerade 
 Auch hierzu findest du eine Beschreibung im ⬇️ Dropdown ⬇️
 </p>
 
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown3', this)">Template-Sensor Helfer einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown3" class="dropdown-content" style="display: none;">
+
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">
+        Template-Sensor Helfer einrichten<span>⬇️</span>
+    </button>
+    <div id="galleryDropdown3" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_helfer_Template_mullerinnerung %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -373,8 +390,8 @@ Auch hierzu findest du eine Beschreibung im ⬇️ Dropdown ⬇️
     <li><strong>Name</strong>: Advent</li>
     <li><strong>Icon</strong>: mdi:pine-tree-variant-outline</li>
 </ul>
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('code-yaml-calendar', this)">Kopieren</button>
+<div class="shb-code-container">
+    <button class="copy-code-button" onclick="copyCode('code-yaml-calendar', this)">Kopieren</button>
     <pre id="code-yaml-calendar" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTKAL = states.calendar.advent.state %}
@@ -416,9 +433,11 @@ Zuerst der Schalter. Dieser ist ein Input-Boolean und ich habe diesen bei den He
 <p>
 Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 </p>
-<div class="dropdown">
-    <button class="dropdown-toggle" onclick="toggleDropdown('galleryDropdown4', this)">Helfer-Schalter einrichten <span>&#9660;</span></button>
-    <div id="galleryDropdown4" class="dropdown-content" style="display: none;">
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown4', this)">
+        Helfer-Schalter einrichten<span>⬇️</span>
+    </button>
+    <div id="galleryDropdown4" class="shb-dropdown-content" style="display: none;">
         {% assign gallery_images = site.data.gallery_helfer_schalter %}
         <div class="columns is-multiline">
             {% for gallery in gallery_images %}
@@ -486,9 +505,9 @@ Wie man einen Helfer-Schalter anlegt, findest du im ⬇️ Dropdown ⬇️
 
 
 
-<div class="code-container">
+<div class="shb-code-container">
     <h4>Die Automatisierung im YAML-Code</h4>
-    <button class="copy-button" onclick="copyCode('code-yaml-automation', this)">Kopieren</button>
+    <button class="copy-code-button" onclick="copyCode('code-yaml-automation', this)">Kopieren</button>
     <pre id="code-yaml-automation" class="language-yaml"><code>
 alias: Adventskranz Automatisierung
 description: Steuert den Adventskranz entsprechend des aktuellen Adventsstatus
@@ -623,7 +642,7 @@ mode: single
     </div>
 </div>
 
-  <footer class="blog-footer">
+  <footer class="shb-footer">
     <h2>Viel Spaß und Erfolg beim Nachbasteln 🎉</h2>
   </footer>
 
@@ -646,9 +665,9 @@ mode: single
     <li><strong>Icon</strong>: mdi:window-closed-variant</li>
 </ul>
 
-<div class="code-container">
+<div class="shb-code-container">
     <h4>Template-Helfer Adventkalender</h4>
-    <button class="copy-button" onclick="copyCode('code-yaml-advent', this)">Kopieren</button>
+    <button class="copy-code-button" onclick="copyCode('code-yaml-advent', this)">Kopieren</button>
     <pre id="code-yaml-advent" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTMONAT = (12) %}
@@ -676,9 +695,9 @@ kein
     <li><strong>Icon</strong>: mdi:calendar-check-outline</li>
 </ul>
 
-<div class="code-container">
+<div class="shb-code-container">
     <h4>Template-Helfer Tage bis XMAS</h4>
-    <button class="copy-button" onclick="copyCode('code-yaml-adventdays', this)">Kopieren</button>
+    <button class="copy-code-button" onclick="copyCode('code-yaml-adventdays', this)">Kopieren</button>
     <pre id="code-yaml-adventdays" class="language-yaml"><code>
 {% raw %}
 {% set ADVENTMONAT = (12) %}
@@ -702,227 +721,15 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
 {% include image-modal.html ratio="is-4by3" link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS_k.png" alt="Example image" large_link="/img/blog/smarter_Adventkranz/Helfer_Template_Tage-bis-XMAS.png" %}
 </div>
 </div>
-<div id="custom-alert" style="display: none;">
-    <div id="custom-alert-content">
-        <h4 id="custom-alert-title"></h4>
-        <p id="custom-alert-message"></p>
-        <button id="close-alert">OK</button>
+<div id="shb-custom-alert" style="display: none;">
+    <div id="shb-custom-alert-content">
+        <h4 id="shb-custom-alert-title"></h4>
+        <p id="shb-custom-alert-message"></p>
+        <button id="shb-close-alert">OK</button>
     </div>
 </div>
 </div>
 <style>
-    .post-content {
-        max-width: 100%;
-        margin: auto;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-    }
-    /* Allgemeines Styling für Dropdown-Menü */
-    .styled-select {
-        width: 200px;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        text-align: center;
-        background-color: #f9f9f9;
-        cursor: pointer;
-    }
-    /* Tabellencontainer */
-    .styled-table-container {
-        margin: auto;
-        width: 80%;
-    }
-    /* Tabellenstyling */
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-        text-align: left;
-        margin: 20px 0;
-    }
-    /* Tabellenkopf */
-    .styled-table thead th {
-        background-color:#007bff;
-        color: #333; /* Dunkle Schrift */
-        padding: 10px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border-bottom: 2px solid #a4c8e1; /* Graublauer Rand */
-    }
-    /* Tabellenzellen */
-    .styled-table tbody tr:nth-child(odd) {
-        background-color: #f0f7ff; /* Helles Blau */
-    }
-    .styled-table tbody tr:nth-child(even) {
-        background-color: #e6eef7; /* Graublau */
-    }
-    .styled-table tbody td {
-        color: #333; /* Dunkle Schrift */
-        padding: 10px;
-        border-bottom: 1px solid #a4c8e1; /* Graublauer Rand */
-    }
-    /* Hervorhebung bei Hover */
-    .styled-table tbody tr:hover {
-        background-color: #cfe0f5; /* Intensiveres Blau */
-        transition: background-color 0.3s ease;
-    }
-    /* Download-Button */
-    .download-button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin-top: 20px;
-        font-size: 14px;
-        text-decoration: none;
-        color: #fff;
-        background-color: #007bff;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
-    }
-    .download-button:hover {
-        background-color: #0056b3;
-    }
-    /* Code Container */
-    .code-container {
-        position: relative;
-        background-color: #9fb9fb;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 5px #ffffff;
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        overflow: auto;
-        max-height: 300px;
-    }
-    .code-container code {
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        font-size: 0.95em;
-        line-height: 1.5;
-        color: #d1d1d1;
-    }
-    /* Stil für den Copy-Button */
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #007acc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-        font-size: 0.85em;
-        cursor: pointer;
-        z-index: 10;
-    }
-    .copy-button:hover {
-        background: #005a9c;
-    }
-    .copy-button.copied {
-        background: #72dd8b; /* Grüner Hintergrund */
-        color: white;       /* Weiße Schrift */
-        content: '✔️';      /* Symbol */
-        padding: 8px 12px;
-    }
-    .dropdown {
-        margin: 0 0 20px;
-        text-align: center;
-    }
-    .dropdown-toggle {
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        background-color: #f39c12;
-        color: #ffffff;
-        padding: 10px 5px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        width: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-    }
-    .dropdown-toggle.rotated {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg); /* Text von unten nach oben */
-        padding: 20px 30px;
-        width: 200px;
-        height: auto;
-    }
-    .dropdown-toggle span {
-        float: right;
-    }
-    .dropdown-content {
-        padding: 20px;
-        background-color: #1a1a1a;
-        border: 1px solid #f39c12;
-        border-radius: 5px;
-        margin-top: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .blog-footer {
-    text-align: center;
-    margin-top: 20px;
-    }
-    #custom-alert {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Dunkles Overlay */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    #custom-alert-content {
-        background-color: #fff;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 400px;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-    #custom-alert-title {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
-    #custom-alert-message {
-        margin-bottom: 15px;
-        font-size: 16px;
-        color: #666;
-    }
-    #close-alert {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    #close-alert:hover {
-        background-color: #218838;
-    }
-    /* Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
     .advent-container {
         font-family: Arial, sans-serif;
         max-width: 600px;
@@ -964,7 +771,6 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
     .advent-container strong {
         color: #fff; /* Helle Farbe für hervorgehobenen Text */
     }
-
 </style>
 
 
@@ -980,7 +786,7 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
         function createTable(events) {
             eventTableContainer.innerHTML = ""; // Tabelle leeren
             const table = document.createElement("table");
-            table.classList.add("styled-table"); // Klasse hinzufügen
+            table.classList.add("shb-styled-table"); // Klasse hinzufügen
             table.style.width = "100%";
             table.setAttribute("border", "1");
 
@@ -1074,51 +880,6 @@ Heute ist Heilgabend! Fröhliche Weihnachten!
             filterEventsByYear(selectedYear);
         });
     });
-    function toggleDropdown(dropdownId, toggleButton) {
-        var dropdownContent = document.getElementById(dropdownId);
-        if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
-            dropdownContent.style.display = "block";
-            toggleButton.classList.add("rotated"); // Klasse hinzufügen
-        } else {
-            dropdownContent.style.display = "none";
-            toggleButton.classList.remove("rotated"); // Klasse entfernen
-        }
-    }
-    function showCustomAlert(title, message) {
-        const alertBox = document.getElementById("custom-alert");
-        const alertTitle = document.getElementById("custom-alert-title");
-        const alertMessage = document.getElementById("custom-alert-message");
-    
-        alertTitle.textContent = title;   // Überschrift setzen
-        alertMessage.textContent = message; // Nachricht setzen
-        alertBox.style.display = "flex"; // Fenster anzeigen
-    
-        document.getElementById("close-alert").onclick = function () {
-            alertBox.style.display = "none"; // Fenster schließen
-        };
-    }
-
-    function copyCode(elementId, button) {
-        const codeElement = document.getElementById(elementId);
-        const codeText = codeElement.innerText || codeElement.textContent;
-
-        navigator.clipboard.writeText(codeText)
-            .then(() => {
-                // Zeigt das benutzerdefinierte Fenster
-                showCustomAlert("ERFOLG!", "Der Code wurde erfolgreich kopiert!");
-
-                // Button-Text und Stil dauerhaft ändern
-                button.classList.add('copied'); // Füge die CSS-Klasse hinzu
-                button.innerHTML = "Kopiert ✔️";       // Ändere den Button-Inhalt auf das Symbol
-                button.style.backgroundColor = "#72dd8b"; // Grüner Hintergrund
-                button.style.color = "white";             // Weiße Schrift
-                
-            })
-            .catch(err => {
-                console.error("Fehler beim Kopieren des Codes: ", err);
-                showCustomAlert("FEHLER!", "Beim Kopieren des Codes ist ein Fehler aufgetreten.");
-            });
-    }
 </script>
 
 
