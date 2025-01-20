@@ -1467,7 +1467,7 @@ async function extractEntries() {
             const colorCell = document.createElement("td");
             const colorSelect = document.createElement("select");
             colorSelect.className = "color-select";
-            ["Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun"].forEach(color => {
+            ["Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun", "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack",].forEach(color => {
                 const option = document.createElement("option");
                 option.value = color;
                 option.textContent = color;
@@ -1658,7 +1658,7 @@ async function extractEntries() {
             const templateName = customName.replace(/Gelber/g, "Gelben").replace(/\s+/g, "").replace(/Sack/g, "").replace(/Tonne/g, "")
             const color = row.cells[3].querySelector("select").value;
     
-            if (color === "Sack") {
+            if (["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
                 hasSack = true;
             }
     
@@ -1710,34 +1710,44 @@ async function extractEntries() {
     }
 {% endraw %}
     
-    function generateOutputText(assignments, hasSack) {
+    function generateOutputText(assignments) {
+        let hasSack = false;
+
+        // Überprüfe, ob ein Sack vorhanden ist
+        assignments.forEach(({ color }) => {
+            if (["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
+                hasSack = true;
+            }
+        });
+
         // Sortiere "Sack"-Einträge an den Anfang
         const formattedNames = assignments.map(({ templateName, color }) => {
-            if (hasSack && color === "Sack") {
+            if (hasSack && ["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
                 return { text: "den " + templateName + " Sack", order: 0 };
             }
             return { text: "die " + templateName, order: 1 };
         });
-    
+
         // Sortiere nach der Reihenfolge: Sack zuerst, dann die anderen
         formattedNames.sort((a, b) => a.order - b.order);
-    
+
         // Extrahiere die Texte aus den Objekten und erstelle die finale Liste
         const sortedTexts = formattedNames.map(item => item.text);
-    
+
         // Füge "und" vor dem letzten Eintrag hinzu, wenn es mehrere gibt
         if (sortedTexts.length > 1) {
             sortedTexts[sortedTexts.length - 1] = "und " + sortedTexts[sortedTexts.length - 1];
         }
-    
+
         // Wenn nur "Sack" enthalten ist, füge kein "Tonne" hinzu
-        if (sortedTexts.length === 1 && hasSack && assignments[0].color === "Sack") {
+        if (sortedTexts.length === 1 && hasSack) {
             return sortedTexts[0];
         }
-    
+
         // Verbinde alle Einträge mit Komma und füge "Tonne" am Ende hinzu
         return sortedTexts.join(", ") + " Tonne";
     }
+
 
 
     function getAllCombinations(arr) {
@@ -1772,7 +1782,12 @@ async function extractEntries() {
             "Schwarz-Rot": "schwarz-rot.png",
             "Schwarz-Gelb": "schwarz-gelb.png",
             "Schwarz-Grün": "schwarz-gruen.png",
-            "Schwarz-Braun": "schwarz-braun.png"
+            "Schwarz-Braun": "schwarz-braun.png", 
+            "gelber Sack": "gelb_sack.png", 
+            "schwarzer Sack": "schwarz_sack.png",
+            "roter Sack": "rot_sack",
+            "blauer Sack": "blau_sack.png",
+            "grüner Sack": "gruen_sack.png"
         };
         
         // Zeilen der Tabelle durchlaufen und Bildnamen sowie Bildvorschau zuordnen
