@@ -1603,35 +1603,47 @@ function createTemplates() {
 }
 
 function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
-    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-    const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1);
+    const entryTableBody = document.getElementById('entry-table').querySelector('tbody'); // Tabelle für Originalnamen
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
+
+    const entryRows = Array.from(entryTableBody.querySelectorAll("tr")); // Zeilen der entry-table
+    const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Zeilen der sensor-table (ohne Header)
 
     const sensorState = {};
 
-    // Verarbeitung der Sensor-Daten
-    rows.forEach(row => {
-        // Originalname aus der Tabelle extrahieren oder den Original-Summary verwenden
-        let originalName = row.querySelector(".shb-custom-input").value.trim() || row.querySelector("td:nth-child(2)").textContent.trim();
+    // Verarbeitung der Daten
+    sensorRows.forEach((sensorRow, index) => {
+        // Hole die entsprechende Zeile aus entry-table
+        const entryRow = entryRows[index];
+        if (!entryRow) return; // Sicherheitsprüfung: Überspringe, falls die Tabellen nicht synchron sind
 
-        // Generiere customName für Anzeige und Bearbeitung
-        let customName = row.cells[0].textContent.trim();
+        // Prüfe, ob die Checkbox in entry-table aktiviert ist
+        const checkbox = entryRow.querySelector(".shb-custom-checkbox");
+        if (!checkbox.checked) return; // Überspringe nicht ausgewählte Zeilen
+
+        // Extrahiere originalName aus entry-table
+        const originalName = entryRow.querySelector(".shb-custom-input").value.trim() || entryRow.querySelector("td:nth-child(2)").textContent.trim();
+
+        // Extrahiere customName aus sensor-table
+        const customName = sensorRow.cells[0].textContent.trim();
 
         // Generiere sensorName basierend auf customName
         const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
             return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
         });
 
-        // Anpassung für farbliche Säcke bei originalName
+        // Anpassung für farbliche Säcke
+        let adjustedName = originalName;
         if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter) Sack\b/)) {
-            originalName = originalName
+            adjustedName = originalName
                 .replace(/\bGelber Sack\b/, "gelben Sack")
                 .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
                 .replace(/\bBlauer Sack\b/, "blauen Sack")
                 .replace(/\bRoter Sack\b/, "roten Sack");
         }
 
-        // Füge originalName als Schlüssel und sensorName als Wert in sensorState ein
-        sensorState[originalName] = sensorName;
+        // Füge adjustedName als Schlüssel und sensorName als Wert in sensorState ein
+        sensorState[adjustedName] = sensorName;
     });
 
     // Template-Text generieren
@@ -1681,6 +1693,7 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
+
 
 
 
