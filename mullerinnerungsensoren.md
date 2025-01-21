@@ -1649,9 +1649,9 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         }
 
         // Generiere sensorName basierend auf customName
-        const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+        const sensorName = `states.sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
             return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
-        }) + ".state";
+        })}.state`;
 
         // Anpassung für farbliche Säcke
         let adjustedName = originalName;
@@ -1667,10 +1667,16 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         sensorState[adjustedName] = sensorName;
     });
 
-    // Template-Text generieren
+    // Template-Text generieren ohne Anführungszeichen um die Sensorwerte
+    let sensorStateEntries = Object.entries(sensorState)
+        .map(([key, value]) => `    '${key}': ${value}`) // Generiere YAML-Zeilen
+        .join(",\n");
+
     let templateText = `
 {% raw %}
-{% set SENSORSTATE = ${JSON.stringify(sensorState, null, 4).replace(/\"/g, "'")} %}
+{% set SENSORSTATE = {
+${sensorStateEntries}
+} %}
 {%- set DAY = '${day}' %}
 {%- set SACKS = namespace(values=[]) %}
 {%- set TONNEN = namespace(values=[]) %}
@@ -1983,7 +1989,7 @@ Du musst {{ DAY | lower }}
 
         // Für den Fall, dass 2 Sensoren erstellt wurden
         else if (sensorCount === 2) {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
@@ -2150,7 +2156,7 @@ Du musst {{ DAY | lower }}
         }
 
         else if (sensorCount === 3) {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
@@ -2258,7 +2264,7 @@ Du musst {{ DAY | lower }}
 
         // Für den Fall, dass 4 Sensoren erstellt wurden und Darstellung "Einzeilig"
         else if (sensorCount === 4 && darstellung === "einzeilig") {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
@@ -2365,7 +2371,7 @@ Du musst {{ DAY | lower }}
         }
 
         else if (sensorCount === 4 && darstellung === "mehrzeilig") {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
@@ -2536,7 +2542,7 @@ Du musst {{ DAY | lower }}
         }
 
         else if (sensorCount === 5) {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
@@ -2708,7 +2714,7 @@ Du musst {{ DAY | lower }}
 
 
         else if (sensorCount === 6) {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensoren aus der Tabelle entnehmen
