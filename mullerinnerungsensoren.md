@@ -1570,7 +1570,7 @@ async function extractEntries() {
 
         rows.forEach(row => {
             // Suche nach dem Dropdown in der Spalte Tonnen Farbe
-            const selectElement = row.cells[3]?.querySelector("select");
+            const selectElement = row.cells[4]?.querySelector("select");
 
             if (!selectElement) {
                 console.error("Kein Dropdown-Element in der Spalte 'Tonnen Farbe' gefunden!");
@@ -1615,29 +1615,24 @@ function createTemplates() {
 }
 
 function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
-    const entryTableBody = document.getElementById('entry-table').querySelector('tbody'); // Tabelle für Originalnamen
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
-
-    const entryRows = Array.from(entryTableBody.querySelectorAll("tr")); // Zeilen der entry-table
     const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Zeilen der sensor-table (ohne Header)
 
     const sensorState = {};
 
     // Verarbeitung der Daten
-    sensorRows.forEach((sensorRow, index) => {
-        // Hole die entsprechende Zeile aus entry-table
-        const entryRow = entryRows[index];
-        if (!entryRow) return; // Sicherheitsprüfung: Überspringe, falls die Tabellen nicht synchron sind
+    sensorRows.forEach(sensorRow => {
+        // Extrahiere customName aus der 1. Spalte
+        const customName = sensorRow.cells[0]?.textContent.trim();
 
-        // Prüfe, ob die Checkbox in entry-table aktiviert ist
-        const checkbox = entryRow.querySelector(".shb-custom-checkbox");
-        if (!checkbox.checked) return; // Überspringe nicht ausgewählte Zeilen
+        // Extrahiere originalName aus der 3. Spalte
+        const originalName = sensorRow.cells[2]?.textContent.trim();
 
-        // Extrahiere originalName aus entry-table
-        const originalName = entryRow.querySelector(".shb-custom-input").value.trim() || entryRow.querySelector("td:nth-child(2)").textContent.trim();
-
-        // Extrahiere customName aus sensor-table
-        const customName = sensorRow.cells[0].textContent.trim();
+        // Sicherheitsprüfung: Überspringe Zeilen ohne gültige Namen
+        if (!customName || !originalName) {
+            console.warn("Zeile übersprungen: Fehlender Name", sensorRow);
+            return;
+        }
 
         // Generiere sensorName basierend auf customName
         const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
@@ -1706,9 +1701,6 @@ Du musst {{ DAY | lower }}
     document.getElementById(outputId).style.display = "block";
 }
 
-
-
-
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
         const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Überspringe die Standardreihe "Nächste Abholung"
@@ -1741,8 +1733,8 @@ Du musst {{ DAY | lower }}
         let sensorCount = 0; // Zähler für die Anzahl der Sensoren
         rows.forEach(row => {
             const sensorName = row.cells[0].textContent.trim(); // Sensor Name
-            const selectedColor = row.cells[3].querySelector("select").value; // Farbauswahl
-            const entityID = row.cells[2].textContent.trim(); // Entity ID
+            const selectedColor = row.cells[4].querySelector("select").value; // Farbauswahl
+            const entityID = row.cells[3].textContent.trim(); // Entity ID
 
             if (colorToImageMap[selectedColor]) {
                 sensorCount++; // Zähler inkrementieren
