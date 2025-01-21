@@ -1615,15 +1615,15 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
             return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
         });
 
-        // Rechtschreibkorrektur für farbliche Säcke
-        const processedName = customName
+        // Anpassung für farbliche Säcke
+        customName = customName
             .replace(/\bGelber Sack\b/, "gelben Sack")
             .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
             .replace(/\bBlauer Sack\b/, "blauen Sack")
             .replace(/\bRoter Sack\b/, "roten Sack");
 
-        sensorState[customName] = sensorName + ".state"; // Originalname in SENSORSTATE
-        sensorState[processedName] = sensorName + ".state"; // Rechtschreibkorrektur für den Text
+        // Eintrag in SENSORSTATE hinzufügen
+        sensorState[customName] = sensorName + ".state";
     });
 
     // Template-Text generieren
@@ -1673,7 +1673,6 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
-
 
 
 
@@ -2893,7 +2892,7 @@ function generatePopupYAML() {
 
     const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value;
     const selectedFont = getSelectedFont();
-    const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+    const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
     const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
     // Dynamisches Sammeln der Sensordaten
