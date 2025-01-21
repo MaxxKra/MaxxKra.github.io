@@ -1655,7 +1655,7 @@ async function extractEntries() {
         rows.forEach(row => {
             const customName = row.cells[0].textContent.trim();
             const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_") + ".state";
-            const templateName = customName.replace(/Gelber/g, "Gelben").replace(/\s+/g, "").replace(/Sack/g, "").replace(/Tonne/g, "")
+            const templateName = customName.replace(/Gelber/g, "gelben").replace(/Schwarzer/g, "schwarzen").replace(/Blauer/g, "blauen").replace(/Roter/g, "roten").replace(/\s+/g, "").replace(/Sack/g, "").replace(/Tonne/g, "")
             const color = row.cells[3].querySelector("select").value;
     
             if (["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
