@@ -1508,14 +1508,16 @@ async function extractEntries() {
     }
 
     function generateDateSensorTable(selectedEntries) {
-        const dateSensorTableBody = document.getElementById('date-sensor-table').querySelector('tbody');
-        const dateSensorTable = document.getElementById('date-sensor-table');
-        dateSensorTableBody.innerHTML = "";
-
-        // Add rows for selected entries
-        selectedEntries.forEach((row) => {
             const customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
-            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+
+            // Überprüfen und gegebenenfalls "Sack" entfernen
+            let processedName = customName;
+            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+                processedName = customName.replace("Sack", "").trim();
+            }
+
+            // Sensorname generieren
+            const sensorName = `sensor.${processedName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
                     'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
