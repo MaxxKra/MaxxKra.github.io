@@ -1161,6 +1161,63 @@ Nach den Änderungen klicke auf<br>
         background-color: #b4f2ff
     }
 
+    .shb-img-dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .shb-img-dropdown-button {
+        background-color: #1ab5d5;
+        color: #000000;
+        padding: 10px;
+        border: 1px solid #ffffff;
+        box-shadow: 0 2px 5px #ffffff;
+        border-radius: 5px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .shb-img-dropdown-button::after {
+        content: "▼";
+        float: right;
+        margin-right: 10px;
+        color: #000000;
+    }
+
+    .shb-img-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #6b6b6b;
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px #ffffff;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        width: 100%;
+    }
+
+    .shb-img-dropdown-content div {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        color: #fff;
+    }
+
+    .shb-img-dropdown-content div:hover {
+        background-color: #555;
+    }
+
+    .shb-img-dropdown-content img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
 </style>
 
 <!--
@@ -1378,115 +1435,173 @@ async function extractEntries() {
         }
     }
 
-    function generateSensorTable(selectedEntries) {
-        const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const sensorTable = document.getElementById('sensor-table');
-        sensorTableBody.innerHTML = "";
+function generateSensorTable(selectedEntries) {
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
+    const sensorTable = document.getElementById('sensor-table');
+    sensorTableBody.innerHTML = "";
 
-        // Add standard row for "Nächste Abholung"
-        const standardRow = document.createElement("tr");
+    // Add standard row for "Nächste Abholung"
+    const standardRow = document.createElement("tr");
+
+    // Sensor Name
+    const standardNameCell = document.createElement("td");
+    standardNameCell.textContent = "Nächste Abholung";
+    standardNameCell.style.cursor = "pointer";
+    standardNameCell.onclick = () => {
+        toggleCopyStatus(standardCopyStatusCell);
+        copyToClipboards("Nächste Abholung", standardCopyStatusCell); // Name wird kopiert
+    };
+    standardRow.appendChild(standardNameCell);
+
+    // Kopiert-Status
+    const standardCopyStatusCell = document.createElement("td");
+    standardCopyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
+    standardCopyStatusCell.style.textAlign = "center";
+    standardRow.appendChild(standardCopyStatusCell);
+
+    // Original Name
+    const standardOriginalCell = document.createElement("td");
+    standardOriginalCell.textContent = "-"; // Kein Originalname für Standardzeile
+    standardRow.appendChild(standardOriginalCell);
+
+    // Entity ID
+    const standardSensorCell = document.createElement("td");
+    standardSensorCell.textContent = "sensor.nachste_abholung";
+    standardRow.appendChild(standardSensorCell);
+
+    // Farbe (leer für die Standardzeile)
+    const standardColorCell = document.createElement("td");
+    standardColorCell.textContent = "-"; // Keine Farbauswahl für "Nächste Abholung"
+    standardRow.appendChild(standardColorCell);
+
+    sensorTableBody.appendChild(standardRow);
+
+    // Add rows for selected entries
+    selectedEntries.forEach((row) => {
+        let originalName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent.trim();
+        let customName = originalName; // Kopiere den Originalnamen für customName
+
+        // Überprüfen und gegebenenfalls "Sack" entfernen für customName
+        if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+            customName = customName.replace(/\s*Sack/, "").trim();
+        }
+
+        // Sensorname generieren
+        const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            return {
+                'ä': 'a', 'ö': 'o', 'ü': 'u',
+                'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
+            }[match];
+        })}`;
+
+        const sensorRow = document.createElement("tr");
 
         // Sensor Name
-        const standardNameCell = document.createElement("td");
-        standardNameCell.textContent = "Nächste Abholung";
-        standardNameCell.style.cursor = "pointer";
-        standardNameCell.onclick = () => {
-            toggleCopyStatus(standardCopyStatusCell);
-            copyToClipboards("Nächste Abholung", standardCopyStatusCell); // Name wird kopiert
+        const customNameCell = document.createElement("td");
+        customNameCell.textContent = customName;
+        customNameCell.style.cursor = "pointer";
+        customNameCell.onclick = () => {
+            toggleCopyStatus(copyStatusCell); // Status ändern
+            copyToClipboards(customName, copyStatusCell); // Name kopieren
         };
-        standardRow.appendChild(standardNameCell);
+        sensorRow.appendChild(customNameCell);
 
         // Kopiert-Status
-        const standardCopyStatusCell = document.createElement("td");
-        standardCopyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
-        standardCopyStatusCell.style.textAlign = "center";
-        standardRow.appendChild(standardCopyStatusCell);
+        const copyStatusCell = document.createElement("td");
+        copyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
+        copyStatusCell.style.textAlign = "center";
+        sensorRow.appendChild(copyStatusCell);
 
-        // Original Name
-        const standardOriginalCell = document.createElement("td");
-        standardOriginalCell.textContent = "-"; // Kein Originalname für Standardzeile
-        standardRow.appendChild(standardOriginalCell);
+        // Original Name (Neue Spalte)
+        const originalNameCell = document.createElement("td");
+        originalNameCell.textContent = originalName;
+        sensorRow.appendChild(originalNameCell);
 
         // Entity ID
-        const standardSensorCell = document.createElement("td");
-        standardSensorCell.textContent = "sensor.nachste_abholung";
-        standardRow.appendChild(standardSensorCell);
+        const sensorNameCell = document.createElement("td");
+        sensorNameCell.textContent = sensorName;
+        sensorRow.appendChild(sensorNameCell);
 
-        // Farbe (leer für die Standardzeile)
-        const standardColorCell = document.createElement("td");
-        standardColorCell.textContent = "-"; // No color selection for "Nächste Abholung"
-        standardRow.appendChild(standardColorCell);
+        // Farbe Auswahlfeld (Dropdown mit Bildern)
+        const colorCell = document.createElement("td");
+        const dropdown = createColorDropdown(); // Dynamische Dropdown-Funktion
+        colorCell.appendChild(dropdown);
+        sensorRow.appendChild(colorCell);
 
-        sensorTableBody.appendChild(standardRow);
+        sensorTableBody.appendChild(sensorRow);
+    });
 
-        // Add rows for selected entries
-        selectedEntries.forEach((row) => {
-            let originalName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent.trim();
-            let customName = originalName; // Kopiere den Originalnamen für customName
+    sensorTable.style.display = "table";
+}
 
-            // Überprüfen und gegebenenfalls "Sack" entfernen für customName
-            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
-                customName = customName.replace(/\s*Sack/, "").trim();
-            }
+// Dynamisches Dropdown für Farben mit Bildern
+function createColorDropdown() {
+    const dropdownContainer = document.createElement("div");
+    dropdownContainer.className = "shb-img-dropdown";
 
-            // Sensorname generieren
-            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
-                return {
-                    'ä': 'a', 'ö': 'o', 'ü': 'u',
-                    'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
-                }[match];
-            })}`;
+    const button = document.createElement("button");
+    button.className = "shb-img-dropdown-button";
+    button.textContent = "Bitte auswählen...";
+    button.onclick = () => toggleColorDropdown(dropdownContainer);
 
-            const sensorRow = document.createElement("tr");
+    const dropdownContent = document.createElement("div");
+    dropdownContent.className = "shb-img-dropdown-content";
 
-            // Sensor Name
-            const customNameCell = document.createElement("td");
-            customNameCell.textContent = customName;
-            customNameCell.style.cursor = "pointer";
-            customNameCell.onclick = () => {
-                toggleCopyStatus(copyStatusCell); // Status ändern
-                copyToClipboards(customName, copyStatusCell); // Name kopieren
-            };
-            sensorRow.appendChild(customNameCell);
+    // Farben und Bilder definieren
+    const colors = [
+        { name: "Schwarz", image: "img/muell/schwarz.png" },
+        { name: "Blau", image: "img/muell/blau.png" },
+        { name: "Rot", image: "img/muell/rot.png" },
+        { name: "Gelb", image: "img/muell/gelb.png" },
+        { name: "Grün", image: "img/muell/gruen.png" },
+        { name: "Braun", image: "img/muell/braun.png" },
+        { name: "Schwarz-Blau", image: "img/muell/schwarz-blau.png" },
+        { name: "Schwarz-Rot", image: "img/muell/schwarz-rot.png" },
+        { name: "Schwarz-Gelb", image: "img/muell/schwarz-gelb.png" },
+        { name: "Schwarz-Grün", image: "img/muell/schwarz-gruen.png" },
+        { name: "Schwarz-Braun", image: "img/muell/schwarz-braun.png" },
+        { name: "gelber Sack", image: "img/muell/gelb_sack.png" },
+        { name: "schwarzer Sack", image: "img/muell/schwarz_sack.png" },
+        { name: "roter Sack", image: "img/muell/rot_sack.png" },
+        { name: "blauer Sack", image: "img/muell/blau_sack.png" },
+        { name: "grüner Sack", image: "img/muell/gruen_sack.png" }
+    ];
 
-            // Kopiert-Status
-            const copyStatusCell = document.createElement("td");
-            copyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
-            copyStatusCell.style.textAlign = "center";
-            sensorRow.appendChild(copyStatusCell);
+    // Dynamische Dropdown-Optionen erstellen
+    colors.forEach(color => {
+        const option = document.createElement("div");
+        option.className = "shb-img-dropdown-item";
 
-            // Original Name (Neue Spalte)
-            const originalNameCell = document.createElement("td");
-            originalNameCell.textContent = originalName;
-            sensorRow.appendChild(originalNameCell);
+        const img = document.createElement("img");
+        img.src = color.image;
+        img.alt = color.name;
 
-            // Entity ID
-            const sensorNameCell = document.createElement("td");
-            sensorNameCell.textContent = sensorName;
-            sensorRow.appendChild(sensorNameCell);
+        const text = document.createTextNode(color.name);
 
-            // Farbe Auswahlfeld
-            const colorCell = document.createElement("td");
-            const colorSelect = document.createElement("select");
-            colorSelect.className = "color-select";
-            [
-                "Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", 
-                "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun", 
-                "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"
-            ].forEach(color => {
-                const option = document.createElement("option");
-                option.value = color;
-                option.textContent = color;
-                colorSelect.appendChild(option);
-            });
-            colorCell.appendChild(colorSelect);
-            sensorRow.appendChild(colorCell);
+        option.appendChild(img);
+        option.appendChild(text);
 
-            sensorTableBody.appendChild(sensorRow);
-        });
+        option.onclick = () => {
+            button.textContent = color.name;
+            button.prepend(img.cloneNode());
+            dropdownContent.style.display = "none"; // Schließe Dropdown nach Auswahl
+        };
 
-        sensorTable.style.display = "table";
-    }
+        dropdownContent.appendChild(option);
+    });
+
+    dropdownContainer.appendChild(button);
+    dropdownContainer.appendChild(dropdownContent);
+
+    return dropdownContainer;
+}
+
+// Dropdown öffnen/schließen
+function toggleColorDropdown(container) {
+    const content = container.querySelector(".shb-img-dropdown-content");
+    content.style.display = content.style.display === "block" ? "none" : "block";
+}
+
 
 
     // Funktion zum Umschalten des Kopierstatus
@@ -1736,7 +1851,6 @@ Du musst {{ DAY | lower }}
             "Gelb": "gelb.png",
             "Grün": "gruen.png",
             "Braun": "braun.png",
-            "Sack": "sack.png",
             "Schwarz-Blau": "schwarz-blau.png",
             "Schwarz-Rot": "schwarz-rot.png",
             "Schwarz-Gelb": "schwarz-gelb.png",
