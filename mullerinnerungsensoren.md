@@ -1441,16 +1441,15 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            const customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
+            let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
 
             // Überprüfen und gegebenenfalls "Sack" entfernen
-            let processedName = customName;
             if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
-                processedName = customName.replace("Sack", "").trim();
+                customName = customName.replace(/\s*Sack/, "").trim();
             }
 
             // Sensorname generieren
-            const sensorName = `sensor.${processedName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
                     'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
@@ -1484,7 +1483,11 @@ async function extractEntries() {
             const colorCell = document.createElement("td");
             const colorSelect = document.createElement("select");
             colorSelect.className = "color-select";
-            ["Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun", "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack",].forEach(color => {
+            [
+                "Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", 
+                "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun", 
+                "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"
+            ].forEach(color => {
                 const option = document.createElement("option");
                 option.value = color;
                 option.textContent = color;
@@ -1498,6 +1501,7 @@ async function extractEntries() {
 
         sensorTable.style.display = "table";
     }
+
 
     // Funktion zum Umschalten des Kopierstatus
     function toggleCopyStatus(statusCell) {
