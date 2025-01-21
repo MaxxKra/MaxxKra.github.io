@@ -1618,178 +1618,94 @@ async function extractEntries() {
         return true; // Rückgabe `true`, wenn alles korrekt ist
     }
 
-    function createTemplates() {
-        // Zugriff auf die Tabelle der Sensoren
-        const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // überspringe die Standardreihe "Nächste Abholung"
+function createTemplates() {
+    // Zugriff auf die Tabelle der Sensoren
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
+    const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // überspringe die Standardreihe "Nächste Abholung"
 
-        // Template für "Heute" erstellen
-        createTemplate("Heute", "helper-template-heute", "helper-template-output-heute");
+    // Checkboxen für "keine"-Anzeige prüfen
+    const heuteCheckbox = document.getElementById("keineHeute").checked;
+    const morgenCheckbox = document.getElementById("keineMorgen").checked;
 
-        // Template für "Morgen" erstellen
-        createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen");
+    // Templates erstellen
+    createTemplate("Heute", "helper-template-heute", "helper-template-output-heute", heuteCheckbox);
+    createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen", morgenCheckbox);
+}
 
-        // Prüfen, ob die Checkboxen für "keine"-Anzeige aktiviert sind
-        const heuteCheckbox = document.getElementById("keineHeute").checked;
-        const morgenCheckbox = document.getElementById("keineMorgen").checked;
+function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
+    const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1);
 
-        let textHeute, textMorgen;
+    const sensorState = {};
 
-        // Texte für "Heute"
-        if (heuteCheckbox) {
-            textHeute = `{% raw %}{% if states.sensor.mullabholung_heute.state != 'keine' %}\nDu musst heute {{ states.sensor.mullabholung_heute.state }} rausstellen!\n{% else %}\nDu musst heute keine Tonne rausstellen!\n{% endif %}{% endraw %}`;
-        } else {
-            textHeute = `{% raw %}{% if states.sensor.mullabholung_heute.state != 'keine' %}\nDu musst heute {{ states.sensor.mullabholung_heute.state }} rausstellen!\n{% else %}\n\n{% endif %}{% endraw %}`;
+    // Verarbeitung der Sensor-Daten
+    rows.forEach(row => {
+        let customName = row.cells[0].textContent.trim();
+        const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
+        });
+
+        // "Sack" verarbeiten und Farben anpassen
+        if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+            customName = customName.replace(/\s*Sack/, "").trim();
         }
+        customName = customName
+            .replace(/Gelber/g, "gelben")
+            .replace(/Schwarzer/g, "schwarzen")
+            .replace(/Blauer/g, "blauen")
+            .replace(/Roter/g, "roten");
 
-        // Texte für "Morgen"
-        if (morgenCheckbox) {
-            textMorgen = `{% raw %}{% if states.sensor.mullabholung_morgen.state != 'keine' %}\nDu musst morgen {{ states.sensor.mullabholung_morgen.state }} rausstellen!\n{% else %}\nDu musst morgen keine Tonne rausstellen!\n{% endif %}{% endraw %}`;
-        } else {
-            textMorgen = `{% raw %}{% if states.sensor.mullabholung_morgen.state != 'keine' %}\nDu musst morgen {{ states.sensor.mullabholung_morgen.state }} rausstellen!\n{% else %}\n\n{% endif %}{% endraw %}`;
-        }
+        sensorState[customName] = sensorName + ".state";
+    });
 
-        // Setzen Sie den Text für "Müllabholung Text Heute"
-        const textHeuteElement = document.getElementById("helper-template-text-heute");
-        textHeuteElement.innerHTML = `<code class="language-yaml">${textHeute}</code>`;
-        document.getElementById("helper-template-output-text-heute").style.display = "block";
-
-        // Setzen Sie den Text für "Müllabholung Text Morgen"
-        const textMorgenElement = document.getElementById("helper-template-text-morgen");
-        textMorgenElement.innerHTML = `<code class="language-yaml">${textMorgen}</code>`;
-        document.getElementById("helper-template-output-text-morgen").style.display = "block";
-    }
-
-    function copyTitleToClipboard(element) {
-        const textToCopy = element.textContent.trim(); // Text der Überschrift
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            // Suche nach dem Symbol in der gleichen Zeile wie die Überschrift
-            const confirmationIcon = element.parentElement.querySelector('.copy-confirmation');
-            if (confirmationIcon) {
-                // Umschalten zwischen ❌ und ✔️
-                confirmationIcon.textContent = "✔️";
-            }
-        }).catch(err => {
-            console.error("Fehler beim Kopieren in die Zwischenablage:", err);
-        });
-    }
-
-    function createTemplate(day, templateId, outputId) {
-        const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1);
-        
-        let hasSack = false;
-        const sensorAssignments = [];
-        
-        rows.forEach(row => {
-            const customName = row.cells[0].textContent.trim();
-            const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_") + ".state";
-            const templateName = customName.replace(/Gelber/g, "gelben").replace(/Schwarzer/g, "schwarzen").replace(/Blauer/g, "blauen").replace(/Roter/g, "roten").replace(/\s+/g, "").replace(/Sack/g, "").replace(/Tonne/g, "")
-            const color = row.cells[3].querySelector("select").value;
-    
-            if (["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
-                hasSack = true;
-            }
-    
-            sensorAssignments.push({ customName, sensorName, templateName, color });
-        });
-    
-        // Generiere das Template für den angegebenen Tag ("Heute" oder "Morgen")
-        let templateText = "{% raw %}\n";
-    
-        // Setzen der Variablen
-        sensorAssignments.forEach(({ customName, sensorName }) => {
-            templateText += "{% set " + customName.toUpperCase().replace(/\s+/g, "") + " = " + sensorName + " %}\n";
-        });
-    
-        templateText += generateConditionsAsText(sensorAssignments, hasSack, day);
-    
-        templateText += "\n{% endraw %}";
-    
-        // Setze den Inhalt in das entsprechende <pre> Element
-        const templateElement = document.getElementById(templateId);
-        templateElement.innerHTML = `<code class="language-yaml">${templateText}</code>`;
-        document.getElementById(outputId).style.display = "block";
-    }    
-    
+    // Template-Text generieren
+    let templateText = `
 {% raw %}
-    function generateConditionsAsText(assignments, hasSack, conditionDay) {
-        let yaml = `{% if `;
+{% set SENSORSTATE = ${JSON.stringify(sensorState, null, 4).replace(/\"/g, "'")} %}
+{%- set DAY = '${day}' %}
+{%- set SACKS = namespace(values=[]) %}
+{%- set TONNEN = namespace(values=[]) %}
 
-        // Hole alle Kombinationen und sortiere sie nach Länge (absteigend)
-        const combinations = getAllCombinations(assignments).sort((a, b) => b.length - a.length);
+{# Trenne Säcke und Tonnen #}
+{% for ITEM in SENSORSTATE.keys() %}
+    {% if 'Sack' in ITEM and SENSORSTATE[ITEM] == DAY %}
+        {% set SACKS.values = SACKS.values + [' den ' ~ ITEM] %}
+    {% elif SENSORSTATE[ITEM] == DAY %}
+        {% set TONNEN.values = TONNEN.values + [' die ' ~ ITEM] %}
+    {% endif %}
+{% endfor %}
 
-        combinations.forEach((combination, index) => {
-            const condition = combination
-                .map(a => `${a.customName.toUpperCase().replace(/\s+/g, "")} == "${conditionDay}"`)
-                .join(" and ");
-            const output = generateOutputText(combination, hasSack);
-
-            if (index === 0) {
-                yaml += `${condition} %}\n`;
-            } else {
-                yaml += `{% elif ${condition} %}\n`;
-            }
-            yaml += `    ${output}\n`;
-        });
-
-        yaml += "{% else %}keine {% endif %}"; // Abschluss des Bedingungsblocks
-
-        return yaml;
-    }
+{# Ausgabe der Ergebnisse #}
+{%- if SACKS.values | length > 0 or TONNEN.values | length > 0 %}
+Du musst {{ DAY | lower }}
+    {%- for ITEM in SACKS.values %}
+        {%- if not loop.first %}
+            {%- if loop.last and TONNEN.values | length == 0 %} und 
+            {%- else %}, 
+            {%- endif %}
+        {%- endif %}{{ ITEM }}
+    {%- endfor %}
+    {%- if SACKS.values | length > 0 and TONNEN.values | length == 1 %} und
+    {%- elif SACKS.values | length > 0 and TONNEN.values | length > 1 %},{% endif %}
+    {%- for ITEM in TONNEN.values %}
+        {%- if not loop.first %}
+            {%- if loop.last %} und 
+            {%- else %}, 
+            {%- endif %}
+        {%- endif %}{{ ITEM }}
+    {%- endfor %}
+    {%- if TONNEN.values | length > 0 %} Tonne{% endif %} rausstellen!
+{%- else %}${showNoCollectionMessage ? `\nDu musst heute keine Tonne rausstellen.` : ''}
+{%- endif %}
 {% endraw %}
-    
-    function generateOutputText(assignments) {
-        let hasSack = false;
+`;
 
-        // Überprüfe, ob ein Sack vorhanden ist
-        assignments.forEach(({ color }) => {
-            if (["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
-                hasSack = true;
-            }
-        });
+    // Template in das entsprechende <pre> Element setzen
+    const templateElement = document.getElementById(templateId);
+    templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
+    document.getElementById(outputId).style.display = "block";
+}
 
-        // Sortiere "Sack"-Einträge an den Anfang
-        const formattedNames = assignments.map(({ templateName, color }) => {
-            if (hasSack && ["gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"].includes(color)) {
-                return { text: "den " + templateName + " Sack", order: 0 };
-            }
-            return { text: "die " + templateName, order: 1 };
-        });
-
-        // Sortiere nach der Reihenfolge: Sack zuerst, dann die anderen
-        formattedNames.sort((a, b) => a.order - b.order);
-
-        // Extrahiere die Texte aus den Objekten und erstelle die finale Liste
-        const sortedTexts = formattedNames.map(item => item.text);
-
-        // Füge "und" vor dem letzten Eintrag hinzu, wenn es mehrere gibt
-        if (sortedTexts.length > 1) {
-            sortedTexts[sortedTexts.length - 1] = "und " + sortedTexts[sortedTexts.length - 1];
-        }
-
-        // Wenn nur "Sack" enthalten ist, füge kein "Tonne" hinzu
-        if (sortedTexts.length === 1 && hasSack) {
-            return sortedTexts[0];
-        }
-
-        // Verbinde alle Einträge mit Komma und füge "Tonne" am Ende hinzu
-        return sortedTexts.join(", ") + " Tonne";
-    }
-
-
-
-    function getAllCombinations(arr) {
-        const result = [];
-        const f = function(prefix = [], arr) {
-            result.push(prefix);
-            for (let i = 0; i < arr.length; i++) {
-                f(prefix.concat(arr[i]), arr.slice(i + 1));
-            }
-        };
-        f([], arr);
-        return result.filter(comb => comb.length > 0);
-    }
 
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
