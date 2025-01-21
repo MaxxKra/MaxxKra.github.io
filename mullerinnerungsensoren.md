@@ -1283,7 +1283,7 @@ async function extractEntries() {
         let idCounter = 0;
         summaryEntries.forEach(entry => {
             const row = document.createElement("tr");
-            
+    
             // Checkbox
             const checkboxCell = document.createElement("td");
             checkboxCell.setAttribute("style", "text-align: center;");
@@ -1293,12 +1293,11 @@ async function extractEntries() {
             checkbox.id = `shb-custom-checkbox-${idCounter}`;
             checkboxCell.appendChild(checkbox);
             row.appendChild(checkboxCell);
-
-            // Summary Entry (Original Name)
+    
+            // Summary Entry
             const summaryCell = document.createElement("td");
             summaryCell.textContent = entry;
             summaryCell.id = `summary-${idCounter}`;
-            summaryCell.setAttribute("data-original-name", entry); // Originalname speichern
             
             // Markiere ungültige Einträge
             if (invalidEntries.includes(entry)) {
@@ -1306,7 +1305,7 @@ async function extractEntries() {
                 summaryCell.title = "Ungültiger Eintrag - bitte anpassen"; // Tooltip
             }
             row.appendChild(summaryCell);
-
+    
             // Custom Name Input
             const customNameCell = document.createElement("td");
             const customNameInput = document.createElement("input");
@@ -1316,7 +1315,7 @@ async function extractEntries() {
             customNameInput.id = `custom-name-${idCounter}`;
             customNameCell.appendChild(customNameInput);
             row.appendChild(customNameCell);
-
+    
             entryTableBody.appendChild(row);
             idCounter++;
         });
@@ -1416,17 +1415,15 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            const originalName = row.querySelector("td:nth-child(2)").getAttribute("data-original-name").trim(); // Originalbezeichnung
-            const customName = row.querySelector(".shb-custom-input").value.trim() || originalName; // Eigene Bezeichnung oder Original
-            
+            let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
+
             // Überprüfen und gegebenenfalls "Sack" entfernen
-            let processedName = customName;
             if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
-                processedName = customName.replace(/\s*Sack/, "").trim();
+                customName = customName.replace(/\s*Sack/, "").trim();
             }
 
             // Sensorname generieren
-            const sensorName = `sensor.${processedName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
                     'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
@@ -1435,18 +1432,13 @@ async function extractEntries() {
 
             const sensorRow = document.createElement("tr");
 
-            // Original Name (für Debugging oder Anzeige)
-            const originalNameCell = document.createElement("td");
-            originalNameCell.textContent = originalName;
-            sensorRow.appendChild(originalNameCell);
-
             // Sensor Name
             const customNameCell = document.createElement("td");
-            customNameCell.textContent = processedName;
+            customNameCell.textContent = customName;
             customNameCell.style.cursor = "pointer";
             customNameCell.onclick = () => {
                 toggleCopyStatus(copyStatusCell); // Status ändern
-                copyToClipboards(processedName, copyStatusCell); // Name kopieren
+                copyToClipboards(customName, copyStatusCell); // Name kopieren
             };
             sensorRow.appendChild(customNameCell);
 
@@ -1460,6 +1452,23 @@ async function extractEntries() {
             const sensorNameCell = document.createElement("td");
             sensorNameCell.textContent = sensorName;
             sensorRow.appendChild(sensorNameCell);
+
+            // Farbe Auswahlfeld
+            const colorCell = document.createElement("td");
+            const colorSelect = document.createElement("select");
+            colorSelect.className = "color-select";
+            [
+                "Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Sack", 
+                "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun", 
+                "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"
+            ].forEach(color => {
+                const option = document.createElement("option");
+                option.value = color;
+                option.textContent = color;
+                colorSelect.appendChild(option);
+            });
+            colorCell.appendChild(colorSelect);
+            sensorRow.appendChild(colorCell);
 
             sensorTableBody.appendChild(sensorRow);
         });
@@ -1601,23 +1610,28 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
 
     // Verarbeitung der Sensor-Daten
     rows.forEach(row => {
-        const originalName = row.querySelector("td:nth-child(2)").getAttribute("data-original-name").trim(); // Originalbezeichnung
-        const customName = row.querySelector(".shb-custom-input").value.trim() || originalName; // Eigene Bezeichnung oder Original
-        
-        // Farbliche Anpassung
-        let processedName = customName;
-        if (customName.match(/\b(Gelber|Schwarzer|Blauer|Roter) Sack\b/)) {
-            processedName = customName
+        // Originalname aus der Tabelle extrahieren oder den Original-Summary verwenden
+        let originalName = row.querySelector(".shb-custom-input").value.trim() || row.querySelector("td:nth-child(2)").textContent.trim();
+
+        // Generiere customName für Anzeige und Bearbeitung
+        let customName = row.cells[0].textContent.trim();
+
+        // Generiere sensorName basierend auf customName
+        const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
+        });
+
+        // Anpassung für farbliche Säcke bei originalName
+        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter) Sack\b/)) {
+            originalName = originalName
                 .replace(/\bGelber Sack\b/, "gelben Sack")
                 .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
                 .replace(/\bBlauer Sack\b/, "blauen Sack")
                 .replace(/\bRoter Sack\b/, "roten Sack");
         }
 
-        // Eintrag in SENSORSTATE
-        sensorState[processedName] = `states.sensor.${originalName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
-            return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
-        })}.state`;
+        // Füge originalName als Schlüssel und sensorName als Wert in sensorState ein
+        sensorState[originalName] = sensorName;
     });
 
     // Template-Text generieren
@@ -1667,6 +1681,7 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
+
 
 
     function createImageList() {
