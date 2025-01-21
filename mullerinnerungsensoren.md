@@ -1615,17 +1615,15 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
             return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
         });
 
-        // "Sack" verarbeiten und Farben anpassen
-        if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
-            customName = customName.replace(/\s*Sack/, "").trim();
-        }
-        customName = customName
-            .replace(/Gelber/g, "gelben")
-            .replace(/Schwarzer/g, "schwarzen")
-            .replace(/Blauer/g, "blauen")
-            .replace(/Roter/g, "roten");
+        // Rechtschreibkorrektur für farbliche Säcke
+        const processedName = customName
+            .replace(/\bGelber Sack\b/, "gelben Sack")
+            .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
+            .replace(/\bBlauer Sack\b/, "blauen Sack")
+            .replace(/\bRoter Sack\b/, "roten Sack");
 
-        sensorState[customName] = sensorName + ".state";
+        sensorState[customName] = sensorName + ".state"; // Originalname in SENSORSTATE
+        sensorState[processedName] = sensorName + ".state"; // Rechtschreibkorrektur für den Text
     });
 
     // Template-Text generieren
@@ -1675,6 +1673,7 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
+
 
 
 
