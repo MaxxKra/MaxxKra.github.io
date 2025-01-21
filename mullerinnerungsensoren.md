@@ -1884,7 +1884,7 @@ Du musst {{ DAY | lower }}
 
         // Für den Fall, dass 1 Sensor erstellt wurde
         if (sensorCount === 1) {
-            const entityText = `sensor.mullabholung_text_${anzeigeAuswahl}`;
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
             // Sensor aus der Tabelle entnehmen
