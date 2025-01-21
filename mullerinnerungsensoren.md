@@ -1614,6 +1614,20 @@ function createTemplates() {
     createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen", morgenCheckbox);
 }
 
+    function copyTitleToClipboard(element) {
+        const textToCopy = element.textContent.trim(); // Text der Überschrift
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Suche nach dem Symbol in der gleichen Zeile wie die Überschrift
+            const confirmationIcon = element.parentElement.querySelector('.copy-confirmation');
+            if (confirmationIcon) {
+                // Umschalten zwischen ❌ und ✔️
+                confirmationIcon.textContent = "✔️";
+            }
+        }).catch(err => {
+            console.error("Fehler beim Kopieren in die Zwischenablage:", err);
+        });
+    }
+
 function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
     const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Zeilen der sensor-table (ohne Header)
@@ -1637,7 +1651,7 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         // Generiere sensorName basierend auf customName
         const sensorName = "states.sensor." + customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
             return { 'ä': 'a', 'ö': 'o', 'ü': 'u', 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss' }[match];
-        });
+        }) + ".state";
 
         // Anpassung für farbliche Säcke
         let adjustedName = originalName;
