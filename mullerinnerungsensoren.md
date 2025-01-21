@@ -277,6 +277,7 @@ Nach den Änderungen klicke auf<br>
         <tr>
             <th>Sensor Name</th>
             <th style="text-align: center;">Kopiert</th>
+            <th>Original Name</th>
             <th>Entity ID</th>
             <th>Tonnen Farbe</th>
         </tr>
@@ -1401,6 +1402,11 @@ async function extractEntries() {
         standardCopyStatusCell.style.textAlign = "center";
         standardRow.appendChild(standardCopyStatusCell);
 
+        // Original Name
+        const standardOriginalCell = document.createElement("td");
+        standardOriginalCell.textContent = "-"; // Kein Originalname für Standardzeile
+        standardRow.appendChild(standardOriginalCell);
+
         // Entity ID
         const standardSensorCell = document.createElement("td");
         standardSensorCell.textContent = "sensor.nachste_abholung";
@@ -1415,9 +1421,10 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
+            let originalName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent.trim();
+            let customName = originalName; // Kopiere den Originalnamen für customName
 
-            // Überprüfen und gegebenenfalls "Sack" entfernen
+            // Überprüfen und gegebenenfalls "Sack" entfernen für customName
             if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
                 customName = customName.replace(/\s*Sack/, "").trim();
             }
@@ -1447,6 +1454,11 @@ async function extractEntries() {
             copyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>'; // Standardmäßig ❌
             copyStatusCell.style.textAlign = "center";
             sensorRow.appendChild(copyStatusCell);
+
+            // Original Name (Neue Spalte)
+            const originalNameCell = document.createElement("td");
+            originalNameCell.textContent = originalName;
+            sensorRow.appendChild(originalNameCell);
 
             // Entity ID
             const sensorNameCell = document.createElement("td");
