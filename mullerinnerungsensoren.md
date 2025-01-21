@@ -1518,16 +1518,15 @@ async function extractEntries() {
 
         // Add rows for selected entries
         selectedEntries.forEach((row) => {
-            const customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
+            let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
 
             // Überprüfen und gegebenenfalls "Sack" entfernen
-            let processedName = customName;
             if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
-                processedName = customName.replace("Sack", "").trim();
+                customName = customName.replace(/\s*Sack/, "").trim();
             }
 
             // Sensorname generieren und "_datum" anhängen
-            const sensorName = `sensor.${processedName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
                     'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
@@ -1541,8 +1540,8 @@ async function extractEntries() {
             customNameCell.textContent = `${customName} Datum`;
             customNameCell.style.cursor = "pointer";
             customNameCell.onclick = () => {
-                toggleCopyStatus(copyStatusCell); // Richtige Zelle für den Status
-                copyToClipboards(`${customName} Datum`, copyStatusCell); // Name wird kopiert
+                toggleCopyStatus(copyStatusCell); // Status ändern
+                copyToClipboards(`${customName} Datum`, copyStatusCell); // Name kopieren
             };
             sensorRow.appendChild(customNameCell);
 
@@ -1562,6 +1561,7 @@ async function extractEntries() {
 
         dateSensorTable.style.display = "table";
     }
+
 
     function copyToClipboards(textToCopy, statusCell) {
         navigator.clipboard.writeText(textToCopy).then(() => {
