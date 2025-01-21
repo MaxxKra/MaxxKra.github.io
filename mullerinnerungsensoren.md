@@ -1616,13 +1616,15 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         });
 
         // Anpassung für farbliche Säcke
-        customName = customName
-            .replace(/\bGelber Sack\b/, "gelben Sack")
-            .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
-            .replace(/\bBlauer Sack\b/, "blauen Sack")
-            .replace(/\bRoter Sack\b/, "roten Sack");
+        if (customName.match(/\b(Gelber|Schwarzer|Blauer|Roter) Sack\b/)) {
+            customName = customName
+                .replace(/\bGelber Sack\b/, "gelben Sack")
+                .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
+                .replace(/\bBlauer Sack\b/, "blauen Sack")
+                .replace(/\bRoter Sack\b/, "roten Sack");
+        }
 
-        // Eintrag in SENSORSTATE hinzufügen
+        // SENSORSTATE mit dynamischen Einträgen
         sensorState[customName] = sensorName + ".state";
     });
 
@@ -1673,7 +1675,6 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
-
 
 
     function createImageList() {
