@@ -454,19 +454,6 @@ Nach den Änderungen klicke auf<br>
     </div>
 </div>
 
-<!-- Ausgabe für "Müllabholung Text Heute" -->
-<div id="helper-template-output-text-heute" style="display:none;">
-    <div class="shb-title-inline">
-        <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Heute</h4>
-        <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: inline;">❌</span>
-    </div>
-    <div class="shb-code-container">
-        <button class="copy-code-button" onclick="copyCode('helper-template-text-heute', this)">Kopieren</button>
-        <pre id="helper-template-text-heute" class="language-yaml"><code></code></pre>
-    </div>
-</div>
-
 <!-- Output for "Müllabholung Morgen" -->
 <div id="helper-template-output-morgen" style="display:none;">
     <div class="shb-title-inline">
@@ -480,19 +467,6 @@ Nach den Änderungen klicke auf<br>
     </div>
 </div>
 
-<!-- Ausgabe für "Müllabholung Text Morgen" -->
-<div id="helper-template-output-text-morgen" style="display:none;">
-    <div class="shb-title-inline">
-        <h4 onclick="copyTitleToClipboard(this)">Müllabholung Text Morgen</h4>
-        <p>Klicke auf die Überschrift um sie zu kopieren!</p>
-        <span class="copy-confirmation" style="display: inline;">❌</span>
-    </div>
-    <div class="shb-code-container">
-        <button class="copy-code-button" onclick="copyCode('helper-template-text-morgen', this)">Kopieren</button>
-        <pre id="helper-template-text-morgen" class="language-yaml"><code></code></pre>
-    </div>
-</div>
-</div>
 <div class="content-section" id="step-5" style="display:none;">
     <div class="shb-button">
         <button class="shb-button shb-button-main" onclick="showStep(6); createImageList();">👇  Templates angelegt? Weiter zu den Dashboard-Karten!  👇</button>
@@ -1619,15 +1593,11 @@ async function extractEntries() {
     }
 
 function createTemplates() {
-    // Zugriff auf die Tabelle der Sensoren
-    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-    const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // überspringe die Standardreihe "Nächste Abholung"
-
     // Checkboxen für "keine"-Anzeige prüfen
     const heuteCheckbox = document.getElementById("keineHeute").checked;
     const morgenCheckbox = document.getElementById("keineMorgen").checked;
 
-    // Templates erstellen
+    // Templates für "Heute" und "Morgen" erstellen
     createTemplate("Heute", "helper-template-heute", "helper-template-output-heute", heuteCheckbox);
     createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen", morgenCheckbox);
 }
@@ -1705,6 +1675,7 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
+
 
 
     function createImageList() {
