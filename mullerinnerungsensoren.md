@@ -152,14 +152,23 @@ layout: page
     </p>
 </div>
 <p>
-    Wähle deine Bezeichnung so, dass sie kurz und sinnvoll ist. Es ist nicht notwendig, das Wort <strong>Tonne</strong> in die Bezeichnung aufzunehmen, da dies automatisch vom Codegenerator ergänzt wird. 
-</p>
-<p>
+    Wähle deine Bezeichnung so, dass sie kurz und sinnvoll ist. Es ist nicht notwendig, das Wort <strong>Tonne</strong> in die Bezeichnung aufzunehmen, da dies automatisch vom Codegenerator ergänzt wird.<br>
     Beispiel: Aus der Bezeichnung <strong>Papier</strong> wird automatisch <strong>die Papier Tonne</strong>.
 </p>
 <p>
-    Eine Ausnahme bilden <strong>Gelbe Tonne</strong> und <strong>Gelber Sack</strong>, da diese ohne den Zusatz nicht eindeutig wären.
+    Anders ist es bei der Verwendung von Säcken. Werdern anstatt Tonnen, Säcke verwendet, ist die Bezeichnung <strong>Sack</strong> der Farbe oder dem Müll-Typ anzuhängen.<br>
+    Beispiel: Für Restabfall wähle die Bezeichnung <strong>Restabfall Sack</strong>, für den gelben Sack wähle die Bezeichnung <strong>Gelber Sack</strong>. 
 </p>
+<p>
+
+    Es sind folgende Farben von Säcken für die Bezeichnung möglich:
+</p>
+<ul>
+    <li>Gelber Sack</li>
+    <li>Schwarzer Sack</li>
+    <li>Roter Sack</li>
+    <li>Blauer Sack</li>
+</ul>
 <p>
 Nach den Änderungen klicke auf<br>
 <strong>Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</strong>
