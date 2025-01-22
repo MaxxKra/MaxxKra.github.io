@@ -280,6 +280,7 @@ Nach den Änderungen klicke auf<br>
             <th>Original Name</th>
             <th>Entity ID</th>
             <th>Tonnen Farbe</th>
+            <th style="text-align: center;">Vorschau</th>
         </tr>
     </thead>
     <tbody>
@@ -1417,15 +1418,8 @@ function generateSensorTable(selectedEntries) {
     standardColorCell.textContent = "-";
     standardRow.appendChild(standardColorCell);
 
-    // Vorschau-Bild
+    // Vorschau-Bild (leer für die Standardzeile)
     const standardPreviewCell = document.createElement("td");
-    const standardPreviewImage = document.createElement("img");
-    standardPreviewImage.src = "/img/muell/sack.png";
-    standardPreviewImage.style.width = "50px";
-    standardPreviewImage.style.height = "auto";
-    standardPreviewImage.style.display = "block";
-    standardPreviewImage.style.margin = "0 auto";
-    standardPreviewCell.appendChild(standardPreviewImage);
     standardRow.appendChild(standardPreviewCell);
 
     sensorTableBody.appendChild(standardRow);
@@ -1528,7 +1522,6 @@ function generateSensorTable(selectedEntries) {
 
     sensorTable.style.display = "table";
 }
-
 
 
     // Funktion zum Umschalten des Kopierstatus
