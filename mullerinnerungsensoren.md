@@ -261,7 +261,8 @@ Nach den Änderungen klicke auf<br>
 <br>
 <p>
     Nun müssen den Sensoren bzw. Abholungen die Tonnenfarben zugeordnet werden.<br>
-    Wichtig ist, dass <strong>keine</strong> Farbe zweimal verwendet werden darf.
+    Wichtig ist, dass <strong>keine</strong> Farbe zweimal verwendet werden darf.<br>
+    Du kannst deine gewählten Bilder, um sie für dein Dashboard zu nutzen, später bei den Dashboard-Karten herunterladen.
 </p>
 
 <p>
@@ -1761,7 +1762,7 @@ Du musst {{ DAY | lower }}
         const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Überspringe die Standardreihe "Nächste Abholung"
         
         // Tabelle für die Ausgabe erstellen
-        let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau</th></tr></thead><tbody>';
+        let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau und Download</th></tr></thead><tbody>';
         
         // Mapping von Farben zu Bilddateinamen
         const colorToImageMap = {
