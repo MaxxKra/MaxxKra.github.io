@@ -553,17 +553,30 @@ function addEventToICS() {
         return;
     }
 
+    const now = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z"; // Aktueller Zeitstempel
+    const uid = Math.random().toString(36).substring(2, 10); // Zufällige UID
+
     if (!icsContent) {
         icsContent = `BEGIN:VCALENDAR
+PRODID:-//SHB//${calendarName}//DE
 VERSION:2.0
-PRODID:${calendarName}
+CALSCALE:GREGORIAN
+X-WR-CALNAME:${calendarName} SHB
+X-WR-CALDESC:für eigene Zwecke / Testzwecke erstellt
 `;
     }
 
     const eventEntry = `BEGIN:VEVENT
+DTSTAMP:${now}
+UID:${uid}
 SUMMARY:${eventName}
 DTSTART;VALUE=DATE:${eventDate.replace(/-/g, "")}
 DESCRIPTION:${eventName}
+BEGIN:VALARM
+TRIGGER;VALUE=DURATION;RELATED=START:-PT5H
+ACTION:DISPLAY
+DESCRIPTION:${eventName}
+END:VALARM
 END:VEVENT
 `;
 
@@ -572,6 +585,7 @@ END:VEVENT
     // Zeige den aktuellen Inhalt der ICS-Datei im Textfeld an
     document.getElementById('created-ics-output').value = `${icsContent}END:VCALENDAR`;
 }
+
 
     function downloadCreatedICS() {
         const calendarName = document.getElementById('calendarName').value || "Mein Kalender";

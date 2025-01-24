@@ -94,8 +94,7 @@ layout: page
 <h2 class="shb-section-title-center">1. Kalenderdaten Auslesen</h2>
 
 <p>
-    Zum Auslesen der verschiedenen Abholungen aus deinem Müllkalender, gib bitte deine URL an oder lade die ICS-Datei hoch und bestätige mit<br>
-    <strong>Kalendereinträge extrahieren</strong>.
+    Zum Auslesen der verschiedenen Abholungen aus deinem Müllkalender, gib bitte deine URL an oder lade die ICS-Datei hoch und bestätige unten mit <button class="shb-inline-button-main">Kalendereinträge extrahieren</button>.
 </p>
 
 <div class="shb-form-group">
@@ -109,7 +108,7 @@ layout: page
 </div>
 
 <div class="shb-button">
-    <button class="shb-button shb-button-main" style="margin-bottom: 30px;" onclick="extractEntries(); showStep(2);">👇  Kalendereinträge extrahieren!  👇</button>
+    <button class="shb-button shb-button-main" style="margin-bottom: 30px;" onclick="extractEntries();">👇  Kalendereinträge extrahieren!  👇</button>
 </div>
 </div>
 
@@ -156,7 +155,7 @@ layout: page
     Beispiel: Aus der Bezeichnung <strong>Papier</strong> wird automatisch <strong>die Papier Tonne</strong>.
 </p>
 <p>
-    Anders ist es bei der Verwendung von Säcken. Werdern anstatt Tonnen, Säcke verwendet, ist die Bezeichnung <strong>Sack</strong> der Farbe oder dem Müll-Typ anzuhängen.<br>
+    Anders ist es bei der Verwendung von Säcken. Werden anstatt Tonnen, Säcke verwendet, ist die Bezeichnung <strong>Sack</strong> der Farbe oder dem Müll-Typ anzuhängen.<br>
     Beispiel: Für Restabfall wähle die Bezeichnung <strong>Restabfall Sack</strong>, für den gelben Sack wähle die Bezeichnung <strong>Gelber Sack</strong>. 
 </p>
 <p>
@@ -170,8 +169,7 @@ layout: page
     <li>Blauer Sack</li>
 </ul>
 <p>
-Nach den Änderungen klicke auf<br>
-<strong>Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</strong>
+Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
 </p>
 
 <div class="shb-styled-table-container">
@@ -259,19 +257,53 @@ Nach den Änderungen klicke auf<br>
     <li><strong>Sensor Datum</strong> - Sensoren welche das Datum der nächsten Abholung einzelner Mülltypen ausgibt</li>
 </ul>
 <br>
+
+<h3 class="shb-section-title-center" id="sensor-header" style="display:none;">Sensor zur Anzeige der nächsten Abholung</h3>
+
 <p>
-    Nun müssen den Sensoren bzw. Abholungen die Tonnenfarben zugeordnet werden.<br>
+    Der erste Sensor welcher anzulegen ist, betrifft die <strong>Nächste Abholung</strong>.<br>
+    <br>
+    Mit einem Klick auf den Sensor Namen in der Tabelle und auf den <code>Kopieren</code> Button des Werte Template, werden diese in die Zwischenablage kopiert.<br>
+    Kopierte Einträge werden mit einem ✔️ gekennzeichnet.<br>
+    Dann den <strong>SENSOR NAME</strong> zusammen mit dem <strong>Werte Template Nächste Abholung</strong> in die Waste Collection Schedule eintragen.
+</p>
+
+<table class="shb-custom-table" id="next-event-table">
+    <thead>
+        <tr>
+            <th>Sensor Name</th>
+            <th style="text-align: center;">Kopiert</th>
+            <th>Entity ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="Nächste Abholung">Nächste Abholung</td>
+            <td class="status" id="next-event-sensor" style="text-align: center;">❌</td>
+            <td>sensor.nachste_abholung</td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="code-output-next" style="display:none;">
+    <h4>Werte Template Nächste Abholung</h4>
+    <div class="shb-code-container">
+        <button class="copy-code-button" onclick="copyCode('next-pickup-template', this)">Kopieren</button>
+        <pre id="next-pickup-template" class="language-yaml"><code></code></pre>
+    </div>
+</div>
+
+<h3 class="shb-section-title-center" id="template-header" style="display:none;">Sensoren für einzelne Abholungen / Müll-Typen</h3>
+
+<p>
+    Nun müssen den Sensoren bzw. den Müll-Typen die Tonnen oder Säcke in den verschidenen Farben zugeordnet werden.<br>
     Wichtig ist, dass <strong>keine</strong> Farbe zweimal verwendet werden darf.<br>
     Du kannst deine gewählten Bilder, um sie für dein Dashboard zu nutzen, später bei den Dashboard-Karten herunterladen.
 </p>
-
 <p>
-    Mit einem Klick auf den Sensor-Namen in der Tabelle wird dieser in die Zwischenablage kopiert.<br>
-    Kopierte Einträge werden mit einem ✔️ gekennzeichnet.<br>
-    Dann den Sensor-Namen zusammen mit dem Werte-Template in die Waste Collection Schedule eintragen.
+    Nach der Zuordnung sind auch diese Sensoren in der Waste Collection Schedule anzulegen.<br>
+    Auch hier funktioniert das Kopieren wie schon zuvor. Einfach den Sensor Name anklicken um ihn zu kopieren und zusammen mit dem <strong>Werte Template einzelne Abholungen</strong> als <code>Abfallarten</code> in der Waste Collection Schedule einzeln anlegen.
 </p>
-
-<h3 class="shb-section-title-center" id="sensor-header" style="display:none;">Anzulegende Sensoren und Mülltypen</h3>
 
 <table class="shb-custom-table" id="sensor-table" style="display:none;">
     <thead>
@@ -289,14 +321,7 @@ Nach den Änderungen klicke auf<br>
     </tbody>
 </table>
 
-<h3 class="shb-section-title-center" id="template-header" style="display:none;">Werte Templates Sensoren</h3>
-
-<div id="code-output-next" style="display:none;">
-    <h4>Werte Template Nächste Abholung</h4>
-    <div class="shb-code-container">
-        <button class="copy-code-button" onclick="copyCode('next-pickup-template', this)">Kopieren</button>
-        <pre id="next-pickup-template" class="language-yaml"><code></code></pre>
-    </div>
+<div id="code-output-events" style="display:none;">
     <h4>Werte Template einzelne Abholungen</h4>
     <div class="shb-code-container">
         <button class="copy-code-button" onclick="copyCode('individual-pickup-template', this)">Kopieren</button>
@@ -304,12 +329,12 @@ Nach den Änderungen klicke auf<br>
     </div>
 </div>
 
-<h3 class="shb-section-title-center" id="date-sensor-header" style="display:none;">Optionale Datum Sensoren</h3>
+<h3 class="shb-section-title-center" id="date-sensor-header" style="display:none;">Optional: Sensoren für die Datum Anzeige der einzelnen Müll-Typen</h3>
 
 <p>
     Wenn du das Datum der einzelnen Abholung benötigst, kannst du dir diesen Sensor ebenfalls anlegen.<br>
     Nutze dazu den Sensor Namen mit dem Zusatz <strong>Datum</strong>, kopiere ihn mit einem Klick aus der Liste 
-    und lege diesen Sensor zusammen mit dem <strong>Werte Template Datum einzelne Abholungen</strong> in der Waste Collection Schedule an.
+    und lege diesen Sensor zusammen mit dem <strong>Werte Template Datum einzelne Abholungen</strong> ebenfalls als <code>Abfallarten</code>, einzeln, in der Waste Collection Schedule an.
 </p>
 
 <table class="shb-custom-table" id="date-sensor-table" style="display: none;">
@@ -469,7 +494,7 @@ Nach den Änderungen klicke auf<br>
         <pre id="helper-template-morgen" class="language-yaml"><code></code></pre>
     </div>
 </div>
-
+</div>
 <div class="content-section" id="step-5" style="display:none;">
     <div class="shb-button">
         <button class="shb-button shb-button-main" onclick="showStep(6); createImageList();">👇  Templates angelegt? Weiter zu den Dashboard-Karten!  👇</button>
@@ -923,41 +948,6 @@ Nach den Änderungen klicke auf<br>
 <p>
     Zur einfachen Einrichtung dieser Automatisierung habe ich ein Blueprint erstellt. Dieses kann mit einem Klick auf das Blueprint in der Tabelle herunter geladen und in Home Assistant installiert werden.
 </p>
-
-<table class="shb-custom-table" id="blueprint-table">
-    <thead>
-        <tr>
-            <th>Blueprint</th>
-            <th style="text-align: center;">Blueprint kopiert</th>
-            <th>Beschreibung</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="copyable" data-helper="https://gist.github.com/MaxxKra/3dbc1164e0d037bda67911fccead5f36">Blueprint Pop-Up öffnen</td>
-            <td class="status" id="status-blueprint" style="text-align: center;">❌</td>
-            <td>Ein Blueprint für die Automatisierung zum Öffnen eines Pop-Ups</td>
-        </tr>
-    </tbody>
-</table>
-<br>
-<table class="shb-custom-table" id="automation-table">
-    <thead>
-        <tr>
-            <th>Automatisierung Name</th>
-            <th style="text-align: center;">Name kopiert</th>
-            <th>Entity ID Automatisierung</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="copyable" data-helper="Müllerinnerung Pop-Up">Müllerinnerung Pop-Up</td>
-            <td class="status" id="status-automation" style="text-align: center;">❌</td>
-            <td>automation.mullerinnerung_pop_up</td>
-        </tr>
-    </tbody>
-</table>
-<br>
 <p>
     Wie man das Blueprint installiert und die Automatisierung einrichtet, siehst du im ⬇️ Dropdown ⬇️
 </p>
@@ -994,6 +984,79 @@ Nach den Änderungen klicke auf<br>
         </div>
     </div>
 </div>
+<br>
+
+<table class="shb-custom-table" id="blueprint-table">
+    <thead>
+        <tr>
+            <th>Blueprint</th>
+            <th style="text-align: center;">Blueprint kopiert</th>
+            <th>Beschreibung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="https://gist.github.com/MaxxKra/3dbc1164e0d037bda67911fccead5f36">Blueprint Pop-Up öffnen</td>
+            <td class="status" id="status-blueprint" style="text-align: center;">❌</td>
+            <td>Ein Blueprint für die Automatisierung zum Öffnen eines Pop-Ups</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<h4 class="shb-section-title-left">Welche Eingaben sind im Blueprint zu trreffen?</h4>
+
+<ul class="shb-list-start">
+    <li>Der Zeitplan zum Öffnen des Pop-Ups</li>
+    <li>Der Taster welcher das Pop-Up öffnet</li>
+    <li>Der Sensor zur Müllabholung. Entweder <code>Müllabholung Heute</code> oder <code>Müllabholung Morgen</code></li>
+    <li>Der Pop-Up Sensor-Status welcher das Öffnen des Pop-Ups verhindert</li>
+    <li>Eine oder mehrere Browser-IDs, auf welchen das Pop-Up eingerichtet ist.</li>
+    <li>Zum Schluss, der Automatisierungs Name welcher in der Tabelle unten kopiert werden kann.</li>
+</ul>
+<br>
+<table class="shb-custom-table" id="popup-sensor-table">
+    <thead>
+        <tr>
+            <th>Pop-up Sensor Status</th>
+            <th style="text-align: center;">Status kopiert</th>
+            <th>Beschreibung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="none">none</td>
+            <td class="status" id="popup-state-none" style="text-align: center;">❌</td>
+            <td>Wenn zuvor bei den Templates die Checkboxen für die Anzeige des Textes <code>nicht</code> angehakt wurden</td>
+        </tr>
+        <tr>
+            <td class="copyable" data-helper="Du musst heute keine Tonne rausstellen.">Du musst heute keine Tonne rausstellen.</td>
+            <td class="status" id="popup-state-today" style="text-align: center;">❌</td>
+            <td>Wenn das Pop-Up für <code>Heute</code> ist und zuvor bei den Templates die Checkboxen für die Anzeige des Textes angehakt wurden</td>
+        </tr>
+        <tr>
+            <td class="copyable" data-helper="Du musst morgen keine Tonne rausstellen.">Du musst morgen keine Tonne rausstellen.</td>
+            <td class="status" id="popup-state-tomorrow" style="text-align: center;">❌</td>
+            <td>Wenn das Pop-Up für <code>Morgen</code> ist und zuvor bei den Templates die Checkboxen für die Anzeige des Textes angehakt wurden</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<table class="shb-custom-table" id="automation-table">
+    <thead>
+        <tr>
+            <th>Automatisierung Name</th>
+            <th style="text-align: center;">Name kopiert</th>
+            <th>Entity ID Automatisierung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="copyable" data-helper="Müllerinnerung Pop-Up">Müllerinnerung Pop-Up</td>
+            <td class="status" id="status-automation" style="text-align: center;">❌</td>
+            <td>automation.mullerinnerung_pop_up</td>
+        </tr>
+    </tbody>
+</table>
 <br>
 <p>
     Nach der Installation der Automatisierung sollte das Pop-Up auf deinen gewählten Dashboards durch den eingerichteten Zeitplan automatisch geöffnet werden.
@@ -1254,39 +1317,45 @@ async function extractEntries() {
                 return;
             }
         } else {
+            // Zeige den customAlert bei fehlender Eingabe
+            showSHBcustomAlert(
+                "Keine Eingabe",
+                "Bitte eine ICS-Datei hochladen oder eine URL eingeben."
+            );
             entryTableBody.innerHTML = "<tr><td colspan='3'>Bitte eine ICS-Datei hochladen oder eine URL eingeben.</td></tr>";
             return;
         }
-    
+
+        // Wenn Daten geladen wurden, führe showStep aus
+        showStep(2);
+
         const summaryEntries = new Set();
         const invalidEntries = [];
         const lines = icsData.split("\n");
-    
+
         for (let line of lines) {
             if (line.startsWith("SUMMARY")) {
                 const summaryText = line.split(":").slice(1).join(":").trim();
                 summaryEntries.add(summaryText);
-    
+
                 // Überprüfen, ob Ziffern, Punkte oder unerlaubte Zeichen enthalten sind
                 if (/\d|\.|[äöüßÄÖÜ]|\s|[()!?]/.test(summaryText)) {
                     invalidEntries.push(summaryText);
                 }
             }
         }
-    
+
         // Zeige den Warnungscontainer bei ungültigen Einträgen
         if (invalidEntries.length > 0) {
-            const warningContainer = document.getElementById("warning-container");
-            const umlautWarningContainer = document.getElementById("umlaut-warning-container");
             warningContainer.style.display = "block"; // Container einblenden
             umlautWarningContainer.style.display = "none"; // Umlaut-Warnung ausblenden
         }
-    
+
         entryTableBody.innerHTML = "";
         let idCounter = 0;
         summaryEntries.forEach(entry => {
             const row = document.createElement("tr");
-    
+
             // Checkbox
             const checkboxCell = document.createElement("td");
             checkboxCell.setAttribute("style", "text-align: center;");
@@ -1296,7 +1365,7 @@ async function extractEntries() {
             checkbox.id = `shb-custom-checkbox-${idCounter}`;
             checkboxCell.appendChild(checkbox);
             row.appendChild(checkboxCell);
-    
+
             // Summary Entry
             const summaryCell = document.createElement("td");
             summaryCell.textContent = entry;
@@ -1308,7 +1377,7 @@ async function extractEntries() {
                 summaryCell.title = "Ungültiger Eintrag - bitte anpassen"; // Tooltip
             }
             row.appendChild(summaryCell);
-    
+
             // Custom Name Input
             const customNameCell = document.createElement("td");
             const customNameInput = document.createElement("input");
@@ -1318,11 +1387,11 @@ async function extractEntries() {
             customNameInput.id = `custom-name-${idCounter}`;
             customNameCell.appendChild(customNameInput);
             row.appendChild(customNameCell);
-    
+
             entryTableBody.appendChild(row);
             idCounter++;
         });
-    
+
     } catch (error) {
         console.error("Error in extractEntries:", error);
     }
@@ -1370,6 +1439,7 @@ async function extractEntries() {
         document.getElementById("sensor-header").style.display = "block";
         document.getElementById("date-sensor-header").style.display = "block";
         document.getElementById("code-output-next").style.display = "block";
+        document.getElementById("code-output-events").style.display = "block";
         document.getElementById('code-output-date').style.display = 'block';
         return true;
     }
@@ -1384,46 +1454,6 @@ function generateSensorTable(selectedEntries) {
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
     const sensorTable = document.getElementById('sensor-table');
     sensorTableBody.innerHTML = "";
-
-    // Add standard row for "Nächste Abholung"
-    const standardRow = document.createElement("tr");
-
-    // Sensor Name
-    const standardNameCell = document.createElement("td");
-    standardNameCell.textContent = "Nächste Abholung";
-    standardNameCell.style.cursor = "pointer";
-    standardNameCell.onclick = () => {
-        toggleCopyStatus(standardCopyStatusCell);
-        copyToClipboards("Nächste Abholung", standardCopyStatusCell);
-    };
-    standardRow.appendChild(standardNameCell);
-
-    // Kopiert-Status
-    const standardCopyStatusCell = document.createElement("td");
-    standardCopyStatusCell.innerHTML = '<span class="copy-checkmark">❌</span>';
-    standardCopyStatusCell.style.textAlign = "center";
-    standardRow.appendChild(standardCopyStatusCell);
-
-    // Original Name
-    const standardOriginalCell = document.createElement("td");
-    standardOriginalCell.textContent = "-";
-    standardRow.appendChild(standardOriginalCell);
-
-    // Entity ID
-    const standardSensorCell = document.createElement("td");
-    standardSensorCell.textContent = "sensor.nachste_abholung";
-    standardRow.appendChild(standardSensorCell);
-
-    // Farbe (leer für die Standardzeile)
-    const standardColorCell = document.createElement("td");
-    standardColorCell.textContent = "-";
-    standardRow.appendChild(standardColorCell);
-
-    // Vorschau-Bild (leer für die Standardzeile)
-    const standardPreviewCell = document.createElement("td");
-    standardRow.appendChild(standardPreviewCell);
-
-    sensorTableBody.appendChild(standardRow);
 
     // Add rows for selected entries
     selectedEntries.forEach((row) => {
@@ -1475,7 +1505,7 @@ function generateSensorTable(selectedEntries) {
         colorSelect.className = "color-select";
         [
             "Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun",
-            "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack"
+            "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack", "Sperrabfall", "Grünschnitt"
         ].forEach(color => {
             const option = document.createElement("option");
             option.value = color;
@@ -1512,7 +1542,9 @@ function generateSensorTable(selectedEntries) {
                 "schwarzer Sack": "schwarz_sack.png",
                 "roter Sack": "rot_sack.png",
                 "blauer Sack": "blau_sack.png",
-                "grüner Sack": "gruen_sack.png"
+                "grüner Sack": "gruen_sack.png",
+                "Sperrabfall": "sperrabfall.png",
+                "Grünschnitt": "gruenschnitt.png"
             };
             previewImage.src = `/img/muell/${colorToImageMap[colorSelect.value] || "sack.png"}`;
         };
@@ -1523,6 +1555,7 @@ function generateSensorTable(selectedEntries) {
 
     sensorTable.style.display = "table";
 }
+
 
 
     // Funktion zum Umschalten des Kopierstatus
@@ -1598,7 +1631,7 @@ function generateSensorTable(selectedEntries) {
 
     function validateColors() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // überspringe die Standardreihe "Nächste Abholung"
+        const rows = Array.from(sensorTableBody.querySelectorAll("tr")); // überspringe die Standardreihe "Nächste Abholung"
 
         let colorNotSelected = false;
         const selectedColors = new Set();
@@ -1666,7 +1699,7 @@ function createTemplates() {
 
 function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
-    const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Zeilen der sensor-table (ohne Header)
+    const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")); // Zeilen der sensor-table (ohne Header)
 
     const sensorState = {};
 
@@ -1746,7 +1779,7 @@ Du musst {{ DAY | lower }}
         {%- endif %}{{ ITEM }}
     {%- endfor %}
     {%- if TONNEN.values | length > 0 %} Tonne{% endif %} rausstellen!
-{%- else %}${showNoCollectionMessage ? `\nDu musst heute keine Tonne rausstellen.` : ''}
+{%- else %}${showNoCollectionMessage ? `\nDu musst {{ DAY | lower }} keine Tonne rausstellen.` : 'none'}
 {%- endif %}
 {% endraw %}
 `;
@@ -1759,7 +1792,7 @@ Du musst {{ DAY | lower }}
 
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")).slice(1); // Überspringe die Standardreihe "Nächste Abholung"
+        const rows = Array.from(sensorTableBody.querySelectorAll("tr")); // Überspringe die Standardreihe "Nächste Abholung"
         
         // Tabelle für die Ausgabe erstellen
         let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau und Download</th></tr></thead><tbody>';
@@ -1781,7 +1814,9 @@ Du musst {{ DAY | lower }}
             "schwarzer Sack": "schwarz_sack.png",
             "roter Sack": "rot_sack.png",
             "blauer Sack": "blau_sack.png",
-            "grüner Sack": "gruen_sack.png"
+            "grüner Sack": "gruen_sack.png",
+            "Sperrabfall": "sperrabfall.png",
+            "Grünschnitt": "gruenschnitt.png"
         };
         
         // Zeilen der Tabelle durchlaufen und Bildnamen sowie Bildvorschau zuordnen
@@ -1839,7 +1874,7 @@ Du musst {{ DAY | lower }}
     function updateExampleCard() {
         const darstellungAuswahl = document.getElementById("darstellungAuswahl").value;
         const sensorTableBody = document.getElementById("sensor-table").querySelector("tbody");
-        const sensorCount = sensorTableBody.querySelectorAll("tr").length - 1; // Exclude the header row
+        const sensorCount = sensorTableBody.querySelectorAll("tr"); // Exclude the header row
 
         let imagePath = "/img/muell/";
 
@@ -1959,6 +1994,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2068,6 +2105,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2231,6 +2270,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2339,6 +2380,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2446,6 +2489,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2617,6 +2662,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2789,6 +2836,8 @@ Du musst {{ DAY | lower }}
             yaml += `        - white-space: unset\n`;
             yaml += `        - text-overflow: unset\n`;
             yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
             yaml += `      card:\n`;
             yaml += `        - background: transparent\n`;
             yaml += `        - border: none\n`;
@@ -2861,6 +2910,354 @@ Du musst {{ DAY | lower }}
             yaml += `    cards:\n`;
 
             sensors.slice(3, 6).forEach(sensor => {
+                yaml += `      - type: vertical-stack\n`;
+                yaml += `        cards:\n`;
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_entity_picture: true\n`;
+                yaml += `            entity_picture: /local/muell/${sensor.image}\n`;
+                yaml += `            size: 60%\n`;
+                yaml += `            show_state: false\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            styles:\n`;
+                yaml += `              card:\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
+
+                if (blinkend) {
+                    yaml += `            state:\n`;
+                    yaml += `              - value: ${valueText}\n`;
+                    yaml += `                entity_picture: /local/muell/${sensor.image}\n`;
+                    yaml += `                styles:\n`;
+                    yaml += `                  entity_picture:\n`;
+                    yaml += `                    - animation:\n`;
+                    yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
+                }
+
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_name: true\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              name:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `                - color: var(--primary-color)\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
+            });
+        }
+
+
+        else if (sensorCount === 7) {
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
+            const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
+
+            // Sensoren aus der Tabelle entnehmen
+            const sensors = rows.map(row => ({
+                entity: row.cells[2].textContent.trim(),
+                image: row.cells[1].textContent.trim(),
+            }));
+
+            if (styleUnused) {
+                yaml += `type: vertical-stack\n`; 
+            }
+            if (styleUsed) {
+                yaml += `type: custom:vertical-stack-in-card\n`;
+                yaml += `card_mod:\n`;
+                yaml += `  style: |\n`;
+                yaml += `    ha-card {\n`;
+                yaml += `      background: ${StyleHintergrund};\n`;
+                yaml += `      border: ${StyleRahmenStil};\n`;
+                yaml += `      border-radius: ${StyleRahmenEcke}\n`;
+                yaml += `    }\n`;
+            }
+            yaml += `cards:\n`;
+            yaml += `  - type: custom:button-card\n`;
+            yaml += `    entity: ${entityText}\n`;
+            yaml += `    show_icon: false\n`;
+            yaml += `    show_name: false\n`;
+            yaml += `    show_state: true\n`;
+            yaml += `    style:\n`;
+            yaml += `      top: 10%\n`;
+            yaml += `      left: 50%\n`;
+            yaml += `      width: 100%\n`;
+            yaml += `    styles:\n`;
+            yaml += `      state:\n`;
+            yaml += `        - font-size: 1.5em\n`;
+            yaml += `        - font-family: ${selectedFont}\n`;
+            yaml += `        - color: var(--primary-color)\n`;
+            yaml += `        - white-space: unset\n`;
+            yaml += `        - text-overflow: unset\n`;
+            yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
+            yaml += `      card:\n`;
+            yaml += `        - background: transparent\n`;
+            yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
+
+            // Erste Zeile der horizontalen Sensoren
+            yaml += `  - type: horizontal-stack\n`;
+            yaml += `    cards:\n`;
+
+            sensors.slice(0, 4).forEach(sensor => {
+                yaml += `      - type: vertical-stack\n`;
+                yaml += `        cards:\n`;
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_entity_picture: true\n`;
+                yaml += `            entity_picture: /local/muell/${sensor.image}\n`;
+                yaml += `            size: 60%\n`;
+                yaml += `            show_state: false\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            styles:\n`;
+                yaml += `              card:\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
+
+                if (blinkend) {
+                    yaml += `            state:\n`;
+                    yaml += `              - value: ${valueText}\n`;
+                    yaml += `                entity_picture: /local/muell/${sensor.image}\n`;
+                    yaml += `                styles:\n`;
+                    yaml += `                  entity_picture:\n`;
+                    yaml += `                    - animation:\n`;
+                    yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
+                }
+
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_name: true\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              name:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `                - color: var(--primary-color)\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
+            });
+
+            // Zweite Zeile der horizontalen Sensoren
+            yaml += `  - type: horizontal-stack\n`;
+            yaml += `    cards:\n`;
+
+            sensors.slice(4, 7).forEach(sensor => {
+                yaml += `      - type: vertical-stack\n`;
+                yaml += `        cards:\n`;
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_entity_picture: true\n`;
+                yaml += `            entity_picture: /local/muell/${sensor.image}\n`;
+                yaml += `            size: 60%\n`;
+                yaml += `            show_state: false\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            styles:\n`;
+                yaml += `              card:\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
+
+                if (blinkend) {
+                    yaml += `            state:\n`;
+                    yaml += `              - value: ${valueText}\n`;
+                    yaml += `                entity_picture: /local/muell/${sensor.image}\n`;
+                    yaml += `                styles:\n`;
+                    yaml += `                  entity_picture:\n`;
+                    yaml += `                    - animation:\n`;
+                    yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
+                }
+
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_name: true\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              name:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `                - color: var(--primary-color)\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
+            });
+        }
+
+
+        else if (sensorCount === 8) {
+            const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
+            const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
+
+            // Sensoren aus der Tabelle entnehmen
+            const sensors = rows.map(row => ({
+                entity: row.cells[2].textContent.trim(),
+                image: row.cells[1].textContent.trim(),
+            }));
+
+            if (styleUnused) {
+                yaml += `type: vertical-stack\n`; 
+            }
+            if (styleUsed) {
+                yaml += `type: custom:vertical-stack-in-card\n`;
+                yaml += `card_mod:\n`;
+                yaml += `  style: |\n`;
+                yaml += `    ha-card {\n`;
+                yaml += `      background: ${StyleHintergrund};\n`;
+                yaml += `      border: ${StyleRahmenStil};\n`;
+                yaml += `      border-radius: ${StyleRahmenEcke}\n`;
+                yaml += `    }\n`;
+            }
+            yaml += `cards:\n`;
+            yaml += `  - type: custom:button-card\n`;
+            yaml += `    entity: ${entityText}\n`;
+            yaml += `    show_icon: false\n`;
+            yaml += `    show_name: false\n`;
+            yaml += `    show_state: true\n`;
+            yaml += `    style:\n`;
+            yaml += `      top: 10%\n`;
+            yaml += `      left: 50%\n`;
+            yaml += `      width: 100%\n`;
+            yaml += `    styles:\n`;
+            yaml += `      state:\n`;
+            yaml += `        - font-size: 1.5em\n`;
+            yaml += `        - font-family: ${selectedFont}\n`;
+            yaml += `        - color: var(--primary-color)\n`;
+            yaml += `        - white-space: unset\n`;
+            yaml += `        - text-overflow: unset\n`;
+            yaml += `        - word-break: break-word\n`;
+            yaml += `        - visibility: >\n`;
+            yaml += `            [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
+            yaml += `      card:\n`;
+            yaml += `        - background: transparent\n`;
+            yaml += `        - border: none\n`;
+            yaml += `        - padding-bottom: 0\n`;
+
+            // Erste Zeile der horizontalen Sensoren
+            yaml += `  - type: horizontal-stack\n`;
+            yaml += `    cards:\n`;
+
+            sensors.slice(0, 4).forEach(sensor => {
+                yaml += `      - type: vertical-stack\n`;
+                yaml += `        cards:\n`;
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_entity_picture: true\n`;
+                yaml += `            entity_picture: /local/muell/${sensor.image}\n`;
+                yaml += `            size: 60%\n`;
+                yaml += `            show_state: false\n`;
+                yaml += `            show_name: false\n`;
+                yaml += `            styles:\n`;
+                yaml += `              card:\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - background: transparent\n`;
+                yaml += `                - padding: 1em 0 0 0\n`;
+
+                if (blinkend) {
+                    yaml += `            state:\n`;
+                    yaml += `              - value: ${valueText}\n`;
+                    yaml += `                entity_picture: /local/muell/${sensor.image}\n`;
+                    yaml += `                styles:\n`;
+                    yaml += `                  entity_picture:\n`;
+                    yaml += `                    - animation:\n`;
+                    yaml += `                        - blink 1s linear infinite\n`;
+                }
+
+                if (dateUsed) {
+                    yaml += `          - type: custom:button-card\n`;
+                    yaml += `            entity: ${sensor.entity}_datum\n`;
+                    yaml += `            show_name: false\n`;
+                    yaml += `            show_icon: false\n`;
+                    yaml += `            show_state: true\n`;
+                    yaml += `            styles:\n`;
+                    yaml += `              state:\n`;
+                    yaml += `                - font-family: ${selectedFont}\n`;
+                    yaml += `              card:\n`;
+                    yaml += `                - background-color: transparent\n`;
+                    yaml += `                - border: none\n`;
+                    yaml += `                - padding: 0\n`;
+                }
+
+                yaml += `          - type: custom:button-card\n`;
+                yaml += `            entity: ${sensor.entity}\n`;
+                yaml += `            show_name: true\n`;
+                yaml += `            show_icon: false\n`;
+                yaml += `            show_state: true\n`;
+                yaml += `            styles:\n`;
+                yaml += `              name:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `                - color: var(--primary-color)\n`;
+                yaml += `              state:\n`;
+                yaml += `                - font-family: ${selectedFont}\n`;
+                yaml += `              card:\n`;
+                yaml += `                - background-color: transparent\n`;
+                yaml += `                - border: none\n`;
+                yaml += `                - padding: 0 0 1em 0\n`;
+            });
+
+            // Zweite Zeile der horizontalen Sensoren
+            yaml += `  - type: horizontal-stack\n`;
+            yaml += `    cards:\n`;
+
+            sensors.slice(4, 8).forEach(sensor => {
                 yaml += `      - type: vertical-stack\n`;
                 yaml += `        cards:\n`;
                 yaml += `          - type: custom:button-card\n`;
@@ -3013,6 +3410,8 @@ function generatePopupYAML() {
     yaml += `          - white-space: unset\n`;
     yaml += `          - text-overflow: unset\n`;
     yaml += `          - word-break: break-word\n`;
+    yaml += `          - visibility: >\n`;
+    yaml += `              [[[ return entity.state === 'none' ? 'hidden' : 'visible'; ]]]\n`;
     yaml += `          - text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px grey\n`;
     yaml += `      style:\n`;
     yaml += `        left: 50%\n`;
