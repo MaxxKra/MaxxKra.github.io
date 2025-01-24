@@ -1797,8 +1797,7 @@ Du musst {{ DAY | lower }}
         {%- endif %}{{ ITEM }}
     {%- endfor %}
     {%- if SAMMLUNGEN.values | length > 0 %} Sammlung{% endif %} rausstellen!
-{%- else %}
-none
+{%- else %}${showNoCollectionMessage ? `\nDu musst {{ DAY | lower }} keine Tonne rausstellen.` : 'none'}
 {%- endif %}
 {% endraw %}
 `;
