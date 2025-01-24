@@ -1576,12 +1576,12 @@ function generateSensorTable(selectedEntries) {
             let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
 
             // Überprüfen und gegebenenfalls "Sack" entfernen
-            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack", "Grüner Sack"].includes(customName)) {
                 customName = customName.replace(/\s*Sack/, "").trim();
             }
 
             // Sensorname generieren und "_datum" anhängen
-            const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+            const sensorName = `sensor.${customName.toLowerCase().replace(/[\s-]+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
                 return {
                     'ä': 'a', 'ö': 'o', 'ü': 'u',
                     'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
@@ -1629,49 +1629,37 @@ function generateSensorTable(selectedEntries) {
         });
     }
 
-    function validateColors() {
-        const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")); // überspringe die Standardreihe "Nächste Abholung"
+function validateColors() {
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
+    const rows = Array.from(sensorTableBody.querySelectorAll("tr"));
 
-        let colorNotSelected = false;
-        const selectedColors = new Set();
-        let duplicateColor = false;
+    let colorNotSelected = false;
 
-        rows.forEach(row => {
-            // Suche nach dem Dropdown in der Spalte Tonnen Farbe
-            const selectElement = row.cells[4]?.querySelector("select");
+    rows.forEach(row => {
+        // Suche nach dem Dropdown in der Spalte Tonnen Farbe
+        const selectElement = row.cells[4]?.querySelector("select");
 
-            if (!selectElement) {
-                console.error("Kein Dropdown-Element in der Spalte 'Tonnen Farbe' gefunden!");
-                return; // Überspringe die aktuelle Zeile, wenn kein Dropdown gefunden wurde
-            }
-
-            const color = selectElement.value;
-            console.log(`Ausgewählte Farbe in der Zeile: "${color}"`); // Debugging-Ausgabe
-
-            if (!color || color.trim() === "" || color === "Farbe wählen") {
-                colorNotSelected = true; // Wenn keine Farbe ausgewählt wurde
-            } else {
-                if (selectedColors.has(color)) {
-                    duplicateColor = true; // Wenn die Farbe doppelt ist
-                } else {
-                    selectedColors.add(color); // Farbe zu den ausgewählten hinzufügen
-                }
-            }
-        });
-
-        if (colorNotSelected) {
-            showSHBcustomAlert("Keine Tonnen-Farben?", "Die Farben der Tonne sollten zugeordnet werden!");
-            return false; // Rückgabe `false`, wenn eine Farbe fehlt
+        if (!selectElement) {
+            console.error("Kein Dropdown-Element in der Spalte 'Tonnen Farbe' gefunden!");
+            return; // Überspringe die aktuelle Zeile, wenn kein Dropdown gefunden wurde
         }
 
-        if (duplicateColor) {
-            showSHBcustomAlert("Doppelte Farbe erkannt!", "Jede Farbe darf nur einmal ausgewählt werden!");
-            return false; // Rückgabe `false`, wenn Farben doppelt sind
-        }
+        const color = selectElement.value;
+        console.log(`Ausgewählte Farbe in der Zeile: "${color}"`); // Debugging-Ausgabe
 
-        return true; // Rückgabe `true`, wenn alles korrekt ist
+        if (!color || color.trim() === "" || color === "Farbe wählen") {
+            colorNotSelected = true; // Wenn keine Farbe ausgewählt wurde
+        }
+    });
+
+    if (colorNotSelected) {
+        showSHBcustomAlert("Keine Tonnen-Farben?", "Die Farben der Tonne sollten zugeordnet werden!");
+        return false; // Rückgabe `false`, wenn eine Farbe fehlt
     }
+
+    return true; // Rückgabe `true`, wenn alles korrekt ist
+}
+
 
 function createTemplates() {
     // Checkboxen für "keine"-Anzeige prüfen
@@ -1701,7 +1689,7 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
     const sensorRows = Array.from(sensorTableBody.querySelectorAll("tr")); // Zeilen der sensor-table (ohne Header)
 
-    const sensorState = {};
+    const sensorState = [];
 
     // Verarbeitung der Daten
     sensorRows.forEach(sensorRow => {
@@ -1711,9 +1699,25 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         // Extrahiere originalName aus der 3. Spalte
         const originalName = sensorRow.cells[2]?.textContent.trim();
 
-        // Sicherheitsprüfung: Überspringe Zeilen ohne gültige Namen
-        if (!customName || !originalName) {
-            console.warn("Zeile übersprungen: Fehlender Name", sensorRow);
+        // Extrahiere Farbe aus der 5. Spalte
+        const color = sensorRow.cells[4]?.querySelector("select")?.value.trim();
+
+        // Sicherheitsprüfung: Überspringe Zeilen ohne gültige Namen oder Farbe
+        if (!customName || !originalName || !color || color === "Farbe wählen") {
+            console.warn("Zeile übersprungen: Fehlender Name oder keine Farbe ausgewählt", sensorRow);
+            return;
+        }
+
+        // Kategorisierung basierend auf der Farbe
+        let category;
+        if ("Schwarz,Blau,Rot,Gelb,Grün,Braun,Schwarz-Blau,Schwarz-Rot,Schwarz-Gelb,Schwarz-Grün,Schwarz-Braun".split(",").includes(color)) {
+            category = "TONNE";
+        } else if ("gelber Sack,schwarzer Sack,roter Sack,blauer Sack,grüner Sack".split(",").includes(color)) {
+            category = "SACK";
+        } else if ("Sperrabfall,Grünschnitt,Glas".split(",").includes(color)) {
+            category = "SAMMLUNG";
+        } else {
+            console.warn("Unbekannte Kategorie für Farbe", color);
             return;
         }
 
@@ -1724,53 +1728,58 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
 
         // Anpassung für farbliche Säcke
         let adjustedName = originalName;
-        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter) Sack\b/)) {
+        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter|Grüner) Sack\b/)) {
             adjustedName = originalName
                 .replace(/\bGelber Sack\b/, "gelben Sack")
                 .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
                 .replace(/\bBlauer Sack\b/, "blauen Sack")
-                .replace(/\bRoter Sack\b/, "roten Sack");
+                .replace(/\bRoter Sack\b/, "roten Sack")
+                .replace(/\bGrüner Sack\b/, "grünen Sack");
         }
 
-        // Füge adjustedName als Schlüssel und sensorName als Wert in sensorState ein
-        sensorState[adjustedName] = sensorName;
+        // Füge Kategorie, Namen und Sensorstatus in das Array ein
+        sensorState.push([adjustedName, category, sensorName]);
     });
 
-    // Template-Text generieren ohne Anführungszeichen um die Sensorwerte
-    let sensorStateEntries = Object.entries(sensorState)
-        .map(([key, value]) => `    '${key}': ${value}`) // Generiere YAML-Zeilen
+    // Template-Text generieren mit den Kategorien
+    let sensorStateEntries = sensorState
+        .map(([name, category, sensor]) => `    ('${name}', '${category}', ${sensor})`) // Generiere YAML-Zeilen
         .join(",\n");
 
     let templateText = `
 {% raw %}
-{% set SENSORSTATE = {
+{%- set SENSORSTATE = [
 ${sensorStateEntries}
-} %}
+] %}
 {%- set DAY = '${day}' %}
 {%- set SACKS = namespace(values=[]) %}
 {%- set TONNEN = namespace(values=[]) %}
+{%- set SAMMLUNGEN = namespace(values=[]) %}
 
-{# Trenne Säcke und Tonnen #}
-{% for ITEM in SENSORSTATE.keys() %}
-    {% if 'Sack' in ITEM and SENSORSTATE[ITEM] == DAY %}
-        {% set SACKS.values = SACKS.values + [' den ' ~ ITEM] %}
-    {% elif SENSORSTATE[ITEM] == DAY %}
-        {% set TONNEN.values = TONNEN.values + [' die ' ~ ITEM] %}
+{# Trenne Einträge basierend auf der zweiten Spalte #}
+{% for ITEM in SENSORSTATE %}
+    {% if ITEM[1] == 'SACK' and ITEM[2] == DAY %}
+        {% set SACKS.values = SACKS.values + [' den ' ~ ITEM[0]] %}
+    {% elif ITEM[1] == 'TONNE' and ITEM[2] == DAY %}
+        {% set TONNEN.values = TONNEN.values + [' die ' ~ ITEM[0]] %}
+    {% elif ITEM[1] == 'SAMMLUNG' and ITEM[2] == DAY %}
+        {% set SAMMLUNGEN.values = SAMMLUNGEN.values + [' die ' ~ ITEM[0]] %}
     {% endif %}
 {% endfor %}
 
 {# Ausgabe der Ergebnisse #}
-{%- if SACKS.values | length > 0 or TONNEN.values | length > 0 %}
+{%- if SACKS.values | length > 0 or TONNEN.values | length > 0 or SAMMLUNGEN.values | length > 0 %}
 Du musst {{ DAY | lower }}
     {%- for ITEM in SACKS.values %}
         {%- if not loop.first %}
-            {%- if loop.last and TONNEN.values | length == 0 %} und 
+            {%- if loop.last %} und 
             {%- else %}, 
             {%- endif %}
         {%- endif %}{{ ITEM }}
     {%- endfor %}
-    {%- if SACKS.values | length > 0 and TONNEN.values | length == 1 %} und
-    {%- elif SACKS.values | length > 0 and TONNEN.values | length > 1 %},{% endif %}
+    {%- if SACKS.values | length > 0 %} Sack{%- endif %}
+    {%- if TONNEN.values | length > 0 and SACKS.values | length > 0 and SAMMLUNGEN.values | length > 0 %},
+    {%- elif TONNEN.values | length > 0 and SACKS.values | length > 0 and SAMMLUNGEN.values | length == 0 %} und{% endif %}
     {%- for ITEM in TONNEN.values %}
         {%- if not loop.first %}
             {%- if loop.last %} und 
@@ -1778,8 +1787,18 @@ Du musst {{ DAY | lower }}
             {%- endif %}
         {%- endif %}{{ ITEM }}
     {%- endfor %}
-    {%- if TONNEN.values | length > 0 %} Tonne{% endif %} rausstellen!
-{%- else %}${showNoCollectionMessage ? `\nDu musst {{ DAY | lower }} keine Tonne rausstellen.` : 'none'}
+    {%- if TONNEN.values | length > 0 %} Tonne{%- endif %}
+    {%- if SAMMLUNGEN.values | length > 0 and (TONNEN.values | length > 0 or SACKS.values | length > 0) %} und{% endif %}
+    {%- for ITEM in SAMMLUNGEN.values %}
+        {%- if not loop.first %}
+            {%- if loop.last %} und 
+            {%- else %}, 
+            {%- endif %}
+        {%- endif %}{{ ITEM }}
+    {%- endfor %}
+    {%- if SAMMLUNGEN.values | length > 0 %} Sammlung{% endif %} rausstellen!
+{%- else %}
+none
 {%- endif %}
 {% endraw %}
 `;
@@ -1789,6 +1808,8 @@ Du musst {{ DAY | lower }}
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
 }
+
+
 
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
