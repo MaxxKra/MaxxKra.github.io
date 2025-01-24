@@ -1399,7 +1399,7 @@ async function extractEntries() {
 
     function checkEntries() {
         const entryTableBody = document.getElementById('entry-table').querySelector('tbody');
-        const umlautPattern = /[äöüÄÖÜß]/;
+        const umlautPattern = /[^äöüÄÖÜßa-zA-Z0-9\s-_]/;
         const selectedEntries = Array.from(entryTableBody.querySelectorAll("tr")).filter(row => {
             return row.querySelector(".shb-custom-checkbox").checked;
         });
@@ -1428,7 +1428,7 @@ async function extractEntries() {
         });
 
         if (umlautWarning) {
-            showSHBcustomAlert("Umlaute entdeckt!", "Bitte eigene Kalendereinträge kontrollieren und eigene Bezeichnungen anpassen!");
+            showSHBcustomAlert("Nicht verwendbare Zeichen entdeckt!", "Bitte eigene Kalendereinträge kontrollieren und eigene Bezeichnungen anpassen!");
             return false; // Fehler
         }
 
@@ -1460,11 +1460,11 @@ function generateSensorTable(selectedEntries) {
         let originalName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent.trim();
         let customName = originalName;
 
-        if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+        if (customName.includes("Sack") && !["Gelber Sack", "Grüner Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
             customName = customName.replace(/\s*Sack/, "").trim();
         }
 
-        const sensorName = `sensor.${customName.toLowerCase().replace(/\s+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
+        const sensorName = `sensor.${customName.toLowerCase().replace(/[\s-]+/g, "_").replace(/[äöüÄÖÜß]/g, match => {
             return {
                 'ä': 'a', 'ö': 'o', 'ü': 'u',
                 'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'ss'
