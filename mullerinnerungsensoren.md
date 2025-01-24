@@ -1785,7 +1785,7 @@ Du musst {{ DAY | lower }}
     {%- endfor %}
     {%- if SACKS.values | length > 0 %} Sack{%- endif %}
     {%- if TONNEN.values | length > 0 and SACKS.values | length > 0 and SAMMLUNGEN.values | length > 0 %},
-    {%- elif TONNEN.values | length > 0 and SACKS.values | length > 0 and SAMMLUNGEN.values | length == 0 %} und{% endif %}
+    {%- elif TONNEN.values | length > 0 and SACKS.values | length > 0 and SAMMLUNGEN.values | length == 0 %}, sowie{% endif %}
     {%- for ITEM in TONNEN.values %}
         {%- if not loop.first %}
             {%- if loop.last %} und 
@@ -1794,7 +1794,7 @@ Du musst {{ DAY | lower }}
         {%- endif %}{{ ITEM }}
     {%- endfor %}
     {%- if TONNEN.values | length > 0 %} Tonne{%- endif %}
-    {%- if SAMMLUNGEN.values | length > 0 and (TONNEN.values | length > 0 or SACKS.values | length > 0) %} und{% endif %}
+    {%- if SAMMLUNGEN.values | length > 0 and (TONNEN.values | length > 0 or SACKS.values | length > 0) %}, sowie{% endif %}
     {%- for ITEM in SAMMLUNGEN.values %}
         {%- if not loop.first %}
             {%- if loop.last %} und 
