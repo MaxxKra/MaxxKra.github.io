@@ -1698,7 +1698,12 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         const customName = sensorRow.cells[0]?.textContent.trim();
 
         // Extrahiere originalName aus der 3. Spalte
-        const originalName = sensorRow.cells[2]?.textContent.trim();
+        let originalName = sensorRow.cells[2]?.textContent.trim();
+
+        // Entferne " Sack" aus originalName, falls vorhanden
+        if (originalName.includes(" Sack")) {
+            originalName = originalName.replace(" Sack", "");
+        }
 
         // Extrahiere Farbe aus der 5. Spalte
         const color = sensorRow.cells[4]?.querySelector("select")?.value.trim();
@@ -1729,13 +1734,13 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
 
         // Anpassung für farbliche Säcke
         let adjustedName = originalName;
-        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter|Grüner) Sack\b/)) {
+        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter|Grüner)\b/)) {
             adjustedName = originalName
-                .replace(/\bGelber Sack\b/, "gelben Sack")
-                .replace(/\bSchwarzer Sack\b/, "schwarzen Sack")
-                .replace(/\bBlauer Sack\b/, "blauen Sack")
-                .replace(/\bRoter Sack\b/, "roten Sack")
-                .replace(/\bGrüner Sack\b/, "grünen Sack");
+                .replace(/\bGelber\b/, "gelben")
+                .replace(/\bSchwarzer\b/, "schwarzen")
+                .replace(/\bBlauer\b/, "blauen")
+                .replace(/\bRoter\b/, "roten")
+                .replace(/\bGrüner\b/, "grünen");
         }
 
         // Füge Kategorie, Namen und Sensorstatus in das Array ein
