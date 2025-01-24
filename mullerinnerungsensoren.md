@@ -1339,7 +1339,7 @@ async function extractEntries() {
                 summaryEntries.add(summaryText);
 
                 // Überprüfen, ob Ziffern, Punkte oder unerlaubte Zeichen enthalten sind
-                if (/\d|\.|[äöüßÄÖÜ]|\s|[()!?]/.test(summaryText)) {
+                if (/[^a-zA-Z\d_\-\s]/.test(summaryText)) {
                     invalidEntries.push(summaryText);
                 }
             }
