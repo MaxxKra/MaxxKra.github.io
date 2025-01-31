@@ -33,9 +33,9 @@ layout: page
     <label for="entity" class="shb-label">Entity:</label>
     <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
     <label for="icon" class="shb-label">Icon:</label>
-    <div class="shb-form-group" style="display: flex; align-items: center; gap: 10px;">
-        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
-        <i id="icon-preview" class="mdi mdi-lightbulb" style="font-size: 24px; color: white;"></i>
+    <div class="shb-form-group" style="display: flex; flex-direction: row; align-items: baseline; ; gap: 15px;">
+        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;" oninput="updateIconPreview()">
+        <i id="icon-preview" class="mdi mdi-lightbulb" style="font-size: 40px; color: white;"></i>
     </div>
     <label for="color" class="shb-label">Farbe:</label>
     <input type="color" id="color" class="shb-form-group" style="width: 30%;">
