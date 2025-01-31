@@ -14,7 +14,7 @@ layout: page
 </p>
 <div class="content-section">
 <h2 class="shb-section-title-center">Grundlegende Einstellungen</h2>
-<div class="generator-container">
+<div class="shb-form-group">
     <h2>Custom Button Card Generator</h2>
     <label for="card-type" class="shb-label">Kartentyp:</label>
     <select id="card-type" class="shb-form-group" onchange="updateFields()">
