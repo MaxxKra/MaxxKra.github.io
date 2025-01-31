@@ -31,17 +31,23 @@ layout: page
 <div id="settings-container" class="shb-form-group">
     <label for="entity" class="shb-label">Entity:</label>
     <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
+    
     <label for="icon" class="shb-label">Icon:</label>
-    <div class="shb-form-group" style="display: flex; flex-direction: row; align-items: baseline; gap: 15px;">
-        <input type="text" id="icon" class="shb-form-group" placeholder="lightbulb" style="width: 30%;" oninput="updateIconPreview()">
+    <div class="shb-form-group" style="display: flex; flex-direction: column; gap: 5px;">
+        <input type="text" id="icon" class="shb-form-group" placeholder="lightbulb" style="width: 30%;" oninput="updateIconPreview(); filterIcons()">
         <div id="icon-preview-container">
             <i class="mdi mdi-lightbulb" style="font-size: 40px; color: white;"></i>
         </div>
+        <div id="icon-dropdown" class="shb-form-group" style="display: none; position: absolute; background: white; width: 30%; max-height: 150px; overflow-y: auto; border: 1px solid #ccc;">
+        </div>
     </div>
+    
     <label for="color" class="shb-label">Farbe:</label>
     <input type="color" id="color" class="shb-form-group" style="width: 30%;">
+    
     <label for="size" class="shb-label">Größe:</label>
     <input type="text" id="size" class="shb-form-group" placeholder="100px" style="width: 30%;">
+    
     <label for="action" class="shb-label">Primäre Aktion:</label>
     <select id="action" class="shb-form-group" style="width: 30%;">
         <option value="toggle">Toggle</option>
@@ -63,36 +69,52 @@ layout: page
 </div>
 
 <script>
+    let mdiIcons = ["lightbulb", "home", "account", "alert", "battery", "camera", "check", "clock", "close", "cloud", "delete", "download", "email", "eye", "file", "flag", "folder", "heart", "help", "information", "lock", "menu", "message", "phone", "plus", "refresh", "settings", "star", "sync", "trash", "wifi"];
+
     function updateFields() {
         const cardType = document.getElementById('card-type').value;
         const settingsContainer = document.getElementById('settings-container');
-        
-        if (cardType === 'blank') {
-            settingsContainer.style.display = 'none';
-        } else {
-            settingsContainer.style.display = 'block';
-        }
+        settingsContainer.style.display = (cardType === 'blank') ? 'none' : 'block';
     }
 
     function updateIconPreview() {
         let iconInput = document.getElementById('icon').value.trim();
         const iconPreviewContainer = document.getElementById('icon-preview-container');
 
-        // Prüfen, ob das Icon bereits mit "mdi-" beginnt, falls nicht, ergänzen
         if (!iconInput.startsWith('mdi-')) {
             iconInput = 'mdi-' + iconInput;
         }
 
-        // Altes Icon entfernen
         iconPreviewContainer.innerHTML = '';
-
-        // Neues Icon-Element erstellen
         const newIcon = document.createElement('i');
         newIcon.className = `mdi ${iconInput}`;
         newIcon.style.fontSize = "40px";
         newIcon.style.color = "white";
-
-        // Neues Icon in den Container einfügen
         iconPreviewContainer.appendChild(newIcon);
+    }
+
+    function filterIcons() {
+        const input = document.getElementById('icon').value.toLowerCase();
+        const dropdown = document.getElementById('icon-dropdown');
+        dropdown.innerHTML = '';
+
+        if (input.length > 0) {
+            const filteredIcons = mdiIcons.filter(icon => icon.includes(input));
+            filteredIcons.forEach(icon => {
+                const item = document.createElement('div');
+                item.textContent = icon;
+                item.style.padding = '5px';
+                item.style.cursor = 'pointer';
+                item.onclick = function () {
+                    document.getElementById('icon').value = icon;
+                    updateIconPreview();
+                    dropdown.style.display = 'none';
+                };
+                dropdown.appendChild(item);
+            });
+            dropdown.style.display = 'block';
+        } else {
+            dropdown.style.display = 'none';
+        }
     }
 </script>
