@@ -6,7 +6,6 @@ tags: [Home Assistant, Button Card, custom-button-card, Codegenerator]
 show_sidebar: false
 layout: page
 ---
-
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
 </head>
@@ -33,9 +32,11 @@ layout: page
     <label for="entity" class="shb-label">Entity:</label>
     <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
     <label for="icon" class="shb-label">Icon:</label>
-    <div class="shb-form-group" style="display: flex; flex-direction: row; align-items: baseline; ; gap: 15px;">
+    <div class="shb-form-group" style="display: flex; flex-direction: row; align-items: baseline; gap: 15px;">
         <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;" oninput="updateIconPreview()">
-        <i id="icon-preview" class="mdi mdi-lightbulb" style="font-size: 40px; color: white;"></i>
+        <div id="icon-preview-container">
+            <i class="mdi mdi-lightbulb" style="font-size: 40px; color: white;"></i>
+        </div>
     </div>
     <label for="color" class="shb-label">Farbe:</label>
     <input type="color" id="color" class="shb-form-group" style="width: 30%;">
@@ -75,7 +76,18 @@ layout: page
 
     function updateIconPreview() {
         const iconInput = document.getElementById('icon').value;
-        const iconPreview = document.getElementById('icon-preview');
-        iconPreview.className = `mdi ${iconInput}`;
+        const iconPreviewContainer = document.getElementById('icon-preview-container');
+
+        // Altes Icon entfernen
+        iconPreviewContainer.innerHTML = '';
+
+        // Neues Icon-Element erstellen
+        const newIcon = document.createElement('i');
+        newIcon.className = `mdi ${iconInput}`;
+        newIcon.style.fontSize = "40px";
+        newIcon.style.color = "white";
+
+        // Neues Icon in den Container einfügen
+        iconPreviewContainer.appendChild(newIcon);
     }
 </script>
