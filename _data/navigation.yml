@@ -48,5 +48,7 @@
       link: /hacsinstallieren
 - name: Code Design
   dropdown:
+    - name: Button-Card Codegenerator
+      link: /buttoncardgenerator
     - name: ASCII Code
       link: /asciicodeueberschriften
