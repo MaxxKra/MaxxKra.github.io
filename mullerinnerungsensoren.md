@@ -42,7 +42,7 @@ layout: page
             Wenn du keine ICS Datei oder eine URL zur Einrichtung deines Kalenders in der <strong>Waste Collection Schedule</strong> hast, kannst du den Codegenerator mit einem kleinen Trick trotzdem nutzen.
         </p>
         <p>
-            Da in der neuen <strong>Waste Collection Schedule</strong> Integration, die Namen der einzelnen Abholungen frei vergeben werden können, kannst du dir zur Nutzung des Codegenartors eine Helfer-ICS Datei anlegen.
+            Da in der neuen <strong>Waste Collection Schedule</strong> Integration, die Namen der einzelnen Müll-Typen frei vergeben werden können, kannst du dir zur Nutzung des Codegenartors eine Helfer-ICS Datei anlegen.
         </p>
         <ol>
             <li>Gehe im Menü <strong>Müllerinnerung Tools</strong> auf <strong>ICS zusammenführen / erstellen</strong></li>
@@ -127,19 +127,25 @@ layout: page
     Im nächsten Schritt wähle jene Einträge aus, welche zu deinen Sensoren hinzugefügt werden sollen.<br> Zusätzlich hast du die Möglichkeit individuelle Bezeichnungen zu vergeben.
 </p>
 
-<div id="umlaut-warning-container" class="important-container" style="display: none;">
-    <h3>❗Achtung</h3>
+<div id="zeichen-hinweis-container" class="note-container" style="display: none;">
+    <h3>💡 Hinweis</h3>
     <p>
-        Deine persönlichen Bezeichnungen dürfen keine Umlaute enthalten und Leerzeichen sollen vermieden werden!
+        Deine persönlichen Bezeichnungen dürfen keine Sonderzeichen enthalten.<br>
+        Beachte bitte, dass nur die folgenden Zeichen Verwendung finden:<strong style="text-transform: none;">A-Z a-z 0-9 Leerzeichen _ - </strong><br>
+        In der neuen Waste Collection Schedule können auch <strong style="text-transform: none;">Ää Üü Öö ß</strong> verwendet werden.  
     </p>
 </div>
 <!-- Warnungscontainer -->
-<div id="warning-container" class="important-container" style="display: none;">
+<div id="zeichen-warning-container" class="important-container" style="display: none;">
     <h3>❗Achtung</h3>
     <p>
-        Deine Kalender enthält ungültige Einträge wie z.B. <strong>Ä, Ö, Ü, Leerzeichen oder Sonderzeichen </strong>.<br>
+        Deine Kalender enthält ungültige Einträge wie z.B. <strong>( ), + oder andere Sonderzeichen</strong>.<br>
         Diese Einträge sollten unbedingt ohne diese Zeichen angepasst werden, um Fehler zu vermeiden.<br>
-        Am Besten korrigierst du diese hier über die <strong>Eigenen Bezeichnungen</strong> und in der Waste Collection Schedule gleichermaßen über die <strong>Mülltypen (Alias-Namen)</strong>. 
+        <br>
+        Am Besten korrigierst du diese hier über die <strong>Eigenen Bezeichnungen</strong> und in der Waste Collection Schedule gleichermaßen über die <strong>Mülltypen (Alias-Namen)</strong>.<br>
+        <br>
+        Beachte bitte, dass nur die folgenden Zeichen Verwendung finden:<strong style="text-transform: none;">A-Z a-z 0-9 Leerzeichen _ - </strong><br>
+        In der neuen Waste Collection Schedule können auch <strong style="text-transform: none;">Ää Üü Öö ß</strong> verwendet werden.  
     </p>
 </div>
 <div id="url-warning-container" class="important-container" style="display: none;">
@@ -151,23 +157,36 @@ layout: page
     </p>
 </div>
 <p>
-    Wähle deine Bezeichnung so, dass sie kurz und sinnvoll ist. Es ist nicht notwendig, das Wort <strong>Tonne</strong> in die Bezeichnung aufzunehmen, da dies automatisch vom Codegenerator ergänzt wird.<br>
-    Beispiel: Aus der Bezeichnung <strong>Papier</strong> wird automatisch <strong>die Papier Tonne</strong>.
+    Wähle deine Bezeichnung so, dass sie kurz und sinnvoll ist.<br>
+    Es ist nicht notwendig, das Wort <strong>Tonne</strong> oder <strong>Sack</strong> in die Bezeichnung aufzunehmen, da dies automatisch vom Codegenerator durch das Auswählen der Bilder ergänzt wird.<br>
+    Eine Ausnahme bildet die Verwendung von Farben in der Bezeichnung, da die Betitelung deines Müll-Typs am Dashboard mit z.B. <strong>Gelbe</strong> anstatt <strong>Gelbe Tonne</strong> nicht besonders aussagekräftig wäre.<br>
 </p>
 <p>
-    Anders ist es bei der Verwendung von Säcken. Werden anstatt Tonnen, Säcke verwendet, ist die Bezeichnung <strong>Sack</strong> der Farbe oder dem Müll-Typ anzuhängen.<br>
-    Beispiel: Für Restabfall wähle die Bezeichnung <strong>Restabfall Sack</strong>, für den gelben Sack wähle die Bezeichnung <strong>Gelber Sack</strong>. 
+    Es sind folgende Farben von Tonnen und Säcken für die Bezeichnung möglich:
 </p>
-<p>
-
-    Es sind folgende Farben von Säcken für die Bezeichnung möglich:
-</p>
-<ul>
-    <li>Gelber Sack</li>
-    <li>Schwarzer Sack</li>
-    <li>Roter Sack</li>
-    <li>Blauer Sack</li>
-</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <ul style="margin: 0; padding: 0 20px; width: calc(100% / 4 - 10px);">
+        <li>Gelbe Tonne</li>
+        <li>Schwarze Tonne</li>
+        <li>Rote Tonne</li>
+    </ul>
+    <ul style="margin: 0; padding: 0; width: calc(100% / 4 - 10px);">
+        <li>Blaue Tonne</li>
+        <li>Grüne Tonne</li>
+        <li>Braune Tonne</li>
+    </ul>
+    <ul style="margin: 0; padding: 0; width: calc(100% / 4 - 10px);">
+        <li>Gelber Sack</li>
+        <li>Schwarzer Sack</li>
+        <li>Roter Sack</li>
+    </ul>
+    <ul style="margin: 0; padding: 0; width: calc(100% / 4 - 10px);">
+        <li>Blauer Sack</li>
+        <li>Grüner Sack</li>
+        <li>Brauner Sack</li>
+    </ul>
+</div>
+<br>
 <p>
 Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Auswahl getroffen, eigene Bezeichnungen gewählt? Weiter mit Sensoren!</button>
 </p>
@@ -297,11 +316,16 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
 
 <p>
     Nun müssen den Sensoren bzw. den Müll-Typen die Tonnen oder Säcke in den verschidenen Farben zugeordnet werden.<br>
-    Wichtig ist, dass <strong>keine</strong> Farbe zweimal verwendet werden darf.<br>
-    Du kannst deine gewählten Bilder, um sie für dein Dashboard zu nutzen, später bei den Dashboard-Karten herunterladen.
+    <br>
+    Du kannst deine gewählten Bilder in der Vorschau sehen und sie später bei den Dashboard-Karten zu deiner Verwendung herunterladen.
 </p>
 <p>
-    Nach der Zuordnung sind auch diese Sensoren in der Waste Collection Schedule anzulegen.<br>
+    Durch das Zuordnen der Bilder werden deine Müll-Typen in drei Kategorien unterteilt.<br>
+    Diese sind <strong>TONNE</strong>, <strong>SACK</strong> und <strong>SAMMLUNG</strong><br>
+    Dies ist für eine "schöne" Darstellung des Template-Textes im nächsten Schritt vorteilhaft.
+</p>
+<p>
+    Nach der Zuordnung sind nun auch diese Sensoren in der Waste Collection Schedule anzulegen.<br>
     Auch hier funktioniert das Kopieren wie schon zuvor. Einfach den Sensor Name anklicken um ihn zu kopieren und zusammen mit dem <strong>Werte Template einzelne Abholungen</strong> als <code>Abfallarten</code> in der Waste Collection Schedule einzeln anlegen.
 </p>
 
@@ -361,8 +385,8 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
 <h3 class="shb-section-title-center">Tageszeit des Anzeigewechsel ändern</h3>
 
 <p>
-    In der Integration ist der Wechsel der Tageszeit lt. Standard <strong>10:00 Uhr</strong>.<br>
-    Ab diesem Zeitpunkt wird die Abholung für heute und morgen gewechselt und daher nicht mehr angezeigt.<br>
+    In der Integration ist der Wechsel der Tageszeit lt. Standard <code>10:00</code> Uhr.<br>
+    Ab diesem Zeitpunkt wird die Abholung für <strong>heute</strong> auf den nächsten Termin gewechselt und daher nicht mehr angezeigt.<br>
     Diese Zeit kann wie folgt auf eigene Bedürfnisse geändert werden.
 </p>
 
@@ -395,6 +419,7 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
     <button class="shb-button shb-button-main" onclick="if (validateColors()) { showStep(4); }">👇  Sensoren angelegt? Weiter zu den Templates!  👇
     </button>
 </div>
+
 </div>
 
 <!--
@@ -469,8 +494,23 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
     <button class="shb-button shb-button-main" onclick="showStep(5); createTemplates()">👇  Templates erstellen  👇</button>
 </div>
 <br>
+<p>
+    Nach einem Klick auf <strong>Templates Erstellen</strong> wird hier eine Vorschau für das Ergebnis deines Templates angezeigt und zwar im Falle, dass alle Abholungen "Heute" bzw. "Morgen" wären
+</p>
+<div id="template-preview-heute" class="shb-preview-text">
+    Vorschau für Heute wird hier angezeigt...
+</div>
+<div id="template-preview-morgen" class="shb-preview-text">
+    Vorschau für Morgen wird hier angezeigt...
+</div>
+
 <!-- Output for "Müllabholung Heute" -->
 <div id="helper-template-output-heute" style="display:none;">
+    <p>
+        <br>
+        Die Überschrift kann wieder als Template Name verwendet und mit einem Klick kopiert werden.<br>
+        Zusammen mit dem Template diese einfach in Home Assistant bei den Helfern anlegen.
+    </p>
     <div class="shb-title-inline">
         <h4 onclick="copyTitleToClipboard(this)">Müllabholung Heute</h4>
         <p>Klicke auf die Überschrift um sie zu kopieren!</p>
@@ -517,7 +557,9 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
     <h3>❗Wichtig</h3>
     <p>
         Bevor du die Dashboard-Karte erstellst, stelle sicher, dass die <strong>"Custom Button Card"</strong> in HACS installiert ist.<br>
-        Diese Button Card ist für die korrekte Darstellung der Dashboard-Karte unbedingt notwendig.
+        Diese Button Card ist für die korrekte Darstellung der Dashboard-Karte unbedingt notwendig.<br>
+        <br>
+        <strong>Zur Zeit ist die Dashboard Karte bis max. 8 Müll-Typen möglich!</strong>>
     </p>
 </div>
 
@@ -541,10 +583,9 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
         Du hast <span id="sensor-count" style="font-weight: bold; color: #4be0ff;">0</span> Sensoren angelegt.
     </p>
 </div>
-
-<p>
-    Mit dieser Checkbox kannst du auswählen, ob die Tonne bei Abholung blinken soll.<br>
-    Bei der Anzeige Auswahl wird eingestellt, ob der Text und die optional blinkende Tonne für heute oder morgen angezeigt werden soll.
+<br>
+<p style="padding: 0">
+    Mit dieser Checkbox kannst du auswählen, ob die Tonne bei Abholung blinken soll.
 </p>
 
 <!-- Checkbox für "Tonne blinkend" -->
@@ -554,48 +595,50 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
         <label for="blinkendCheckbox">Tonne blinkend</label>
     </div>
 </div>
-
+<br>
 <!-- Auswahlliste für "Anzeige Heute" und "Anzeige Morgen" -->
 <div class="shb-form-group">
     <label for="anzeigeAuswahl">Anzeige Auswahl:</label>
+    <p style="padding: 0">
+        Hier kannst du einstellen, ob die Anzeige auf deiner Dashboard-Karte für die Abholung <strong>Heute</strong> oder <strong>Morgen</strong> erstellt werden soll. Diese Einstellung gilt in weiterer Folge auch für die Pop-Up Karte.
+    </p>
     <select id="anzeigeAuswahl" style="width: 30%;">
         <option value="heute">Anzeige Heute</option>
         <option value="morgen">Anzeige Morgen</option>
     </select>
 </div>
-
-<p class="description-text">
-    Die Dashboard-Karten wurden so konfiguriert, dass sie bis 3 Abholungen/Sensoren einzeilig und ab 5 Abholungen/Sensoren zweizeilig dargestellt werden.<br>
-    Für 4 Abholungen/Sensoren kann hier entschieden werden, ob ein- oder mehrzeilig.
-</p>
+<br>
 
 <!-- Auswahlliste für Darstellung -->
 <div class="shb-form-group">
-    <label for="darstellungAuswahl">Darstellung bei 4 Abholungen/Sensoren:</label>
+    <label for="darstellungAuswahl">Darstellung bei 4 Müll-Typen/Sensoren:</label>
+    <p style="padding: 0">
+        Die Dashboard-Karten wurden so konfiguriert, dass sie bis 3 Müll-Typen/Sensoren einzeilig und ab 5 Müll-Typen/Sensoren zweizeilig dargestellt werden.<br>
+        Für 4 Müll-Typen/Sensoren kann hier entschieden werden, ob ein- oder zwei- zeilig.
+    </p>
     <select id="darstellungAuswahl" style="width: 30%;">
-        <option value="einzeilig">Darstellung Einzeilig</option>
-        <option value="mehrzeilig">Darstellung Mehrzeilig</option>
+        <option value="einzeilig">Darstellung einzeilig</option>
+        <option value="zweizeilig">Darstellung zweizeilig</option>
     </select>
 </div>
-
+<br>
 <!-- Checkbox für "Datum anzeigen" -->
 <div class="shb-form-group">
     <label for="dateUseCheckbox">Datum der Abholung anzeigen?</label>
+    <p style="padding: 0">
+        Das Datum der Abholung kann auf der Karte nur ausgewählt werden, wenn der/die Sensor/Sensoren für diese Entität in der Waste Collection Schedule eingerichtet wurde/wurden.<br>
+        Die Entität dieses Sensors soll demnach aus dem Sensor Namen der Abholung und dem Zusatz <strong>Datum</strong> bestehen.<br>
+        <strong>Beispiel: "Restabfall Datum" = "sensor.restabfall_datum"</strong>
+    </p>
     <div class="checkbox-wrapper">
         <input type="checkbox" id="dateUseCheckbox">
         <label for="dateUseCheckbox">Datum anzeigen</label>
     </div>
 </div>
-
-<p>
-    Das Datum der Abholung kann auf der Karte nur ausgewählt werden, wenn der/die Sensor/Sensoren für diese Entität in der Waste Collection Schedule eingerichtet wurde/wurden.<br>
-    Die Entität dieses Sensors soll demnach aus dem Sensor Namen der Abholung und dem Zusatz <strong>Datum</strong> bestehen.<br>
-    <strong>Beispiel: "Restabfall Datum" = "sensor.restabfall_datum"</strong>
-</p>
-
+<br>
 <div class="shb-form-group">
     <label for="fontSelection">Schriftart auswählen:</label>
-    <p style="margin-bottom: 0; padding-bottom: 0;">Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.</p>
+    <p style="padding: 0">Hier kann eine Schriftart für die Dashboard-Karte gewählt oder eine eigene eingetragen werden.</p>
     <select id="fontSelection" style="width: 30%;" onchange="toggleCustomFontInput()">
         <option value="Arial Rounded MT" selected>Arial Rounded MT (Standard)</option>
         <option value="Arial">Arial</option>
@@ -608,16 +651,19 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
     </select>
     <input type="text" id="customFontInput" style="display: none; margin-top: 10px; width: 30%;" placeholder="Eigene Schriftart eingeben">
 </div>
-
+<br>
 <!-- Checkbox für "Style anpassen" -->
 <div class="shb-form-group">
     <label for="styleUseCheckbox">Karten Design anpassen?</label>
+    <p style="padding: 0">
+        Hier kann die Erscheinung deiner Karte, (Hintergrund, Rahmen und Rahmenform) minimal angepasst werden.
+    </p>
     <div class="checkbox-wrapper">
         <input type="checkbox" id="styleUseCheckbox">
         <label for="styleUseCheckbox">Style ändern</label>
     </div>
 </div>
-
+<br>
 <!-- Versteckter Container mit 3 Auswahllisten -->
 <div id="styleOptions" class="shb-style-options">
     <div class="important-container">
@@ -655,7 +701,7 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
         </div>
     </div>
 </div>
-
+<br>
 <p>
     Wenn alle Einstellungen getroffen wurden, klicke auf <strong>Beispiel anzeigen & Code generieren</strong><br>
     Du kannst nachträglich jederzeit Einstellungen ändern und den Code neu generieren.
@@ -692,7 +738,7 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
     </div>
     <!-- Beispielbild -->
     <div id="example-card-container" class="shb-vertical-half-container">
-        <h4 class="shb-section-title-center">Beispielkarte</h4>
+        <h4 class="shb-section-title-center" id="example-card-title">Beispielkarte</h4>
         <div class="shb-image-wrapper">
             <img id="example-image" src="" alt="Beispielkarte">
         </div>
@@ -872,10 +918,10 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
         </div>
     </div>
     <!-- Beispielbild -->
-    <div id="example-popup-container" class="shb-vertical-half-container" style="display: none;">
-        <h4 class="shb-section-title-center">Pop-Up Beispiel</h4>
+    <div id="example-popup-container" class="shb-vertical-half-container">
+        <h4 class="shb-section-title-center" id="example-popup-title" style="display: none">Pop-Up Beispiel</h4>
         <div class="shb-image-wrapper">
-            <img id="example-popup" src="/img/muell/popupCard_example.png" alt="Pop-Up Beispiel">
+            <img id="example-popup" src="" alt="Pop-Up Beispiel" style="display: none">
         </div>
     </div>
 </div>
@@ -1226,6 +1272,15 @@ Nach den Änderungen klicke unten auf <button class="shb-inline-button-main">Aus
         background-color: #b4f2ff
     }
 
+    .shb-preview-text {
+        margin: 15px 0;
+        font-weight: bold;
+        font-size: 1.1em;
+        border: 2px dashed #1598b3;
+        padding: 5px;
+        background: #454545;
+    }
+
 </style>
 
 <!--
@@ -1286,12 +1341,12 @@ async function extractEntries() {
         const entryTableBody = document.getElementById('entry-table').querySelector('tbody');
 
         // Alle Warncontainer ausblenden
-        const warningContainer = document.getElementById("warning-container");
-        const umlautWarningContainer = document.getElementById("umlaut-warning-container");
+        const zeichenWarningContainer = document.getElementById("zeichen-warning-container");
+        const zeichenHinweisContainer = document.getElementById("zeichen-hinweis-container");
         const urlWarningContainer = document.getElementById("url-warning-container");
 
-        warningContainer.style.display = "none";
-        umlautWarningContainer.style.display = "none";
+        zeichenWarningContainer.style.display = "none";
+        zeichenHinweisContainer.style.display = "block";
         urlWarningContainer.style.display = "none";
 
         entryTableBody.innerHTML = "Lade und verarbeite Daten...";
@@ -1312,6 +1367,7 @@ async function extractEntries() {
             } catch (error) {
                 // Zeige den URL-Warncontainer bei einem Fehler
                 urlWarningContainer.style.display = "block";
+                zeichenHinweisContainer.style.display = "none";
                 console.error("Fetch error:", error);
                 entryTableBody.innerHTML = `<tr><td colspan="3">Fehler beim Laden der URL: ${error.message}</td></tr>`;
                 return;
@@ -1339,7 +1395,7 @@ async function extractEntries() {
                 summaryEntries.add(summaryText);
 
                 // Überprüfen, ob Ziffern, Punkte oder unerlaubte Zeichen enthalten sind
-                if (/[^a-zA-Z\d_\-\s]/.test(summaryText)) {
+                if (/[^äöüÄÖÜßa-zA-Z0-9\s-_]/.test(summaryText)) {
                     invalidEntries.push(summaryText);
                 }
             }
@@ -1347,8 +1403,8 @@ async function extractEntries() {
 
         // Zeige den Warnungscontainer bei ungültigen Einträgen
         if (invalidEntries.length > 0) {
-            warningContainer.style.display = "block"; // Container einblenden
-            umlautWarningContainer.style.display = "none"; // Umlaut-Warnung ausblenden
+            zeichenWarningContainer.style.display = "block"; // Container einblenden
+            zeichenHinweisContainer.style.display = "none"; // Umlaut-Warnung ausblenden
         }
 
         entryTableBody.innerHTML = "";
@@ -1460,7 +1516,7 @@ function generateSensorTable(selectedEntries) {
         let originalName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent.trim();
         let customName = originalName;
 
-        if (customName.includes("Sack") && !["Gelber Sack", "Grüner Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack"].includes(customName)) {
+        if (customName.includes("Sack") && !["Gelber Sack", "Grüner Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack", "Brauner Sack"].includes(customName)) {
             customName = customName.replace(/\s*Sack/, "").trim();
         }
 
@@ -1505,7 +1561,7 @@ function generateSensorTable(selectedEntries) {
         colorSelect.className = "color-select";
         [
             "Farbe wählen", "Schwarz", "Blau", "Rot", "Gelb", "Grün", "Braun", "Schwarz-Blau", "Schwarz-Rot", "Schwarz-Gelb", "Schwarz-Grün", "Schwarz-Braun",
-            "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack", "Sperrabfall", "Grünschnitt", "Glas"
+            "gelber Sack", "schwarzer Sack", "roter Sack", "blauer Sack", "grüner Sack", "brauner Sack", "Sperrabfall", "Grünschnitt", "Glas"
         ].forEach(color => {
             const option = document.createElement("option");
             option.value = color;
@@ -1543,6 +1599,7 @@ function generateSensorTable(selectedEntries) {
                 "roter Sack": "rot_sack.png",
                 "blauer Sack": "blau_sack.png",
                 "grüner Sack": "gruen_sack.png",
+                "brauner Sack": "braun_sack.png",
                 "Sperrabfall": "sperrabfall.png",
                 "Grünschnitt": "gruenschnitt.png",
                 "Glas": "glas.png"
@@ -1577,7 +1634,7 @@ function generateSensorTable(selectedEntries) {
             let customName = row.querySelector(".shb-custom-input").value || row.querySelector("td:nth-child(2)").textContent;
 
             // Überprüfen und gegebenenfalls "Sack" entfernen
-            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack", "Grüner Sack"].includes(customName)) {
+            if (customName.includes("Sack") && !["Gelber Sack", "Schwarzer Sack", "Blauer Sack", "Roter Sack", "Grüner Sack", "Brauner Sack"].includes(customName)) {
                 customName = customName.replace(/\s*Sack/, "").trim();
             }
 
@@ -1667,9 +1724,12 @@ function createTemplates() {
     const heuteCheckbox = document.getElementById("keineHeute").checked;
     const morgenCheckbox = document.getElementById("keineMorgen").checked;
 
-    // Templates für "Heute" und "Morgen" erstellen
-    createTemplate("Heute", "helper-template-heute", "helper-template-output-heute", heuteCheckbox);
-    createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen", morgenCheckbox);
+    // Templates für "Heute" und "Morgen" erstellen und Zustände speichern
+    const heuteState = createTemplate("Heute", "helper-template-heute", "helper-template-output-heute", heuteCheckbox);
+    const morgenState = createTemplate("Morgen", "helper-template-morgen", "helper-template-output-morgen", morgenCheckbox);
+
+    // Generiere und zeige Vorschau an
+    showTemplatePreview(heuteState, morgenState);
 }
 
     function copyTitleToClipboard(element) {
@@ -1685,6 +1745,85 @@ function createTemplates() {
             console.error("Fehler beim Kopieren in die Zwischenablage:", err);
         });
     }
+
+function showTemplatePreview(heuteState, morgenState) {
+    const previewElementHeute = document.getElementById("template-preview-heute");
+    const previewElementMorgen = document.getElementById("template-preview-morgen");
+
+    // Vorschautexte für Heute und Morgen erstellen
+    const heutePreviewText = generatePreviewText(heuteState, "Heute");
+    const morgenPreviewText = generatePreviewText(morgenState, "Morgen");
+
+    // Vorschau anzeigen
+    if (previewElementHeute) {
+        previewElementHeute.textContent = heutePreviewText;
+    }
+    if (previewElementMorgen) {
+        previewElementMorgen.textContent = morgenPreviewText;
+    }
+}
+
+function generatePreviewText(sensorState, day) {
+    const sacks = [];
+    const tonnen = [];
+    const sammlungen = [];
+
+    // Trenne Einträge basierend auf der Kategorie
+    sensorState.forEach(([name, category]) => {
+        if (category === "SACK") {
+            sacks.push(`den ${name}`);
+        } else if (category === "TONNE") {
+            tonnen.push(`die ${name}`);
+        } else if (category === "SAMMLUNG") {
+            sammlungen.push(`die ${name}`);
+        }
+    });
+
+    // Generiere die Vorschau basierend auf der Template-Logik
+    let previewText = `Du musst ${day.toLowerCase()} `;
+
+    if (sacks.length > 0 || tonnen.length > 0 || sammlungen.length > 0) {
+        // Säcke hinzufügen
+        if (sacks.length > 0) {
+            previewText += formatList(sacks) + " Sack";
+        }
+
+        // Tonnen hinzufügen
+        if (tonnen.length > 0) {
+            if (sacks.length > 0) {
+                previewText += ", sowie ";
+            }
+            previewText += formatList(tonnen) + " Tonne";
+        }
+
+        // Sammlungen hinzufügen
+        if (sammlungen.length > 0) {
+            if (sacks.length > 0 || tonnen.length > 0) {
+                previewText += ", sowie ";
+            }
+            previewText += formatList(sammlungen) + " Sammlung";
+        }
+
+        previewText += " rausstellen!";
+    } else {
+        previewText += "keine Tonne rausstellen.";
+    }
+
+    return previewText;
+}
+
+// Hilfsfunktion, um Listen zu formatieren
+function formatList(items) {
+    if (items.length === 1) {
+        return items[0];
+    } else {
+        const lastItem = items.pop(); // Letztes Element entfernen
+        return items.join(", ") + " und " + lastItem; // Liste mit "und" verbinden
+    }
+}
+
+
+
 
 function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
     const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody'); // Tabelle für Sensoren
@@ -1704,6 +1843,9 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         if (originalName.includes(" Sack")) {
             originalName = originalName.replace(" Sack", "");
         }
+        else if (originalName.includes(" Tonne")) {
+            originalName = originalName.replace(" Tonne", "");
+        }
 
         // Extrahiere Farbe aus der 5. Spalte
         const color = sensorRow.cells[4]?.querySelector("select")?.value.trim();
@@ -1718,7 +1860,7 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
         let category;
         if ("Schwarz,Blau,Rot,Gelb,Grün,Braun,Schwarz-Blau,Schwarz-Rot,Schwarz-Gelb,Schwarz-Grün,Schwarz-Braun".split(",").includes(color)) {
             category = "TONNE";
-        } else if ("gelber Sack,schwarzer Sack,roter Sack,blauer Sack,grüner Sack".split(",").includes(color)) {
+        } else if ("gelber Sack,schwarzer Sack,roter Sack,blauer Sack,grüner Sack,brauner Sack".split(",").includes(color)) {
             category = "SACK";
         } else if ("Sperrabfall,Grünschnitt,Glas".split(",").includes(color)) {
             category = "SAMMLUNG";
@@ -1734,13 +1876,14 @@ function createTemplate(day, templateId, outputId, showNoCollectionMessage) {
 
         // Anpassung für farbliche Säcke
         let adjustedName = originalName;
-        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter|Grüner)\b/)) {
+        if (originalName.match(/\b(Gelber|Schwarzer|Blauer|Roter|Grüner|Brauner)\b/)) {
             adjustedName = originalName
                 .replace(/\bGelber\b/, "gelben")
                 .replace(/\bSchwarzer\b/, "schwarzen")
                 .replace(/\bBlauer\b/, "blauen")
                 .replace(/\bRoter\b/, "roten")
-                .replace(/\bGrüner\b/, "grünen");
+                .replace(/\bGrüner\b/, "grünen")
+                .replace(/\bBrauner\b/, "braunen");
         }
 
         // Füge Kategorie, Namen und Sensorstatus in das Array ein
@@ -1812,16 +1955,15 @@ Du musst {{ DAY | lower }}
     const templateElement = document.getElementById(templateId);
     templateElement.innerHTML = `<code class="language-yaml">${templateText.trim()}</code>`;
     document.getElementById(outputId).style.display = "block";
+
+    return sensorState;
 }
 
 
 
     function createImageList() {
         const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
-        const rows = Array.from(sensorTableBody.querySelectorAll("tr")); // Überspringe die Standardreihe "Nächste Abholung"
-        
-        // Tabelle für die Ausgabe erstellen
-        let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau und Download</th></tr></thead><tbody>';
+        const rows = Array.from(sensorTableBody.querySelectorAll("tr"));
         
         // Mapping von Farben zu Bilddateinamen
         const colorToImageMap = {
@@ -1841,20 +1983,21 @@ Du musst {{ DAY | lower }}
             "roter Sack": "rot_sack.png",
             "blauer Sack": "blau_sack.png",
             "grüner Sack": "gruen_sack.png",
+            "brauner Sack": "braun_sack.png",
             "Sperrabfall": "sperrabfall.png",
             "Grünschnitt": "gruenschnitt.png",
             "Glas": "glas.png"
         };
+
+        // Tabelle für die Ausgabe erstellen
+        let imageTable = '<table class="shb-custom-table"><thead><tr><th>Sensor Name</th><th>Bilder Name</th><th>Entity ID</th><th style="text-align: center;">Bild Vorschau und Download</th></tr></thead><tbody>';
         
-        // Zeilen der Tabelle durchlaufen und Bildnamen sowie Bildvorschau zuordnen
-        let sensorCount = 0; // Zähler für die Anzahl der Sensoren
         rows.forEach(row => {
             const sensorName = row.cells[0].textContent.trim(); // Sensor Name
             const selectedColor = row.cells[4].querySelector("select").value; // Farbauswahl
             const entityID = row.cells[3].textContent.trim(); // Entity ID
 
             if (colorToImageMap[selectedColor]) {
-                sensorCount++; // Zähler inkrementieren
                 const imageName = colorToImageMap[selectedColor];
                 const imagePath = `/img/muell/${imageName}`;
                 
@@ -1884,48 +2027,135 @@ Du musst {{ DAY | lower }}
         }
         document.getElementById('image-list-output').innerHTML = imageTable;
 
-        // Sensor-Zusammenfassung anzeigen
-        const sensorSummary = document.getElementById('sensor-summary');
-        const sensorCountElement = document.getElementById('sensor-count');
-        
-        if (sensorCount === 1) {
-            sensorCountElement.textContent = "einen Sensor / eine Müll-Type";
-        } else {
-            sensorCountElement.textContent = `${sensorCount} Sensoren / Müll-Typen`;
+        // Sensor-Anzahl aktualisieren
+        updateSensorCount();
         }
 
-        sensorSummary.style.display = "block"; // Zusammenfassung einblenden
-        sensorSummary.innerHTML = `Du hast <span style="font-weight: bold; color: #4be0ff;">${sensorCount === 1 ? "einen Sensor / eine Müll-Type" : `${sensorCount} Sensoren / Müll-Typen`}</span> angelegt.`;
+function updateSensorCount() {
+    const sensorTableBody = document.getElementById('sensor-table').querySelector('tbody');
+    const sensorCount = sensorTableBody.querySelectorAll("tr").length;
+
+    const sensorSummary = document.getElementById('sensor-summary');
+    const sensorCountElement = document.getElementById('sensor-count');
+
+    if (sensorCountElement) {
+        sensorCountElement.textContent = sensorCount === 1 ? "einen Sensor / einen Müll-Typ" : `${sensorCount} Sensoren / Müll-Typen`;
     }
 
-    function updateExampleCard() {
-        const darstellungAuswahl = document.getElementById("darstellungAuswahl").value;
-        const sensorTableBody = document.getElementById("sensor-table").querySelector("tbody");
-        const sensorCount = sensorTableBody.querySelectorAll("tr"); // Exclude the header row
+    if (sensorSummary) {
+        sensorSummary.style.display = "block";
+        sensorSummary.innerHTML = `Du hast <span style="font-weight: bold; color: #4be0ff;">${sensorCount === 1 ? "einen Sensor / eine Müll-Type" : `${sensorCount} Sensoren / Müll-Typen`}</span> angelegt.`;
+    }
+}
 
-        let imagePath = "/img/muell/";
+function updateExampleCard() {
+    const darstellungAuswahl = document.getElementById("darstellungAuswahl").value;
+    const sensorTableBody = document.getElementById("sensor-table").querySelector("tbody");
+    const sensorCount = sensorTableBody.querySelectorAll("tr").length; // Anzahl der Zeilen zählen
+    const blinkend = document.getElementById("blinkendCheckbox").checked; // blinkende Tonne?
+    const dateUsed = document.getElementById("dateUseCheckbox").checked;
 
-        if (sensorCount === 1) {
-            imagePath += "exampleCard_1.png";
-        } else if (sensorCount === 2) {
-            imagePath += "exampleCard_2.png";
-        } else if (sensorCount === 3) {
-            imagePath += "exampleCard_3.png";
-        } else if (sensorCount === 4) {
+    let imagePath = "/img/muell/";
+
+    if (sensorCount >= 1 && sensorCount <= 8) {
+        if (sensorCount === 4) {
+            // Sonderfall für sensorCount = 4 mit darstellungAuswahl
             if (darstellungAuswahl === "einzeilig") {
-                imagePath += "exampleCard_4_1.png";
-            } else if (darstellungAuswahl === "mehrzeilig") {
-                imagePath += "exampleCard_4_2.png";
+                imagePath += "exampleCard_4_1";
+            } else if (darstellungAuswahl === "zweizeilig") {
+                imagePath += "exampleCard_4_2";
             }
-        } else if (sensorCount === 5) {
-            imagePath += "exampleCard_5.png";
         } else {
-            imagePath += "exampleCard_6.png";
+            imagePath += `exampleCard_${sensorCount}`;
         }
 
-        const exampleImage = document.getElementById("example-image");
-        exampleImage.src = imagePath;
-        exampleImage.style.display = "block"; // Show the image
+        if (dateUsed) {
+            imagePath = imagePath.replace("exampleCard", "exampleDateCard");
+        }
+
+        if (blinkend) {
+            imagePath += ".gif";
+        } else {
+            imagePath += ".png";
+        }
+    } else {
+        // Default-Bild, wenn sensorCount außerhalb des Bereichs liegt
+        imagePath = "/img/muell/exampleDateCard_8.gif";
+    }
+
+    const exampleImage = document.getElementById("example-image");
+    exampleImage.src = imagePath;
+    exampleImage.style.display = "block"; // Bild anzeigen
+
+    // Überschrift aktualisieren
+    updateExampleCardTitle(sensorCount, blinkend, dateUsed);
+    }
+
+    function updateExampleCardTitle(sensorCount, blinkend, dateUsed) {
+        const titleElement = document.getElementById("example-card-title");
+        let titleText = `Beispielkarte: ${sensorCount} Müll-Typ${sensorCount > 1 ? "en" : ""}`;
+
+        if (blinkend) {
+            titleText += ", blinkend";
+        } else {
+            titleText += ", nicht blinkend";
+        }
+
+        if (dateUsed) {
+            titleText += " mit Datum Anzeige";
+        } else {
+            titleText += " ohne Datum Anzeige";
+        }
+
+        // Überschrift aktualisieren
+        titleElement.textContent = titleText;
+    }
+
+
+function updateExamplePopup() {
+    const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value;
+    const sensorTableBody = document.getElementById("sensor-table").querySelector("tbody");
+    const sensorCount = sensorTableBody.querySelectorAll("tr").length;
+
+    let imagePath = "/img/muell/";
+
+    if (sensorCount >= 1 && sensorCount <= 8) {
+        if (anzeigeAuswahl === "heute") {
+            imagePath += `popupPreview_${sensorCount}.png`;
+            } 
+        else if (anzeigeAuswahl === "morgen") {
+            imagePath += `popupMorgenPreview_${sensorCount}.png`;
+            }
+        else {
+            imagePath += `popupCard_example.png`;
+        }
+    } else {
+        // Default-Bild, wenn sensorCount außerhalb des Bereichs liegt
+        imagePath = "/img/muell/popupCard_example.png";
+    }
+
+    const examplePopup = document.getElementById("example-popup");
+    examplePopup.src = imagePath;
+    examplePopup.style.display = "block"; // Bild anzeigen
+    const examplePopupTitle = document.getElementById("example-popup-title");
+    examplePopupTitle.style.display = "block"; // Bild anzeigen
+
+    // Überschrift aktualisieren
+    updateExamplePopupTitle(sensorCount, anzeigeAuswahl);
+    }
+
+    function updateExamplePopupTitle(sensorCount, anzeigeAuswahl) {
+        const titleElement = document.getElementById("example-popup-title");
+        let titleText = `Pop-Up Beispiel: ${sensorCount} Müll-Typ${sensorCount > 1 ? "en" : ""}`;
+
+        if (anzeigeAuswahl === "heute") {
+            titleText += ", Erinnerung für Heute";
+        } else {
+            titleText += ", Erinnerung für Morgen";
+        }
+
+        // Überschrift aktualisieren
+        titleElement.textContent = titleText;
     }
 
     function toggleCustomFontInput() {
@@ -1977,7 +2207,7 @@ Du musst {{ DAY | lower }}
         const styleUsed = document.getElementById("styleUseCheckbox").checked; // Style geändert
         const styleUnused = !document.getElementById("styleUseCheckbox").checked; // Style nicht geändert
         const anzeigeAuswahl = document.getElementById("anzeigeAuswahl").value; // Anzeige "heute" oder "morgen",
-        const darstellung = document.getElementById("darstellungAuswahl").value; // Karte einzeilig oder mehrzeilig
+        const darstellung = document.getElementById("darstellungAuswahl").value; // Karte einzeilig oder zweizeilig
         const selectedFont = getSelectedFont(); // Ausgewählte Schriftart
         const StyleHintergrund = document.getElementById("backgroundSelect").value; // Gewählter Hintergrund
         const StyleRahmenStil = document.getElementById("borderStyleSelect").value; // Gewählter Rahmen
@@ -2475,7 +2705,7 @@ Du musst {{ DAY | lower }}
             });
         }
 
-        else if (sensorCount === 4 && darstellung === "mehrzeilig") {
+        else if (sensorCount === 4 && darstellung === "zweizeilig") {
             const entityText = `sensor.mullabholung_${anzeigeAuswahl}`;
             const valueText = `${anzeigeAuswahl.charAt(0).toUpperCase() + anzeigeAuswahl.slice(1)}`; // "Heute" oder "Morgen"
 
@@ -3117,7 +3347,7 @@ Du musst {{ DAY | lower }}
                 yaml += `            entity: ${sensor.entity}\n`;
                 yaml += `            show_entity_picture: true\n`;
                 yaml += `            entity_picture: /local/muell/${sensor.image}\n`;
-                yaml += `            size: 60%\n`;
+                yaml += `            size: 50%\n`;
                 yaml += `            show_state: false\n`;
                 yaml += `            show_name: false\n`;
                 yaml += `            styles:\n`;
@@ -3469,6 +3699,7 @@ function generatePopupYAML() {
             yaml += `        left: ${position.left}%\n`;
             yaml += `        top: ${position.top}%\n`;
             yaml += `        width: ${position.width}%\n`;
+            yaml += `        z-index: ${position.index}\n`;
         }
     });
 
@@ -3485,19 +3716,22 @@ function generatePopupYAML() {
 // Funktion zur Berechnung der Position basierend auf dem Index
 function getPositionByIndex(index) {
     const positions = {
-        1: { left: 27, top: 75, width: 22 },
-        2: { left: 57, top: 75, width: 22 },
-        3: { left: 87, top: 75, width: 22 },
-        4: { left: 12, top: 79, width: 23 },
-        5: { left: 42, top: 79, width: 23 },
-        6: { left: 72, top: 79, width: 23 }
+        1: { left: 56, top: 81, width: 20, index: 1 },
+        2: { left: 33, top: 81, width: 20, index: 1  },
+        3: { left: 80, top: 81, width: 20, index: 1  },
+        4: { left: 10, top: 81, width: 20, index: 1  },
+        5: { left: 45, top: 74, width: 19, index: 0  },
+        6: { left: 68, top: 74, width: 19, index: 0  },
+        7: { left: 21, top: 74, width: 19, index: 0  },
+        8: { left: 92, top: 74, width: 19, index: 0  }
     };
-    return positions[index] || { left: 50, top: 50, width: 20 }; // Standardposition
+    return positions[index] || { left: 50, top: 50, width: 20, index: -1 }; // Standardposition
 }
 
 // Update both the example card and YAML code
 document.getElementById("popup-code").addEventListener("click", () => {
     generatePopupYAML(); // YAML generieren
+    updateExamplePopup();
 
     // Beispielbild anzeigen
     const exampleContainer = document.getElementById("example-popup-container");
