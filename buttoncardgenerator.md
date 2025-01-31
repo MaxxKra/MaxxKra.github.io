@@ -17,7 +17,7 @@ layout: page
 <div class="shb-form-group">
     <h2>Custom Button Card Generator</h2>
     <label for="card-type" class="shb-label">Kartentyp:</label>
-    <select id="card-type" class="shb-form-group" onchange="updateFields()">
+    <select id="card-type" class="shb-form-group" onchange="updateFields()" style="width: 30%;">
         <option value="button">Schalter / Taste</option>
         <option value="status">Statusanzeige</option>
         <option value="blank">Blank Karte</option>
@@ -25,19 +25,19 @@ layout: page
     
     <div id="settings-container" class="shb-form-group">
         <label for="entity" class="shb-label">Entity:</label>
-        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example">
+        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
         
         <label for="icon" class="shb-label">Icon:</label>
-        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb">
+        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
         
         <label for="color" class="shb-label">Farbe:</label>
-        <input type="color" id="color" class="shb-form-group">
+        <input type="color" id="color" class="shb-form-group" style="width: 30%;">
         
         <label for="size" class="shb-label">Größe:</label>
-        <input type="text" id="size" class="shb-form-group" placeholder="100px">
+        <input type="text" id="size" class="shb-form-group" placeholder="100px" style="width: 30%;">
         
         <label for="action" class="shb-label">Primäre Aktion:</label>
-        <select id="action" class="shb-form-group">
+        <select id="action" class="shb-form-group" style="width: 30%;">
             <option value="toggle">Toggle</option>
             <option value="more-info">More Info</option>
             <option value="navigate">Navigate</option>
