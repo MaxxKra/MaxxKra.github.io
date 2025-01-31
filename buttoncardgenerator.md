@@ -14,31 +14,30 @@ layout: page
 </p>
 <div class="content-section">
 <h2 class="shb-section-title-center">Grundlegende Einstellungen</h2>
-</div>
 <div class="generator-container">
     <h2>Custom Button Card Generator</h2>
-    <label for="card-type">Kartentyp:</label>
-    <select id="card-type" class="shb-input" onchange="updateFields()">
+    <label for="card-type" class="shb-label">Kartentyp:</label>
+    <select id="card-type" class="shb-form-group" onchange="updateFields()">
         <option value="button">Schalter / Taste</option>
         <option value="status">Statusanzeige</option>
         <option value="blank">Blank Karte</option>
     </select>
     
-    <div id="settings-container">
-        <label for="entity">Entity:</label>
-        <input type="text" id="entity" class="shb-input" placeholder="sensor.example">
+    <div id="settings-container" class="shb-form-group">
+        <label for="entity" class="shb-label">Entity:</label>
+        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example">
         
-        <label for="icon">Icon:</label>
-        <input type="text" id="icon" class="shb-input" placeholder="mdi:lightbulb">
+        <label for="icon" class="shb-label">Icon:</label>
+        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb">
         
-        <label for="color">Farbe:</label>
-        <input type="color" id="color" class="shb-input">
+        <label for="color" class="shb-label">Farbe:</label>
+        <input type="color" id="color" class="shb-form-group">
         
-        <label for="size">Größe:</label>
-        <input type="text" id="size" class="shb-input" placeholder="100px">
+        <label for="size" class="shb-label">Größe:</label>
+        <input type="text" id="size" class="shb-form-group" placeholder="100px">
         
-        <label for="action">Primäre Aktion:</label>
-        <select id="action" class="shb-input">
+        <label for="action" class="shb-label">Primäre Aktion:</label>
+        <select id="action" class="shb-form-group">
             <option value="toggle">Toggle</option>
             <option value="more-info">More Info</option>
             <option value="navigate">Navigate</option>
@@ -47,11 +46,15 @@ layout: page
         </select>
     </div>
     
-    <button class="shb-button" onclick="generateCode()">Code generieren</button>
-    <button class="shb-button" onclick="downloadCode()">Download</button>
+    <div class="shb-button-container">
+        <button class="shb-button-main" onclick="generateCode()">Code generieren</button>
+        <button class="shb-button-blue" onclick="downloadCode()">Download</button>
+    </div>
     
     <h3>Generierter YAML-Code:</h3>
-    <textarea id="yaml-output" class="shb-textarea" readonly></textarea>
+    <textarea id="yaml-output" class="shb-text-code-output" readonly></textarea>
+</div>
+</div>
 </div>
 <script>
     function updateFields() {
@@ -65,4 +68,3 @@ layout: page
         }
     }
 </script>
-</div>
