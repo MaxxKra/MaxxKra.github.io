@@ -31,12 +31,12 @@ layout: page
     
 <div id="settings-container" class="shb-form-group">
     <label for="entity" class="shb-label">Entity:</label>
+    <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
+    <label for="icon" class="shb-label">Icon:</label>
     <div class="shb-form-group" style="display: flex; align-items: center; gap: 10px;">
-        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
+        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
         <i id="icon-preview" class="mdi mdi-lightbulb" style="font-size: 24px; color: white;"></i>
     </div>
-    <label for="icon" class="shb-label">Icon:</label>
-    <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
     <label for="color" class="shb-label">Farbe:</label>
     <input type="color" id="color" class="shb-form-group" style="width: 30%;">
     <label for="size" class="shb-label">Größe:</label>
@@ -60,6 +60,7 @@ layout: page
 <textarea id="yaml-output" class="shb-text-code-output" readonly></textarea>
 </div>
 </div>
+
 <script>
     function updateFields() {
         const cardType = document.getElementById('card-type').value;
@@ -70,5 +71,11 @@ layout: page
         } else {
             settingsContainer.style.display = 'block';
         }
+    }
+
+    function updateIconPreview() {
+        const iconInput = document.getElementById('icon').value;
+        const iconPreview = document.getElementById('icon-preview');
+        iconPreview.className = `mdi ${iconInput}`;
     }
 </script>
