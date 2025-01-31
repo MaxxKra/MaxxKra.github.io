@@ -6,6 +6,11 @@ tags: [Home Assistant, Button Card, custom-button-card, Codegenerator]
 show_sidebar: false
 layout: page
 ---
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+</head>
+
 <div class="shb-main-container">
 <h1 class="shb-main-title">Button-Card Code-Generator</h1>
 <br>
@@ -26,17 +31,16 @@ layout: page
     
 <div id="settings-container" class="shb-form-group">
     <label for="entity" class="shb-label">Entity:</label>
-    <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
-    
+    <div class="shb-form-group" style="display: flex; align-items: center; gap: 10px;">
+        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
+        <i id="icon-preview" class="mdi mdi-lightbulb" style="font-size: 24px; color: white;"></i>
+    </div>
     <label for="icon" class="shb-label">Icon:</label>
     <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
-    
     <label for="color" class="shb-label">Farbe:</label>
     <input type="color" id="color" class="shb-form-group" style="width: 30%;">
-    
     <label for="size" class="shb-label">Größe:</label>
     <input type="text" id="size" class="shb-form-group" placeholder="100px" style="width: 30%;">
-    
     <label for="action" class="shb-label">Primäre Aktion:</label>
     <select id="action" class="shb-form-group" style="width: 30%;">
         <option value="toggle">Toggle</option>
