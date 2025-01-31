@@ -22,38 +22,38 @@ layout: page
         <option value="status">Statusanzeige</option>
         <option value="blank">Blank Karte</option>
     </select>
-    
-    <div id="settings-container" class="shb-form-group">
-        <label for="entity" class="shb-label">Entity:</label>
-        <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
-        
-        <label for="icon" class="shb-label">Icon:</label>
-        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
-        
-        <label for="color" class="shb-label">Farbe:</label>
-        <input type="color" id="color" class="shb-form-group" style="width: 30%;">
-        
-        <label for="size" class="shb-label">Größe:</label>
-        <input type="text" id="size" class="shb-form-group" placeholder="100px" style="width: 30%;">
-        
-        <label for="action" class="shb-label">Primäre Aktion:</label>
-        <select id="action" class="shb-form-group" style="width: 30%;">
-            <option value="toggle">Toggle</option>
-            <option value="more-info">More Info</option>
-            <option value="navigate">Navigate</option>
-            <option value="url">URL</option>
-            <option value="call-service">Call Service</option>
-        </select>
-    </div>
-    
-    <div class="shb-button-container">
-        <button class="shb-button-main" onclick="generateCode()">Code generieren</button>
-        <button class="shb-button-blue" onclick="downloadCode()">Download</button>
-    </div>
-    
-    <h3>Generierter YAML-Code:</h3>
-    <textarea id="yaml-output" class="shb-text-code-output" readonly></textarea>
 </div>
+    
+<div id="settings-container" class="shb-form-group">
+    <label for="entity" class="shb-label">Entity:</label>
+    <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
+    
+    <label for="icon" class="shb-label">Icon:</label>
+    <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;">
+    
+    <label for="color" class="shb-label">Farbe:</label>
+    <input type="color" id="color" class="shb-form-group" style="width: 30%;">
+    
+    <label for="size" class="shb-label">Größe:</label>
+    <input type="text" id="size" class="shb-form-group" placeholder="100px" style="width: 30%;">
+    
+    <label for="action" class="shb-label">Primäre Aktion:</label>
+    <select id="action" class="shb-form-group" style="width: 30%;">
+        <option value="toggle">Toggle</option>
+        <option value="more-info">More Info</option>
+        <option value="navigate">Navigate</option>
+        <option value="url">URL</option>
+        <option value="call-service">Call Service</option>
+    </select>
+</div>
+    
+<div class="shb-button-container">
+    <button class="shb-button-main" onclick="generateCode()">Code generieren</button>
+    <button class="shb-button-blue" onclick="downloadCode()">Download</button>
+</div>
+    
+<h3>Generierter YAML-Code:</h3>
+<textarea id="yaml-output" class="shb-text-code-output" readonly></textarea>
 </div>
 </div>
 <script>
