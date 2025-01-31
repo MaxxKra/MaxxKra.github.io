@@ -33,7 +33,7 @@ layout: page
     <input type="text" id="entity" class="shb-form-group" placeholder="sensor.example" style="width: 30%;">
     <label for="icon" class="shb-label">Icon:</label>
     <div class="shb-form-group" style="display: flex; flex-direction: row; align-items: baseline; gap: 15px;">
-        <input type="text" id="icon" class="shb-form-group" placeholder="mdi:lightbulb" style="width: 30%;" oninput="updateIconPreview()">
+        <input type="text" id="icon" class="shb-form-group" placeholder="lightbulb" style="width: 30%;" oninput="updateIconPreview()">
         <div id="icon-preview-container">
             <i class="mdi mdi-lightbulb" style="font-size: 40px; color: white;"></i>
         </div>
@@ -75,8 +75,13 @@ layout: page
     }
 
     function updateIconPreview() {
-        const iconInput = document.getElementById('icon').value;
+        let iconInput = document.getElementById('icon').value.trim();
         const iconPreviewContainer = document.getElementById('icon-preview-container');
+
+        // Prüfen, ob das Icon bereits mit "mdi-" beginnt, falls nicht, ergänzen
+        if (!iconInput.startsWith('mdi-')) {
+            iconInput = 'mdi-' + iconInput;
+        }
 
         // Altes Icon entfernen
         iconPreviewContainer.innerHTML = '';
