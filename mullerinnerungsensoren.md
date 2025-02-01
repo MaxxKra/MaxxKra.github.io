@@ -14,10 +14,14 @@ layout: page
 </p>
 
 <div class="shb-dropdown">
-    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">Erklärvideo erster Teil <span>⬇️</span></button>
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
     <div id="galleryDropdown3" class="shb-dropdown-content" style="display: none;">
-        <div class="shb-dropdown-youtube">
-            {% include youtube.html video="7HlL8uKRyC0" %}
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <div class="shb-dropdown-youtube">
+                    {% include youtube.html video="7HlL8uKRyC0" %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
