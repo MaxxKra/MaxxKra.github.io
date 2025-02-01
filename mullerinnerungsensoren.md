@@ -13,12 +13,12 @@ layout: page
     Mit diesem Code-Generator hast du die Möglichkeit, deine Müllerinnerung vom Anlegen des Kalenders über das Einrichten der Sensoren und Templates bis hin zur Dashboard- und Pop-Up- Karte durchzuführen.
 </p>
 
-<div class="shb-dropdown">
-    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
-    <div id="galleryDropdown3" class="shb-dropdown-content" style="display: none;">
+<div class="shb-yt-dropdown">
+    <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
+    <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <div class="shb-dropdown-youtube">
+                <div class="shb-yt-dropdown-youtube">
                     {% include youtube.html video="7HlL8uKRyC0" %}
                 </div>
             </div>
@@ -26,7 +26,75 @@ layout: page
     </div>
 </div>
 
+<style>
 
+/* DROPDOWN */
+.shb-yt-dropdown {
+    margin: 0 0 20px;
+    text-align: center;
+    display: flex;
+}
+
+.shb-yt-dropdown-toggle {
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f39c12;
+    color: #ffffff;
+    text-shadow: 0 0 2px #000000, 0 0 5px #000000;
+    padding: 10px 5px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 2px 5px #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 50%;
+    max-width: 100%;
+    display: inline-block;
+}
+
+.shb-yt-dropdown-toggle.rotated {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 20px 30px;
+    min-width: 6%;
+    max-width: 7%;
+    height: auto;
+}
+
+.shb-yt-dropdown-toggle span {
+    float: right;
+}
+
+.shb-yt-dropdown-toggle.rotated span {
+    transform: rotate(270deg);
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.shb-yt-dropdown-content {
+    display: flex;
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    flex-direction: column; /* Stellt sicher, dass Elemente untereinander bleiben */
+}
+
+.shb-yt-dropdown-youtube {
+    position: relative;
+    max-width: 60%;
+    width: 100%;
+    padding-top: 33.75%; /* 16:9 Seitenverhältnis */
+}
+
+.shb-yt-dropdown-youtube iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+</style>
 
 <!-- Wichtiger Hinweis -->
 <div class="important-container">
