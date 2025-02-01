@@ -16,11 +16,9 @@ layout: page
 <div class="shb-yt-dropdown">
     <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
     <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
-        <div class="columns is-multiline">
-            <div class="column is-12">
-                <div class="shb-yt-dropdown-youtube">
-                    {% include youtube.html video="7HlL8uKRyC0" %}
-                </div>
+        <div class="shb-yt-dropdown-container">
+            <div class="shb-yt-dropdown-youtube">
+                {% include youtube.html video="7HlL8uKRyC0" %}
             </div>
         </div>
     </div>
@@ -74,9 +72,21 @@ layout: page
 
 .shb-yt-dropdown-content {
     display: flex;
-    justify-content: center; /* Zentriert den Inhalt horizontal */
-    align-items: center; /* Zentriert den Inhalt vertikal */
-    flex-direction: column; /* Stellt sicher, dass Elemente untereinander bleiben */
+    justify-content: center; /* Zentriert das Video horizontal */
+    align-items: center; /* Falls nötig, vertikal ausrichten */
+    flex-direction: column;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 2px 5px #ffffff;
+}
+
+.shb-yt-dropdown-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .shb-yt-dropdown-youtube {
@@ -93,6 +103,7 @@ layout: page
     width: 100%;
     height: 100%;
 }
+
 
 </style>
 
