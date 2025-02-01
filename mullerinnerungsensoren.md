@@ -14,7 +14,10 @@ layout: page
 </p>
 
 <div class="shb-yt-dropdown">
-    <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <img class="shb-yt-img" src="/img/logos/youtube.png" alt="YouTube Logo"></button>
+    <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">
+        <span class="shb-yt-text">ERKLÄRUNG ERSTER ABSCHNITT</span>
+        <img class="shb-yt-img" src="/img/logos/youtube.png" alt="YouTube Logo">
+    </button>
     <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
         <div class="shb-yt-dropdown-container">
             <div class="shb-yt-dropdown-youtube">
@@ -34,20 +37,18 @@ layout: page
 }
 
 .shb-yt-dropdown-toggle {
-    font-size: 1.2em;
-    font-weight: bold;
     cursor: pointer;
     background-color: #f39c12;
-    color: #ffffff;
-    text-shadow: 0 0 2px #000000, 0 0 5px #000000;
     padding: 10px 5px;
     border: 1px solid #ffffff;
     box-shadow: 0 2px 5px #ffffff;
     border-radius: 5px;
-    text-align: center;
     min-width: 50%;
     max-width: 100%;
-    display: inline-block;
+    display: flex; /* Setzt den Inhalt in eine Zeile */
+    align-items: center; /* Zentriert Text und Logo vertikal */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    gap: 10px; /* Abstand zwischen Text und Logo */
 }
 
 .shb-yt-dropdown-toggle.rotated {
@@ -65,7 +66,7 @@ layout: page
 }
 
 .shb-yt-dropdown-toggle.rotated img {
-    transform: rotate(270deg);
+    transform: rotate(180deg);
     transition: transform 0.3s ease;
     display: inline-block;
 }
@@ -105,10 +106,17 @@ layout: page
 }
 
 .shb-yt-img {
-    width: 20px; /* Passe die Größe an */
+    width: 40px; /* Passe die Größe an */
     height: auto;
     margin-left: 10px; /* Abstand zum Text */
     vertical-align: middle; /* Richtet das Logo mit dem Text aus */
+}
+
+.shb-yt-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 2px #000000, 0 0 5px #000000;
 }
 </style>
 
