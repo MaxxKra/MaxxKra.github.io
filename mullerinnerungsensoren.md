@@ -18,7 +18,9 @@ layout: page
     <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
         <div class="shb-yt-dropdown-container">
             <div class="shb-yt-dropdown-youtube">
-                {% include youtube.html video="7HlL8uKRyC0" %}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/7HlL8uKRyC0" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
             </div>
         </div>
     </div>
