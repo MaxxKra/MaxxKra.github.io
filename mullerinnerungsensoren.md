@@ -46,7 +46,7 @@ layout: page
     display: flex; /* Setzt den Inhalt in eine Zeile */
     align-items: center; /* Zentriert Text und Logo vertikal */
     justify-content: end; /* Zentriert den Inhalt horizontal */
-    gap: 20%; /* Abstand zwischen Text und Logo */
+    gap: 30px; /* Abstand zwischen Text und Logo */
 }
 
 .shb-yt-dropdown-toggle.rotated {
