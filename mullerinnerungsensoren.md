@@ -14,7 +14,7 @@ layout: page
 </p>
 
 <div class="shb-yt-dropdown">
-    <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
+    <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <img class="shb-yt-img" src="/img/logos/youtube.png" alt="YouTube Logo"></button>
     <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
         <div class="shb-yt-dropdown-container">
             <div class="shb-yt-dropdown-youtube">
@@ -60,11 +60,11 @@ layout: page
     height: auto;
 }
 
-.shb-yt-dropdown-toggle span {
+.shb-yt-dropdown-toggle img {
     float: right;
 }
 
-.shb-yt-dropdown-toggle.rotated span {
+.shb-yt-dropdown-toggle.rotated img {
     transform: rotate(270deg);
     transition: transform 0.3s ease;
     display: inline-block;
@@ -104,7 +104,12 @@ layout: page
     height: 100%;
 }
 
-
+.shb-yt-img {
+    width: 20px; /* Passe die Größe an */
+    height: auto;
+    margin-left: 10px; /* Abstand zum Text */
+    vertical-align: middle; /* Richtet das Logo mit dem Text aus */
+}
 </style>
 
 <!-- Wichtiger Hinweis -->
