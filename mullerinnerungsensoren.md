@@ -12,6 +12,18 @@ layout: page
 <p class="shb-main-description">
     Mit diesem Code-Generator hast du die Möglichkeit, deine Müllerinnerung vom Anlegen des Kalenders über das Einrichten der Sensoren und Templates bis hin zur Dashboard- und Pop-Up- Karte durchzuführen.
 </p>
+
+<div class="shb-dropdown">
+    <button class="shb-dropdown-toggle" onclick="toggleSHBdropdown('galleryDropdown3', this)">Erklärvideo erster Teil <span>⬇️</span></button>
+    <div id="galleryDropdown3" class="shb-dropdown-content" style="display: none;">
+        <div class="shb-dropdown-youtube">
+            {% include youtube.html video="7HlL8uKRyC0" %}
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Wichtiger Hinweis -->
 <div class="important-container">
     <h3>❗Wichtig</h3>
