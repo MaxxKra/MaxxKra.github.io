@@ -38,17 +38,15 @@ layout: page
 
 .shb-yt-dropdown-toggle {
     cursor: pointer;
-    background-color: #f39c12;
-    padding: 10px 5px;
+    background-color: #a90000;
+    padding: 10px 15px;
     border: 1px solid #ffffff;
     box-shadow: 0 2px 5px #ffffff;
     border-radius: 5px;
-    min-width: 50%;
-    max-width: 100%;
     display: flex; /* Setzt den Inhalt in eine Zeile */
     align-items: center; /* Zentriert Text und Logo vertikal */
-    justify-content: center; /* Zentriert den Inhalt horizontal */
-    gap: 10px; /* Abstand zwischen Text und Logo */
+    justify-content: end; /* Zentriert den Inhalt horizontal */
+    gap: 20%; /* Abstand zwischen Text und Logo */
 }
 
 .shb-yt-dropdown-toggle.rotated {
@@ -108,7 +106,6 @@ layout: page
 .shb-yt-img {
     width: 40px; /* Passe die Größe an */
     height: auto;
-    margin-left: 10px; /* Abstand zum Text */
     vertical-align: middle; /* Richtet das Logo mit dem Text aus */
 }
 
