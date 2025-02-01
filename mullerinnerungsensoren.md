@@ -13,8 +13,6 @@ layout: page
     Mit diesem Code-Generator hast du die Möglichkeit, deine Müllerinnerung vom Anlegen des Kalenders über das Einrichten der Sensoren und Templates bis hin zur Dashboard- und Pop-Up- Karte durchzuführen.
 </p>
 
-{% include youtube.html video="7HlL8uKRyC0" %}
-
 <div class="shb-yt-dropdown">
     <button class="shb-yt-dropdown-toggle" onclick="toggleSHBdropdown('youTubeVideo1', this)">ERKLÄRUNG ERSTER ABSCHNITT <span>⬇️</span></button>
     <div id="youTubeVideo1" class="shb-yt-dropdown-content" style="display: none;">
@@ -83,6 +81,7 @@ layout: page
     margin-top: 10px;
     border: 1px solid #ffffff;
     box-shadow: 0 2px 5px #ffffff;
+    width: 100%;
 }
 
 .shb-yt-dropdown-container {
@@ -93,9 +92,8 @@ layout: page
 
 .shb-yt-dropdown-youtube {
     position: relative;
-    max-width: 60%;
+    max-width: 80%;
     width: 100%;
-    padding-top: 33.75%; /* 16:9 Seitenverhältnis */
 }
 
 .shb-yt-dropdown-youtube iframe {
